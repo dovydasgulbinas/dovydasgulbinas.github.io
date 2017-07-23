@@ -20,7 +20,7 @@ After playing around with Hyperion I really liked it. I liked it so much that I 
 
 If you gets your lights running are ok to go!
 
-*important: in my case Homeassistant and Hyperion are on a different machines therefore I needed to setup a password-less ssh connection from my Homeassistant RPi -> Kodi RPi*
+☝️ *IMPORTANT: in my case Homeassistant and Hyperion are on a different machines therefore I needed to setup a password-less ssh connection from my Homeassistant RPi -> Kodi RPi*
 
 § 3. Now login to your second machine running `Homeassistant` service.
 
