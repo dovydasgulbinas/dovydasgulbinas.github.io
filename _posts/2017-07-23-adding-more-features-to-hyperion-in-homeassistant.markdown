@@ -6,11 +6,11 @@ categories: homeassistant hyperion
 ---
 
 # Intro
-After playing around with Hyperion I really liked it. I liked it so much that I decided to implement it in my smart-home setup.  I currently use Hyperion for Kodi, but I wanted a way to control it with my Homeassistant. Because I could automate a lot of workflows eg. automatically turn on the backlight in evenings. My Setup uses two Raspberry Pi devices: First for `Kodi + Hyperion` and second just for `Homeassistant`🏠. Okay lets begin.
+After playing around with Hyperion I really liked it. I liked it so much that I decided to implement it in my smart-home setup.  I currently use Hyperion for Kodi, but I wanted a way to control it with my `Homeassistant`. Because I could automate a lot of workflows eg. automatically turn on the backlight in evenings. My Setup uses two Raspberry Pi devices: First for `Kodi + Hyperion` and second just for `Homeassistant`. Okay lets begin.
 
 # Begin
 
-§ 1. Open up your terminal 💻 and ssh to a machine has Hyperion service enabled.
+§ 1. Open up your terminal and ssh to a machine has Hyperion service enabled.
 
 > ssh kodi@192.168.1.99
 
@@ -22,24 +22,24 @@ If you gets your lights running are ok to go!
 
 *important: in my case Homeassistant and Hyperion are on a different machines therefore I needed to setup a password-less ssh connection from my Homeassistant RPi -> Kodi RPi*
 
-§ 3. Now login to your second machine running `Homeassistant`🏠 service.
+§ 3. Now login to your second machine running `Homeassistant` service.
 
 >ssh pi@192.168.1.100
 
 >sudo su homeassistant
 
-§ 4. Test the Hyperion again but now in a remote configuration.
+§ 4. Test the `Hyperion` again but now in a remote configuration.
 
 ⚠️ *WARNING: You are entering SSH inception. You are connecting via SSH to Linux machine while already connected to another machine via SSH!*
 
 > ssh kodi@192.168.1.99 'hyperion-remote -e "Knight rider"'
 
-As mentioned before this step just ran a SSH command in a different machine entirely via the power of SSH.  If you setup is all in one meaning `Hyperion` and `Homeassistant`🏠 are running on the same machine then the command would simply be:
+As mentioned before this step just ran a SSH command in a different machine entirely via the power of SSH.  If you setup is all in one meaning `Hyperion` and `Homeassistant` are running on the same machine then the command would simply be:
 
 > hyperion-remote -e "Knight rider"
 
 
-$ 5. Edit `Homeassistant`🏠 configuration files:
+$ 5. Edit `Homeassistant` configuration files:
 
 ```yaml
 📔 configuration.yaml
@@ -116,6 +116,6 @@ hyperion_group:
 
 # Conclusion
 
-This guide is a more or less a workaround for running Hyperion effects. I saw other people doing similar things to solve this problem but it involved shell script for every Hyperion effect. This was due to the fact that `shell_command` functionality was introduced relatively recently to `Homeassistant`. I could try extending the feature set and add brightness control but for now it suits my needs. If you want to see my actual `Homeassistant`🏠 config visit this GitHub [click-me][hass-repo]
+This guide is a more or less a workaround for running Hyperion effects. I saw other people doing similar things to solve this problem but it involved shell script for every Hyperion effect. This was due to the fact that `shell_command` functionality was introduced relatively recently to `Homeassistant`. I could try extending the feature set and add brightness control but for now it suits my needs. Furthermore you could add automation to enable Hyperion only in evenings I actually have done that. If you want to see how I did it checkout my  `Homeassistant` config by visiting this GitHub repo [click-me][hass-repo]
 
 [hass-repo]: https://github.com/megamorphf/Home-AssistantConfig
