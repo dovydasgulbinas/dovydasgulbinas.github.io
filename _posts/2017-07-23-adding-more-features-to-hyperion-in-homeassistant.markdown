@@ -49,7 +49,7 @@ As mentioned before this step just ran a SSH command in a different machine enti
 $ 5. Edit `Homeassistant` configuration files:
 
 ```yaml
-📔 configuration.yaml
+📔 configuration.yaml #
 
 script: !include scripts.yaml
 
@@ -66,6 +66,7 @@ shell_command:
   run_hyperion_effect:  "ssh kodi@192.168.1.99 \"hyperion-remote -e '{{states.input_select.hyperion_effects.state}}'\" "
 
 ```
+
 ```
 📔 hyperion_effect_list.yaml (create this file in hass root directory)
 
