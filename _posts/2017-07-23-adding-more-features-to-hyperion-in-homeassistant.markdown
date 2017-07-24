@@ -139,7 +139,7 @@ This guide is a more or less a workaround for running Hyperion effects. I saw ot
 
 
 var disqus_config = function () {
-this.page.url = "{{ page.url }}";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.url = "https://www.megamorphf.github.io"+ "{{ page.url }}";  // Replace PAGE_URL with your page's canonical URL variable
 this.page.identifier = "{{ page.url }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
