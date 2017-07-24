@@ -41,6 +41,7 @@ plugins:
 img: "/assets/img/"
 git_domain: "https://www.megamorphf.github.io"
 
+
 defaults:
   - scope:
       path: "assets/img"
