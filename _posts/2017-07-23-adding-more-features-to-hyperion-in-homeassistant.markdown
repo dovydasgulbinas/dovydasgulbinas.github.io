@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title:  "Adding more features to Hyperion in Homeassistant 🏠"
 date:   2017-07-23 18:33:00 +0300
 categories:
@@ -127,3 +128,27 @@ hyperion_group:
 This guide is a more or less a workaround for running Hyperion effects. I saw other people doing similar things to solve this problem but it involved shell script for every Hyperion effect. This was due to the fact that `shell_command` functionality was introduced relatively recently to `Homeassistant`. I could try extending the feature set and add brightness control but for now it suits my needs. Furthermore you could add automation to enable Hyperion only in evenings I actually have done that. If you want to see how I did it checkout my  `Homeassistant` config by visiting this GitHub repo [click-me][hass-repo]
 
 [hass-repo]: https://github.com/megamorphf/Home-AssistantConfig
+
+{% if page.comments %}
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://megamorphf.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+{% endif %}

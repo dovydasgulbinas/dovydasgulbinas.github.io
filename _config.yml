@@ -35,8 +35,6 @@ theme: minima
 plugins:
   - jekyll-feed
   - jemoji
-
-gems:
   - jekyll-auto-image
 
 img: "/assets/img/"
