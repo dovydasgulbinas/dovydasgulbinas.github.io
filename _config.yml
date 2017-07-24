@@ -22,6 +22,7 @@ url: "https://www.megamorphf.github.io" # the base hostname & protocol for your 
 twitter_username: megamorphf
 github_username:  megamorphf
 
+
 # TODO: update feed.xml for better description
 
 # Build settings
@@ -38,23 +39,10 @@ plugins:
   - jekyll-auto-image
 
 img: "/assets/img/"
+git_domain: "https://www.megamorphf.github.io"
 
 defaults:
   - scope:
       path: "assets/img"
     values:
       image: true
-
-
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
-#theme: jekyll-theme-cayman

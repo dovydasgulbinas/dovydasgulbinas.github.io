@@ -8,10 +8,10 @@ categories:
   - hyperion
 ---
 
-
 <p align="center">
   <img src="/assets/img/hyperion-hass.gif"/>
 </p>
+
 
 # Intro
 After playing around with Hyperion I really liked it. I liked it so much that I decided to implement it in my smart-home setup.  I currently use Hyperion for Kodi, but I wanted a way to control it with my `Homeassistant`. Because I could automate a lot of workflows eg. automatically turn on the backlight in evenings. My Setup uses two Raspberry Pi devices: First for `Kodi + Hyperion` and second just for `Homeassistant`. Okay lets begin.
@@ -136,12 +136,13 @@ This guide is a more or less a workaround for running Hyperion effects. I saw ot
 /**
 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-/*
+
+
 var disqus_config = function () {
-this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.url = "{{ page.url }}";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "{{ page.url }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
-*/
+
 (function() { // DON'T EDIT BELOW THIS LINE
 var d = document, s = d.createElement('script');
 s.src = 'https://megamorphf.disqus.com/embed.js';
@@ -150,5 +151,5 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                            
+
 {% endif %}
