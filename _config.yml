@@ -22,25 +22,57 @@ url: "https://www.megamorphf.github.io" # the base hostname & protocol for your 
 twitter_username: megamorphf
 github_username:  megamorphf
 
+owner:
+    name: Dovydas Gulbinas
+    email: dovydasgulbinas@gmail.com
+    github: megamorphf
+    twitter: megamorphf
+    linkedin:
+    facebook:
+    google_plus:
+    youtube:
+
+sharing:
+    twitter: true
+    linkedin: true
+    facebook: true
+    google_plus: true
+    reddit: true
+
+# Disqus comments configuration (leave blank to disable comments)
+disqus_shortname: 'megamorphf'
+
+# Jekyll configuration
+permalink: /:year/:month/:day/:title/
+paginate: 4
 
 # TODO: update feed.xml for better description
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
 
 kramdown:
   input: GFM
   hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  enable_coderay: false
 
 collections:
   jokes:
     output: true
 
-theme: minima
+theme: trio
+
+
 plugins:
   - jekyll-feed
   - jemoji
   - jekyll-auto-image
+  - jekyll-paginate
 
 img: "/assets/img/"
 git_domain: "https://www.megamorphf.github.io"
@@ -57,3 +89,5 @@ defaults:
       type: jokes
     values:
       layout: page
+
+exclude: ['README.md']
