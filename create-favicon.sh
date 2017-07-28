@@ -32,12 +32,12 @@ function saveimage() {
 
 #----------------------------------------------------------------------
 # Text/label
-label="T"
+label="H"
 
-font="OverlockBlackItalic"
+font="/Library/Fonts/Baskerville.ttc"
 
 # Background color
-background_color='#477DCA' # (default) baby blue
+background_color='#000000' # (default) baby blue
 
 # Foreground color
 foreground_color='white'
