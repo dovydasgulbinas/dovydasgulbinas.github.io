@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Adding more features to Hyperion in Homeassistant 🏠
+title: Adding more features to Hyperion in Homeassistant
 date: 2017-07-23
 update_date: 2017-07-28
-summary: An introduction to a new Jekyll theme named Trio.
+summary: A step by step guide for controlling Hyperion with Homeassistant 🏠
 logo: home
 comments: true  
 categories:
@@ -17,6 +17,7 @@ categories:
 
 
 # Intro
+
 After playing around with Hyperion I really liked it. I liked it so much that I decided to implement it in my smart-home setup.  I currently use Hyperion for Kodi, but I wanted a way to control it with my `Homeassistant`. Because I could automate a lot of workflows eg. automatically turn on the backlight in evenings. My Setup uses two Raspberry Pi devices: First for `Kodi + Hyperion` and second just for `Homeassistant`. Okay lets begin.
 
 # Begin
