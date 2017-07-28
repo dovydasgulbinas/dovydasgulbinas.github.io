@@ -1,8 +1,11 @@
 ---
 layout: post
-comments: true
-title:  "Adding more features to Hyperion in Homeassistant 🏠"
-date:   2017-07-23 18:33:00 +0300
+title: Adding more features to Hyperion in Homeassistant 🏠
+date: 2017-07-23
+update_date: 2017-07-28
+summary: An introduction to a new Jekyll theme named Trio.
+logo: home
+comments: true  
 categories:
   - homeassistant
   - hyperion

@@ -65,12 +65,12 @@ collections:
   jokes:
     output: true
 
-theme: trio
+# theme: trio
 
 
 plugins:
   - jekyll-feed
-  - jemoji
+  # - jemoji
   - jekyll-auto-image
   - jekyll-paginate
 

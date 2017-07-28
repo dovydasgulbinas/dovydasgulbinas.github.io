@@ -4,12 +4,12 @@ title: About
 permalink: /about/
 ---
 
-## whoami
+### whoami
 
 A physicist  turned into programmer.  I used to wrange snakes 🐍, now I drink coffee ☕ for living.
 
 
-## Whats the purpose of this page?
+### Whats the purpose of this page?
 
 It is more or less a public notebook for me and others who find my projects interesting. My preferences are usually hardware related.
 
