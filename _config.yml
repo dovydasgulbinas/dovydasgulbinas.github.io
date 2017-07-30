@@ -38,7 +38,7 @@ collections:
 
 theme: minima
 plugins:
-  - jekyll-feed
+  # - jekyll-feed
   - jemoji
   - jekyll-auto-image
 
