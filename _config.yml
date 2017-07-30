@@ -1,7 +1,7 @@
 # Site wide configuration
 title: Perfectly Random
 description: 'random stuff about mathematics, logic and software'
-url: https://www.megamorphf.github.io
+url: http://www.megamorphf.github.io
 date_format: '%B %d, %Y'
 fort_awesome_icon: 'cog fa-spin'
 
