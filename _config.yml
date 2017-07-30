@@ -1,59 +1,57 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+# Site wide configuration
+title: Perfectly Random
+description: 'random stuff about mathematics, logic and software'
+url: https://www.megamorphf.github.io
+date_format: '%B %d, %Y'
+fort_awesome_icon: 'cog fa-spin'
 
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-title: hermes.log
-email: dovydasgulbinas@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  Proudly representing Lithuania
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://www.megamorphf.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: megamorphf
-github_username:  megamorphf
+# Owner configuration
+# name and email are required (change code to remove these)
+# (leave the rest blank to disable the corresponding sharing button)
+owner:
+    name: Ankur Gupta
+    email: ankur@perfectlyrandom.org
+    github: ankur-gupta
+    twitter: ankurIO
+    linkedin: ankurguptawisc
+    facebook:
+    google_plus:
+    youtube:
 
+# Post sharing icons
+sharing:
+    twitter: true
+    linkedin: true
+    facebook: true
+    google_plus: true
+    reddit: true
 
-# TODO: update feed.xml for better description
+# Disqus comments configuration (leave blank to disable comments)
+disqus_shortname: 'megamorphf'
 
-# Build settings
+# Jekyll configuration
+permalink: /:year/:month/:day/:title/
+paginate: 8
+
+# Markdown
 markdown: kramdown
+# markdown: redcarpet
+highlighter: rouge
 
+# Enable when using redcarpet
+# redcarpet:
+#   extensions: ['smart', 'tables', 'with_toc_data', 'footnotes']
+
+# Enable when using kramdown (you will need to use ~~~ instead of ```)
 kramdown:
-  input: GFM
-  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  use_coderay: false
 
-collections:
-  jokes:
-    output: true
+# Gems
+gems: ['jekyll-paginate']
 
-theme: minima
-plugins:
-  - jekyll-feed
-  - jemoji
-  - jekyll-auto-image
-
-img: "/assets/img/"
-git_domain: "https://www.megamorphf.github.io"
-
-
-defaults:
-  - scope:
-      path: "assets/img"
-    values:
-      image: true
-
-  - scope:
-      path: ""
-      type: jokes
-    values:
-      layout: page
+# Exclude
+exclude: ['README.md']

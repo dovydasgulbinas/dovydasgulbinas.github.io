@@ -1,22 +1,13 @@
 ---
 layout: page
-title: About
+title: About Me
 permalink: /about/
 ---
 
-## whoami
+I am an engineer with a PhD in *Chemical Engineering*. But I work with mathematics and computers. I live in San Francisco.
 
-A physicist  turned into programmer.  I used to wrange snakes 🐍, now I drink coffee ☕ for living.
+On this website, I aim to add interesting content that you cannot find otherwise on the internet. In other words, every time I have to figure out something new that wasn't previously there on the internet, I put the information up here.
 
+You can expect to find *computer-y* things here. Mathematical and logical things will also find their way on this site.
 
-## Whats the purpose of this page?
-
-It is more or less a public notebook for me and others who find my projects interesting. My preferences are usually hardware related.
-
-
-
-You can always stalk me on: [GitHub][my-git]
-
-Or contact me via electronic mail systems: dovydasgulbinas@gmail.com
-
-[my-git]: https://github.com/megamorphf
+You can find me on [GitHub](http://github.com/ankur-gupta/) or my [former research group](http://jbrwww.che.wisc.edu/projects/ankur/index.html) or on [LinkedIn](http://www.linkedin.com/in/ankurguptawisc).
