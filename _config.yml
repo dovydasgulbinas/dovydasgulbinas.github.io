@@ -32,6 +32,18 @@ collections:
   # - jemoji
   # - jekyll-auto-image
 
+# atom:
+#   buildCommand:
+#     - jekyll
+#     - build
+#     - --option
+#     - --this
+#   buildEnv:
+#     JEKYLL_ENV: development
+#   postDirs:
+#     - _newsletters
+#   defaultPostDir: _drafts
+
 img: "/assets/img/"
 git_domain: "https://www.megamorphf.github.io"
 
