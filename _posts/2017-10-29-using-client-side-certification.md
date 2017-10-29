@@ -1,6 +1,6 @@
 ---
 layout: post
-comments: true
+comments: true\
 title:  "Issuing and managing client side certificates using Python"
 date:   2017-10-29 03:11:00 +0300
 categories:
@@ -10,6 +10,30 @@ categories:
   - python
 ---
 
+<p align="center">
+  <img src="/assets/img/client-side-word-cloud.png"/>
+</p>
+
+# Glossary
+
+**Key** - a piece of cryptographic information used for encrypting data by a chosen
+algorithm
+
+---
+
+**Certificate Signing Request (CSR)** - a process in which person or server asks for his
+key being signed. Thus allowing others you verify the the **key** belongs to them.
+
+---
+
+**Certificate Authority (CA)** - a person or a server that is trusted and signs
+your certificates requests.
+
+---
+
+**Client Side Certificate (CSC)** - a file given to a user to prove its identity
+it usually comes in .p12 format and is instlled into web browsers. CSC are obtained
+usually by sending a CSR to a CA.
 
 # Intro
 
@@ -24,9 +48,7 @@ who want to access your website.  It also can be used as good alternative for us
 name and password. Because CSC as mentioned previously helps to uniquely identify
 user who is connecting to your server.
 
-<p align="center">
-  <img src="/assets/img/client-side-word-cloud.png"/>
-</p>
+
 
 ## How CSC are generated
 
@@ -66,8 +88,8 @@ This example assumes you will be your own CA (a.k.a Your connection is not secur
 |                                                                                                   |           10. picture-server is ready to prove his identity to client and serve encrypted pictures 🔐          |                                                                                                                                                                                                                                                                       |
 |                                                                                                   |                                                                                                                |                                                                            11. eager-client want,for his pictures not to be available publically. He wants client-side-authentication (CSA)                                                                           |
 |                                                                                                   |                                                                                                                | 12. for _CSA_ eager-client has multiple options:   12.1 Generate _private_ key for himself **eager-client.key**   12.2 eager-client, needs to prove that his key belongs to him therefore he creates a `certificate signing request`file   12.3 He sends that file to kitty-ca |
-| 13. kitty-ca,accepts sent file and generates a certificate for eager-client: **eager-client.p12** |                                                                                                                |                                                                                                                                                                                                                                                                       |
-|                                                                                                   |                                                                                                                |                                                                    14. eager-client takes the new **eager-client.p12** file and add its to its Firefox, Chrome browsers or adds it to his keychain                                                                    |
+| 13. kitty-ca accepts sent file and generates a certificate for eager-client: **eager-client.crt** |                                                                                                                |                                                                                                                                                                                                                                                                       |
+|                                                                                                   |                                                                                                                |                                                                    14. eager-client converts **eager-client.crt** to the new **eager-client.p12** file and add it to its Firefox, Chrome browsers or adds it to his keychain                                                                    |
 |                                                                                                   |                                                                                                                |                                                                                                              15. eager-client connects to picture-server                                                                                                              |
 |                                                                                                   |                                                                                                                |                                                                                                  16. picture-server trusts kitti-ca issued files **eager-client.p12**                                                                                                 |
 |                                                                                                   |                                                                                                                |                                                                                          17. picture-server serves eager-client a webpage full of pictures to an eager-client                                                                                         |
@@ -101,7 +123,7 @@ openssl req -config openssl.cnf \
 openssl genrsa -out picture-server.key 2048
 ```
 
-#5.
+#5-6.
 
 ```
 openssl req -config openssl.cnf -new -sha256 \
@@ -109,32 +131,61 @@ openssl req -config openssl.cnf -new -sha256 \
 -out picture-server.csr
 ```
 
-#6.
-
-```
-
-```
-
 #8.
 
 ```
-
+openssl ca -config openssl.cnf \
+      -days 375 -notext -md sha256 \
+      -in picture-server.csr \
+      -out picture-server.crt
 ```
 
 #12.1
 
 ```
-
+openssl genrsa -out eager-client.key 2048
 ```
 
 
 #12.2
 
 ```
+openssl req -config openssl.cnf -new -sha256 \
+-key eager-client.key \
+-out easger-client.csr
 
 ```
 
+#13. / The actual client side generation part
 
+```
+openssl ca -config openssl.conf -notext -md sha256 \
+-in eager-client.csr \
+-out eager-client.crt
+```
+
+#14. / Conversion from crt --> p12
+```
+openssl pkcs12 -export \
+-inkey eager-client.key \
+-in eager-client.crt \
+-out eager-client.p12
+```
+
+## Lets recap
+
+So if no noticed what we did here we just did same thing 3 times:
+
+1. generate certificate for _kitty-ca_ (signs his own certificate)
+2. generate certificate for _picture-server_ (kitty-ca signs picture-server's certificate)
+3. generate certificate for _eager-client_ (kitty-ca signs eager-client's certificate)
+
+In reality eager-client's  and picture-server's certificates can be signed by two different
+Certificate Authorities (CAs) and they will still be able to trust each other.
+Because client side and server side authentication are not dependent on each other
+is any way (this example only made it that way). You could even have Only client
+side certification without HTTPS enabled on your server and it would still work
+(client would still be authenticated).
 
 
 # Release the Python 🐍
