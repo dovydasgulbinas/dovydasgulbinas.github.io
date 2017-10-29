@@ -25,7 +25,9 @@ def serve():
 
 def commit():
     local("git status")
+    print("="*60)
     local("git add -i")
+    print("="*60)
     local("git add -p && git commit")
 
 
