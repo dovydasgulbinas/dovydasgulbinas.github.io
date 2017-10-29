@@ -40,8 +40,6 @@ def commit_push():
     local("git pull origin master")
     commit()
     local("git checkout master")
-    local("git pull origin master")
-    local("git merge dev")
     local("git push origin master")
 
 
