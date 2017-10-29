@@ -24,6 +24,8 @@ def serve():
 #### HELPERS ####
 
 def commit():
+    local("git status")
+    local("git add -i")
     local("git add -p && git commit")
 
 
