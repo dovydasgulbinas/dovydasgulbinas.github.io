@@ -39,7 +39,7 @@ def push():
     local("git push origin master")
 
 
-def commit_push():
+def publish():
     """does a commit and pushes to master"""
     local("git pull origin master")
     commit()
