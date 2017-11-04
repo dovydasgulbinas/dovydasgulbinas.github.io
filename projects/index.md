@@ -20,6 +20,5 @@ permalink: /projects/
 [1]: /projects/pepe.html
 [2]: /projects/
 
-[-1]: /projects/fallacies/index.md
+[-1]: /projects/fallacies
 [-2]: /projects/epg/
-

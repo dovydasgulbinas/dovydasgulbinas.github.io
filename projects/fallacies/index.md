@@ -1,3 +1,9 @@
+---
+layout: page
+title: Fallacies
+permalink: /projects/fallacies/                                                                                                                                                                            
+---
+
 ## Įvadas
 
 Pradėjus domėtis filosofija supratau, kad filosofijoje yra labai svarbūs įrankiai, kuriais prieiname prie išvadų ir matome pasaulį.  Nors manome esą neklįstančios būtybės, kasdienybė parodo kitaip.  Šitame straipsnyje sudėsiu visas logical falacies, kurias pavyko rasti ir išsiaiškinti.  Tikiuosi tai skaitytojams bus naudinga, nes pradėsite šiuos dėsningumus matyti savo ir kitų žmonių ir savo pačių mąstyme ir taip galėsite konstruktyviai ir tiksliai konstruoti argumentus. Štai jums pateikiu kompiliaciją:
