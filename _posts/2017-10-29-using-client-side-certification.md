@@ -16,22 +16,22 @@ categories:
 
 # Glossary
 
-**Key** - a piece of cryptographic information used for encrypting data by a chosen
-algorithm
+Key
+:  a piece of cryptographic information used for encrypting data by a chosen algorithm
 
----
 
-**Certificate Signing Request (CSR)** - a process in which person or server asks for his
+Certificate Signing Request (CSR)
+:  a process in which person or server asks for his
 key being signed. Thus allowing others you verify the the **key** belongs to them.
 
----
 
-**Certificate Authority (CA)** - a person or a server that is trusted and signs
+Certificate Authority (CA)
+:  a person or a server that is trusted and signs
 your certificates requests.
 
----
 
-**Client Side Certificate (CSC)** - a file given to a user to prove its identity
+Client Side Certificate (CSC)
+:  a file given to a user to prove its identity
 it usually comes in .p12 format and is instlled into web browsers. CSC are obtained
 usually by sending a CSR to a CA.
 
@@ -47,8 +47,6 @@ Use of client side certificates is very useful because you can identify users
 who want to access your website.  It also can be used as good alternative for user
 name and password. Because CSC as mentioned previously helps to uniquely identify
 user who is connecting to your server.
-
-
 
 ## How CSC are generated
 
@@ -66,9 +64,7 @@ for your **webpage**. Even-though you can always use self signed certificates bo
 to install your homebrew CA into their root certificate store this will only
 make things harder for you, because you will only confuse simple users even more.
 
-
 ### Convoluted Table Time 🤷‍
-
 
 ☝️ *PROTIP: follow the enumeration.*
 This example assumes you will be your own CA (a.k.a Your connection is not secure )
