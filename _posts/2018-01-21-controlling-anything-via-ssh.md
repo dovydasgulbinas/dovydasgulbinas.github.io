@@ -2,7 +2,7 @@
 layout: post
 comments: true
 title:  "A thorough guide on controlling anything SSH with Homeassistants's Hass.io"
-date:   2017-01-22 11:05:00 +0200
+date:   2018-01-22 11:05:00 +0200
 categories:
   - homeassistant
   - hyperion
