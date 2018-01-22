@@ -3,6 +3,8 @@ from fabric.context_managers import lcd
 from fabric.state import env
 import os
 env.blogdir = "/Users/hermes/Desktop/blog"
+env.draftdir = os.path.join(env.blogdir, '_drafts')
+env.postdir = os.path.join(env.blogdir, '_posts')
 env.jekyll_port = 4000
 env.remote_url = "https://megamorphf.github.io"
 
@@ -23,6 +25,26 @@ def serve():
 
 #### HELPERS ####
 
+def list_drafts(draftdir=env.draftdir, postdir=env.postdir):
+    from os import listdir
+    from os.path import isfile, join
+    drafts = [f for f in listdir(draftdir) if isfile(join(draftdir, f))]
+    drafts.append ('[Chose no file]')
+    drafts_enumerated = enumerate(drafts, start=1)
+
+    for i, draft in drafts_enumerated:
+        print("    {}. {}".format(i, draft))
+    number = input("Choose draft you want to publish: ")
+
+    if number  == len(drafts):  # chose last item, skip
+        print "Skipping file choice"
+        return
+
+    for i, draft in drafts_enumerated:
+        if i == number:
+            draftfile = os.path.join(draftdir, draft)
+            local('mv {} {}'.format(draftfile, postdir))
+
 def commit():
     local("git status")
     print("="*60)
@@ -42,9 +64,11 @@ def push():
 def publish():
     """does a commit and pushes to master"""
     local("git pull origin master")
+    list_drafts()
     commit()
     local("git checkout master")
     local("git push origin master")
+    _open_in_browser("https://megamorphf.github.io")
 
 
 def _user_confirms(message):

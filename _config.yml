@@ -27,7 +27,8 @@ collections:
   jokes:
     output: true
 
-# plugins:
+plugins:
+  - jekyll-seo-tag
   # - jekyll-feed
   # - jemoji
   # - jekyll-auto-image
