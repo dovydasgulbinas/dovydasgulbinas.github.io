@@ -259,8 +259,7 @@ on other server I have at home. One thing to mention though is that you will not
 a remote command using `command_line` component, so monitoring things on a remote machine is not possible. You can checkout my 
 HASSIO config file for further inspiration [here][4]
 
-
-# Resources
+return 0
 
 [1]: https://home-assistant.io/components/switch.command_line/
 [2]: https://hyperion-project.org/
