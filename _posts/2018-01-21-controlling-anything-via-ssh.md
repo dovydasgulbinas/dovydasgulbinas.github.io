@@ -131,8 +131,9 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDyiprxeHAAieq2YtiXhFgSQIhZwvY6zsPAhsNU/N6y
 
  _⚠️ COPY this value it is your PUBLIC key we will use later!_
 
-### SLAVE: For testing purposes lets create a user called `mister.slave` 
+### 1.2 SLAVE:
 
+For testing purposes lets create a user called `mister.slave` 
 connect to your SLAVE machine
 ```
 ssh myUser@192.168.0.111
