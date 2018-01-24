@@ -3,6 +3,7 @@ layout: post
 comments: true
 title:  "A thorough guide on controlling anything SSH with Homeassistants's Hass.io"
 date:   2018-01-22 11:05:00 +0200
+updated: 2018-01-24 10:05:00 +0200
 categories:
   - homeassistant
   - hyperion
@@ -29,11 +30,11 @@ ssh donald@192.168.1.2 'sudo reboot'
 ```
 
 This command will effectively restart a machine with IP `192.168.1.2` machine. Cool but how do you
-do that using Homeassistant? By using the [command_line][1] component. This
+do that using Homeassistant? By using the command_line [^1] component. This
 is all fine and dandy but if you tried to connect to `donald` using this
 command you probably noticed that you needed a password for that. And now you have
 probaly realised that you will not be able to add a password to the
-[command_line][1] component. Luckily for you can do SSH commands without
+command_line [^1] component. Luckily for you can do SSH commands without
 entering any passwords and yet still be safe at the same time. For this
 feat you will need a **public/private** key pair that will be used to connect
 to your remote machine without any passwords.
@@ -42,7 +43,7 @@ to your remote machine without any passwords.
 ## So where is the catch ?
 
 In Hass.io 😞. After I migrated from Hassbian to Hass.io. I ran into an issue. This issue
-was that I could not do proper SSH commands to a computer running Hyperion.
+was that I could not do proper SSH commands to a computer running Hyperion [^2].
 These issues with SSH were in fact caused by the concept of Docker isolation.
 This means that my Homeassistant instance was completely separated
 from my host machine, thus not allowing me to run executables such as SSH
@@ -58,8 +59,8 @@ pair. So lets lets begin by making a public/private key pair.
 in reality we need to generate ssh keys both on the **FROM** machine and the
 **TO** machine. Because this is the only way (in SSH) for BOTH machines can prove their
 identity to each other. In this tutorial a machine that we issue commands FROM will be
-called the **MASTER** & the machine and the machine executing commands **SLAVE** in our 
-case **MASTER** is the machine running HASS.io instance. 
+called the MASTER & the machine and the machine executing commands SLAVE in our 
+case MASTER is the machine running HASS.io instance. 
 
 
 ## What we will be doing?
@@ -70,25 +71,26 @@ This example will be a good starting point for controlling remote devices.
 
 # Prerequisites
 
-- [Setup SSH connection to your HASSIO.io ResinOS host][3]
+- Setup SSH connection to your HASSIO.io ResinOS host [^3]
 
 
 # Lets Begin
 
 In my case IP addreses were:
 
-  - MASTER IP: 192.168.0.105, SSH port: 22222
-  - SLAVE IP: 192.168.0.111
+MASTER IP: 192.168.0.105, SSH port: 22222
+
+SLAVE IP: 192.168.0.111
 
 
 ## 1. Make SSH keys both on MASTER and the SLAVE
 
 Generate SSH keys on HASS.io homeassistant docker container
 
-### MASTER:
+### 1.1 MASTER:
 
-Connect to the MASTER. This will not work "out of the box" so first [follow
-official tutorial][3] on how to connect to the HASS.io host running ResinOS
+Connect to the MASTER. This will not work "out of the box" so first follow
+official tutorial [^3] on how to connect to the HASS.io host running ResinOS
 
 ```
 ssh root@192.168.0.105 -p 22222
@@ -211,23 +213,31 @@ sudo whoami
 Expected output should be `root`. So if console printed `root` and did not ask you for password congratz!
 You can now run all sudo commands without a having to enter your users password.
 
----
 
-# 2. Testing SSH connection MASTER -> SLAVE
+# 2. Testing SSH connection MASTER → SLAVE
 
 lets connect to our MASTER machine again
 ```
 ssh root@192.168.0.105 -p 22222
 ```
-
 then lets issue a REBOOT command to our SLAVE
-```
-ssh mister.slave@192.160.0.105 'sudo reboot'
-```
 
-if your SLAVE rebooted you can continue to step [3 Adding Homeassistant Components](#3-adding-homeassitant-components)
+```
+docker exec -it b7dfc2f4d0c4 /bin/bash
+ssh -i /config/ssh/id_rsa -o StrictHostKeyChecking=no mister.slave@192.168.0.111 'sudo reboot'
+```
+If all went well you congratz again you rebooted your `mister.slave` from Homeassistant manually!
 
----
+-i /config/ssh/id_rsa
+:  Defines in which directory our private SSH key can be found 
+
+-o StrictHostKeyChecking=no
+:  Says to your SSH client to not prompt you with warning messages or yes/no questions when host has changed [^5].
+
+keep in mind that `b7dfc2f4d0c4` is an unique id of my docker container yours will definetely vary!
+if you are confused refer to steps we did in the beggining: "1.1 MASTER"
+if your SLAVE rebooted you can continue to step: "3 Adding Homeassistant Components"
+
 
 # 3. Adding Homeassistant Components
 
@@ -238,7 +248,7 @@ switch:
   - platform: command_line
     switches:
       test_ssh:
-        command_on: "ssh -i /config/ssh/id_rsa mister.slave@192.168.0.103 'sudo reboot'"
+        command_on: "ssh -i /config/ssh/id_rsa -o StrictHostKeyChecking=no mister.slave@192.168.0.111 'sudo reboot'"
   friendly_name: Magic Test Switch
 ```
 
@@ -257,11 +267,14 @@ on the back.
 Personally I used this method for turning on effects on my Hyperion daemon. Also I am planning to make shutdown and reboot buttons
 on other server I have at home. One thing to mention though is that you will not have any console output when you call
 a remote command using `command_line` component, so monitoring things on a remote machine is not possible. You can checkout my 
-HASSIO config file for further inspiration [here][4]
+HASSIO config file for further inspiration here [^4]
 
 return 0
 
-[1]: https://home-assistant.io/components/switch.command_line/
-[2]: https://hyperion-project.org/
-[3]: https://home-assistant.io/developers/hassio/debugging/ 
-[4]: https://github.com/megamorphf/hass-conf
+# References
+
+[^1]: [Homeassistant command line component](https://home-assistant.io/components/switch.command_line/)
+[^2]: [Hyperion Project site](https://hyperion-project.org/)
+[^3]: [Connect Hassio host](https://home-assistant.io/developers/hassio/debugging/)
+[^4]: [My Homeassistant configuration](https://github.com/megamorphf/hass-conf)
+[^5]: [No SSH prompts](https://superuser.com/questions/125324/how-can-i-avoid-sshs-host-verification-for-known-hosts)
