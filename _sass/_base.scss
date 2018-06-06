@@ -57,6 +57,15 @@ a {
   text-decoration: underline;
 }
 
+p a{
+  color: $color-title;
+  text-decoration: underline;
+}
+
+p a:hover {
+  color: blue;
+}
+
 a:hover {
   color: blue;
 }

@@ -128,10 +128,13 @@ code {
     }
   }
 
-.gist-file{ 
-border-top: 0px;
+  .gist table tr{
+    border-top: 0px dashed #0000ff;
+  }
 
-}
-
+  .gist table td {
+    border-top: 0px dashed #0000ff;
+    border-bottom: 0px solid #45474A;
+  }
 
 }
