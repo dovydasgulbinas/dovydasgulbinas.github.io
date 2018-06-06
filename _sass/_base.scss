@@ -24,6 +24,7 @@ dl, dd, ol, ul, figure {
 }
 
 
+
 /**
  * Basic styling
  */
@@ -69,3 +70,24 @@ p a:hover {
 a:hover {
   color: blue;
 }
+
+
+.warn {
+  font-style: italic;
+background: repeating-linear-gradient(
+  -55deg,
+  #222,
+  #222 10px,
+  #00aaaa 10px,
+  #00aaaa 20px
+);
+}
+
+
+/*
+.sectag h1:before, h2:before, h3:before, h4:before, h5:before, h6:before {
+    content: "\00a7";
+    margin-right: 8px;
+}
+*/
+
