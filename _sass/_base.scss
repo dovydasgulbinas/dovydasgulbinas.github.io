@@ -72,17 +72,43 @@ a:hover {
 }
 
 
-.warn {
+.warn, .important {
   font-style: italic;
-background: repeating-linear-gradient(
-  -55deg,
-  #222,
-  #222 10px,
-  #00aaaa 10px,
-  #00aaaa 20px
-);
+  display: block;
 }
 
+.warn {
+background-color: $warn-label-bright;
+}
+
+.important {
+  background-color: $important-label-bright;
+}
+
+
+.warn::before {
+    content: "⚠️ WARNING:";
+    margin-right: 8px;
+}
+
+
+.important::before {
+    content: "☝️ IMPORTANT: ";
+    margin-right: 8px;
+}
+
+/*
+gradient maddness
+.warn {
+  background: repeating-linear-gradient(
+    -55deg,
+    $color-foreground,
+    $color-foreground 10px,
+    $warn-label-bright 10px,
+    $warn-label-bright 20px
+  );
+}
+*/
 
 /*
 .sectag h1:before, h2:before, h3:before, h4:before, h5:before, h6:before {
@@ -90,4 +116,3 @@ background: repeating-linear-gradient(
     margin-right: 8px;
 }
 */
-

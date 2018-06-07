@@ -13,12 +13,6 @@ categories:
 </p>
 
 
-<p class="warn">
-  this is so sad but where the fuuu is graddy
-</p>
-
-
-
 
 # Intro
 After playing around with Hyperion I really liked it. I liked it so much that I decided to implement it in my smart-home setup.  I currently use Hyperion for Kodi, but I wanted a way to control it with my `Homeassistant`. Because I could automate a lot of workflows eg. automatically turn on the backlight in evenings. My Setup uses two Raspberry Pi devices: First for `Kodi + Hyperion` and second just for `Homeassistant`. Okay lets begin.
@@ -40,7 +34,10 @@ hyperion-remote -e "Knight rider"
 
 If you gets your lights running are ok to go!
 
-☝️ *IMPORTANT: in my case Homeassistant and Hyperion are on a different machines therefore I needed to setup a password-less ssh connection from my Homeassistant RPi -> Kodi RPi*
+<p class="important">
+in my case Homeassistant and Hyperion are on a different machines therefore I needed to setup a password-less ssh connection from my Homeassistant RPi -> Kodi RPi*
+</p>
+
 
 #### § 3. Now login to your second machine running `Homeassistant` service.
 
@@ -52,7 +49,9 @@ sudo su homeassistant
 
 #### § 4. Test the `Hyperion` again but now in a remote configuration.
 
-⚠️ *WARNING: You are entering SSH inception. You are connecting via SSH to Linux machine while already connected to another machine via SSH!*
+<p class="warn">
+You are entering SSH inception. You are connecting via SSH to Linux machine while already connected to another machine via SSH!
+</p>
 
 ```
 ssh kodi@192.168.1.99 'hyperion-remote -e "Knight rider"'
