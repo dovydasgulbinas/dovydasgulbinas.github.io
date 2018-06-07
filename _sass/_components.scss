@@ -138,3 +138,38 @@ code {
   }
 
 }
+
+
+p.warn, p.important {
+  font-style: normal;
+  display: block;
+  padding: 12px;
+  font-size: 16px;
+  border-left: 0.5rem dotted;
+  // border-radius: 10px;
+  // box-shadow: 5px 10px;
+}
+
+p.warn {
+// background-color: $warn-label-bright;
+// background: linear-gradient(to bottom right, red, $warn-label-bright);
+border-left-color: $warn-label-bright;
+}
+
+p.important {
+  // background-color: $important-label-bright;
+// background: linear-gradient(to bottom right, $important-label-bright, white);
+border-left-color: $important-label-bright;
+}
+
+
+.warn::before {
+    content: "⚠️ WARNING:";
+    margin-right: 8px;
+}
+
+
+.important::before {
+    content: "☝️ IMPORTANT: ";
+    margin-right: 8px;
+}

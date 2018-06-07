@@ -72,31 +72,12 @@ a:hover {
 }
 
 
-.warn, .important {
-  font-style: italic;
-  display: block;
-}
-
-.warn {
-background-color: $warn-label-bright;
-}
-
-.important {
-  background-color: $important-label-bright;
-}
 
 
-.warn::before {
-    content: "⚠️ WARNING:";
-    margin-right: 8px;
-}
+// .important::first-line{
+//   background: black;
 
-
-.important::before {
-    content: "☝️ IMPORTANT: ";
-    margin-right: 8px;
-}
-
+// }
 /*
 gradient maddness
 .warn {
