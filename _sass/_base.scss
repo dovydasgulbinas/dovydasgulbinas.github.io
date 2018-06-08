@@ -38,12 +38,13 @@ body {
 
 p {
   margin-top: 0;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.3em;
+  text-align: justify;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin-top: 1em;
-  margin-bottom: 0.25em;
+  margin-top: 0.6em;
+  margin-bottom: 0.18em;
 }
 
 h1, .h1 { font-size: $h1-size; }
@@ -59,41 +60,14 @@ a {
 }
 
 p a{
-  color: $color-title;
+  color: blue;
   text-decoration: underline;
 }
 
 p a:hover {
-  color: blue;
+  color: $color-primary-link;
 }
 
 a:hover {
-  color: blue;
+  color: $color-primary-link;
 }
-
-
-
-
-// .important::first-line{
-//   background: black;
-
-// }
-/*
-gradient maddness
-.warn {
-  background: repeating-linear-gradient(
-    -55deg,
-    $color-foreground,
-    $color-foreground 10px,
-    $warn-label-bright 10px,
-    $warn-label-bright 20px
-  );
-}
-*/
-
-/*
-.sectag h1:before, h2:before, h3:before, h4:before, h5:before, h6:before {
-    content: "\00a7";
-    margin-right: 8px;
-}
-*/
