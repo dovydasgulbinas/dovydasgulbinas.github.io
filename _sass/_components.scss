@@ -139,13 +139,12 @@ code {
 
 }
 
-
 p.warn, p.important {
   font-style: normal;
   display: block;
-  padding: 12px;
-  font-size: 16px;
-  border-left: 0.5rem dotted;
+  padding: 8px;
+  font-size: $attention-font-size;
+  border-left: 0.4rem dotted;
   // border-radius: 10px;
   // box-shadow: 5px 10px;
 }
