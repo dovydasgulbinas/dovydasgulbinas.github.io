@@ -78,7 +78,9 @@ make things harder for you, because you will only confuse simple users even more
 
 ### Convoluted Table Time 🤷
 
-☝️ *PROTIP: follow the enumeration.*
+<p class="important">
+follow the enumeration.
+</p>
 This example assumes you will be your own CA (a.k.a Your connection is not secure )
 
 

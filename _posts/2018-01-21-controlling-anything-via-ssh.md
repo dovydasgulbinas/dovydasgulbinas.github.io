@@ -59,13 +59,13 @@ pair. So lets lets begin by making a public/private key pair.
 in reality we need to generate ssh keys both on the **FROM** machine and the
 **TO** machine. Because this is the only way (in SSH) for BOTH machines can prove their
 identity to each other. In this tutorial a machine that we issue commands FROM will be
-called the MASTER & the machine and the machine executing commands SLAVE in our 
-case MASTER is the machine running HASS.io instance. 
+called the MASTER & the machine and the machine executing commands SLAVE in our
+case MASTER is the machine running HASS.io instance.
 
 
 ## What we will be doing?
 
-In this tutorial we will make button in Homeassistant that when pressed will shutdown our 
+In this tutorial we will make button in Homeassistant that when pressed will shutdown our
 SLAVE server via SSH. Basically it will apped a text file every time we press a button.
 This example will be a good starting point for controlling remote devices.
 
@@ -97,7 +97,7 @@ ssh root@192.168.0.105 -p 22222
 ```
 
 Now attach to the Homeassistant docker container.
-List available docker containers. 
+List available docker containers.
 
 ```
 docker ps -a
@@ -129,11 +129,13 @@ if all went well you **public key** output should look something like this:
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDyiprxeHAAieq2YtiXhFgSQIhZwvY6zsPAhsNU/N6yJ+JptVJGWBNY0tAD4eQiSsl88Qe4ryWVmtnw83jUjDMZp24uRtEAPnPW3f9N8mbDnyCEtbYhIDn1KseL3SuRWyFzk0fcMExZfsXrxgZ5nD/yQKvjcHm52LrhDfauxYADItonBZA+6mXh0E1LBrk6gP884IpLLbT9xetW2ZLP6htJDTPc2k9qN1cRVj3DD5Ppfyct1FmfZcAyi3Ua2dPxzngI5RUsjLBaqP+3lluc7fJVYK7fhnGZ36E/JNEamlzktBuLG1+1G3wxCshMFFBBuLTHb7qhtueIBY/4+wduJlFD root@hassio
 ```
 
- _⚠️ COPY this value it is your PUBLIC key we will use later!_
+<p class="important">
+COPY this value it is your PUBLIC key we will use later!
+</p>
 
 ### 1.2 SLAVE:
 
-For testing purposes lets create a user called `mister.slave` 
+For testing purposes lets create a user called `mister.slave`
 connect to your SLAVE machine
 ```
 ssh myUser@192.168.0.111
@@ -156,7 +158,7 @@ sudo su mister.slave
 
 Now that you became `mister.slave` user lets **finally** make our SSH keypair
 ```
-ssh-keygen -t rsa 
+ssh-keygen -t rsa
 ```
 
 Okay we have our keys setup but what about passwordless connection from MASTER?
@@ -180,8 +182,12 @@ SLAVE trusts the MASTER machine and allows it to connect without a password.
 You will probaly be interested in running some commands with **sudo** without a password. For this
 we will need add these lines to `/etc/sudoers` file.
 
-_⚠️ You should be very careful when editing `/etc/sudoers` file one bad character could lock you out
-from the system forever!_
+<p class="warn">
+You should be very careful when editing `/etc/sudoers` file one bad character could lock you out
+from the system forever!
+</p>
+
+
 ```
 sudo visudo
 ```
@@ -230,7 +236,7 @@ ssh -i /config/ssh/id_rsa -o StrictHostKeyChecking=no mister.slave@192.168.0.111
 If all went well you congratz again you rebooted your `mister.slave` from Homeassistant manually!
 
 -i /config/ssh/id_rsa
-:  Defines in which directory our private SSH key can be found 
+:  Defines in which directory our private SSH key can be found
 
 -o StrictHostKeyChecking=no
 :  Says to your SSH client to not prompt you with warning messages or yes/no questions when host has changed [^5].
@@ -255,19 +261,18 @@ switch:
 
 Now go to your Homeassistant dashboard and press your newly created button.
 
-
 <p align="center">
   <img src="/assets/img/magic-switch.png"/>
 </p>
 
 # Conclusions
 
-If you followed this tutorial thoroughly you should be good to seed to start for remote control via SSH. If you are 
+If you followed this tutorial thoroughly you should be good to seed to start for remote control via SSH. If you are
 a begginer this guide is a hard and if you managed to reboot something from Homeassistant you should pat your self
 on the back.
 Personally I used this method for turning on effects on my Hyperion daemon. Also I am planning to make shutdown and reboot buttons
 on other server I have at home. One thing to mention though is that you will not have any console output when you call
-a remote command using `command_line` component, so monitoring things on a remote machine is not possible. You can checkout my 
+a remote command using `command_line` component, so monitoring things on a remote machine is not possible. You can checkout my
 HASSIO config file for further inspiration here [^4]
 
 return 0
