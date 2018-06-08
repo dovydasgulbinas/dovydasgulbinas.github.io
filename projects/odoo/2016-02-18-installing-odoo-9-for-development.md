@@ -1,3 +1,10 @@
+---
+layout: note
+title: Odoo
+permalink: /projects/odoo/how-to
+---
+
+
 ### Get your linux username o which you do your development
 whoami
 
@@ -48,7 +55,7 @@ sudo su - postgres
 
 // may need to use your machine user
 createuser --createdb --username postgres --no-superuser --no-createrole --pwprompt odoo
->>> {{You epic password}}
+>>> <You epic password>
 >>> exit
 ctrl + d
 

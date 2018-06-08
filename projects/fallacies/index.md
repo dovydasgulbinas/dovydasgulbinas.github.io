@@ -1,7 +1,7 @@
 ---
-layout: page
-title: Fallacies
-permalink: /projects/fallacies/                                                                                                                                                                            
+layout: note
+title: Sofizmų Kompiliacija
+permalink: /projects/fallacies/
 ---
 
 ## Įvadas

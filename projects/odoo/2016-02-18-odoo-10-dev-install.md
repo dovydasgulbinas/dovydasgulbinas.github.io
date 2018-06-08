@@ -1,3 +1,10 @@
+---
+layout: note
+title: Odoo 10 dev install
+permalink: /projects/odoo/devxxx
+---
+
+
 # Virtual env setup for linux ###
 
 ### 1. Get your linux username o which you do your development
@@ -95,42 +102,18 @@ cd /opt/odoo/odoo-10 &&
 source ./_venv/bin/activate &&
 /opt/odoo/odoo-10/odoo-bin
 ```
-### 11. Install Digitouch! client environments
-#### 11.1 Get all client repos:
-```
-git clone git@bitbucket.org:DigitouchLT/virtual-enviroment-for-development.git --branch odoo-10 /opt/odoo/odoo-10/digitouch &&
-
-cd /opt/odoo/odoo-10/digitouch &&
-git submodule update --init --recursive &&
-git submodule foreach git fetch origin test &&
-git submodule foreach git checkout test &&
-cd general-erp &&
-git checkout test10.0 &&
-cd ..
-```
-#### 11.2 Run a any client e.g `jurga`
-```
-/opt/odoo/odoo-10/odoo-bin -c digitouch/jurga-local.conf
-```
-#### 11.3 Installing modules with `pip`
-
-```
-source /opt/odoo/odoo-10/_venv/bin/activate
-pip install {{my_package_name}}
-
-```
 
 ---
 ## Optional items
 
 Some more options you can explore using `virtualenv`
 
-### 12. Connect to a remote psql db
+### 11. Connect to a remote psql db
 
 #### Forward your port via ssh eg.
 
 ```
-ssh -L 5433:127.0.0.1:5432 dev@88.243.232.121
+ssh -L 5433:127.0.0.1:5432 dev@XX.243.232.121
 ```
 
 #### test connection

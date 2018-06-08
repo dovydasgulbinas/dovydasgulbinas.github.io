@@ -62,6 +62,7 @@ identity to each other. In this tutorial a machine that we issue commands FROM w
 called the MASTER & the machine and the machine executing commands SLAVE in our
 case MASTER is the machine running HASS.io instance.
 
+---
 
 ## What we will be doing?
 
@@ -72,7 +73,6 @@ This example will be a good starting point for controlling remote devices.
 # Prerequisites
 
 - Setup SSH connection to your HASSIO.io ResinOS host [^3]
-
 
 # Lets Begin
 
@@ -261,9 +261,7 @@ switch:
 
 Now go to your Homeassistant dashboard and press your newly created button.
 
-<p align="center">
-  <img src="/assets/img/magic-switch.png"/>
-</p>
+![this is snek](/assets/img/magic-switch.png)
 
 # Conclusions
 

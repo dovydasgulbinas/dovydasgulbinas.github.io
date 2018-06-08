@@ -46,6 +46,7 @@ Client Side Certificate CSC
 it usually comes in .p12 format and is instlled into web browsers. CSC are obtained
 usually by sending a CSR to a CA.
 
+---
 
 # Intro
 

@@ -4,21 +4,15 @@ title: Project Index
 permalink: /projects/
 ---
 
-# In English 🌎
+## In English 🌎
 
-#### 1. [Make Frogs Straight Again][1]
-#### 2. [CSGO Game State Integrations with Python][2]
+{% for my_page in site.pages %}
+  {% if my_page.title  and my_page.layout == 'note' %}
 
----
+  - ### [{{ my_page.title }}]({{my_page.url}}) ###
+
+  {% endif %}
+{% endfor %}
+
 
 # In Lithuanian 🇱🇹
-
-#### 1. [Sofizmų kompiliacija][-1]
-#### 2. [IPTV + Elektroninis programų gidas][-2]
-
-
-[1]: /projects/pepe.html
-[2]: /projects/
-
-[-1]: /projects/fallacies
-[-2]: /projects/epg/
