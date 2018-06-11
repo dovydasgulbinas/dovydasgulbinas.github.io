@@ -23,10 +23,14 @@ code {
     margin-bottom: 1em;
     width: 100%;
 
-    @media (min-width: $breakpoint-lg) {
-      width: (10 / 12 * 100%); // matches col-10
-    }
+    // @media (min-width: $breakpoint-lg) {
+    //   width: (10 / 12 * 100%); // matches col-10
+    // }
 
+  }
+
+  .post-block{
+    width: (9 / 12 * 100%);
   }
 
   ul, ol {
@@ -81,7 +85,6 @@ code {
     border-width: thin;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-    // width: (10 / 12 * 100%); 
   }
 
   dt {
