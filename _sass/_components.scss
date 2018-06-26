@@ -50,7 +50,7 @@ code {
     max-width: 100%;
 
     @media (min-width: $breakpoint-lg) {
-      max-width: (12 / 10 * 100%); // make image fill width of container on desktop
+      max-width: 100%; // make image fill width of container on desktop
     }
 
   }

@@ -3,7 +3,7 @@ from fabric.context_managers import lcd
 from fabric.state import env
 import os
 
-BLOGDIR = "/Users/hermes/Desktop/blog"
+BLOGDIR = os.path.dirname(os.path.realpath(__file__))
 FILENAME_DATE_FORMAT = '%Y-%m-%d-'
 JEKYLL_PORT = 4000
 REMOTE_URL = "https://megamorphf.github.io"
