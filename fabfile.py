@@ -21,6 +21,7 @@ layout: {layout}
 comments: {comments}
 title: {title}
 date: {date}
+date_updated:
 categories:
   - default
 ---
