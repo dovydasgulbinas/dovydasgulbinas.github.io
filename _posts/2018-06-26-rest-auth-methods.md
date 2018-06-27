@@ -14,7 +14,7 @@ categories:
 
 
 Glossary
---------
+========
 
 HTTP Header
 :  All data found in the HTTP request that starts after very first "\n"
@@ -44,13 +44,13 @@ API Key
 a client (API Consumer) to access endpoints that require authorization.
 
 Consumer, API Consumer
-:  A person who is using or implementing the API in some web or mobile app. 
+:  A person who is using or implementing the API in some web or mobile app.
 
 Access Token (AT), Authorization Token (AT)
 :  Are used interchangeably in this blog post.  They are strings that allow a client
 to do requests on behalf of a user.
 
-Resource Owner (RO)
+Resource Owner (RO), User
 :  someone who’s data is kept on a server
 
 Resource Server (RS)
@@ -61,6 +61,8 @@ Client (CL)
 
 Authorization Server (AS)
 :  server that manages OAuth 2.0 tokens and verifies that _Resource Owner's_ credentials are correct.
+
+
 
 
 Intro
@@ -82,7 +84,7 @@ I hope this blog post will clarify thing or two for someone who was as
 lost as I was.
 
 Zen of REST
------------
+===========
 
 1. Let's talk HTTP
 2. Let's use {POST, GET, PUT, DELETE ...}  
@@ -105,7 +107,7 @@ prepare to say goodbye to that `sessionid` cookie.
 Token Based Authentication (TBA)
 ===============================
 
-Token based a authentication is one of the most primitive types of authentication (this does not mean its bad).
+Token based a authentication is one of the most primitive types of authentication (this does not mean it's bad).
 It works by using **Tokens** or more commonly called **API Keys**. These tokens are simply
 a replacement for username/password pair.  The true benefit of using tokens lies in the fact that if someone
 steals your token you can simply reissue a new one, unlike with password, because you would
@@ -116,6 +118,7 @@ username/password and spit out a fresh auth token.
 
 Example of such endpoint would look like:
 
+request
 ```
 POST /authenticate/token HTTP/1.1
 Host: example.com
@@ -162,7 +165,8 @@ few people will use your application.
 
 ---
 
-#### Pros & Cons?
+TBA Pros & Cons?
+------------
 
 Token based authentication needs username and password.  In some
 cases you do not really care. But there are cases when your user data is senstitive
@@ -227,7 +231,8 @@ on a server  **Resource Server (RS)** -- server that keeps _Resource Owner's_ da
 that communicates with a _Resource Server_ on behalf of the _Resource Owner_. **Authorization Server (AS)** - server that
 manages OAuth 2.0 tokens and verifies that _Resource Owner's_ credentials are correct.
 
-#### Authorization Code (AC)
+Authorization Code (AC)
+-----------------------
 
 This method is a commonly used method in OAuth.  If you ever used any of Google'
 apps you we're definitely prompted with enter your Google username and password.
@@ -268,7 +273,8 @@ Also the RFC standard does define nor stop you from having an endpoint that redi
 to `/authorize`.  Just remember that your AC-OAuth must have a authorization endpoint
 
 
-#### [Implicit (IM)][8]
+[Implicit (IM)][8]
+------------------
 
 Implicit authorization is a type of authorization you would want to use in a web app
 that has no back-end e.g JavaScript application. Since the web browsers stores **cookies**
@@ -281,8 +287,8 @@ enter a password, because the probability of password being compromised increase
 
 RFC6749 documentation introduces a term **user-agent** a.k.a a web browser.
 Also RFC6749 is being very _implicit_ (pun intended) when it comes to explaining.
-What is the role of browser.  In reality browser has to support three features:
-cookies, redirects & JavaScrip.  If the conditions are not met your users are
+What is the role of browser is.  In reality browser has to support three features:
+cookies, redirects & JavaScript.  If the conditions are not met your users are
 probably using "lynx" or "w3m".
 
 The figure below assumes that the user has already logged in to example.com domain.
@@ -307,7 +313,7 @@ the CL (javascript) will get few more goodies because AS will attach a juicy Tok
 
 ---
 
-#### IM summary
+### IM summary
 
 * Implicit authorization needs `sessionid` cookie set for the domain in which AS is running.
 if cookie is not present then user will be prompted to login. And then the cookie will be set
@@ -319,7 +325,8 @@ to be renewed by the user when they expire.
 * Tokens must to be stored in browser _LocalStorage_ or _Cookies_ for further use.
 
 
-#### Resource Owner Password Credentials (ROPC)
+Resource Owner Password Credentials (ROPC)
+------------------------------------------
 
 This type of authorization should be used rarely.  And avoided most of the time
 since RO credentials are given directly to the CL. CL will use username/password
@@ -338,7 +345,8 @@ storing username/password on the device all together.
 ![ropcg-oauth](/assets/diagrams/ropcg-oauth.png)
 
 
-#### Client Credentials (CC)
+Client Credentials (CC)
+-----------------------
 
 The final and most basic way of authenticating. CC architecture has only two components (in authorization process)
 client (CL) and authorization server (AS).  In this case RO is the CL.  For example if you
@@ -346,12 +354,13 @@ want to get Authorization Token for yourself you could do that using [curl][10].
 
 ![cc-oauth](/assets/diagrams/cc-oauth.png)
 
-##### usage
+### usage
 Use Client Credentials when you are developing or testing your OAuth apps. Or
-if you are a TUI person feel free to authorize all apps this way 😉
+if you are a [TUI][11] person feel free to authorize all apps this way 😉
 
 
-#### General Summary
+General Summary
+---------------
 
 ---
 
