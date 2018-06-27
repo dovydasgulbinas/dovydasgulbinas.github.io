@@ -13,6 +13,27 @@ categories:
 ![this is snek](/assets/img/closed-and-key.png)
 
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Glossary](#glossary)
+- [Intro](#intro)
+- [Zen of REST](#zen-of-rest)
+- [Token Based Authentication (TBA)](#token-based-authentication-tba)
+  - [TBA Pros & Cons?](#tba-pros--cons)
+- [Session Based Authentication (SBA)](#session-based-authentication-sba)
+- [OAuth 2.0](#oauth-20)
+  - [Authorization Code (AC)](#authorization-code-ac)
+  - [[Implicit (IM)][8]](#implicit-im8)
+    - [IM summary](#im-summary)
+  - [Resource Owner Password Credentials (ROPC)](#resource-owner-password-credentials-ropc)
+  - [Client Credentials (CC)](#client-credentials-cc)
+    - [usage](#usage)
+  - [General Summary](#general-summary)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 Glossary
 ========
 

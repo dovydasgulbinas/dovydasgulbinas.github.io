@@ -4,3 +4,4 @@ _site
 _drafts/untracked/
 *.icloud
 _drafts/
+*.pyc
