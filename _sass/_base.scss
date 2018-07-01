@@ -29,7 +29,7 @@ dl, dd, ol, ul, figure {
  * Basic styling
  */
 body {
-    font-family: $body-font-family;
+    font-family: $p-font-family;
     font-size: $body-font-size;
     line-height: 1.5;
     color: $color-body-text;
@@ -40,11 +40,14 @@ p {
   margin-top: 0;
   margin-bottom: 0.3em;
   text-align: justify;
+  //font-size-adjust: 15pt;
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0.6em;
   margin-bottom: 0.18em;
+  font-family: $body-font-family;
+
 }
 
 h1, .h1 { font-size: $h1-size; }

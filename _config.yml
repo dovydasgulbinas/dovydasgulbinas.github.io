@@ -1,7 +1,7 @@
 title: "hermes-log"
 email: dovydasgulbinas@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Lets Make Things Run Themselves
+  Let Us Make Things Run Themselves
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_repo: Home-AssistantConfig # the GitHub repo name for your project

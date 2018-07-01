@@ -148,7 +148,18 @@ def _yes_no_validator(user_input):
 
 def _kebabify(input_string):
     """Turns beatifully crafted strings into peaces of pierced meat"""
-    return input_string.lower().replace(' ', '-')
+    sanitzed_input = _strip_special_snowflakes(input_string, leave_spaces=True)
+    return sanitzed_input.lower().replace(' ', '-')
+
+
+def _strip_special_snowflakes(input_string, leave_spaces=True):
+    import re
+    expr = '[^A-Za-z0-9]+'
+
+    if leave_spaces:
+        expr = '[^A-Za-z0-9 ]+'
+
+    return re.sub(expr, '', input_string)
 
 
 def edit_draft():

@@ -51,6 +51,8 @@ code {
 
     @media (min-width: $breakpoint-lg) {
       max-width: 100%; // make image fill width of container on desktop
+      width: 100%;
+      margin: 0 auto;
     }
 
   }
@@ -81,7 +83,7 @@ code {
 
   hr {
     color: $color-body-text;
-    border-style: solid;
+    border-style: dotted;
     border-width: thin;
     margin-top: 0.5em;
     margin-bottom: 0.5em;

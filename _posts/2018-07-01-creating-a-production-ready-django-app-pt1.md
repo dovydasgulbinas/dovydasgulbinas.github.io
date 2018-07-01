@@ -426,16 +426,15 @@ Now we can make our second git commit
 
 Now you have a better base for your future Django Projects.
 
-## STAGE-5 | What Do I Now?
+# STAGE-5 | What Do I Now?
 
-1. Crete a new Django app in your project: `python manage.py <my-super-app>`
+1. Create a new Django app in your project: `python manage.py <my-super-app>`
 2. Write awesome code
-3. If something did not work or you are lazy just copy skeleton we did here: `git@github.com:megamorphf/blog-django-skeleton.git`
+3. If something did not work or you are lazy just copy skeleton we did: `git@github.com:megamorphf/blog-django-skeleton.git`
 3. Tune for a second part, next week, where I will be showing you how
 to deploy your project using **fabric2** and **invoke** to a production environment.
 
 ---
-
 
 [^1]: This means that one settings file will get all configuration variables and their values and will be able to override them,  rather than copying.
 

@@ -139,6 +139,9 @@ xx. Pusė tiesos (Half Truth)
 
 Specialus žmogaus apgavimas sakant jam tiesą tačiau nuslepiant svarbią informaciją susijusią su šia tiesa
 
+#### Sunk Costs Fallacy
+
+#### Gamblers Fallacy
 
 ## References
 
