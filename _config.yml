@@ -17,11 +17,16 @@ social_username: megamorphf
 theme_color: black
 
 # Build settings
-markdown: kramdown
+#
+# kramdown:
+#   input: GFM
+#   hard_wrap: false
 
+markdown: kramdown
 kramdown:
   input: GFM
   hard_wrap: false
+  syntax_highlighter: rouge
 
 collections:
   jokes:

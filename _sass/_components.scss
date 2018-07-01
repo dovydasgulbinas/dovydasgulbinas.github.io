@@ -2,17 +2,19 @@
 
 // Code formatting
 pre {
-    border-left: $spacer-1 solid $color-border;
+    // border-left: $spacer-1 solid $color-border;
     margin: $spacer-3 0;
-    padding-left: 16px;
-    width: (9 / 12 * 100%); // matches col-9
+    // padding-left: 16px;
+    // width: (9 / 12 * 100%); // matches col-9
+    width: 100%; // matches col-9
     overflow-x: auto;
+    padding: 20px;
 }
 
 code {
-    color: $color-code;
+    // color: $color-code;
     font-size: $body-font-size;
-    padding: 1px 4px;
+    // border: 20px;
 }
 
 
@@ -81,13 +83,36 @@ code {
 
   }
 
+  // hr {
+  //   color: $color-body-text;
+  //   border-style: dotted;
+  //   border-width: thin;
+  //   margin-top: 0.5em;
+  //   margin-bottom: 0.5em;
+  // }
+
   hr {
-    color: $color-body-text;
-    border-style: dotted;
-    border-width: thin;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+    overflow: visible;
+    /* For IE */
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+    margin-top: 3em;
+    margin-bottom: 3em;
   }
+
+  hr:after {
+    content: "***";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: white;
+  }
+
 
   dt {
     font-weight: bold;
