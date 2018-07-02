@@ -85,7 +85,7 @@ shell_command:
 
 ```
 
-```
+```yaml
 📔 hyperion_effect_list.yaml (create this file in hass root directory)
 
 - Rainbow mood
@@ -128,7 +128,7 @@ hyperion_run:
 
 
 ```
-```
+```yaml
 📔 groups.yaml # (Optional example to group all items)
 
 hyperion_group:

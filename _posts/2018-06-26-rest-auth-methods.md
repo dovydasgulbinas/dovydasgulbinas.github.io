@@ -119,7 +119,7 @@ username/password and spit out a fresh auth token.
 Example of such endpoint would look like:
 
 request
-```
+```json
 POST /authenticate/token HTTP/1.1
 Host: example.com
 Content-Type: application/json
@@ -130,7 +130,7 @@ Content-Type: application/json
 }
 ```
 response
-```
+```json
 HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
 Cache-Control: no-store
@@ -362,7 +362,6 @@ if you are a [TUI][11] person feel free to authorize all apps this way 😉
 General Summary
 ---------------
 
----
 
 OAuth 2.0:
 
