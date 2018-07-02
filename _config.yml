@@ -3,14 +3,15 @@ email: dovydasgulbinas@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Let Us Make Things Run Themselves
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "megamorphf.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_repo: Home-AssistantConfig # the GitHub repo name for your project
 github_username: megamorphf
 
-# Optional social link, you can choose from the following options:
+# Optional  link, you can choose from the following options:
 # twitter (default), instagram, medium, or dribbble
 social_link: instagram
 social_username: megamorphf
+author: megamorphf
 
 # Set theme color here
 # Choose from: black (default), blue, gray, magenta, orange, red, white, and yellow.
@@ -42,6 +43,7 @@ plugins:
 img: "/assets/img/"
 git_domain: "https://www.megamorphf.github.io"
 
+logo: "/assets/img/edge.png"
 
 defaults:
   - scope:
