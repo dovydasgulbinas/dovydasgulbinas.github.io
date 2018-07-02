@@ -170,36 +170,49 @@ code {
 
 }
 
-p.warn, p.important {
-  font-style: normal;
-  display: block;
-  padding: 8px;
-  font-size: $attention-font-size;
-  border-left: 0.4rem dotted;
-  // border-radius: 10px;
-  // box-shadow: 5px 10px;
+p.note, p.warn, p.important {
+    background-color: $label-base;
+    padding: 6px;
 }
 
-p.warn {
-// background-color: $warn-label-bright;
-// background: linear-gradient(to bottom right, red, $warn-label-bright);
-border-left-color: $warn-label-bright;
+p.note::before, p.warn::before, p.important::before {
+    font-family: $body-font-awesome;
+    color: #fff;
+    font-weight: 700;
+    // border-top-left-radius: 3px;
+    // border-top-right-radius: 3px;
+    padding: 6px 14px;
+    line-height: 1.5em;
+    position: relative;
+    display: block;
+    margin: -6px -6px 6px -6px;
 }
 
-p.important {
-  // background-color: $important-label-bright;
-// background: linear-gradient(to bottom right, $important-label-bright, white);
-border-left-color: $important-label-bright;
+p.note::before {
+  content: "\f05a" " Note " attr(data-title);
+	background-color: $note-label-bright;
+}
+
+p.warn::before {
+  content: "\f05a" " Warn " attr(data-title);
+	background-color: $warn-label-bright;
+}
+
+p.important::before {
+  content: "\f05a" " Important " attr(data-title);
+	background-color: $important-label-bright;
 }
 
 
-.warn::before {
-    content: "⚠️ WARNING:";
-    margin-right: 8px;
-}
 
 
-.important::before {
-    content: "☝️ IMPORTANT: ";
-    margin-right: 8px;
-}
+// .warn::before {
+//     content: "⚠️ WARNING:";
+//     margin-right: 8px;
+// }
+//
+//
+// .important::before {
+//     content: "☝️ IMPORTANT: ";
+//     margin-right: 8px;
+// }

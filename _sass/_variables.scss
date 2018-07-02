@@ -1,6 +1,7 @@
 
 // Font family
 $body-font-family: "Helvetica Neue", Arial, sans-serif;
+$body-font-awesome: FontAwesome, "Helvetica Neue", Arial, sans-serif;
 $p-font-family: Georgia, Times, serif;
 $body-font-size: 13px;
 $prose-font-size: ($body-font-size * 1.25);
@@ -46,4 +47,6 @@ $spacer-4: ($spacer * 8) !default; // 64px
 // Focus Labels
 $warn-label-bright: #fec92e;
 $important-label-bright: #7AE2B8;
+$note-label-bright: #0e84b5;
+$label-base: #f0f0f0;
 $attention-font-size: $body-font-size;
