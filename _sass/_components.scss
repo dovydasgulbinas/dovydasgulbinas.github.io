@@ -189,21 +189,19 @@ p.note::before, p.warn::before, p.important::before {
 }
 
 p.note::before {
-  content: "\f05a" " Note " attr(data-title);
+  content: "\2757" " Note " attr(data-title);
 	background-color: $note-label-bright;
 }
 
 p.warn::before {
-  content: "\f05a" " Warn " attr(data-title);
+  content: "\26A0" " Warn " attr(data-title);
 	background-color: $warn-label-bright;
 }
 
 p.important::before {
-  content: "\f05a" " Important " attr(data-title);
+  content: "\261D" " Important " attr(data-title);
 	background-color: $important-label-bright;
 }
-
-
 
 
 // .warn::before {
