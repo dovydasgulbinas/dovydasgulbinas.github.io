@@ -35,6 +35,7 @@ collections:
 
 plugins:
   - jekyll-seo-tag
+  - jekyll-sitemap
   # - jekyll-feed
   # - jemoji
   # - jekyll-auto-image
