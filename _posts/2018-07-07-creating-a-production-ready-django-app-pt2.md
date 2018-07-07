@@ -1,9 +1,9 @@
 ---
 layout: post
 comments: true
-title: Creating A Production Ready Django App, pt. 2
-date: 2018-07-07 17:28:25
-date_updated: 2018-07-07 17:28:25
+title: "Creating A Production Ready Django App, pt. 2"
+date: 2018-07-07
+date_updated:
 categories:
   - django
   - python
@@ -59,9 +59,15 @@ called **activate**
 
 ## Copy Pasta Time
 
+We need to create a new fabric.py file:
 
+    cd <my-django-repo>
+    cd <cool_project>
+    touch fabfile.py
 
+now copy contents below to `fabfile.py`
 
+<script src="https://gist-it.appspot.com/http://github.com/megamorphf/blog-django-skeleton/blob/pt2/cool_project/fabfile.py"></script>
 
 
 # STAGE-7 | Let's Test The Fabric2
@@ -69,8 +75,24 @@ called **activate**
 Using fabric2 CLI is relatively painless.  You Can list all the available tasks
 by calling `fab2 -l`
 
+let's list fab2 tasks:
+
+    fab2 -l
+
+let's start our Django project using fab2:
+
+    fab2 run
 
 
+<asciinema-player src="/assets/cinemas/fab2.cast" cols="90" rows="25"></asciinema-player>
+
+
+# Outro
+
+This was a brief tutorial it did not even scratch the surface of fabric2 I highly recommend you to check. The `fabfile.py`
+for yourself and try to understand what is written in that script.  I want to warn you that I may update the `fabfile.py` snippet showed in this blogpost, but this will be only for the greater good, because I currently have not fiugred out a way of importing bash environment variables to Nagios (Nagios is the core lib of fabric2).  Happy hacking and please do leave questions and suggestions in the comments.
+
+return 0
 
 [1]: https://megamorphf.github.io/django/python/devops/skeleton/2018/06/27/creating-a-production-ready-django-app-pt1.html
 [2]: https://github.com/megamorphf/blog-django-skeleton

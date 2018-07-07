@@ -1,8 +1,8 @@
 ---
 layout: post
 comments: true
-title: Creating A Production Ready Django App, pt. 1
-date: 2018-06-27 11:27:54
+title: "Creating A Production Ready Django App, pt. 1"
+date: 2018-07-01 11:27:54
 date_updated:
 categories:
   - django
@@ -27,7 +27,7 @@ you have these programs installed.
 
 **Disclaimer**
 
-Word **test** in this blog post is synonimous with word **development**.
+Word **test** in this blog post is synonymous with word **development**.
 this means that files such as `settings_test.py` could also be called
 `settings_dev.py` keep that in mind!
 
@@ -101,7 +101,7 @@ a directory but rather a **symlink** to e.g.:
 
 This symlink method will allow us to use less
 configuration, because both dev and prod environments will write
-logs to the same directory.  Additionaly we will decouple
+logs to the same directory.  Additionally we will decouple
 our `settings.py` configuration from OS based paths such as:
 `/var/log/django/logs` since any absolute path is **not system agnostic**.
 
