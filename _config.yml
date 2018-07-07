@@ -12,16 +12,12 @@ github_username: megamorphf
 social_link: instagram
 social_username: megamorphf
 author: megamorphf
+timezone: Europe/Vilnius
 
 # Set theme color here
 # Choose from: black (default), blue, gray, magenta, orange, red, white, and yellow.
 theme_color: black
 
-# Build settings
-#
-# kramdown:
-#   input: GFM
-#   hard_wrap: false
 
 markdown: kramdown
 kramdown:
@@ -42,7 +38,7 @@ plugins:
 
 
 img: "/assets/img/"
-git_domain: "https://www.megamorphf.github.io"
+git_domain: "https://megamorphf.github.io"
 
 logo: "/assets/img/edge.png"
 
