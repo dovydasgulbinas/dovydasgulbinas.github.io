@@ -19,11 +19,6 @@ developer to apply changes for himself is a **stupid methodology**.
 It hinders personal growth
 --------------------------
 
-- __potential__ mistakes of a developer are outsourced.
-- less people are aware of how your system works.
-- Bugs still happen
-- Different Data Different Bugs
-
 Learning is a process of making a mistake and learning from it.  True lessons
 are learned when you have to think on your feet while being spammed with 10
 emails per second about your feature,  that broke whole production .  And you know
@@ -57,10 +52,6 @@ dichotomy rather than a safety measure.
 Cost per change is much higher
 ------------------------------
 
-- It requires more people than needed
-- It it creates unnecessary dependence on other people
-- It complicates the whole procedure to due to lack of transparency.
-
 Some big companies need whole departments just to release software, this in an
 overkill. If you would look at majority of
 operation departments you would most likely see some old, crusty and manual
@@ -85,10 +76,6 @@ process.
 
 Changing something takes much longer
 ------------------------------------
-
-- Releases
-- Back and Forth Pushing
-- Bureaucratic emails 
 
 A clunky deployment ritual will lead to **releases**.  Releases depending on the
 project will occur daily, weekly or even monthly.  This means that code
