@@ -17,6 +17,6 @@ It is more or less a public notebook for me and others who find my projects inte
 
 You can always stalk me on: [GitHub][my-git]
 
-Or contact me via electronic mail systems: dovydasgulbinas@gmail.com
+Or contact me via electronic mail systems: megamore@protonmail.com
 
 [my-git]: https://github.com/megamorphf
