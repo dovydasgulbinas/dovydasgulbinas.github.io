@@ -2,7 +2,7 @@
 layout: post
 comments: true
 title: Allow  Developers To Deploy Straight To Production
-date: 2018-07-18 18:04:39
+date: 2018-07-21 18:04:39
 date_updated:
 categories:
   - devops
@@ -40,8 +40,8 @@ superman will most likely emerge **naturally** so why not allow everyone to be
 Bugs will are inevitable.  Furthermore different data yields different bugs.
 This is more than true with _Enterprise Resourse Planning (ERP)_ systems.  From
 my own experience and shared experiences of many other ERP developers most of
-them seem to arrive to the same conclusions, clients manage to find bugs the
-first & data creates bugs no matter how thorough you are at hunting them. This is normal, because 
+them seem to arrive to the same two conclusions: 1. clients manage to find complex bugs
+first, 2. data creates bugs no matter how thorough you are at hunting them. This is normal, because 
 systems with such complexity can't be (and shouldn't be) understood by a single developer.
 So if developer deploys the code and some bugs emerge it will most likely be a bug that no
 one even thought about.  Just get on with it, since you already trust a
@@ -84,7 +84,7 @@ will be stuck in some sort of "abyss", where it is not used nor tested if it was
 feature and release took one month and bugs were spotted in production, good look 
 expecting that this bug will be fixed quickly, because it is very likely that dev
 who wrote the code barely remembers what that feature and assumptions he had
-during development of that feature.  This is supper unproductive.  Clunky
+during development of that feature.  This is super unproductive.  Clunky
 releases create another issue _it realeases many features made by many developers_ 
 this means that if something breaks (after a release)  there will be name calling and finger
 pointing because no one wants to fix bugs since they are not entirely sure it is
