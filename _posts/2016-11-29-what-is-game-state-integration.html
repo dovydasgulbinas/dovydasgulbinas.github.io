@@ -1,0 +1,78 @@
+---
+layout: post
+comments: true
+title:  "What Is Game State Integration?"
+date:   2016-11-29 11:05:00 +0200
+updated: 
+categories:
+  - arduino
+  - csgo
+  - electronics
+  - hardware
+---
+
+<h1>
+</h1>
+<h1>
+<img src="https://hermeslabs.files.wordpress.com/2016/01/20160103_005438.jpg?w=610&amp;h=180&amp;crop=1" /></h1>
+<h1>Intro</h1>
+
+<p>
+Controversial CS:GO <a href="http://blog.counter-strike.net/index.php/2015/12/13325/">winter update</a> (12/17/2015) had community raging about ridiculous changes to weapon mechanics as well as the notoriously OP R8 revolver. Due to high dissatisfaction and many other changes community really ignored the good and interesting things devs at 'Valve' had given us.&nbsp; One of those 'good' things is&nbsp;<i><a href="https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration">Game State Integration</a></i>
+</p>
+
+
+<h2>
+What is Game State Integration (GSI) ?</h2>
+
+<p>Game state integration is a sexy new way to link up <b>events</b> that are happening in the gave with any computer or any device that handles basic RESTful messages. You may ask what are &nbsp;<b>events</b> exactly currently these events include:</p>
+
+<ul>
+<li>information about spectated player (name, steam ID, clan, etc.)</li>
+<li>Can give&nbsp;&nbsp;you information about the <b>round</b> current round state ( whether&nbsp;the game is in freeze time mode, pause, or &nbsp;that the round is simply running)</li>
+<li>You can even get info about when the bomb has been planted</li>
+<li>You can get info on which team had won the round</li>
+<li>Receive info on every time you kill an enemy</li>
+<li>Get notified every time a bullet is fired</li>
+<li>Know on the <b>score</b>&nbsp;and the <b>map&nbsp;</b> of the game</li>
+<li>and many more...</li>
+</ul>
+<h2> Why is it useful?</h2>
+<p>
+Because it is ultra easy to setup and can enable you to control&nbsp;virtually &nbsp;anything PC or some crazy piece of hardware. Original post of CS:GO devs told that:
+</p>
+
+<blockquote> For example, game state integration was used at the CS:GO Major Championship at DreamHack Cluj-Napoca to present special stage effects (e.g., lighting and pyrotechnics) during a match.</blockquote>
+<h2>
+Demonstrations</h2>
+<p>
+Up to this date various &nbsp;people including me have created many interesting things using GSI. See videos down below:
+</p>
+<br />
+<h3>
+CS:GO HUD&nbsp;in a browser window</h3>
+<div class="separator" style="clear: both; text-align: center;">
+<iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/FM1-iapbEtc/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/FM1-iapbEtc?feature=player_embedded" width="320"></iframe></div>
+
+<p>
+Probably the most sophisticated of all demos given below. This is a rich extension to your CS:GO game. Technology used here is node.js and java script. This video really showcased the functionality GSI has. I strongly encourage you to tryout this one on your own computer. More info on how to do it can be found on <i><a href="https://github.com/Double0negative/CSGO-HUD">git Hub</a></i>&nbsp;Phillips hue lights controlled by a C4 timer
+</p>
+
+<div class="separator" style="clear: both; text-align: center;">
+<iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/QBdI54MHB-k/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/QBdI54MHB-k?feature=player_embedded" width="320"></iframe></div>
+<p>
+This project is by far the least sophisticated but really has the wow factor. &nbsp;For this video Phillips hue light were used in combination with <i>Python</i> and <i>Hue Bridge IP</i> more info on this project can be found at&nbsp;<span style="color: #78dcfa;"><i><u><a href="https://github.com/doobix/csgo-c4-hue">git Hub</a></u></i></span><br />
+</p>
+<h3>
+My project physical 7-segment HUD</h3>
+<p>This is what I made. I choose Python for my project because I recently
+started learning it and thought it was a good practice. All of the
+functionality&nbsp;is demonstrated in the video.</p>
+<div class="separator" style="clear: both; text-align: center;">
+<iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/6le5cuakBh4/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/6le5cuakBh4?feature=player_embedded" width="320"></iframe></div>
+
+<h1>Outro</h1>
+
+<p>By now I hope you really got a grasp on what GSI has to offer. If you are exited about it and want to make something similar feel free to contact me. By the time I'm writing this post someone has already wrote a <i>C#</i> library specifically designed to handle GSI events. For my next blogpost I'll try to cover actually how GSI works. And I will also give you my experience and what I learned during this project until now you can read more about GSI <i><a href="https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration">here</a></i>
+Until then make something epic and share it with the world,
+Cya!</p>
