@@ -20,9 +20,7 @@ Pythonic 😉.
 The Solution
 ============
 
-
 ```python
-
 class PlaceholderClass:
     def __init__(self, **kwargs):
         for key in kwargs.keys():
@@ -34,7 +32,6 @@ print(my_row.name)
 print(my_row.surname)
 print(my_row.age)
 ```
-
 
 One case I would find this class useful is when you want to declare a single
 database row.  In this case each row would be a single instance of a class.  And
