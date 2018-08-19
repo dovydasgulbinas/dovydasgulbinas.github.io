@@ -154,10 +154,10 @@ which_user(caller=root)  # this will print `root` (because in linux sudo command
 $7. Forget relative script calls when doing `local()` 
 -----------------------------------------------------
 
-Fabric is written in Python 2.7 but most of the projects are written in Python
+Fabric is written in Python 2.7 but most of the newer projects are written in Python
 3.X.  This means that you can't simply pip install fabric to a python 3.X
-environment this results in you having to change virtual or Anaconda) environments
-when doing fabric calls see example below:
+environment this results in you having to change virtual or Anaconda environments
+when doing fabric calls, see example below:
 
 ```bash
 $ source activate py27  # activating anaconda python=2.7 env
