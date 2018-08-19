@@ -2,7 +2,7 @@
 layout: post
 comments: true
 title: Few lessons I learned after using python fabric 1.x
-date: 2018-08-13 21:20:13
+date: 2018-08-19 18:20:13
 date_updated:
 categories:
   - devops
@@ -118,7 +118,7 @@ $ fab test_env list_root # this will execute code on test server
 $ fab list_root  # this will execute code on test server because `env.hosts` are global in fabfile.py module
 ```
 
-$6. One type of function `root()`,  `run()` or `local()` inside function body
+$6. One type of function `root()`,  `run()` or `local()` inside a method body
 -----------------------------------------------------------------------------
 
 Excessive usage of mixed execution methods will make your function very hairy and messy,
