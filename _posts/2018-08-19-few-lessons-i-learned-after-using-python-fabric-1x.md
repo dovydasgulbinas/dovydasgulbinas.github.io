@@ -182,7 +182,7 @@ $ which python
 
 So that is the reason why django app in example below did not start.  One
 possible fix is to use `py27` environment always.  And modify `fabfile.py` to
-activate environment locally when needed. 
+activate python3 environment locally when needed. 
 
 
 ```python
@@ -242,13 +242,7 @@ Done.
 Disconnecting from nasa.org... done.
 ```
 
-
-
-
-
-
-
-
+return 0
 
 
 
