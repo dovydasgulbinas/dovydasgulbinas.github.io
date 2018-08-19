@@ -3,6 +3,7 @@ layout: post
 comments: true\
 title:  "Issuing and managing client side certificates using Python"
 date:   2017-10-29 03:11:00 +0300
+image: /assets/img/client-side-word-cloud.png
 categories:
   - ssl
   - apache2
