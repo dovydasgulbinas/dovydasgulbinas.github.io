@@ -77,8 +77,11 @@ from fabric.api import run
 
 # we know that this will never change, so let's store it in a constant
 ALL_CAPS_CAPS_LOCK_TEST = 'armstrong'
-# is usefull if you want to import some constants from other python modules
-# from nasa.hax import hacked_user as ALL_CAPS_CAPS_LOCK_TEST
+
+# == OR ==
+
+# if you want to import some constants from other python modules
+from nasa.hax import hacked_user as ALL_CAPS_CAPS_LOCK_TEST
 
 
 env.host=['nasa.org:22']
@@ -106,16 +109,16 @@ def test_server():
     # to be the default server because, writing: `$ fab test_server [...]` is annoying
     pass
     
-def list_root():
+def list_home():
     run('ls -alt $HOME')
 ```
 
 call these methods in your terminal
 
 ```bash
-$ fab prod_env list_root  # this will execute code on prod server
-$ fab test_env list_root # this will execute code on test server 
-$ fab list_root  # this will execute code on test server because `env.hosts` are global in fabfile.py module
+$ fab prod_env list_home  # this will execute code on prod server
+$ fab test_env list_home # this will execute code on test server 
+$ fab list_home  # this will execute code on test server because `env.hosts` are global in fabfile.py module
 ```
 
 $6. One type of function `root()`,  `run()` or `local()` inside a method body
@@ -151,8 +154,8 @@ which_user(caller=root)  # this will print `root` (because in linux sudo command
 
 ```
 
-$7. Forget relative script calls when doing `local()` 
------------------------------------------------------
+$7. python =/= python
+---------------------
 
 Fabric is written in Python 2.7 but most of the newer projects are written in Python
 3.X.  This means that you can't simply pip install fabric to a python 3.X
@@ -214,13 +217,14 @@ def python_version(caller=local, runtime=None):
     caller('{} python -V'.format(runtime))
 
 
-def prod_python_version():
+def agnostic_python_version(env_func=prod_env):
     """this will print whichever version is on the remote server"""
-    prod_env()
+    
+    env_func()  # calls any environment function you set
     python_version(caller=env.caller)
     """
     in this case we can use caller=env.* as
-    default parameter, because we explicitly set by calling prod_env
+    default parameter, because we explicitly set by calling env_func
     """
 ```
 
@@ -231,8 +235,8 @@ Python 3.6.3 :: Anaconda, Inc.
 
 # now let's hack into nasa
 
-$ fab prod_python_version
-[herver.local] Executing task 'prod_python_version'
+$ fab agnostic_python_version
+[herver.local] Executing task 'agnostic_python_version'
 [herver.local] run:  python -V
 [herver.local] out: Python 2.7.13
 [herver.local] out:
