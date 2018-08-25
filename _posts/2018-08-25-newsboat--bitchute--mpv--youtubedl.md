@@ -5,6 +5,7 @@ title: Newsboat + Bitchute + mpv + youtube-dl
 date: 2018-08-25 16:26:39
 date_updated:
 time_finished: 2018-08-25 19:19:39
+image: https://megamorphf.github.io/assets/img/closed-and-key.png
 categories:
   - software
   - tui
