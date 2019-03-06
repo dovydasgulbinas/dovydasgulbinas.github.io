@@ -119,7 +119,23 @@ Antanas pasakė, kad 50% vyrų per savo gyvenimą susirgs vėžiu, Deividas atsa
 
 Dėmesio nukreipimas pakeičiant pokalbio temą
 
-26. Realizavimo sofizmas
+#### 26. Neteisingų kategorijų sofizmas (False category fallacy)
+
+Tik dėl to kad kažkas yra prisikirtas tai pačiai katergorijai ar yra vadinamas
+tokiu pat pavadinimu nereiškia, kad tai yra tas pats arba panašus objektas
+
+Žemės riešutas yra ne riešutas, o ankštinis augalas. Ir savo makro maistine
+sudėtimi yra panašesnis į pupas, o ne riešutus.
+
+#### 26. Taksonominio pakaitalo sofizmas (Taksonomy substitute fallacy)
+
+Manymas, kad makroskopinės taksonominės katergorijos yra teisingos ir
+ekvivalenčios.
+
+Veganas Tikėjo, kad ryžių baltymai yra tokie pat naudingi jo organizmui kaip ir
+jautienos baltymai, nes jie abu yra vadinami baltymais.
+
+#### 27. Realizavimo sofizmas
 
 Abstrakcijos palaikymas realiu/konkrečiu objektu
 
