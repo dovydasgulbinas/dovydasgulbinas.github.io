@@ -1,8 +1,8 @@
 #!/bin/bash
 
 DRAFTS_DIR="$BLOG_DIR/_drafts"
-
 DRAFT_EXT='.md'
+
 NEW_DRAFT_TEMPLATE="---
 layout: {layout}
 comments: {comments}
@@ -14,10 +14,12 @@ categories:
 ---
 "
 
-render_template() {
-  escaped=$1
-  eval "echo \"$(cat \"$escaped\")\""
-}
+if [ -f "$BASH_MODULES_DIR/casbab.sh" ]; then
+. "$BASH_MODULES_DIR/casbab.sh"
+else
+    echo "failed to load casbab.sh module!"
+    exit 0;
+fi
 
 ls_drafts(){
     ( clear;
@@ -56,27 +58,46 @@ ls_drafts(){
     done;)
 }
 
-
-new_draft(){
-   
-    # TODO: Modify prompt 
-    #read title
-    #kebab_title=$(echo $title | tr " " -)
-
-    #new_draft="$DRAFTS_DIR/$kebab_title"
-    
-    layout="blog"
-    comments="True"
-    title="this is a test title"
-    date="2018-08-09"
-
-    render_template $NEW_DRAFT_TEMPLATE
-
-
-
+_created(){
+    date '+%Y-%m-%d %H:%M:%S'
 }
 
 
-$1 $2 $3 $4 $5
+new_draft(){
+   
+    d=${2:-$DRAFTS_DIR}
+
+    echo "Enter name of the new draft:"
+    read title
+    layout="blog"
+    comments="True"
+    date=$(_created)
+
+    draft_name="$(kebab "$title")$DRAFT_EXT"
+    note_path="$DRAFTS_DIR/$draft_name"
+    echo $note_path
+
+    # $EDITOR $note_path
+    templ=$(cat <<EOF
+---
+layout: $layout
+comments: $comments
+title: \"$title\"
+date: $date
+date_updated:
+categories:
+  - default
+---
+EOF
+)
+
+printf -- "$templ" >> $note_path
+echo $note_path   
+$EDITOR $note_path
+}
+
+
+$1 
+# $2 $3 $4 $5
 
 # https://superuser.com/questions/106272/how-to-call-bash-functions
