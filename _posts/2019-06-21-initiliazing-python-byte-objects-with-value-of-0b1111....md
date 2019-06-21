@@ -67,3 +67,11 @@ why do we need `int` objects if we are creating `bytes`?:
 
 unfortunatelly python does not support bitwise and logical operations on `bytes`
 object this means that we must use `int` objects for that.
+
+
+## Further Reading
+
+by [1][1]
+
+
+[1]: https://stackoverflow.com/questions/2612720/how-to-do-bitwise-exclusive-or-of-two-strings-in-python
