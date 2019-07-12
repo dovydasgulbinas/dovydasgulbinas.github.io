@@ -1,5 +1,5 @@
 ---
-layout: blog
+layout: post
 comments: True
 title: "Thou Shall Yield Pythonic Generator"
 date: 2019-06-07 15:23:24

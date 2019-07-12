@@ -1,5 +1,5 @@
 ---
-layout: blog
+layout: post
 comments: True
 title: "Initiliazing python byte objects with value of 0b1111..."
 date: 2019-06-21 14:49:17
