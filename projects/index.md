@@ -1,10 +1,12 @@
 ---
 layout: page
-title: Project Index
-permalink: /projects/
+title:  Portfolio
+permalink: /portfolio/
 ---
 
-## In English 🌎
+> Being Indexed And Polished Intensively
+
+<!-- ## In English 🌎
 
 {% for my_page in site.pages %}
   {% if my_page.title  and my_page.layout == 'note' %}
@@ -12,7 +14,6 @@ permalink: /projects/
   - ### [{{ my_page.title }}]({{my_page.url}}) ###
 
   {% endif %}
-{% endfor %}
+{% endfor %} -->
 
-
-# In Lithuanian 🇱🇹
+<!-- # In Lithuanian 🇱🇹 -->
