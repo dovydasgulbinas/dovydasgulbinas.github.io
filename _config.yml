@@ -1,7 +1,7 @@
 title: "dovydas.xyz"
 email: dovydas.gulbinas@protonmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Blog about Python & Linux
+ A Blog About Python & Linux
 baseurl: "" # the subpath of your site, e.g. /blog
 # the base hostname & protocol for your site, e.g. https://example.com
 url: https://dovydas.xyz 
@@ -18,7 +18,7 @@ timezone: Europe/Vilnius
 
 # Set theme color here
 # Choose from: black (default), blue, gray, magenta, orange, red, white, and yellow.
-theme_color: white
+theme_color: red
 
 
 markdown: kramdown
