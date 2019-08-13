@@ -91,4 +91,4 @@ return 0
 [1]: https://en.wikipedia.org/wiki/Paul_Grice
 [2]: https://www.sas.upenn.edu/~haroldfs/dravling/grice.html
 [3]: https://www.python.org/dev/peps/pep-0020/#id3
-[4]: http://www.cog.brown.edu/courses/cg45/lecture%20slides/Gricean%20Maxims.pdf
+[4]: https://www.cog.brown.edu/courses/cg45/lecture%20slides/Gricean%20Maxims.pdf

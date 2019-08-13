@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["diana.mounter@gmail.com"]
 
   spec.summary       = %q{A bold typographic theme for Jekyll, inspired by Swiss design.}
-  spec.homepage      = "http://broccolini.net/swiss"
+  spec.homepage      = "https://broccolini.net/swiss"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").select do |f|

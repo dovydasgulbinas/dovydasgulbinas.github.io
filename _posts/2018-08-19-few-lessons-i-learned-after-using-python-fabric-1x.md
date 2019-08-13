@@ -252,7 +252,7 @@ return 0
 
 
 
-[f]: http://docs.fabfile.org/en/1.14/ 
+[f]: https://docs.fabfile.org/en/1.14/ 
 [s]: https://sdf.org/
-[ms]: http://docs.fabfile.org/en/1.14/usage/tasks.html?highlight=modules#namespaces
+[ms]: https://docs.fabfile.org/en/1.14/usage/tasks.html?highlight=modules#namespaces
 

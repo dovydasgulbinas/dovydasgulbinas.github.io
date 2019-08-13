@@ -239,5 +239,5 @@ my next blogpost.
 
 `return 0`
 
-[bad-cert]: http://ohmag.net/wp-content/uploads/2016/06/33-cert-7.png
+[bad-cert]: https://ohmag.net/wp-content/uploads/2016/06/33-cert-7.png
 [miniconda]: https://conda.io/miniconda.html

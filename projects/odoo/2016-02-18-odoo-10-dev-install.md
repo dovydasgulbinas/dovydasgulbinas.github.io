@@ -44,7 +44,7 @@ sudo /usr/bin/pip install virtualenv
 
 ```
 cd /opt/ &&
-sudo wget http://download.gna.org/wkhtmltopdf/0.12/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz &&
+sudo wget https://download.gna.org/wkhtmltopdf/0.12/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz &&
 sudo tar xf wkhtmltox-0.12.3_linux-generic-amd64.tar.xz &&
 sudo rm wkhtmltox-0.12.3_linux-generic-amd64.tar.xz &&
 sudo ln -s /opt/wkhtmltox/bin/wkhtmltopdf /usr/bin &&
@@ -135,9 +135,9 @@ psql -U odoo -d {{remote_db_name}} -p 5433 -h 127.0.0.1
 ## References
 
 [odoo-guide](https://blog.laslabs.com/2015/12/installing-odoo-9-from-source-ubuntu/)
-[installing-psql-deps](http://stackoverflow.com/questions/28253681/you-need-to-install-postgresql-server-dev-x-y-for-building-a-server-side-extensi)
-[upgrade-pip](http://stackoverflow.com/questions/15221473/how-do-i-update-pip-itself-from-inside-my-virtual-environment)
+[installing-psql-deps](https://stackoverflow.com/questions/28253681/you-need-to-install-postgresql-server-dev-x-y-for-building-a-server-side-extensi)
+[upgrade-pip](https://stackoverflow.com/questions/15221473/how-do-i-update-pip-itself-from-inside-my-virtual-environment)
 [psq-install](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04)
 [db-denied-issue](https://www.odoo.com/forum/help-1/question/programmingerror-permission-denied-to-create-database-64086)
 [ssh-tunnel-forwaring](https://support.cloud.engineyard.com/hc/en-us/articles/205408088-Access-Your-Database-Remotely-Through-an-SSH-Tunnel)
-[ssh-key-add](http://www.howtogeek.com/168147/add-public-ssh-key-to-remote-server-in-a-single-command/)
+[ssh-key-add](https://www.howtogeek.com/168147/add-public-ssh-key-to-remote-server-in-a-single-command/)
