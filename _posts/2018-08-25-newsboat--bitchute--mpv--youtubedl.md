@@ -5,7 +5,7 @@ title: Newsboat + Bitchute + mpv + youtube-dl
 date: 2018-08-25 16:26:39
 date_updated:
 time_finished: 2018-08-25 19:19:39
-image: https://megamorphf.github.io/assets/img/closed-and-key.png
+image: https://dovydas.xyz/assets/img/closed-and-key.png
 categories:
   - software
   - tui
@@ -187,5 +187,5 @@ return 0
 [2]: https://newsboat.org/releases/2.12/docs/newsboat.html#_macro_support 
 [3]: https://www.youtube.com/watch?v=dUFCRqs822w 
 [4]: https://archive.fo/zd49L
-[5]: https://github.com/megamorphf/env-configs/tree/master/newsboat
+[5]: https://github.com/dovydasgulbinas/env-configs/tree/master/newsboat
 [6]: https://www.bitchute.com/video/W4g3Jktibucb/ "TheOuterLinux bt channel"

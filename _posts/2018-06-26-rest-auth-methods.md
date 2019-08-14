@@ -30,7 +30,7 @@ session cookie can be used by unauthorized attacker.
 
 Redirect URI (RURI)
 : An endpoint in client application that accepts Access Tokens OR Authorization Codes.
-Imporant part in RURIs are their URL parameters.  eg. https://megamorphf.github.io/?**acces_token=12345**.
+Imporant part in RURIs are their URL parameters.  eg. https://dovydas.xyz/?**acces_token=12345**.
 In order to receive and `access_token` your Client must have an endpoint enabled and listen
 on that URL in order to receive that code.  If you are using mobile apps and need
 to fetch URL parameters this can be done not by listening on a specific endpoint

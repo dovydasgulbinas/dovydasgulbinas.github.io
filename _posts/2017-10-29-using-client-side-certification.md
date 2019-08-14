@@ -214,7 +214,7 @@ script provided below in the gist.
 This gist below contains everything you need to Issue your client a certificate
 and revoke it:
 
-<script src="https://gist.github.com/megamorphf/13af9e0d0321fcfc0c787aaed4a86888.js"></script>
+<script src="https://gist.github.com/dovydasgulbinas/13af9e0d0321fcfc0c787aaed4a86888.js"></script>
 
 
 # Conclusion

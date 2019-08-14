@@ -430,7 +430,7 @@ Now you have a better base for your future Django Projects.
 
 1. Create a new Django app in your project: `python manage.py <my-super-app>`
 2. Write awesome code
-3. If something did not work or you are lazy just copy skeleton we did: `git@github.com:megamorphf/blog-django-skeleton.git`
+3. If something did not work or you are lazy just copy skeleton we did: `git@github.com:dovydasgulbinas/blog-django-skeleton.git`
 3. Tune for a second part, next week, where I will be showing you how
 to deploy your project using **fabric2** and **invoke** to a production environment.
 

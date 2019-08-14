@@ -280,5 +280,5 @@ return 0
 [^1]: [Homeassistant command line component](https://home-assistant.io/components/switch.command_line/)
 [^2]: [Hyperion Project site](https://hyperion-project.org/)
 [^3]: [Connect Hassio host](https://home-assistant.io/developers/hassio/debugging/)
-[^4]: [My Homeassistant configuration](https://github.com/megamorphf/hass-conf)
+[^4]: [My Homeassistant configuration](https://github.com/dovydasgulbinas/hass-conf)
 [^5]: [No SSH prompts](https://superuser.com/questions/125324/how-can-i-avoid-sshs-host-verification-for-known-hosts)

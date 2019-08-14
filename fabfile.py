@@ -8,7 +8,7 @@ BLOGDIR = os.path.dirname(os.path.realpath(__file__))
 FILENAME_DATE_FORMAT = '%Y-%m-%d-'
 POST_DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
 JEKYLL_PORT = 4000
-REMOTE_URL = "https://megamorphf.github.io"
+REMOTE_URL = "https://dovydas.xyz"
 LOCAL_URL = "http://127.0.0.1:{}".format(JEKYLL_PORT)
 TEXT_EDITOR = "vim"
 

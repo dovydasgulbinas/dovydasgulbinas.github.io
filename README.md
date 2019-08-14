@@ -5,4 +5,4 @@ Her you can see the source code for my blog found at [blog-url]
 
 
 
-[blog-url]: https://megamorphf.github.io
+[blog-url]: https://dovydas.xyz

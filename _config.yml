@@ -8,11 +8,12 @@ url: https://dovydas.xyz
 github_repo: django-apps # the GitHub repo name for your project
 github_username: dovydasgulbinas
 linkedin_url: https://www.linkedin.com/in/dovydas-gulbinas-b09126104/ 
+resume_url: https://dovydas.xyz/public/output/dovydas-gulbinas-resume.pdf 
 
 # Optional  link, you can choose from the following options:
 # twitter (default), instagram, medium, or dribbble
 # social_link: instagram
-# social_username: megamorphf
+# social_username: dovydasgulbinas
 author: Dovydas Gulbinas
 timezone: Europe/Vilnius
 

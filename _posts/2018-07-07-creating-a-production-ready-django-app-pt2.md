@@ -67,7 +67,7 @@ We need to create a new fabric.py file:
 
 now copy contents below to `fabfile.py`
 
-<script src="https://gist-it.appspot.com/http://github.com/megamorphf/blog-django-skeleton/blob/pt2/cool_project/fabfile.py"></script>
+<script src="https://gist-it.appspot.com/http://github.com/dovydasgulbinas/blog-django-skeleton/blob/pt2/cool_project/fabfile.py"></script>
 
 
 # STAGE-7 | Let's Test The Fabric2
@@ -94,5 +94,5 @@ for yourself and try to understand what is written in that script.  I want to wa
 
 return 0
 
-[1]: https://megamorphf.github.io/django/python/devops/skeleton/2018/06/27/creating-a-production-ready-django-app-pt1.html
-[2]: https://github.com/megamorphf/blog-django-skeleton
+[1]: https://dovydas.xyz/django/python/devops/skeleton/2018/06/27/creating-a-production-ready-django-app-pt1.html
+[2]: https://github.com/dovydasgulbinas/blog-django-skeleton
