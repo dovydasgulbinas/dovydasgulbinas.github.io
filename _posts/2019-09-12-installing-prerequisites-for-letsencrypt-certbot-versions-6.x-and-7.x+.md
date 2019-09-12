@@ -9,15 +9,11 @@ categories:
   - letsencrypt
 ---
 
-
-## Background 
-
 I ran into an issue today when I could not install certbot-auto on a Linux
 machine running CentOS 6.10.
 
-As it turns out that you need to install & enable(enable part if very important) **EPEL** package repository in YUM package manager. So
-basically the prerequisites are EPEL package-repository enabled.  For some
-reason you do not get a warning from certbot about that.
+As it turns out that you need to install & **enable**  **EPEL** package repository in YUM package manager. So
+basically there is a single prerequisite: _EPEL package-repository must be enabled._  Although certbot is really handy  when it comes to getting a certificate, yet getting a succinct message about the fact that EPEL is not enabled is not as helpful.
 
 The error I got prior enabling the **EPEL** looked something like this:
 
