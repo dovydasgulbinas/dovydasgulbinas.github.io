@@ -2,7 +2,7 @@
 layout: post
 comments: true
 title: Functions are first-class citizens in JavaScript
-date: 2019-09-11 19:44:09
+date: 2019-09-12 19:44:09
 date_updated:
 categories:
   - javascript
