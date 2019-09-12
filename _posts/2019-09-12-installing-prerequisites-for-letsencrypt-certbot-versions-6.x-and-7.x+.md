@@ -1,5 +1,5 @@
 ---
-layout: blog
+layout: post
 comments: True
 title: "Installing prerequisites for LetsEncrypt Certbot versions 6.X, 7.X and up"
 date: 2019-09-12 15:46:41
