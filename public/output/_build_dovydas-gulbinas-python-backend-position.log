@@ -1,3 +1,0 @@
-WARNING: Ignored `text-shadow: 1px 1px 1px #333` at 133:7, unknown property.
-
-(process:61207): GLib-GObject-CRITICAL **: 18:51:13.234: g_object_ref: assertion 'old_val > 0' failed
