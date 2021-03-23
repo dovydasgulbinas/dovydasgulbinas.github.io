@@ -1,14 +1,7 @@
----
-layout: post
-comments: true
-title: Grice's Maxims Pythonic Edition
-date: 2018-07-13 13:19:04
-date_updated:
-categories:
-  - language
-  - philosophy
-  - python
----
+Grice's Maxims Pythonic Edition
+
+
+# Intro
 
 Which is better verbose paragraphs or lean and on point sentences?
 Why communication with other people can sometimes be so hard sometimes, even though we you
@@ -26,14 +19,14 @@ phone's battery than it can **actually** deliver we get angry!  This paradigm of
 transactions extends to various places as well as our daily lives.  One of the places is
 language and communication in general.  If someone says one thing and does
 another we get angry because we **expected** one thing and **actually** got something entirely
-different. One philosopher who tried to tackle this problem was [Paul Grice][1]
+different. One philosopher who tried to tackle this problem was [Paul Grice](https://en.wikipedia.org/wiki/Paul_Grice)
 He distilled and abstracted the rules needed for successful communication and
-these rules are now called [Grice's Maxims][2] these maxims should help you out
+these rules are now called [Grice's Maxims](https://www.sas.upenn.edu/~haroldfs/dravling/grice.html) these maxims should help you out
 to cooperate better and to understand why sometimes you annoy or get annoyed by
 others.
 
 In general these maxims are great, but for me were rather "dry" and hard to
-remember while [Zen Of Python][3] for some weird reason just sticks in your head.
+remember while [Zen Of Python](https://www.python.org/dev/peps/pep-0020/#id3) for some weird reason just sticks in your head.
 Thus _Grice's Maxims Pythonic Edition_ was born.  Furthermore _Zen Of Python_ on
 its own can be used daily in some life situations.  
 
@@ -67,8 +60,7 @@ has supporting evidence maybe its a good Idea
 > Order is better than chaos
 
 
-Conclusion
-==========
+# Conclusion
 
 I hope this short post was useful. These maxims should help you to be a better speaker and listener as long as you will not forget
 the reason why you get derailed.  Remember it is easier to change yourself and your
@@ -80,15 +72,10 @@ return 0
 
 
 
+;tags: language philosophy python
 
 
-
-
-
-
-
-
-[1]: https://en.wikipedia.org/wiki/Paul_Grice
-[2]: https://www.sas.upenn.edu/~haroldfs/dravling/grice.html
-[3]: https://www.python.org/dev/peps/pep-0020/#id3
-[4]: https://www.cog.brown.edu/courses/cg45/lecture%20slides/Gricean%20Maxims.pdf
+;[1]: https://en.wikipedia.org/wiki/Paul_Grice
+;[2]: https://www.sas.upenn.edu/~haroldfs/dravling/grice.html
+;[3]: https://www.python.org/dev/peps/pep-0020/#id3
+;[4]: https://www.cog.brown.edu/courses/cg45/lecture%20slides/Gricean%20Maxims.pdf
