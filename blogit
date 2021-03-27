@@ -3,6 +3,7 @@
 BLOG := $(MAKE) -f $(lastword $(MAKEFILE_LIST)) --no-print-directory
 ifneq ($(filter-out help,$(MAKECMDGOALS)),)
 include config
+include utils
 endif
 
 # The following can be configured in config
