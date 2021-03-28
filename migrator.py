@@ -18,30 +18,32 @@ def transform_jekyll_header(file_):
     header = {}
     hr_count = 0
 
+    re_item = re.compile(r"^\s*(\w+):\s*(.*)")
+
     # Parse the Jekyll Header
     file_.seek(0)
     for line in file_.readlines():
         sline = line.strip("\n")
-        if sline == "---" and hr_count < 2:
+
+        if hr_count >= 2:  # do no parse if first to lines were consumed
+            buffer.write(line)
+            continue
+
+        if sline == "---":
             hr_count+=1
-        elif "layout:" in sline and hr_count < 2:
-            pass
-        elif "comments:" in sline and hr_count < 2:
-            pass
-        elif "title:" in sline and hr_count < 2:
-            title = sline.lstrip("title: ").strip('"')
-            header["title"] = title
-            buffer.write(f"{title}\n\n") # writing title now is easier than doing it later
-        elif "date:" in sline and hr_count < 2:
-            header["date"] = sline.lstrip("date: ")
-        elif "date_updated:" in sline and hr_count < 2:
-            header["date_updated"] = sline.lstrip("date_updated: ")
-        elif "categories:" in sline and hr_count < 2:
+        elif "categories:" in sline:  # categories is a specific case
             header["categories"] = []
-        elif "categories" in header and sline.lstrip(" ").startswith("- ") and hr_count < 2:
+        elif "categories" in header and sline.lstrip(" ").startswith("- "):
             header["categories"].append(sline.lstrip("- "))
         else:
-            buffer.write(line)
+            match = re_item.match(sline)
+            if match:
+                key, value = match.group(1), match.group(2).strip('"')
+                header[key] = value
+                if key == "title":
+                    buffer.write(f"{value}\n\n")  # writing title immidiatelly is easiest
+            else:
+                buffer.write(line)
 
     # add all header information to end of the file
     for k, v in header.items():
