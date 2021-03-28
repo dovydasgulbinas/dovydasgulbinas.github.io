@@ -3,6 +3,8 @@ import pathlib
 import io
 import re
 
+COMM = ";"  # comment delimiter
+
 def _make_text_buffer(note_path):
     note = pathlib.Path(note_path)
     text = note.read_text()
@@ -41,7 +43,8 @@ def transform_jekyll_header(file_):
                 key, value = match.group(1), match.group(2).strip('"')
                 header[key] = value
                 if key == "title":
-                    buffer.write(f"{value}\n\n")  # writing title immidiatelly is easiest
+                    # writing title now is easier, because file cursor is at the top
+                    buffer.write(f"{value}\n\n")
             else:
                 buffer.write(line)
 
@@ -50,10 +53,10 @@ def transform_jekyll_header(file_):
         if k == "title":
             pass
         elif k == "categories":
-            comment = f";tags: {' '.join(v)}\n"
+            comment = f"{COMM}tags: {' '.join(v)}\n"
             buffer.write(comment)
         else:
-            comment = f";{k}: {v}\n"
+            comment = f"{COMM}{k}: {v}\n"
             buffer.write(comment)
 
     file_.close()
@@ -108,12 +111,43 @@ def transform_multiline(file_):
     buffer.seek(0)
     return buffer
 
+
+def transform_links(file_):
+    buffer = io.StringIO()
+
+    # gather all "alias links" to one index e.g. [1]: http://dovydas.xyz
+    index = {}
+    re_alinks = re.compile(r'^(\[.+\]):\s+([\w$-_@.&+!\?*:\(\),%]+)(?:\s+".*")?')
+    for line in file_.readlines():
+        match = re_alinks.match(line)
+
+        if match:
+            alias, link = match.group(1), match.group(2) 
+            # add aliases to index
+            index[alias] = link
+            # comment out the old line
+            text = re_alinks.sub(lambda m: f"{COMM}{m.group(0)}", line)
+            buffer.write(text) 
+        else:
+            buffer.write(line)
+    # TODO: Finish replacement
+
+    file_.close()
+    buffer.seek(0)
+    return buffer
+
+
+    file_.close()
+    buffer.seek(0)
+    return buffer
+
 def convert_notebook(note_path=None, output_dir=None):
     file_ = _make_text_buffer("./_posts/test.md")
 
     file_ = transform_jekyll_header(file_)
     file_ = transform_singleline(file_)
     file_ = transform_multiline(file_)
+    file_ = transform_links(file_)
 
     print(file_.getvalue())
 
