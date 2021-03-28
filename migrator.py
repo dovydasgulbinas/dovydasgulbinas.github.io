@@ -1,19 +1,26 @@
 import argparse
 import pathlib
 import io
+import re
 
-def transform_jekyll_header(note_path):
+def _make_text_buffer(note_path):
     note = pathlib.Path(note_path)
     text = note.read_text()
 
-    text = io.StringIO(text)
+    original_text_buffer = io.StringIO(text)
+
+    return original_text_buffer
+
+def transform_jekyll_header(file_):
+
     buffer = io.StringIO()
 
     header = {}
     hr_count = 0
 
     # Parse the Jekyll Header
-    for line in text.readlines():
+    file_.seek(0)
+    for line in file_.readlines():
         sline = line.strip("\n")
         if sline == "---" and hr_count < 2:
             hr_count+=1
@@ -47,10 +54,37 @@ def transform_jekyll_header(note_path):
             comment = f";{k}: {v}\n"
             buffer.write(comment)
 
-    return buffer.getvalue()
+    file_.close()
+    buffer.seek(0) # reset cursor for other functions
+    return buffer
 
+
+def transform_line_starts(file_):
+
+    buffer = io.StringIO()
+
+    def star_repl(match):
+        return match.group(0).replace('*', '-', 1)
+
+    for line in file_.readlines():
+        line = re.sub(r"^\s*\*\s+", star_repl, line)  # replace *, with -
+        line = re.sub(r"^(```)\w+", lambda m : m.group(1) , line)  # srip lang info from code block
+
+        buffer.write(line)
+
+    file_.close()
+    buffer.seek(0)
+    return buffer
+
+
+def convert_notebook(note_path=None, output_dir=None):
+    file_ = _make_text_buffer("./_posts/2018-06-26-rest-auth-methods.md")
+
+    file_ = transform_jekyll_header(file_)
+    file_ = transform_line_starts(file_)
+
+    print(file_.getvalue())
 
 
 if __name__ == "__main__":
-    text = transform_jekyll_header("./_posts/2018-06-26-rest-auth-methods.md")
-    print(text)
+    convert_notebook()

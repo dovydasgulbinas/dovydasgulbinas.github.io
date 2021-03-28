@@ -111,7 +111,7 @@ username/password and spit out a fresh auth token.
 Example of such endpoint would look like:
 
 request
-```json
+```
 POST /authenticate/token HTTP/1.1
 Host: example.com
 Content-Type: application/json
@@ -122,7 +122,7 @@ Content-Type: application/json
 }
 ```
 response
-```json
+```
 HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
 Cache-Control: no-store
@@ -184,11 +184,11 @@ Session Based Authentication (SBA)
 Session is very different compared to _Token Based Authentication_.
 The ways it differs from Token authentication are:
 
-* Session tokens are issued & managed by the back-end server
+- Session tokens are issued & managed by the back-end server
 
-* Session tokens have very short validity time compared to TBA
+- Session tokens have very short validity time compared to TBA
 
-* Session tokens are stored as cookie.
+- Session tokens are stored as cookie.
 
 This is how a cookie looks `Cookie: sessionid=asbkta702ybw90rd87vphn14kre76s91`
 some may argue that, technically `Cookie:` is still a part of HTTP header.
@@ -307,14 +307,14 @@ the CL (javascript) will get few more goodies because AS will attach a juicy Tok
 
 ### IM summary
 
-* Implicit authorization needs `sessionid` cookie set for the domain in which AS is running.
+- Implicit authorization needs `sessionid` cookie set for the domain in which AS is running.
 if cookie is not present then user will be prompted to login. And then the cookie will be set
-* Implicit authorization would not work without a client client-agent (browser).
+- Implicit authorization would not work without a client client-agent (browser).
 because you need a way to handle the HTTP redirects.
-* Auth Tokens are passed as URL parameters
-* There is no way how to renew an Auth Token. This means that Tokens will have
+- Auth Tokens are passed as URL parameters
+- There is no way how to renew an Auth Token. This means that Tokens will have
 to be renewed by the user when they expire.
-* Tokens must to be stored in browser _LocalStorage_ or _Cookies_ for further use.
+- Tokens must to be stored in browser _LocalStorage_ or _Cookies_ for further use.
 
 
 Resource Owner Password Credentials (ROPC)
