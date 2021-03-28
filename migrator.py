@@ -59,12 +59,13 @@ def transform_jekyll_header(file_):
     return buffer
 
 
-def transform_line_starts(file_):
+def transform_singleline(file_):
 
     buffer = io.StringIO()
 
     def star_repl(match):
         return match.group(0).replace('*', '-', 1)
+    
 
     for line in file_.readlines():
         line = re.sub(r"^\s*\*\s+", star_repl, line)  # replace *, with -
@@ -77,11 +78,40 @@ def transform_line_starts(file_):
     return buffer
 
 
+def transform_multiline(file_):
+
+    buffer = io.StringIO()
+
+    def heading_repl(match):
+        heading, hstyle = match.group(1), match.group(2)
+
+        if len(set(hstyle)) != 1:
+            return match.group(0)  #  incorrect atx style heading format do nothing
+
+        if "=" in hstyle:
+            return f"# {heading}\n"
+        elif "-" in hstyle:
+            return f"## {heading}\n"
+        else:
+            # unknown heading style
+            return match.group(0)
+
+    text = file_.getvalue()
+
+    # replace atx style headings
+    text = re.sub(r"^(.*\n)([=-]+)\n", heading_repl , text, flags=re.MULTILINE)
+
+    buffer.write(text)
+    file_.close()
+    buffer.seek(0)
+    return buffer
+
 def convert_notebook(note_path=None, output_dir=None):
-    file_ = _make_text_buffer("./_posts/2018-06-26-rest-auth-methods.md")
+    file_ = _make_text_buffer("./_posts/test.md")
 
     file_ = transform_jekyll_header(file_)
-    file_ = transform_line_starts(file_)
+    file_ = transform_singleline(file_)
+    file_ = transform_multiline(file_)
 
     print(file_.getvalue())
 
