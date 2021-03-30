@@ -14,7 +14,6 @@ def _make_text_buffer(note_path):
     return original_text_buffer
 
 def transform_jekyll_header(file_):
-
     buffer = io.StringIO()
 
     header = {}
@@ -144,15 +143,34 @@ def transform_links(file_):
     return buffer
 
 
-def convert_notebook(note_path=None, output_dir=None):
-    file_ = _make_text_buffer("./_posts/test.md")
+def convert_notebook(note_path):
+    file_ = _make_text_buffer(note_path)
+
     file_ = transform_jekyll_header(file_)
     file_ = transform_singleline(file_)
     file_ = transform_multiline(file_)
     file_ = transform_links(file_)
 
-    print(file_.getvalue())
+    return file_.getvalue()
+
+
+def convert_all_notebooks(input_dir, output_dir, exts = ('*.md', '*.markdown')):
+    import glob
+    input_dir = pathlib.Path(input_dir).absolute()
+    output_dir = pathlib.Path(output_dir).absolute()
+
+    posts = []
+
+    # get all the files on one go
+    for ext in exts:
+        path = str(input_dir.joinpath(ext))
+        posts.extend(glob.glob(path))
+
+    for input_post in posts:
+        output_path = output_dir.joinpath(pathlib.Path(input_post).name)
+        output_path.write_text(convert_notebook(input_post))
 
 
 if __name__ == "__main__":
-    convert_notebook()
+    # convert_notebook()
+    convert_all_notebooks('_posts/', 'articles/')
