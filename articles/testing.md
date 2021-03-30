@@ -1,4 +1,3 @@
-{'1': 'https://newsboat.org/releases/2.12/docs/newsboat.html', '2': 'https://newsboat.org/releases/2.12/docs/newsboat.html', '3': 'https://www.youtube.com/watch?v=dUFCRqs822w', '4': 'https://archive.fo/zd49L', '5': 'https://github.com/dovydasgulbinas/env-configs/tree/master/newsboat', '6': 'https://www.bitchute.com/video/W4g3Jktibucb/'}
 Newsboat + Bitchute + mpv + youtube-dl
 
 

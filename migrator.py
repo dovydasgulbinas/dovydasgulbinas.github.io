@@ -116,34 +116,36 @@ def transform_links(file_):
     buffer = io.StringIO()
 
     # gather all "alias links" to one index e.g. [1]: http://dovydas.xyz
-    index = {}
-    re_alinks = re.compile(r'^(\[.+\]):\s+([\w$-_@.&+!\?*:\(\),%]+)(?:\s+".*")?')
+    uri_indexes = {}
+    re_links = re.compile(r'^(\[.+\]):\s+([\w$-_@.&+!\?*:\(\),%]+)(?:\s+".*")?')
     for line in file_.readlines():
-        match = re_alinks.match(line)
+        match = re_links.match(line)
 
         if match:
-            alias, link = match.group(1), match.group(2) 
+            link, uri = match.group(1), match.group(2) 
             # add aliases to index
-            index[alias] = link
+            uri_indexes[link.strip("[]")] = uri
             # comment out the old line
-            text = re_alinks.sub(lambda m: f"{COMM}{m.group(0)}", line)
+            text = re_links.sub(lambda m: f"{COMM}{m.group(0)}", line)
             buffer.write(text) 
         else:
             buffer.write(line)
-    # TODO: Finish replacement
+    for link, uri in uri_indexes.items():
+        specific_regex = re.compile(fr"\[{link}\]" # replace with specific index
+                                    fr"(?![\[:])" #  [ - title link collision, : - same definition
+                                    )
+
+        text = specific_regex.sub(lambda l: f"({uri})", buffer.getvalue())
+        buffer = io.StringIO() # get clean buffer
+        buffer.write(text)
 
     file_.close()
     buffer.seek(0)
     return buffer
 
-
-    file_.close()
-    buffer.seek(0)
-    return buffer
 
 def convert_notebook(note_path=None, output_dir=None):
     file_ = _make_text_buffer("./_posts/test.md")
-
     file_ = transform_jekyll_header(file_)
     file_ = transform_singleline(file_)
     file_ = transform_multiline(file_)
