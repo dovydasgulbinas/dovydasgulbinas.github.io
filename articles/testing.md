@@ -1,10 +1,11 @@
+{'1': 'https://newsboat.org/releases/2.12/docs/newsboat.html', '2': 'https://newsboat.org/releases/2.12/docs/newsboat.html', '3': 'https://www.youtube.com/watch?v=dUFCRqs822w', '4': 'https://archive.fo/zd49L', '5': 'https://github.com/dovydasgulbinas/env-configs/tree/master/newsboat', '6': 'https://www.bitchute.com/video/W4g3Jktibucb/'}
 Newsboat + Bitchute + mpv + youtube-dl
 
-time_finished: 2018-08-25 19:19:39
-image: https://dovydas.xyz/assets/img/closed-and-key.png
 
-$0: Why?
-========
+[another test link](https://newsboat.org/releases/2.12/docs/newsboat.html)
+
+# $0: Why?
+
 
 First of all RSS is still qualifies as a great technology.  Even though RSS
 faded to obscurity in the past 8 years or so it is still very useful.  RSS was
@@ -25,19 +26,19 @@ to watch Bitchute videos (that I subscribed via RSS) straight from my Newsboat c
 
 Here is how I have done it
 
-Prerequisites
--------------
+## Prerequisites
+
 
 - mpv 
 - Newsboat
 - youtube-dl
 
 
-Let's Begin!
-============
+# Let's Begin!
 
-$1: Add this function to end of your `.bashrc` or `.zshrc` file.
-----------------------------------------------------------------
+
+## $1: Add this function to end of your `.bashrc` or `.zshrc` file.
+
 
 
 ```
@@ -92,8 +93,8 @@ trust me after some time you get used to it. It saves you time ;P
 
 
 
-$2: Configure Newsboat
-----------------------
+## $2: Configure Newsboat
+
 
 - Open your Newsboat configuration file: `~/.newsboat/config` 
     - on some linux distros this file is found at: `~/.config/newsboat/config`
@@ -123,14 +124,14 @@ and Linux Mints should use `nemo` instead of `open`
 `macro b set browser [...]`
 :  sets a macro on key press "b".  Now every time you press `",b"` characters
 while in Newsboat. Hotkey for starting macros is always `","` read more about
-macros [here][2]
+macros [here](https://newsboat.org/releases/2.12/docs/newsboat.html)
 
 
-For more info about Newsboat config you can go [here][1]
+For more info about Newsboat config you can go [here](https://newsboat.org/releases/2.12/docs/newsboat.html)
 
 
-$3: Add a Bitchute RSS test URL.
---------------------------------
+## $3: Add a Bitchute RSS test URL.
+
 
 - Open your Newsboat URLs file: `~/.newsboat/urls` 
     - on some linux distros this file is found at: `~/.config/newsboat/urls`
@@ -140,8 +141,8 @@ $3: Add a Bitchute RSS test URL.
 https://www.bitchute.com/feeds/rss/channel/styxhexenhammer666/ "news"
 ```
 
-$4: Fire it up!
----------------
+## $4: Fire it up!
+
 
 - Start Newsboat:
 
@@ -159,28 +160,32 @@ newsboat
 - Enjoy the Show!
 
 
-Last Words
-==========
+# Last Words
+
 
 That is it you should be able to watch any Bitchute video on your mpv player
 straight from Newsboat RSS feed.  That is pretty cool and proved to be quite
 useful.  I love the fact that mpv is highly customizeable and I can mimic the
 `picture-in-picture` I really wanted.
 
-- If you want to learn more about Newsboat Luke Smith has a great [video][3] on it
-- If you are interested were I came up with the bitchute-dl idea see this [video][6] and the original [script][4]
-- If you want to see my current Newsboat configuration visit [here][5]
+- If you want to learn more about Newsboat Luke Smith has a great [video](https://www.youtube.com/watch?v=dUFCRqs822w) on it
+- If you are interested were I came up with the bitchute-dl idea see this [video](https://www.bitchute.com/video/W4g3Jktibucb/) and the original [script](https://archive.fo/zd49L)
+- If you want to see my current Newsboat configuration visit [here](https://github.com/dovydasgulbinas/env-configs/tree/master/newsboat)
 
 return 0
 
 
-[1]: https://newsboat.org/releases/2.12/docs/newsboat.html#_first_steps
-[2]: https://newsboat.org/releases/2.12/docs/newsboat.html#_macro_support 
-[3]: https://www.youtube.com/watch?v=dUFCRqs822w 
-[4]: https://archive.fo/zd49L
-[5]: https://github.com/dovydasgulbinas/env-configs/tree/master/newsboat
-[6]: https://www.bitchute.com/video/W4g3Jktibucb/ "TheOuterLinux bt channel"
+;[1]: https://newsboat.org/releases/2.12/docs/newsboat.html#_first_steps
+;[2]: https://newsboat.org/releases/2.12/docs/newsboat.html#_macro_support 
+;[3]: https://www.youtube.com/watch?v=dUFCRqs822w 
+;[4]: https://archive.fo/zd49L
+;[5]: https://github.com/dovydasgulbinas/env-configs/tree/master/newsboat
+;[6]: https://www.bitchute.com/video/W4g3Jktibucb/ "TheOuterLinux bt channel"
+;layout: post
+;comments: true
 ;date: 2018-08-25 16:26:39
 ;date_updated: 
+;time_finished: 2018-08-25 19:19:39
+;image: https://dovydas.xyz/assets/img/closed-and-key.png
 ;tags: software tui video
 
