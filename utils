@@ -1,5 +1,10 @@
 #!/usr/bin/make -f
 
-serve:
-	open blog/index.html
+PORT=8888
 
+serve: open-url
+	cd blog && python3 -m http.server --bind 0.0.0.0 --directory . $(PORT)
+
+open-url:
+	open http://localhost:8888
+	python3 -c "import webbrowser; webbrowser.open_new_tab('$(PORT)')"
