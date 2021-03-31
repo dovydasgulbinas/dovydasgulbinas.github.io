@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3
+
 import argparse
 import pathlib
 import io
@@ -143,18 +145,41 @@ def transform_links(file_):
     return buffer
 
 
-def convert_notebook(note_path):
+def transform_assets_paths(file_, src_assets_dir, dst_assets_dir):
+    if not src_assets_dir and not dst_assets_dir:
+        return file_
+
+    buffer = io.StringIO()
+
+    text = file_.getvalue()
+    text = re.sub(f"{src_assets_dir}", lambda m: dst_assets_dir, text, flags=re.MULTILINE)
+    buffer.write(text)
+
+    file_.close()
+    buffer.seek(0)
+    return buffer
+
+
+def transform(note_path, src_assets_dir='', dst_assets_dir=''):
     file_ = _make_text_buffer(note_path)
 
     file_ = transform_jekyll_header(file_)
     file_ = transform_singleline(file_)
     file_ = transform_multiline(file_)
     file_ = transform_links(file_)
+    file_ = transform_assets_paths(file_, src_assets_dir, dst_assets_dir)
 
     return file_.getvalue()
 
 
-def convert_all_notebooks(input_dir, output_dir, exts = ('*.md', '*.markdown')):
+def migrate_one_post(note_path, output_dir, src_assets_dir='', dst_assets_dir=''):
+    output_dir = pathlib.Path(output_dir).absolute()
+
+    output_path = output_dir.joinpath(pathlib.Path(note_path).name)
+    output_path.write_text(transform(note_path, src_assets_dir, dst_assets_dir))
+
+
+def migrate_all_posts(input_dir, output_dir, exts = ('*.md', )):
     import glob
     input_dir = pathlib.Path(input_dir).absolute()
     output_dir = pathlib.Path(output_dir).absolute()
@@ -168,9 +193,10 @@ def convert_all_notebooks(input_dir, output_dir, exts = ('*.md', '*.markdown')):
 
     for input_post in posts:
         output_path = output_dir.joinpath(pathlib.Path(input_post).name)
-        output_path.write_text(convert_notebook(input_post))
+        output_path.write_text(transform(input_post))
 
 
 if __name__ == "__main__":
-    # convert_notebook()
-    convert_all_notebooks('_posts/', 'articles/')
+    # transform()
+    # migrate_all_posts('_posts/', 'articles/')
+    migrate_one_post('./_posts/testing.md', './articles', src_assets_dir='/assets/', dst_assets_dir='/data/')
