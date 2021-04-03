@@ -4,6 +4,7 @@ import argparse
 import pathlib
 import io
 import re
+import subprocess
 
 COMM = ";"  # comment delimiter
 
@@ -201,8 +202,20 @@ def migrate_all_posts(input_dir, output_dir, exts = ('*.md', )):
 def git_mv():
     pass
 
+def git_initial_setup(default_branch, tag_name, migration_branch):
+
+    cmd_queue = [
+        ["git", "checkout", default_branch],  # checkout to e.g. master
+        ["git", "tag" tag_name],  # create a tag for historical reasons
+        ["git", "push", "--tags", "origin", default_branch]  # push new tags
+    ]
+
+    for cmd in cmd_queue:
+        subprocess.run(cmd)
+
 
 if __name__ == "__main__":
     # transform()
     # migrate_all_posts('_posts/', 'articles/')
-    migrate_one_post('./_posts/testing.md', './articles', src_assets_dir='/assets/', dst_assets_dir='/data/')
+    # migrate_one_post('./_posts/testing.md', './articles', src_assets_dir='/assets/', dst_assets_dir='/data/')
+    # git_checkout_master("master")
