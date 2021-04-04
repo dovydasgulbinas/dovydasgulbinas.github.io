@@ -5,6 +5,7 @@ import pathlib
 import io
 import re
 import subprocess
+import sys
 
 COMM = ";"  # comment delimiter
 
@@ -36,7 +37,7 @@ def transform_jekyll_header(file_):
             continue
 
         if sline == "---":
-            hr_count+=1
+            hr_count += 1
         elif "categories:" in sline:  # categories is a specific case
             header["categories"] = []
         elif "categories" in header and sline.lstrip(" ").startswith("- "):
@@ -64,7 +65,7 @@ def transform_jekyll_header(file_):
             buffer.write(comment)
 
     file_.close()
-    buffer.seek(0) # reset cursor for other functions
+    buffer.seek(0)  # reset cursor for other functions
     return buffer
 
 
@@ -73,12 +74,13 @@ def transform_singleline(file_):
     buffer = io.StringIO()
 
     def star_repl(match):
-        return match.group(0).replace('*', '-', 1)
-    
+        return match.group(0).replace("*", "-", 1)
 
     for line in file_.readlines():
         line = re.sub(r"^\s*\*\s+", star_repl, line)  # replace *, with -
-        line = re.sub(r"^(```)\w+", lambda m : m.group(1) , line)  # srip lang info from code block
+        line = re.sub(
+            r"^(```)\w+", lambda m: m.group(1), line
+        )  # srip lang info from code block
 
         buffer.write(line)
 
@@ -108,7 +110,7 @@ def transform_multiline(file_):
     text = file_.getvalue()
 
     # replace atx style headings
-    text = re.sub(r"^(.*\n)([=-]+)\n", heading_repl , text, flags=re.MULTILINE)
+    text = re.sub(r"^(.*\n)([=-]+)\n", heading_repl, text, flags=re.MULTILINE)
 
     buffer.write(text)
     file_.close()
@@ -126,21 +128,22 @@ def transform_links(file_):
         match = re_links.match(line)
 
         if match:
-            link, uri = match.group(1), match.group(2) 
+            link, uri = match.group(1), match.group(2)
             # add aliases to index
             uri_indexes[link.strip("[]")] = uri
             # comment out the old line
             text = re_links.sub(lambda m: f"{COMM}{m.group(0)}", line)
-            buffer.write(text) 
+            buffer.write(text)
         else:
             buffer.write(line)
     for link, uri in uri_indexes.items():
-        specific_regex = re.compile(fr"\[{link}\]" # replace with specific index
-                                    fr"(?![\[:])" #  [ - title link collision, : - same definition
-                                    )
+        specific_regex = re.compile(
+            fr"\[{link}\]"  # replace with specific index
+            fr"(?![\[:])"  #  [ - title link collision, : - same definition
+        )
 
         text = specific_regex.sub(lambda l: f"({uri})", buffer.getvalue())
-        buffer = io.StringIO() # get clean buffer
+        buffer = io.StringIO()  # get clean buffer
         buffer.write(text)
 
     file_.close()
@@ -155,7 +158,9 @@ def transform_assets_paths(file_, src_assets_dir, dst_assets_dir):
     buffer = io.StringIO()
 
     text = file_.getvalue()
-    text = re.sub(f"{src_assets_dir}", lambda m: dst_assets_dir, text, flags=re.MULTILINE)
+    text = re.sub(
+        f"{src_assets_dir}", lambda m: dst_assets_dir, text, flags=re.MULTILINE
+    )
     buffer.write(text)
 
     file_.close()
@@ -163,7 +168,7 @@ def transform_assets_paths(file_, src_assets_dir, dst_assets_dir):
     return buffer
 
 
-def transform(note_path, src_assets_dir='', dst_assets_dir=''):
+def transform(note_path, src_assets_dir="", dst_assets_dir=""):
     file_ = _make_text_buffer(note_path)
 
     file_ = transform_jekyll_header(file_)
@@ -175,15 +180,16 @@ def transform(note_path, src_assets_dir='', dst_assets_dir=''):
     return file_.getvalue()
 
 
-def migrate_one_post(note_path, output_dir, src_assets_dir='', dst_assets_dir=''):
+def migrate_one_post(note_path, output_dir, src_assets_dir="", dst_assets_dir=""):
     output_dir = pathlib.Path(output_dir).absolute()
 
     output_path = output_dir.joinpath(pathlib.Path(note_path).name)
     output_path.write_text(transform(note_path, src_assets_dir, dst_assets_dir))
 
 
-def migrate_all_posts(input_dir, output_dir, exts = ('*.md', )):
+def migrate_all_posts(input_dir, output_dir, exts=("*.md",)):
     import glob
+
     input_dir = pathlib.Path(input_dir).absolute()
     output_dir = pathlib.Path(output_dir).absolute()
 
@@ -199,23 +205,48 @@ def migrate_all_posts(input_dir, output_dir, exts = ('*.md', )):
         output_path.write_text(transform(input_post))
 
 
-def git_mv():
-    pass
+def _process_cmd_queue(cmd_queue, silent=True):
 
-def git_initial_setup(default_branch, tag_name, migration_branch):
-
-    cmd_queue = [
-        ["git", "checkout", default_branch],  # checkout to e.g. master
-        ["git", "tag" tag_name],  # create a tag for historical reasons
-        ["git", "push", "--tags", "origin", default_branch]  # push new tags
-    ]
+    joined = lambda j: " ".join(j)
+    called = lambda c: f"\tCalled: '{joined(c)}'.\n"
 
     for cmd in cmd_queue:
-        subprocess.run(cmd)
+        try:
+            subprocess.run(cmd, check=True)
+            # TODO: suppres stdout, silent=
+        except subprocess.CalledProcessError as e:
+            print(f"ERROR: `{e.stderr}`\n" f"{called(e.cmd)}")
+            # TODO: capture output for commands that do no print to stderr
+            # print(dir(e))
+            sys.exit(e.returncode)
+        except OSError as e:
+            print(f"ERROR: OS specific issue: {e.strerror}\n" f"{called(cmd)}")
+            sys.exit(e.errno)
+        else:
+            pass
+            # pathlib.Path('./.last_valid_cmd').write_text(str(cmd))
+
+
+def git_initial_setup(*, default_branch, tag_name, migration_branch):
+
+    cmd_queue = [
+        # ["git", "checkout", default_branch],  # checkout to e.g. master
+        # ["git", "tag" tag_name],  # create a tag for historical reasons
+        # ["git", "push", "--tags", "origin", default_branch]  # push new tags
+        ["git", "status"],
+        # ["git", "windows"],
+        # ["git", "badcmd"],
+    ]
+
+    _process_cmd_queue(cmd_queue)
 
 
 if __name__ == "__main__":
     # transform()
     # migrate_all_posts('_posts/', 'articles/')
     # migrate_one_post('./_posts/testing.md', './articles', src_assets_dir='/assets/', dst_assets_dir='/data/')
-    # git_checkout_master("master")
+    git_initial_setup(
+        default_branch="master",
+        tag_name="before-blogit-migration",
+        migration_branch="blogit-migration-branch",
+    )
