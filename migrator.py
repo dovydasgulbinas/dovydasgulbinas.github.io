@@ -208,16 +208,16 @@ def migrate_all_posts(input_dir, output_dir, exts=("*.md",)):
 def _process_cmd_queue(cmd_queue, silent=True):
 
     joined = lambda j: " ".join(j)
-    called = lambda c: f"\tCalled: '{joined(c)}'.\n"
+    called = lambda c: f"\n\tCalled: '{joined(c)}'.\n"
 
     for cmd in cmd_queue:
         try:
-            subprocess.run(cmd, check=True)
-            # TODO: suppres stdout, silent=
+            subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         except subprocess.CalledProcessError as e:
-            print(f"ERROR: `{e.stderr}`\n" f"{called(e.cmd)}")
-            # TODO: capture output for commands that do no print to stderr
-            # print(dir(e))
+            msg = e.stderr 
+            if not msg:
+                msg = e.output
+            print(f"ERROR: {msg}" f"{called(e.cmd)}")
             sys.exit(e.returncode)
         except OSError as e:
             print(f"ERROR: OS specific issue: {e.strerror}\n" f"{called(cmd)}")
