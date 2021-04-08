@@ -212,9 +212,11 @@ def _process_cmd_queue(cmd_queue, silent=True):
 
     for cmd in cmd_queue:
         try:
-            subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            subprocess.run(
+                cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+            )
         except subprocess.CalledProcessError as e:
-            msg = e.stderr 
+            msg = e.stderr
             if not msg:
                 msg = e.output
             print(f"ERROR: {msg}" f"{called(e.cmd)}")
@@ -222,10 +224,6 @@ def _process_cmd_queue(cmd_queue, silent=True):
         except OSError as e:
             print(f"ERROR: OS specific issue: {e.strerror}\n" f"{called(cmd)}")
             sys.exit(e.errno)
-        else:
-            pass
-            # pathlib.Path('./.last_valid_cmd').write_text(str(cmd))
-
 
 def git_initial_setup(*, default_branch, tag_name, migration_branch):
 
@@ -235,18 +233,69 @@ def git_initial_setup(*, default_branch, tag_name, migration_branch):
         # ["git", "push", "--tags", "origin", default_branch]  # push new tags
         ["git", "status"],
         # ["git", "windows"],
-        # ["git", "badcmd"],
+        ["git", "badcmd"],
     ]
-
     _process_cmd_queue(cmd_queue)
 
 
+class CLI:
+    def __init__(self):
+        parser = argparse.ArgumentParser(
+            description="Allows migrating or adapting existing notes for Blogit",
+            usage="""jegit.py <command> [<args>]
+
+Commands:
+   migrate\tMigrates from Jekyll to Blogit
+   transform\tDoes Inline Transform for allready created and committed notes
+""",
+        )
+        parser.add_argument("command", help="Subcommand to run")
+        # parse_args defaults to [1:] for args, but you need to
+        # exclude the rest of the args too, or validation will fail
+        args = parser.parse_args(sys.argv[1:2])
+        if not hasattr(self, args.command):
+            print("Unrecognized command")
+            parser.print_help()
+            exit(1)
+        # use dispatch pattern to invoke method with same name
+        getattr(self, args.command)()
+
+    def migrate(self):
+        parser = argparse.ArgumentParser(
+            description="Run all necessary steps for migration to Blogit"
+        )
+
+        parser.add_argument("-i", "--posts_dir", default="./_posts", type=pathlib.Path)
+        parser.add_argument(
+            "-o", "--articles_dir", default="./articles", type=pathlib.Path
+        )
+        parser.add_argument("-n", "--no_blogit_init", action="store_true")
+        parser.add_argument("-d", "--default_branch", type=str, default="master")
+        parser.add_argument(
+            "-t", "--tag_name", type=str, default="before_migrating_to_blogit"
+        )
+        parser.add_argument(
+            "-m", "--migration_branch", type=str, default="blogit_migration_branch"
+        )
+
+        # inside a subcommand, ignore the first two args
+        args = parser.parse_args(sys.argv[2:])
+
+        if not args.posts_dir.exists() and not args.posts_dir.is_dir():
+            raise Exception(
+                f"Path '{args.posts_dir}' provided is not a directory or does not exist"
+            )
+
+        print(args.posts_dir, args.articles_dir, args.no_blogit_init)
+        git_initial_setup(
+            default_branch=args.default_branch,
+            tag_name=args.tag_name,
+            migration_branch=args.migration_branch,
+        )
+
+    def transform(self):
+        print("Not Implemented")
+
+
 if __name__ == "__main__":
-    # transform()
-    # migrate_all_posts('_posts/', 'articles/')
-    # migrate_one_post('./_posts/testing.md', './articles', src_assets_dir='/assets/', dst_assets_dir='/data/')
-    git_initial_setup(
-        default_branch="master",
-        tag_name="before-blogit-migration",
-        migration_branch="blogit-migration-branch",
-    )
+    CLI()
