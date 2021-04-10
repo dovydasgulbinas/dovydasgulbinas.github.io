@@ -243,19 +243,6 @@ def git_initial_setup(
     _process_cmd_queue(cmd_queue, dry_run=dry_run)
 
 
-def create_assets_symlink(*, articles_dir: Path, assets_dir: Path, dry_run: bool):
-    if dry_run:
-        print(
-            f"dry run (symlink): "
-            f"'ln -s {assets_dir} {articles_dir}/../{assets_dir.name}'"
-        )
-        return
-
-    symlink_name = articles_dir.joinpath(assets_dir.name)
-    assets_rel = Path("..").joinpath(assets_dir)
-    symlink_name.symlink_to(assets_rel, target_is_directory=True)
-
-
 def git_commit_changes(*, articles_dir: Path, dry_run: bool):
 
     cmd_queue = [
@@ -272,13 +259,6 @@ def main():
 
     parser.add_argument("-i", "--posts_dir", default="./_posts", type=Path)
     parser.add_argument("-o", "--articles_dir", default="./articles", type=Path)
-    parser.add_argument(
-        "-a",
-        "--assets_dir",
-        default="./assets",
-        type=Path,
-        help="Location were Jekyll assets are kept.",
-    )
     parser.add_argument("-d", "--default_branch", default="master")
     parser.add_argument("-t", "--tag_name", default="before-jegit-migration")
     parser.add_argument("-m", "--migration_branch", default="jegit-migration")
@@ -296,8 +276,6 @@ def main():
     nodir_msg = "Path '{}' provided is not a directory or does not exist"
     if not args.posts_dir.exists() and not args.posts_dir.is_dir():
         parser.error(nodir_msg.format(str(args.posts_dir)))
-    if not args.assets_dir.exists() and not args.assets_dir.is_dir():
-        parser.error(nodir_msg.format(str(args.assets_dir)))
 
     # Actual function calls
     if not args.skip_git_setup:
@@ -311,9 +289,6 @@ def main():
         )
 
     transform_all_posts(args.articles_dir, dry_run=args.dry_run)
-    create_assets_symlink(
-        articles_dir=args.articles_dir, assets_dir=args.assets_dir, dry_run=args.dry_run
-    )
     git_commit_changes(articles_dir=args.articles_dir, dry_run=args.dry_run)
     print_complete()
 
