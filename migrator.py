@@ -1,17 +1,17 @@
 #!/usr/local/bin/python3
 
 import argparse
-import pathlib
 import io
 import re
 import subprocess
 import sys
+from pathlib import Path
 
 COMM = ";"  # comment delimiter
 
 
 def _make_text_buffer(note_path):
-    note = pathlib.Path(note_path)
+    note = Path(note_path)
     text = note.read_text()
 
     original_text_buffer = io.StringIO(text)
@@ -162,29 +162,24 @@ def transform(note_path):
     return file_.getvalue()
 
 
-def migrate_one_post(note_path, output_dir):
-    output_dir = pathlib.Path(output_dir).absolute()
-
-    output_path = output_dir.joinpath(pathlib.Path(note_path).name)
-    output_path.write_text(transform(note_path))
-
-
-def migrate_all_posts(input_dir, output_dir, exts=("*.md",)):
+def transform_all_posts(articles_dir: Path, dry_run=True, exts=("*.md",)):
     import glob
-
-    input_dir = pathlib.Path(input_dir).absolute()
-    output_dir = pathlib.Path(output_dir).absolute()
 
     posts = []
 
     # get all the files on one go
     for ext in exts:
-        path = str(input_dir.joinpath(ext))
+        path = str(articles_dir.joinpath(ext))
         posts.extend(glob.glob(path))
 
-    for input_post in posts:
-        output_path = output_dir.joinpath(pathlib.Path(input_post).name)
-        output_path.write_text(transform(input_post))
+    for post in posts:
+        transformed_post = transform(post)
+
+        if dry_run:
+            print("dry transform run on: ", post)
+            continue
+
+        post.write_text(transformed_post)
 
 
 def _process_cmd_queue(cmd_queue, silent=True):
@@ -227,28 +222,30 @@ def main():
         description="Run all necessary steps for migration to Blogit"
     )
 
-    parser.add_argument("-i", "--posts_dir", default="./_posts", type=pathlib.Path)
-    parser.add_argument("-o", "--articles_dir", default="./articles", type=pathlib.Path)
+    parser.add_argument("-i", "--posts_dir", default="./_posts", type=Path)
+    parser.add_argument("-o", "--articles_dir", default="./articles", type=Path)
     parser.add_argument("-d", "--default_branch", type=str, default="master")
-    parser.add_argument("-t", "--tag_name", type=str, default="before-blogit")
+    parser.add_argument("-t", "--tag_name", type=str, default="before-migration")
     parser.add_argument(
-        "-m", "--migration_branch", type=str, default="blogit-migration-branch"
+        "-m", "--migration_branch", type=str, default="blogit-migration-br"
     )
 
-    # inside a subcommand, ignore the first two args
-    args = parser.parse_args(sys.argv[2:])
-
+    args = parser.parse_args()
     if not args.posts_dir.exists() and not args.posts_dir.is_dir():
         raise Exception(
             f"Path '{args.posts_dir}' provided is not a directory or does not exist"
         )
 
-    print(args.posts_dir, args.articles_dir, args.no_blogit_init)
+    print(args)
+    transform_all_posts(args.articles_dir, dry_run=True)
     # git_initial_setup(
     #     default_branch=args.default_branch,
     #     tag_name=args.tag_name,
     #     migration_branch=args.migration_branch,
+    #     posts_dir=args.posts_dir,
+    #     articles_dir=args.articles_dir,
     # )
+
 
 
 if __name__ == "__main__":
