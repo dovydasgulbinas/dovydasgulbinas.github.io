@@ -5,3 +5,4 @@ _drafts/untracked/
 *.icloud
 _drafts/
 *.pyc
+/tags/*
