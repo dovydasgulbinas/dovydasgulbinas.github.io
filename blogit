@@ -14,6 +14,8 @@ BLOG_DESCRIPTION ?= blog
 BLOG_URL_ROOT ?= http://localhost/blog
 BLOG_FEED_MAX ?= 20
 BLOG_FEEDS ?= rss atom
+DEV_URL ?= http://localhost
+DEV_PORT ?= 8888
 
 
 .PHONY: help init build deploy clean
@@ -22,7 +24,7 @@ ARTICLES = $(shell git ls-tree HEAD --name-only -- articles/ 2>/dev/null)
 TAGFILES = $(patsubst articles/%.md,tags/%,$(ARTICLES))
 
 help:
-	$(info blogit init|build|deploy|clean)
+	$(info blogit init|build|deploy|clean|serve)
 
 init:
 	mkdir -p articles data templates
@@ -201,3 +203,9 @@ blog/atom.xml: $(ARTICLES)
 			"`$(SED) -n '1d;/^$$/{2{d;b};q};p' < $$FILE`"; \
 	done >> $@
 	printf '</feed>\n' >> $@
+
+serve: open-url-dev
+	cd blog && python3 -m http.server --bind 0.0.0.0 --directory articles $(DEV_PORT)
+
+open-url-dev:
+	python3 -c "import webbrowser; webbrowser.open_new_tab('$(DEV_URL):$(DEV_PORT)')"
