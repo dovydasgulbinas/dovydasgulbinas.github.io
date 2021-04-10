@@ -7,7 +7,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+# CONSTANTS
 COMM = ";"  # comment delimiter
+MD_EXTENSIONS = ("*.md",)  # glob filenames that will be transformed
 
 
 def _make_text_buffer(note_path):
@@ -162,7 +164,7 @@ def transform(note_path):
     return file_.getvalue()
 
 
-def transform_all_posts(articles_dir: Path, dry_run: bool, exts=("*.md",)):
+def transform_all_posts(articles_dir: Path, dry_run: bool, exts=MD_EXTENSIONS):
     import glob
 
     posts = []
@@ -207,6 +209,16 @@ def _process_cmd_queue(cmd_queue, silent=True, dry_run=False):
             sys.exit(e.errno)
 
 
+def print_complete():
+    print(" Transform Complete! ".center(80, "="))
+    print(
+        "Call './blogit init' from the terminal.\n"
+        "After that './blogit serve' "
+        "to see your posts."
+    )
+    print("=" * 80)
+
+
 def git_initial_setup(
     *,
     default_branch: str,
@@ -227,6 +239,28 @@ def git_initial_setup(
     _process_cmd_queue(cmd_queue, dry_run=dry_run)
 
 
+def create_assets_symlink(*, articles_dir: Path, assets_dir: Path, dry_run: bool):
+    if dry_run:
+        print(
+            f"dry run (symlink): "
+            f"'ln -s {assets_dir} {articles_dir}/../{assets_dir.name}'"
+        )
+        return
+
+    symlink_name = articles_dir.joinpath(articles_dir.name)
+    assets_rel = Path("..").joinpath(assets_dir)
+    symlink_name.symlink_to(assets_rel, target_is_directory=True)
+
+
+def git_commit_changes(*, articles_dir: Path, dry_run: bool):
+
+    cmd_queue = [
+        ["git", "add", f"{articles_dir}"],
+        ["git", "commit", "-m", "AUTO: Add articles after transformation"],
+    ]
+    _process_cmd_queue(cmd_queue, dry_run=dry_run)
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Run all necessary steps for migration to Blogit"
@@ -234,27 +268,50 @@ def main():
 
     parser.add_argument("-i", "--posts_dir", default="./_posts", type=Path)
     parser.add_argument("-o", "--articles_dir", default="./articles", type=Path)
+    parser.add_argument(
+        "-a",
+        "--assets_dir",
+        default="./assets",
+        type=Path,
+        help="Location were Jekyll assets are kept.",
+    )
     parser.add_argument("-d", "--default_branch", default="master")
     parser.add_argument("-t", "--tag_name", default="before-migration")
     parser.add_argument("-m", "--migration_branch", default="blogit-migration-br")
     parser.add_argument("-r", "--dry_run", action="store_true", default=False)
+    parser.add_argument(
+        "-s",
+        "--skip_git_setup",
+        action="store_true",
+        default=False,
+        help="Skips git branch and tag creation.",
+    )
 
     args = parser.parse_args()
-    if not args.posts_dir.exists() and not args.posts_dir.is_dir():
-        raise Exception(
-            f"Path '{args.posts_dir}' provided is not a directory or does not exist"
-        )
 
-    print(args)
-    git_initial_setup(
-        default_branch=args.default_branch,
-        tag_name=args.tag_name,
-        migration_branch=args.migration_branch,
-        posts_dir=args.posts_dir,
-        articles_dir=args.articles_dir,
-        dry_run=args.dry_run,
-    )
+    nodir_msg = "Path '{}' provided is not a directory or does not exist"
+    if not args.posts_dir.exists() and not args.posts_dir.is_dir():
+        parser.error(nodir_msg.format(str(args.posts_dir)))
+    if not args.assets_dir.exists() and not args.assets_dir.is_dir():
+        parser.error(nodir_msg.format(str(args.assets_dir)))
+
+    # Actual function calls
+    if not args.skip_git_setup:
+        git_initial_setup(
+            default_branch=args.default_branch,
+            tag_name=args.tag_name,
+            migration_branch=args.migration_branch,
+            posts_dir=args.posts_dir,
+            articles_dir=args.articles_dir,
+            dry_run=args.dry_run,
+        )
+    
     transform_all_posts(args.articles_dir, dry_run=args.dry_run)
+    create_assets_symlink(
+        articles_dir=args.articles_dir, assets_dir=args.assets_dir, dry_run=args.dry_run
+    )
+    git_commit_changes(articles_dir=args.articles_dir, dry_run=args.dry_run)
+    print_complete()
 
 
 if __name__ == "__main__":
