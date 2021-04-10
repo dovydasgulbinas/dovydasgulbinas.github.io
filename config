@@ -1,6 +1,0 @@
-BLOG_REMOTE:=www
-SED:=gsed
-
-BLOG_TITLE:=dovydas.xyz
-BLOG_DESCRIPTION:=i got 99 glitches
-BLOG_URL_ROOT:=http://localhost
