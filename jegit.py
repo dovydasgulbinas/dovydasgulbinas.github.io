@@ -234,8 +234,8 @@ def git_initial_setup(
     cmd_queue = [
         ["git", "checkout", default_branch],  # checkout to e.g. master
         ["git", "tag", tag_name],  # create a tag for historical reasons
-        ["git", "push", "--tags", "origin", default_branch],  # push new tags
         ["git", "checkout", "-b", migration_branch],  # checkout to new branch
+        ["git", "push", "origin", tag_name],  # push new tags
         ["git", "mv", f"{posts_dir}", f"{articles_dir}"],  # move posts
         ["git", "commit", "-m", f"Jegit: Moving {posts_dir} to {articles_dir}"],
     ]
@@ -250,7 +250,7 @@ def create_assets_symlink(*, articles_dir: Path, assets_dir: Path, dry_run: bool
         )
         return
 
-    symlink_name = articles_dir.joinpath(articles_dir.name)
+    symlink_name = articles_dir.joinpath(assets_dir.name)
     assets_rel = Path("..").joinpath(assets_dir)
     symlink_name.symlink_to(assets_rel, target_is_directory=True)
 
@@ -259,7 +259,7 @@ def git_commit_changes(*, articles_dir: Path, dry_run: bool):
 
     cmd_queue = [
         ["git", "add", f"{articles_dir}"],
-        ["git", "commit", "-m", "AUTO: Add articles after transformation"],
+        ["git", "commit", "-m", "Jegit: Add articles after transformation"],
     ]
     _process_cmd_queue(cmd_queue, dry_run=dry_run)
 
