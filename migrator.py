@@ -175,7 +175,7 @@ def transform(note_path, src_assets_dir="", dst_assets_dir=""):
     file_ = transform_singleline(file_)
     file_ = transform_multiline(file_)
     file_ = transform_links(file_)
-    file_ = transform_assets_paths(file_, src_assets_dir, dst_assets_dir)
+    # file_ = transform_assets_paths(file_, src_assets_dir, dst_assets_dir)
 
     return file_.getvalue()
 
@@ -225,15 +225,15 @@ def _process_cmd_queue(cmd_queue, silent=True):
             print(f"ERROR: OS specific issue: {e.strerror}\n" f"{called(cmd)}")
             sys.exit(e.errno)
 
-def git_initial_setup(*, default_branch, tag_name, migration_branch):
+
+def git_initial_setup(*, default_branch, tag_name, migration_branch, posts_dir, articles_dir):
 
     cmd_queue = [
-        # ["git", "checkout", default_branch],  # checkout to e.g. master
-        # ["git", "tag" tag_name],  # create a tag for historical reasons
-        # ["git", "push", "--tags", "origin", default_branch]  # push new tags
-        ["git", "status"],
-        # ["git", "windows"],
-        ["git", "badcmd"],
+        ["git", "checkout", default_branch],  # checkout to e.g. master
+        ["git", "tag" tag_name],  # create a tag for historical reasons
+        ["git", "push", "--tags", "origin", default_branch]  # push new tags
+        ["git", "mv", posts_dir, articles_dir] # move posts
+        ["git", "commit", "-m", f"AUTOMATIC: Moving '{posts_dir}' to '{articles_dir}'"]
     ]
     _process_cmd_queue(cmd_queue)
 
