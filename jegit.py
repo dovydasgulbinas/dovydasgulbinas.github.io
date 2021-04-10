@@ -6,6 +6,8 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+from typing import List
+
 
 # CONSTANTS
 COMM = ";"  # comment delimiter
@@ -174,9 +176,9 @@ def transform_all_posts(articles_dir: Path, dry_run: bool, exts=MD_EXTENSIONS):
         path = str(articles_dir.joinpath(ext))
         posts.extend(glob.glob(path))
 
+    posts = map(lambda p: Path(p), posts)  # transform strings to Path obs
     for post in posts:
         transformed_post = transform(post)
-
         if dry_run:
             print(f"dry run (transform note): '{post}'")
             continue
@@ -235,7 +237,7 @@ def git_initial_setup(
         ["git", "push", "--tags", "origin", default_branch],  # push new tags
         ["git", "checkout", "-b", migration_branch],  # checkout to new branch
         ["git", "mv", f"{posts_dir}", f"{articles_dir}"],  # move posts
-        ["git", "commit", "-m", f'"AUTO: Moving {posts_dir} to {articles_dir}"'],
+        ["git", "commit", "-m", f"Jegit: Moving {posts_dir} to {articles_dir}"],
     ]
     _process_cmd_queue(cmd_queue, dry_run=dry_run)
 
