@@ -204,7 +204,7 @@ blog/atom.xml: $(ARTICLES)
 	printf '</feed>\n' >> $@
 
 serve: open-url-dev
-	cd blog && python3 -m http.server --bind 0.0.0.0 --directory articles $(DEV_PORT)
+	python3 -m http.server --bind 0.0.0.0 --directory blog $(DEV_PORT)
 
 open-url-dev:
 	python3 -c "import webbrowser; webbrowser.open_new_tab('$(DEV_URL):$(DEV_PORT)')"
