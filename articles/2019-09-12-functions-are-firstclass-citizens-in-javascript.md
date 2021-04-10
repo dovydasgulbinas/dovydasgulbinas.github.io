@@ -1,24 +1,16 @@
----
-layout: post
-comments: true
-title: Functions are first-class citizens in JavaScript
-date: 2019-09-12 19:44:09
-date_updated:
-categories:
-  - javascript
-  - fundamentals
----
+Functions are first-class citizens in JavaScript
+
 
 first class citizen entity/type
 :  An entity that supports all operations other entities have. This means first-class citizens can be passed, returned & assigned etc.
+## 
 
----
 
 **To simply put it this means that you can:**
 
 assign a function to a variable:
 
-```javascript
+```
 var coolVariable = function() {
     console.log("Cool Anon Function");
 };
@@ -29,7 +21,7 @@ coolVariable(); // Will actually call the function.  The magic trick is in the `
 
 pass a function to a function:
 
-```javascript
+```
 function randomDecoration()
 {
 var decors = Array("=", "-", "~", "X", "_");
@@ -50,7 +42,7 @@ printDecorated("Decorate Me", randomDecoration);
 
 partially apply or spawn a new function from a generic function:
 
-```javascript
+```
 function customRandomDecoration(decors)
 {
   return function(n)
@@ -77,3 +69,8 @@ printDecorated("Decorate Me", randomDecoration);
 **Sources:**
 
 1. [Functions as First Class Citizens in JavaScript](http://ryanchristiani.com/functions-as-first-class-citizens-in-javascript/)
+;layout: post
+;comments: true
+;date: 2019-09-12 19:44:09
+;date_updated: 
+;tags: javascript fundamentals

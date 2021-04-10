@@ -1,15 +1,5 @@
----
-layout: post
-comments: true
-title: "Creating A Production Ready Django App, pt. 1"
-date: 2018-07-01 11:27:54
-date_updated:
-categories:
-  - django
-  - python
-  - devops
-  - skeleton
----
+Creating A Production Ready Django App, pt. 1
+
 
 
 # Intro
@@ -121,8 +111,8 @@ our `settings.py` configuration from OS based paths such as:
 ├── sandbox
 └── static
 ```
+## 
 
----
 
 # STAGE-2 | Create Prod and Test Settings Files
     cd <cool_project>
@@ -140,7 +130,7 @@ that we will define our core configuration in `settings_main.py` while
 minor overrides based on the environment(test, prod) will be done in their
 appropriate files `settings_test.py` and  `settings_prod.py`. This makes
 our configuration structure more similar to one you would find in **Nginx**.  
-Nginx like configuration structure forces your `settings` to be [DRY][1].
+Nginx like configuration structure forces your `settings` to be [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
 
 ## enable `test` settings for our project
@@ -236,8 +226,8 @@ our passwords away from CVS.
 ├── sandbox
 └── static
 ```
+## 
 
----
 
 # STAGE-3 | Add more goodies to our settings file
 
@@ -259,7 +249,7 @@ Lines you copy and paste will include comments make sure you read them.
 
 secret_key = '...'
 :  This is your production server secret key.  It must not match one under the [test]
-section.  Read more about it [here][2]
+section.  Read more about it [here](https://docs.djangoproject.com/en/2.0/ref/settings/)
 
 
 ## delete lines in `settings_main.py`
@@ -270,7 +260,7 @@ section.  Read more about it [here][2]
 
 ![ADD-LINES](/assets/img/add-settings-main.jpg)
 
-```python
+```
 import io
 import configparser
 
@@ -355,7 +345,7 @@ configuration from scratch we simply override values we want to change.
 ![ADD-PROD-LINES](/assets/img/add-settings-prod.jpg)
 
 
-```python
+```
 print(" {} ".format("using PRODUCTION settings").center(80, '='))
 
 DEBUG = False
@@ -433,10 +423,15 @@ Now you have a better base for your future Django Projects.
 3. If something did not work or you are lazy just copy skeleton we did: `git@github.com:dovydasgulbinas/blog-django-skeleton.git`
 3. Tune for a second part, next week, where I will be showing you how
 to deploy your project using **fabric2** and **invoke** to a production environment.
+## 
 
----
 
-[^1]: This means that one settings file will get all configuration variables and their values and will be able to override them,  rather than copying.
+;[^1]: This means that one settings file will get all configuration variables and their values and will be able to override them,  rather than copying.
 
-[1]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
-[2]: https://docs.djangoproject.com/en/2.0/ref/settings/#secret-key
+;[1]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
+;[2]: https://docs.djangoproject.com/en/2.0/ref/settings/#secret-key
+;layout: post
+;comments: true
+;date: 2018-07-01 11:27:54
+;date_updated: 
+;tags: django python devops skeleton

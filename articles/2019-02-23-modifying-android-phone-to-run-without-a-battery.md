@@ -1,14 +1,5 @@
----
-layout: post
-comments: true
-title: Modifying Android Phone To Run Without a Battery
-date: 2019-01-20 20:53:08
-date_updated:
-categories:
-  - android
-  - electronics
-  - hardware
----
+Modifying Android Phone To Run Without a Battery
+
 
 ## Abstract
 
@@ -22,21 +13,21 @@ Luckily there is a way to solve that issue by ripping out the battery and adding
 an external power source instead of the battery, but even this may not be so
 easy since more and more entry level phones have a built in an hard to replace
 battery, so you really have to find a right phone.  I tried this mod on several
-phones [LG][lg] (with removable battery), Samsung (With removable battery), [Nexus 6][nexus]
+phones [LG](https://www.gsmarena.com/lg_g4c-7250.php) (with removable battery), Samsung (With removable battery), [Nexus 6](https://www.gsmarena.com/motorola_nexus_6-6604.php)
 (with embedded battery).
 
 The results were:
 
-- LG (with removable battery): boots up and works for few minutes after that magic battery [DRM][drm] kicks in
+- LG (with removable battery): boots up and works for few minutes after that magic battery [DRM](https://android.stackexchange.com/questions/27277/why-my-phone-battery-has-four-terminal-what-is-the-use-of-the-fourth) kicks in
   and shuts down the phone.  So don't bother with LG phones
 - Nexus 6 (with embedded battery): Fried that sucker.  The power pins were super 
   small so don't bother also.
 - Samsung (with removable battery): Worked like a charm I actually managed to
   hack 2 different models of Samsung phones both with a removable battery:
-    - [XCover 4][xcover]
-    - [Galaxy S5 Neo][s5]
+    - [XCover 4](https://www.gsmarena.com/samsung_galaxy_xcover_4-8577.php)
+    - [Galaxy S5 Neo](https://www.gsmarena.com/samsung_galaxy_s5_neo-6506.php)
 
-So this post will cover my journey of hacking a [Samsung XCover 4][xcover] to
+So this post will cover my journey of hacking a [Samsung XCover 4](https://www.gsmarena.com/samsung_galaxy_xcover_4-8577.php) to
 run w/out a battery.
 
 ## Guide
@@ -116,19 +107,24 @@ tension they don't transfer any "wobbliness" to the module itself.
 
 ## Final Thoughts
 
-* This "no battery" method worked quite well for me and proved not to cause any issues
-* The work and components involved are readily available and easy to put together
-* NFC can be added if needed you simply would need to peel of the NFC tag from
+- This "no battery" method worked quite well for me and proved not to cause any issues
+- The work and components involved are readily available and easy to put together
+- NFC can be added if needed you simply would need to peel of the NFC tag from
   the original battery.
-* Phone in this configuration, can be used as a cheap IP camera using [IP Webcam app][camera-app]
-* If you are paranoid about the voltage levels of your "no battery" mod you can use the [BatteryBot][battery-app] to check some battery stats.
-* I would only bother w/ Samsung phones & only phone w/ removable batteries because from my experience it is guaranteed to work and easiest to mod way.
+- Phone in this configuration, can be used as a cheap IP camera using [IP Webcam app](https://play.google.com/store/apps/details?id=com.pas.webcam)
+- If you are paranoid about the voltage levels of your "no battery" mod you can use the [BatteryBot](https://f-droid.org/en/packages/com.darshancomputing.BatteryIndicator/) to check some battery stats.
+- I would only bother w/ Samsung phones & only phone w/ removable batteries because from my experience it is guaranteed to work and easiest to mod way.
 
 
-[xcover]: https://www.gsmarena.com/samsung_galaxy_xcover_4-8577.php
-[s5]: https://www.gsmarena.com/samsung_galaxy_s5_neo-6506.php
-[lg]: https://www.gsmarena.com/lg_g4c-7250.php
-[drm]: https://android.stackexchange.com/questions/27277/why-my-phone-battery-has-four-terminal-what-is-the-use-of-the-fourth#27280
-[nexus]: https://www.gsmarena.com/motorola_nexus_6-6604.php
-[camera-app]: https://play.google.com/store/apps/details?id=com.pas.webcam
-[battery-app]: https://f-droid.org/en/packages/com.darshancomputing.BatteryIndicator/ 
+;[xcover]: https://www.gsmarena.com/samsung_galaxy_xcover_4-8577.php
+;[s5]: https://www.gsmarena.com/samsung_galaxy_s5_neo-6506.php
+;[lg]: https://www.gsmarena.com/lg_g4c-7250.php
+;[drm]: https://android.stackexchange.com/questions/27277/why-my-phone-battery-has-four-terminal-what-is-the-use-of-the-fourth#27280
+;[nexus]: https://www.gsmarena.com/motorola_nexus_6-6604.php
+;[camera-app]: https://play.google.com/store/apps/details?id=com.pas.webcam
+;[battery-app]: https://f-droid.org/en/packages/com.darshancomputing.BatteryIndicator/ 
+;layout: post
+;comments: true
+;date: 2019-01-20 20:53:08
+;date_updated: 
+;tags: android electronics hardware

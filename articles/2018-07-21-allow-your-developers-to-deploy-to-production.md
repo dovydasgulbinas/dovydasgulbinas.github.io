@@ -1,13 +1,5 @@
----
-layout: post
-comments: true
-title: Allow  Developers To Deploy Straight To Production
-date: 2018-07-21 18:04:39
-date_updated:
-categories:
-  - devops
-  - rant
----
+Allow  Developers To Deploy Straight To Production
+
 
 In times when _continous integration_ is a new fad there still exists legacy
 systems which are not suitable for this flexible way of applying changes.  This
@@ -16,8 +8,8 @@ together on task that developer alone could of done.  Not allowing for your
 developer to apply changes for himself is a **stupid methodology**.  
 
 
-It hinders personal growth
---------------------------
+## It hinders personal growth
+
 
 Learning is a process of making a mistake and learning from it.  True lessons
 are learned when you have to think on your feet while being spammed with 10
@@ -49,8 +41,8 @@ developer to write a piece of code not trusting him to deploy it seems like more
 dichotomy rather than a safety measure.
 
 
-Cost per change is much higher
-------------------------------
+## Cost per change is much higher
+
 
 Some big companies need whole departments just to release software, this in an
 overkill. If you would look at majority of
@@ -74,8 +66,8 @@ these to parties hard from time to time, thus increasing complexity of deploymen
 process.
 
 
-Changing something takes much longer
-------------------------------------
+## Changing something takes much longer
+
 
 A clunky deployment ritual will lead to **releases**.  Releases depending on the
 project will occur daily, weekly or even monthly.  This means that code
@@ -117,8 +109,8 @@ time rather than fixing a bug he made. This in turn lengthens the whole release
 process.
 
 
-Conclusion
-==========
+# Conclusion
+
 
 More individual responsibility for the developer yields greater individual
 growth and more productive organization in general.  Allowing a developer to 
@@ -133,3 +125,8 @@ writing the code.
 
 return 0
 
+;layout: post
+;comments: true
+;date: 2018-07-21 18:04:39
+;date_updated: 
+;tags: devops rant

@@ -1,20 +1,12 @@
----
-layout: post
-comments: true
-title:  "Introduction on REST authentication"
-date:   2018-06-23 15:44:00 +0300
-categories:
-  - rest
-  - authentication
-  - OAuth
----
+Introduction on REST authentication
+
 
 
 ![this is snek](/assets/img/closed-and-key.png)
 
 
-Glossary
-========
+# Glossary
+
 
 HTTP Header
 :  All data found in the HTTP request that starts after very first "\n"
@@ -65,8 +57,8 @@ Authorization Server (AS)
 
 
 
-Intro
-=====
+# Intro
+
 
 Recently I had to design REST API endpoints.  My company currently has and old
 and hairy monolithic backend.  Like most living things in order to survive they
@@ -83,8 +75,8 @@ is stateful and why should i f-ing care?  Oh wait, I can also use OAuth for that
 I hope this blog post will clarify thing or two for someone who was as
 lost as I was.
 
-Zen of REST
-===========
+# Zen of REST
+
 
 1. Let's talk HTTP
 2. Let's use {POST, GET, PUT, DELETE ...}  
@@ -104,8 +96,8 @@ Or you just want to follow the Zen of REST by the letter
 prepare to say goodbye to that `sessionid` cookie.
 
 
-Token Based Authentication (TBA)
-===============================
+# Token Based Authentication (TBA)
+
 
 Token based a authentication is one of the most primitive types of authentication (this does not mean it's bad).
 It works by using **Tokens** or more commonly called **API Keys**. These tokens are simply
@@ -119,7 +111,7 @@ username/password and spit out a fresh auth token.
 Example of such endpoint would look like:
 
 request
-```json
+```
 POST /authenticate/token HTTP/1.1
 Host: example.com
 Content-Type: application/json
@@ -130,7 +122,7 @@ Content-Type: application/json
 }
 ```
 response
-```json
+```
 HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
 Cache-Control: no-store
@@ -162,11 +154,11 @@ it is not mandatory for you to implement an endpoint for the client
 to issue a Token you can simply give it to him manually, assuming only
 few people will use your application.
 </p>
+## 
 
----
 
-TBA Pros & Cons?
-------------
+## TBA Pros & Cons?
+
 
 Token based authentication needs username and password.  In some
 cases you do not really care. But there are cases when your user data is senstitive
@@ -186,17 +178,17 @@ data that is not sensitive.  Basically API keys are good for monitoring and
 "pay walling" people who use your API.
 
 
-Session Based Authentication (SBA)
-=================================
+# Session Based Authentication (SBA)
+
 
 Session is very different compared to _Token Based Authentication_.
 The ways it differs from Token authentication are:
 
-* Session tokens are issued & managed by the back-end server
+- Session tokens are issued & managed by the back-end server
 
-* Session tokens have very short validity time compared to TBA
+- Session tokens have very short validity time compared to TBA
 
-* Session tokens are stored as cookie.
+- Session tokens are stored as cookie.
 
 This is how a cookie looks `Cookie: sessionid=asbkta702ybw90rd87vphn14kre76s91`
 some may argue that, technically `Cookie:` is still a part of HTTP header.
@@ -210,13 +202,13 @@ are set properly.  Another problem you will face when using SBA is that your API
 be vulnerable to CSRF attacks.  The only way to solve this issue,  is to add yet another cookie
 to your client's cookie store in Django this cookie is called **csrftoken**.
 Additionally CSRF cookies have to be unique and managed by your API backed as well.
+## 
 
----
 
 To summarize SBA is very messy and it isn't designed to be used with REST applications in general.
 
-OAuth 2.0
-=========
+# OAuth 2.0
+
 
 The best and recommended way of authenticating if your API will be used by everyday
 users, third parties and your API must handle their username/password then OAuth is a must have.
@@ -225,14 +217,14 @@ Like TBA OAuth also uses tokens to manage access to resources.  Another
 benefit of OAuth 2.0 is ability to give tokens permissions.  For example this
 token grants this application ability to read users messages, but not create them.
 
-OAuth 2.0 describes four ways of **Authorization Grants (AG)** defined by [RFC6749][8.1].
+OAuth 2.0 describes four ways of **Authorization Grants (AG)** defined by [RFC6749](https://tools.ietf.org/html/rfc6749).
 RFC6749 also introduces 4 important terms that you must know. **Resource Owner (RO)** - someone who's data is kept
 on a server  **Resource Server (RS)** -- server that keeps _Resource Owner's_ data.  **Client (CL)** - a piece of software
 that communicates with a _Resource Server_ on behalf of the _Resource Owner_. **Authorization Server (AS)** - server that
 manages OAuth 2.0 tokens and verifies that _Resource Owner's_ credentials are correct.
 
-Authorization Code (AC)
------------------------
+## Authorization Code (AC)
+
 
 This method is a commonly used method in OAuth.  If you ever used any of Google'
 apps you we're definitely prompted with enter your Google username and password.
@@ -273,8 +265,8 @@ Also the RFC standard does define nor stop you from having an endpoint that redi
 to `/authorize`.  Just remember that your AC-OAuth must have a authorization endpoint
 
 
-[Implicit (IM)][8]
-------------------
+## [Implicit (IM)](https://tools.ietf.org/html/rfc6749)
+
 
 Implicit authorization is a type of authorization you would want to use in a web app
 that has no back-end e.g JavaScript application. Since the web browsers stores **cookies**
@@ -292,7 +284,7 @@ cookies, redirects & JavaScript.  If the conditions are not met your users are
 probably using "lynx" or "w3m".
 
 The figure below assumes that the user has already logged in to example.com domain.
-This is why the figure in [RFC6749][8] has more steps than I present.
+This is why the figure in [RFC6749](https://tools.ietf.org/html/rfc6749) has more steps than I present.
 
 ![im-oauth](/assets/diagrams/im-oauth.png)
 
@@ -310,23 +302,23 @@ I have used make it mandatory.
 `redirect_uri`
 : parameter instructs the AS to where the user should be redirected. When redirected
 the CL (javascript) will get few more goodies because AS will attach a juicy Token.
+## 
 
----
 
 ### IM summary
 
-* Implicit authorization needs `sessionid` cookie set for the domain in which AS is running.
+- Implicit authorization needs `sessionid` cookie set for the domain in which AS is running.
 if cookie is not present then user will be prompted to login. And then the cookie will be set
-* Implicit authorization would not work without a client client-agent (browser).
+- Implicit authorization would not work without a client client-agent (browser).
 because you need a way to handle the HTTP redirects.
-* Auth Tokens are passed as URL parameters
-* There is no way how to renew an Auth Token. This means that Tokens will have
+- Auth Tokens are passed as URL parameters
+- There is no way how to renew an Auth Token. This means that Tokens will have
 to be renewed by the user when they expire.
-* Tokens must to be stored in browser _LocalStorage_ or _Cookies_ for further use.
+- Tokens must to be stored in browser _LocalStorage_ or _Cookies_ for further use.
 
 
-Resource Owner Password Credentials (ROPC)
-------------------------------------------
+## Resource Owner Password Credentials (ROPC)
+
 
 This type of authorization should be used rarely.  And avoided most of the time
 since RO credentials are given directly to the CL. CL will use username/password
@@ -345,22 +337,22 @@ storing username/password on the device all together.
 ![ropcg-oauth](/assets/diagrams/ropcg-oauth.png)
 
 
-Client Credentials (CC)
------------------------
+## Client Credentials (CC)
+
 
 The final and most basic way of authenticating. CC architecture has only two components (in authorization process)
 client (CL) and authorization server (AS).  In this case RO is the CL.  For example if you
-want to get Authorization Token for yourself you could do that using [curl][10].
+want to get Authorization Token for yourself you could do that using [curl](https://en.wikipedia.org/wiki/CURL).
 
 ![cc-oauth](/assets/diagrams/cc-oauth.png)
 
 ### usage
 Use Client Credentials when you are developing or testing your OAuth apps. Or
-if you are a [TUI][11] person feel free to authorize all apps this way 😉
+if you are a [TUI](https://en.wikipedia.org/wiki/Text-based_user_interface) person feel free to authorize all apps this way 😉
 
 
-General Summary
----------------
+## General Summary
+
 
 
 OAuth 2.0:
@@ -369,8 +361,8 @@ As I show in this blogpost there are more than ways how to _"skin the cat called
 But if your REST API will be used by everyday people should go with OAuth 2.0.
 OAuth 2.0 as a standard covers multiple cases you will encounter plus nowadays
 it became an industry standard.
+## 
 
----
 
 Token Based Authentication (TBA):
 
@@ -378,8 +370,8 @@ If you want to expose your API as SaS then in most cases Token Based Authenticat
 covered in the first chapter should be sufficient.  Because there is a high likely hood
 that consumer of your API will be another machine, not a person.  And as we know
 machines tend not to forget their passwords or Tokens.
+## 
 
----
 
 Session Based Authentication (SBA)
 
@@ -390,20 +382,24 @@ in the ass to implement on a mobile app, because you would have to manage sessio
 cookies manually.  It was designed for use in webpages and should remain to be used with them.
 
 This post does not cover all intricacies of authorization but I hope it gave you a good
-head start. I highly recommend to skim through developer docs written by [Spotify][7]
-and the [RFC6749][8.1] I mentioned before.
+head start. I highly recommend to skim through developer docs written by [Spotify](https://developer.spotify.com/documentation/general/guides/authorization-guide/)
+and the [RFC6749](https://tools.ietf.org/html/rfc6749) I mentioned before.
 
 `return 0`
 
-[1]: https://security.stackexchange.com/questions/81756/session-authentication-vs-token-authentication#92123
-[2]: https://stackoverflow.com/questions/1592534/what-is-token-based-authentication
-[3]: https://security.stackexchange.com/questions/81756/session-authentication-vs-token-authentication#92123
-[4]: https://security.stackexchange.com/questions/40189/is-a-cookie-safer-than-a-simple-http-header
-[5]: https://chrisbartos.com/articles/how-do-i-implement-session-authentication-in-django-rest-framework/
-[6]: https://tools.ietf.org/html/rfc6749
-[7]: https://developer.spotify.com/documentation/general/guides/authorization-guide/
-[8]: https://tools.ietf.org/html/rfc6749#section-4.2
-[8.1]: https://tools.ietf.org/html/rfc6749
-[9]: https://codeplanet.io/principles-good-restful-api-design/
-[10]: https://en.wikipedia.org/wiki/CURL
-[11]: https://en.wikipedia.org/wiki/Text-based_user_interface
+;[1]: https://security.stackexchange.com/questions/81756/session-authentication-vs-token-authentication#92123
+;[2]: https://stackoverflow.com/questions/1592534/what-is-token-based-authentication
+;[3]: https://security.stackexchange.com/questions/81756/session-authentication-vs-token-authentication#92123
+;[4]: https://security.stackexchange.com/questions/40189/is-a-cookie-safer-than-a-simple-http-header
+;[5]: https://chrisbartos.com/articles/how-do-i-implement-session-authentication-in-django-rest-framework/
+;[6]: https://tools.ietf.org/html/rfc6749
+;[7]: https://developer.spotify.com/documentation/general/guides/authorization-guide/
+;[8]: https://tools.ietf.org/html/rfc6749#section-4.2
+;[8.1]: https://tools.ietf.org/html/rfc6749
+;[9]: https://codeplanet.io/principles-good-restful-api-design/
+;[10]: https://en.wikipedia.org/wiki/CURL
+;[11]: https://en.wikipedia.org/wiki/Text-based_user_interface
+;layout: post
+;comments: true
+;date: 2018-06-23 15:44:00 +0300
+;tags: rest authentication OAuth

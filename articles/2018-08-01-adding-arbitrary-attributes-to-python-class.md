@@ -1,26 +1,18 @@
----
-layout: post
-comments: true
-title: Adding Arbitrary Attributes To Python Class
-date: 2018-08-01 20:35:10
-date_updated:
-categories:
-  - python
-  - snippet
----
+Adding Arbitrary Attributes To Python Class
 
-The Problem
-===========
+
+# The Problem
+
 
 You want to create a dummy class that stores **arbitrary** attributes and you
 want to access these attributes via `. (dot)` operator e.g. `myClass.age`.  You
 can easily do that in Python.  Although using a _dictionary_ type would be more explicit and
 Pythonic 😉.
 
-The Solution
-============
+# The Solution
 
-```python
+
+```
 class PlaceholderClass:
     def __init__(self, **kwargs):
         for key in kwargs.keys():
@@ -39,3 +31,8 @@ whole result set could be added to a list.
 
 
 return 0
+;layout: post
+;comments: true
+;date: 2018-08-01 20:35:10
+;date_updated: 
+;tags: python snippet

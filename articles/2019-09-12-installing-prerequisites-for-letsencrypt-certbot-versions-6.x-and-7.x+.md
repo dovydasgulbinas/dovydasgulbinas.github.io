@@ -1,13 +1,5 @@
----
-layout: post
-comments: True
-title: "Installing prerequisites for LetsEncrypt Certbot versions 6.X, 7.X and up"
-date: 2019-09-12 15:46:41
-date_updated:
-categories:
-  - linux
-  - letsencrypt
----
+Installing prerequisites for LetsEncrypt Certbot versions 6.X, 7.X and up
+
 
 I ran into an issue today when I could not install certbot-auto on a Linux
 machine running CentOS 6.10.
@@ -46,7 +38,7 @@ that  python-pip & python-virtualenv are EPEL packages.  Let's fix that!
 
 Install and enable EPEL:
 
-```bash
+```
 yum update
 
 # Install EPEL
@@ -59,13 +51,13 @@ Save & Exit the text editor
 
 Update packages:
 
-```bash
+```
 yum update
 ```
 
 Let's verify that EPEL was enabled:
 
-```bash
+```
 yum repolist | grep epel
 
 # If grep catches something like:
@@ -78,3 +70,8 @@ yum repolist | grep epel
 Finally install Let's Encrypt's certbot from [here](https://certbot.eff.org/)
 
 **return 0**
+;layout: post
+;comments: True
+;date: 2019-09-12 15:46:41
+;date_updated: 
+;tags: linux letsencrypt

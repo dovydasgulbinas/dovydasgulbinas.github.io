@@ -1,15 +1,5 @@
----
-layout: post
-comments: true\
-title:  "Issuing and managing client side certificates using Python"
-date:   2017-10-29 03:11:00 +0300
-image: /assets/img/client-side-word-cloud.png
-categories:
-  - ssl
-  - apache2
-  - client-side
-  - python
----
+Issuing and managing client side certificates using Python
+
 
 <p align="center">
   <img src="/assets/img/client-side-word-cloud.png"/>
@@ -46,8 +36,8 @@ Client Side Certificate CSC
 :  a file given to a user to prove its identity
 it usually comes in .p12 format and is instlled into web browsers. CSC are obtained
 usually by sending a CSR to a CA.
+## 
 
----
 
 # Intro
 
@@ -72,7 +62,7 @@ probably have two of them. Why? Because one is used to issue a valid HTTPS certi
 for your **webpage**. Even-though you can always use self signed certificates both for
 **webpage** and for a **client** (that connect to the website) I do not recommend that because, clients will have to go through screen like this:
 
-![unknown certificate authority][bad-cert]
+![unknown certificate authority](https://ohmag.net/wp-content/uploads/2016/06/33-cert-7.png)
 
  But you probably know that already.  And yes you can force your users
 to install your homebrew CA into their root certificate store this will only
@@ -205,7 +195,7 @@ side certification without HTTPS enabled on your server and it would still work
 ## Running the Python
 
 For running this code on your machine I highly recommend for you to install
-[miniconda][miniconda] this will simply you installation tremendously because pip, OpenSSL,
+[miniconda](https://conda.io/miniconda.html) this will simply you installation tremendously because pip, OpenSSL,
 virtualenv comes with this installation out of the box.
 
 Once you installed you miniconda. **Restart your terminal app** And run the Python
@@ -239,5 +229,10 @@ my next blogpost.
 
 `return 0`
 
-[bad-cert]: https://ohmag.net/wp-content/uploads/2016/06/33-cert-7.png
-[miniconda]: https://conda.io/miniconda.html
+;[bad-cert]: https://ohmag.net/wp-content/uploads/2016/06/33-cert-7.png
+;[miniconda]: https://conda.io/miniconda.html
+;layout: post
+;comments: true\
+;date: 2017-10-29 03:11:00 +0300
+;image: /assets/img/client-side-word-cloud.png
+;tags: ssl apache2 client-side python

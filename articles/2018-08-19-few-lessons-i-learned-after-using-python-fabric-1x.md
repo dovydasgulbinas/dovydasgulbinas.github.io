@@ -1,39 +1,30 @@
----
-layout: post
-comments: true
-title: Few lessons I learned after using python fabric 1.x
-date: 2018-08-19 18:20:13
-date_updated:
-categories:
-  - devops
-  - fabric
-  - python
----
+Few lessons I learned after using python fabric 1.x
 
 
 
 
-[Fabric][f] is a great framework for executing code on remote & local machines. The 1.X had a
+
+[Fabric](https://docs.fabfile.org/en/1.14/) is a great framework for executing code on remote & local machines. The 1.X had a
 pretty good documentation, but workflows and tools were not so clearly
 established after writing several scrips myself I managed to abstract few rules
 that I believe others will find to be useful.
 
 
-Fabric Lessons
-==============
+# Fabric Lessons
 
-$1. Default function arguments are a honking great idea
--------------------------------------------------------
+
+## $1. Default function arguments are a honking great idea
+
 
 let's do more of those!
 
 
-$2. , although using `env.*` as default function parameter may be `problematic`
--------------------------------------------------------------------------------
+## $2. , although using `env.*` as default function parameter may be `problematic`
+
 
 ### $2.1. using `env.*` in method bodies is a bad idea, but it can be made better
 
-```python
+```
 
 def list_root(default_path=None):
 
@@ -47,13 +38,13 @@ def list_root(default_path=None):
 
 ```
     
-* setting `default_path` inside an if statement makes function more reusable.
-* if you use `def list_root(default_path=env.sys_default_path):`  it will be
+- setting `default_path` inside an if statement makes function more reusable.
+- if you use `def list_root(default_path=env.sys_default_path):`  it will be
   incompatible with paragraph [$5].
 
 
-$3. Split your code to python modules
--------------------------------------
+## $3. Split your code to python modules
+
 
     |- nodes.py (servers)
     |- installers.py
@@ -61,17 +52,17 @@ $3. Split your code to python modules
     `- fabfile.py (imports files above)
 
 Your code will outgrow a single file trust me.  Think about module structure
-first!  More info about splitting to modules is [here][ms]
+first!  More info about splitting to modules is [here](https://docs.fabfile.org/en/1.14/usage/tasks.html?highlight=modules)
 
 
 
-$4. Begin by using global module constants first and only if needed use `env.*`
--------------------------------------------------------------------------------
+## $4. Begin by using global module constants first and only if needed use `env.*`
+
 
 Somethings never change, let's check if your CAPS LOCK key is still working
 
 
-```python
+```
 
 from fabric.api import run
 
@@ -93,10 +84,10 @@ def prod_env():
 ```
 
 
-$5. Differentiate environments by using simple Pythonic methods:
-----------------------------------------------------------------
+## $5. Differentiate environments by using simple Pythonic methods:
 
-```python
+
+```
 from fabric.api import run
 
 env.host=['test-server.com']
@@ -115,14 +106,14 @@ def list_home():
 
 call these methods in your terminal
 
-```bash
+```
 $ fab prod_env list_home  # this will execute code on prod server
 $ fab test_env list_home # this will execute code on test server 
 $ fab list_home  # this will execute code on test server because `env.hosts` are global in fabfile.py module
 ```
 
-$6. One type of function `root()`,  `run()` or `local()` inside a method body
------------------------------------------------------------------------------
+## $6. One type of function `root()`,  `run()` or `local()` inside a method body
+
 
 Excessive usage of mixed execution methods will make your function very hairy and messy,
 because in order to write a generic method that you can run both locally and remotely you will need to write many `if`
@@ -132,7 +123,7 @@ functions: `root()`, `run()`, `local()` in fabric method you are writing!
 The benefits of not mixing these functions in a method is that you can replace
 them, since function without `()` in Python is an object.  See example below:
 
-```python
+```
 
 from fabric.api import local, run, sudo
 from fabric.state import env
@@ -154,15 +145,15 @@ which_user(caller=root)  # this will print `root` (because in linux sudo command
 
 ```
 
-$7. python =/= python
----------------------
+## $7. python =/= python
+
 
 Fabric is written in Python 2.7 but most of the newer projects are written in Python
 3.X.  This means that you can't simply pip install fabric to a python 3.X
 environment this results in you having to change virtual or Anaconda environments
 when doing fabric calls, see example below:
 
-```bash
+```
 $ source activate py27  # activating anaconda python=2.7 env
 $ python manage.py runserver  # for example let's call django app writen in 3.X
 
@@ -175,7 +166,7 @@ SyntaxError: invalid syntax
 What just happened that once I activate my virtual environment python executable
 path changes:
 
-```bash
+```
 $ which python
 /usr/bin/python
 $ source activate py27
@@ -188,7 +179,7 @@ possible fix is to use `py27` environment always.  And modify `fabfile.py` to
 activate python3 environment locally when needed. 
 
 
-```python
+```
 from fabric.api import local, run, sudo
 from fabric.state import env
 
@@ -228,7 +219,7 @@ def agnostic_python_version(env_func=prod_env):
     """
 ```
 
-```bash
+```
 $ fab local_env python_version
 [localhost] local: source activate py36&& python -V
 Python 3.6.3 :: Anaconda, Inc.
@@ -252,7 +243,12 @@ return 0
 
 
 
-[f]: https://docs.fabfile.org/en/1.14/ 
-[s]: https://sdf.org/
-[ms]: https://docs.fabfile.org/en/1.14/usage/tasks.html?highlight=modules#namespaces
+;[f]: https://docs.fabfile.org/en/1.14/ 
+;[s]: https://sdf.org/
+;[ms]: https://docs.fabfile.org/en/1.14/usage/tasks.html?highlight=modules#namespaces
 
+;layout: post
+;comments: true
+;date: 2018-08-19 18:20:13
+;date_updated: 
+;tags: devops fabric python

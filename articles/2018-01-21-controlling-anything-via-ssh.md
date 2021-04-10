@@ -1,15 +1,5 @@
----
-layout: post
-comments: true
-title:  "A thorough guide on controlling anything SSH with Homeassistants's Hass.io"
-date:   2018-01-22 11:05:00 +0200
-updated: 2018-01-24 10:05:00 +0200
-categories:
-  - homeassistant
-  - hyperion
-  - ssh
-  - hassio
----
+A thorough guide on controlling anything SSH with Homeassistants's Hass.io
+
 
 
 # Intro
@@ -61,8 +51,8 @@ in reality we need to generate ssh keys both on the **FROM** machine and the
 identity to each other. In this tutorial a machine that we issue commands FROM will be
 called the MASTER & the machine and the machine executing commands SLAVE in our
 case MASTER is the machine running HASS.io instance.
+## 
 
----
 
 ## What we will be doing?
 
@@ -250,7 +240,7 @@ if your SLAVE rebooted you can continue to step: "3 Adding Homeassistant Compone
 
 Add these lines to your `configuration.yaml` file and then restart HASSIO
 
-```yaml
+```
 switch:
   - platform: command_line
     switches:
@@ -277,8 +267,13 @@ return 0
 
 # References
 
-[^1]: [Homeassistant command line component](https://home-assistant.io/components/switch.command_line/)
-[^2]: [Hyperion Project site](https://hyperion-project.org/)
-[^3]: [Connect Hassio host](https://home-assistant.io/developers/hassio/debugging/)
-[^4]: [My Homeassistant configuration](https://github.com/dovydasgulbinas/hass-conf)
-[^5]: [No SSH prompts](https://superuser.com/questions/125324/how-can-i-avoid-sshs-host-verification-for-known-hosts)
+;[^1]: [Homeassistant command line component](https://home-assistant.io/components/switch.command_line/)
+;[^2]: [Hyperion Project site](https://hyperion-project.org/)
+;[^3]: [Connect Hassio host](https://home-assistant.io/developers/hassio/debugging/)
+;[^4]: [My Homeassistant configuration](https://github.com/dovydasgulbinas/hass-conf)
+;[^5]: [No SSH prompts](https://superuser.com/questions/125324/how-can-i-avoid-sshs-host-verification-for-known-hosts)
+;layout: post
+;comments: true
+;date: 2018-01-22 11:05:00 +0200
+;updated: 2018-01-24 10:05:00 +0200
+;tags: homeassistant hyperion ssh hassio

@@ -1,12 +1,5 @@
----
-layout: post
-comments: True
-title: "Initiliazing python byte objects with value of 0b1111..."
-date: 2019-06-21 14:49:17
-date_updated:
-categories:
-  - default
----
+Initiliazing python byte objects with value of 0b1111...
+
 
 ## Context
 
@@ -43,7 +36,7 @@ e.g.
 It should be noted that this code will only(reliably) work from python version >=3.7.
 
 
-```python
+```
 def one_flood(self, n_bytes: int):
     M = 0b11111111  # 255
     a = 0
@@ -71,7 +64,12 @@ object this means that we must use `int` objects for that.
 
 ## Further Reading
 
-by [1][1]
+by [1](https://stackoverflow.com/questions/2612720/how-to-do-bitwise-exclusive-or-of-two-strings-in-python)
 
 
-[1]: https://stackoverflow.com/questions/2612720/how-to-do-bitwise-exclusive-or-of-two-strings-in-python
+;[1]: https://stackoverflow.com/questions/2612720/how-to-do-bitwise-exclusive-or-of-two-strings-in-python
+;layout: post
+;comments: True
+;date: 2019-06-21 14:49:17
+;date_updated: 
+;tags: default

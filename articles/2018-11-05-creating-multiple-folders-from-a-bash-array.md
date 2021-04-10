@@ -1,13 +1,5 @@
----
-layout: post
-comments: true
-title: Creating Multiple Folders From a Bash Array
-date: 2018-11-05 13:05:37
-date_updated:
-categories:
-  - bash
-  - cheatsheets
----
+Creating Multiple Folders From a Bash Array
+
 
 # About this snippet
 
@@ -18,7 +10,7 @@ more customizeable, because you control what directories are created in a single
 array.
 
 
-```bash
+```
 #!/bin/bash
 
 
@@ -29,3 +21,8 @@ play_array=("$var" "$var2")
 
 mkdir "${play_array[@]}"
 ```
+;layout: post
+;comments: true
+;date: 2018-11-05 13:05:37
+;date_updated: 
+;tags: bash cheatsheets

@@ -1,23 +1,13 @@
----
-layout: post
-comments: true
-title: "Creating A Production Ready Django App, pt. 2"
-date: 2018-07-07
-date_updated:
-categories:
-  - django
-  - python
-  - devops
-  - skeleton
----
+Creating A Production Ready Django App, pt. 2
+
 
 
 # Intro
 
 Before reading this, please make sure you are familiar with concepts and ideas
-covered in the pt.1 of this [post][1].  This post will be short and will simply
+covered in the pt.1 of this [post](https://dovydas.xyz/django/python/devops/skeleton/2018/06/27/creating-a-production-ready-django-app-pt1.html).  This post will be short and will simply
 create an additional file that will help us out with deployment task automation.
-The code for this project will be available at this [git repository][2] make sure you
+The code for this project will be available at this [git repository](https://github.com/dovydasgulbinas/blog-django-skeleton) make sure you
 checkout to git branch pt2! Also if you are not lazy 😉 I highly encourage you to
 do all the steps in this tutorial manually.
 
@@ -94,5 +84,10 @@ for yourself and try to understand what is written in that script.  I want to wa
 
 return 0
 
-[1]: https://dovydas.xyz/django/python/devops/skeleton/2018/06/27/creating-a-production-ready-django-app-pt1.html
-[2]: https://github.com/dovydasgulbinas/blog-django-skeleton
+;[1]: https://dovydas.xyz/django/python/devops/skeleton/2018/06/27/creating-a-production-ready-django-app-pt1.html
+;[2]: https://github.com/dovydasgulbinas/blog-django-skeleton
+;layout: post
+;comments: true
+;date: 2018-07-07
+;date_updated: 
+;tags: django python devops skeleton

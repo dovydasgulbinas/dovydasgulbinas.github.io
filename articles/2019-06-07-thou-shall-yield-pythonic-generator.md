@@ -1,13 +1,5 @@
----
-layout: post
-comments: True
-title: "Thou Shall Yield Pythonic Generator"
-date: 2019-06-07 15:23:24
-date_updated:
-categories:
-  - python
-  - fundamentals
----
+Thou Shall Yield Pythonic Generator
+
 
 
 ## Intro
@@ -15,7 +7,7 @@ categories:
 This is a  illustrative example code, which tries to demonstrate
 how generators and `yield` statements are related in python.
 
-```python
+```
 print("# `yield` a fancy way of pausing execution of a function.\n")
 
 
@@ -131,3 +123,8 @@ If you are lazy and don't want to run his code. Here is the output:
 
 
 
+;layout: post
+;comments: True
+;date: 2019-06-07 15:23:24
+;date_updated: 
+;tags: python fundamentals
