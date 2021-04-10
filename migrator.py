@@ -151,24 +151,7 @@ def transform_links(file_):
     return buffer
 
 
-def transform_assets_paths(file_, src_assets_dir, dst_assets_dir):
-    if not src_assets_dir and not dst_assets_dir:
-        return file_
-
-    buffer = io.StringIO()
-
-    text = file_.getvalue()
-    text = re.sub(
-        f"{src_assets_dir}", lambda m: dst_assets_dir, text, flags=re.MULTILINE
-    )
-    buffer.write(text)
-
-    file_.close()
-    buffer.seek(0)
-    return buffer
-
-
-def transform(note_path, src_assets_dir="", dst_assets_dir=""):
+def transform(note_path):
     file_ = _make_text_buffer(note_path)
 
     file_ = transform_jekyll_header(file_)
@@ -179,11 +162,11 @@ def transform(note_path, src_assets_dir="", dst_assets_dir=""):
     return file_.getvalue()
 
 
-def migrate_one_post(note_path, output_dir, src_assets_dir="", dst_assets_dir=""):
+def migrate_one_post(note_path, output_dir):
     output_dir = pathlib.Path(output_dir).absolute()
 
     output_path = output_dir.joinpath(pathlib.Path(note_path).name)
-    output_path.write_text(transform(note_path, src_assets_dir, dst_assets_dir))
+    output_path.write_text(transform(note_path))
 
 
 def migrate_all_posts(input_dir, output_dir, exts=("*.md",)):
