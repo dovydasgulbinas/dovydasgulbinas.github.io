@@ -162,7 +162,7 @@ def transform(note_path):
     return file_.getvalue()
 
 
-def transform_all_posts(articles_dir: Path, dry_run=True, exts=("*.md",)):
+def transform_all_posts(articles_dir: Path, dry_run: bool, exts=("*.md",)):
     import glob
 
     posts = []
@@ -176,18 +176,22 @@ def transform_all_posts(articles_dir: Path, dry_run=True, exts=("*.md",)):
         transformed_post = transform(post)
 
         if dry_run:
-            print("dry transform run on: ", post)
+            print(f"dry run (transform note): '{post}'")
             continue
 
         post.write_text(transformed_post)
 
 
-def _process_cmd_queue(cmd_queue, silent=True):
+def _process_cmd_queue(cmd_queue, silent=True, dry_run=False):
 
     joined = lambda j: " ".join(j)
     called = lambda c: f"\n\tCalled: '{joined(c)}'.\n"
 
     for cmd in cmd_queue:
+        if dry_run:
+            print(f"dry run (cmd): '{joined(cmd)}'")
+            continue
+
         try:
             subprocess.run(
                 cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
@@ -204,17 +208,23 @@ def _process_cmd_queue(cmd_queue, silent=True):
 
 
 def git_initial_setup(
-    *, default_branch, tag_name, migration_branch, posts_dir, articles_dir
+    *,
+    default_branch: str,
+    tag_name: str,
+    migration_branch: str,
+    posts_dir: Path,
+    articles_dir: Path,
+    dry_run: bool,
 ):
 
     cmd_queue = [
         ["git", "checkout", default_branch],  # checkout to e.g. master
         ["git", "tag", tag_name],  # create a tag for historical reasons
         ["git", "push", "--tags", "origin", default_branch],  # push new tags
-        ["git", "mv", posts_dir, articles_dir],  # move posts
+        ["git", "mv", f"{posts_dir}", f"{articles_dir}"],  # move posts
         ["git", "commit", "-m", f"AUTO: Moving '{posts_dir}' to '{articles_dir}'"],
     ]
-    _process_cmd_queue(cmd_queue)
+    _process_cmd_queue(cmd_queue, dry_run=dry_run)
 
 
 def main():
@@ -224,11 +234,10 @@ def main():
 
     parser.add_argument("-i", "--posts_dir", default="./_posts", type=Path)
     parser.add_argument("-o", "--articles_dir", default="./articles", type=Path)
-    parser.add_argument("-d", "--default_branch", type=str, default="master")
-    parser.add_argument("-t", "--tag_name", type=str, default="before-migration")
-    parser.add_argument(
-        "-m", "--migration_branch", type=str, default="blogit-migration-br"
-    )
+    parser.add_argument("-d", "--default_branch", default="master")
+    parser.add_argument("-t", "--tag_name", default="before-migration")
+    parser.add_argument("-m", "--migration_branch", default="blogit-migration-br")
+    parser.add_argument("-r", "--dry_run", action="store_true", default=False)
 
     args = parser.parse_args()
     if not args.posts_dir.exists() and not args.posts_dir.is_dir():
@@ -237,15 +246,15 @@ def main():
         )
 
     print(args)
-    transform_all_posts(args.articles_dir, dry_run=True)
-    # git_initial_setup(
-    #     default_branch=args.default_branch,
-    #     tag_name=args.tag_name,
-    #     migration_branch=args.migration_branch,
-    #     posts_dir=args.posts_dir,
-    #     articles_dir=args.articles_dir,
-    # )
-
+    git_initial_setup(
+        default_branch=args.default_branch,
+        tag_name=args.tag_name,
+        migration_branch=args.migration_branch,
+        posts_dir=args.posts_dir,
+        articles_dir=args.articles_dir,
+        dry_run=args.dry_run,
+    )
+    transform_all_posts(args.articles_dir, dry_run=args.dry_run)
 
 
 if __name__ == "__main__":
