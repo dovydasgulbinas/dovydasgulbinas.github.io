@@ -1,12 +1,4 @@
----
-layout: post
-comments: true
-title:  "🏡 Adding more features to Hyperion in Homeassistant"
-date:   2017-07-23 18:33:00 +0300
-categories:
-  - homeassistant
-  - hyperion
----
+🏡 Adding more features to Hyperion in Homeassistant
 
 <p align="center">
   <img src="/assets/img/hyperion-hass.gif"/>
@@ -145,3 +137,6 @@ hyperion_group:
 This guide is a more or less a workaround for running Hyperion effects. I saw other people doing similar things to solve this problem but it involved shell script for every Hyperion effect. This was due to the fact that `shell_command` functionality was introduced relatively recently to `Homeassistant`. I could try extending the feature set and add brightness control but for now it suits my needs. Furthermore you could add automation to enable Hyperion only in evenings I actually have done that. If you want to see how I did it checkout my  `Homeassistant` config by visiting this GitHub repo [click-me][hass-repo]
 
 [hass-repo]: https://github.com/dovydasgulbinas/Home-AssistantConfig
+
+;date: 2017-07-23 18:33:00 +0300
+;tags: homeassistant hyperion
