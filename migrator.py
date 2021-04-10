@@ -234,7 +234,7 @@ def git_initial_setup(
         ["git", "tag", tag_name],  # create a tag for historical reasons
         ["git", "push", "--tags", "origin", default_branch],  # push new tags
         ["git", "mv", f"{posts_dir}", f"{articles_dir}"],  # move posts
-        ["git", "commit", "-m", f"AUTO: Moving '{posts_dir}' to '{articles_dir}'"],
+        ["git", "commit", "-m", f'"AUTO: Moving {posts_dir} to {articles_dir}"'],
     ]
     _process_cmd_queue(cmd_queue, dry_run=dry_run)
 
@@ -305,7 +305,7 @@ def main():
             articles_dir=args.articles_dir,
             dry_run=args.dry_run,
         )
-    
+
     transform_all_posts(args.articles_dir, dry_run=args.dry_run)
     create_assets_symlink(
         articles_dir=args.articles_dir, assets_dir=args.assets_dir, dry_run=args.dry_run
