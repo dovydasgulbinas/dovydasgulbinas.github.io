@@ -233,6 +233,7 @@ def git_initial_setup(
         ["git", "checkout", default_branch],  # checkout to e.g. master
         ["git", "tag", tag_name],  # create a tag for historical reasons
         ["git", "push", "--tags", "origin", default_branch],  # push new tags
+        ["git", "checkout", "-b", migration_branch],  # checkout to new branch
         ["git", "mv", f"{posts_dir}", f"{articles_dir}"],  # move posts
         ["git", "commit", "-m", f'"AUTO: Moving {posts_dir} to {articles_dir}"'],
     ]
@@ -276,8 +277,8 @@ def main():
         help="Location were Jekyll assets are kept.",
     )
     parser.add_argument("-d", "--default_branch", default="master")
-    parser.add_argument("-t", "--tag_name", default="before-migration")
-    parser.add_argument("-m", "--migration_branch", default="blogit-migration-br")
+    parser.add_argument("-t", "--tag_name", default="before-jegit-migration")
+    parser.add_argument("-m", "--migration_branch", default="jegit-migration")
     parser.add_argument("-r", "--dry_run", action="store_true", default=False)
     parser.add_argument(
         "-s",
