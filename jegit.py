@@ -215,7 +215,8 @@ def print_complete():
     print(" Transform Complete! ".center(80, "="))
     print(
         "Call './blogit init' from the terminal.\n"
-        "After that './blogit serve' "
+        "Then './blogit build'\n"
+        "Finally './blogit serve' "
         "to see your posts."
     )
     print("=" * 80)
