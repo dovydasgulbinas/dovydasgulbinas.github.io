@@ -208,34 +208,31 @@ def _process_cmd_queue(cmd_queue, silent=True):
             sys.exit(e.errno)
 
 
-def git_initial_setup(*, default_branch, tag_name, migration_branch, posts_dir, articles_dir):
+def git_initial_setup(
+    *, default_branch, tag_name, migration_branch, posts_dir, articles_dir
+):
 
     cmd_queue = [
         ["git", "checkout", default_branch],  # checkout to e.g. master
         ["git", "tag", tag_name],  # create a tag for historical reasons
         ["git", "push", "--tags", "origin", default_branch],  # push new tags
-        ["git", "mv", posts_dir, articles_dir], # move posts
-        ["git", "commit", "-m", f"AUTOMATIC: Moving '{posts_dir}' to '{articles_dir}'"],
+        ["git", "mv", posts_dir, articles_dir],  # move posts
+        ["git", "commit", "-m", f"AUTO: Moving '{posts_dir}' to '{articles_dir}'"],
     ]
     _process_cmd_queue(cmd_queue)
 
 
 def main():
     parser = argparse.ArgumentParser(
-    description="Run all necessary steps for migration to Blogit"
+        description="Run all necessary steps for migration to Blogit"
     )
 
     parser.add_argument("-i", "--posts_dir", default="./_posts", type=pathlib.Path)
-    parser.add_argument(
-        "-o", "--articles_dir", default="./articles", type=pathlib.Path
-    )
-    parser.add_argument("-n", "--no_blogit_init", action="store_true")
+    parser.add_argument("-o", "--articles_dir", default="./articles", type=pathlib.Path)
     parser.add_argument("-d", "--default_branch", type=str, default="master")
+    parser.add_argument("-t", "--tag_name", type=str, default="before-blogit")
     parser.add_argument(
-        "-t", "--tag_name", type=str, default="before_migrating_to_blogit"
-    )
-    parser.add_argument(
-        "-m", "--migration_branch", type=str, default="blogit_migration_branch"
+        "-m", "--migration_branch", type=str, default="blogit-migration-branch"
     )
 
     # inside a subcommand, ignore the first two args
