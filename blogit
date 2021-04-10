@@ -13,6 +13,7 @@ BLOG_DESCRIPTION ?= blog
 BLOG_URL_ROOT ?= http://localhost/blog
 BLOG_FEED_MAX ?= 20
 BLOG_FEEDS ?= rss atom
+SED ?= sed
 DEV_URL ?= http://localhost
 DEV_PORT ?= 8888
 
