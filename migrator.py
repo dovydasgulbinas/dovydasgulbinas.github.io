@@ -230,10 +230,10 @@ def git_initial_setup(*, default_branch, tag_name, migration_branch, posts_dir, 
 
     cmd_queue = [
         ["git", "checkout", default_branch],  # checkout to e.g. master
-        ["git", "tag" tag_name],  # create a tag for historical reasons
-        ["git", "push", "--tags", "origin", default_branch]  # push new tags
-        ["git", "mv", posts_dir, articles_dir] # move posts
-        ["git", "commit", "-m", f"AUTOMATIC: Moving '{posts_dir}' to '{articles_dir}'"]
+        ["git", "tag", tag_name],  # create a tag for historical reasons
+        ["git", "push", "--tags", "origin", default_branch],  # push new tags
+        ["git", "mv", posts_dir, articles_dir], # move posts
+        ["git", "commit", "-m", f"AUTOMATIC: Moving '{posts_dir}' to '{articles_dir}'"],
     ]
     _process_cmd_queue(cmd_queue)
 
@@ -296,6 +296,39 @@ Commands:
     def transform(self):
         print("Not Implemented")
 
+def main():
+    parser = argparse.ArgumentParser(
+    description="Run all necessary steps for migration to Blogit"
+    )
+
+    parser.add_argument("-i", "--posts_dir", default="./_posts", type=pathlib.Path)
+    parser.add_argument(
+        "-o", "--articles_dir", default="./articles", type=pathlib.Path
+    )
+    parser.add_argument("-n", "--no_blogit_init", action="store_true")
+    parser.add_argument("-d", "--default_branch", type=str, default="master")
+    parser.add_argument(
+        "-t", "--tag_name", type=str, default="before_migrating_to_blogit"
+    )
+    parser.add_argument(
+        "-m", "--migration_branch", type=str, default="blogit_migration_branch"
+    )
+
+    # inside a subcommand, ignore the first two args
+    args = parser.parse_args(sys.argv[2:])
+
+    if not args.posts_dir.exists() and not args.posts_dir.is_dir():
+        raise Exception(
+            f"Path '{args.posts_dir}' provided is not a directory or does not exist"
+        )
+
+    print(args.posts_dir, args.articles_dir, args.no_blogit_init)
+    # git_initial_setup(
+    #     default_branch=args.default_branch,
+    #     tag_name=args.tag_name,
+    #     migration_branch=args.migration_branch,
+    # )
+
 
 if __name__ == "__main__":
-    CLI()
+    main()
