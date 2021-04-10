@@ -53,6 +53,8 @@ deploy: build
 
 clean:
 	rm -rf blog tags
+	mkdir blog
+	cd blog && ln -s ../assets . && cd --
 
 config:
 	printf 'BLOG_REMOTE:=%s\n' \
