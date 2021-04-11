@@ -74,7 +74,7 @@ let's start our Django project using fab2:
     fab2 run
 
 
-<asciinema-player src="/assets/cinemas/fab2.cast" cols="90" rows="25"></asciinema-player>
+<asciinema-player src="/data/cinemas/fab2.cast" cols="90" rows="25"></asciinema-player>
 
 
 # Outro

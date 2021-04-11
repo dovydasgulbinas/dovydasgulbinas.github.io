@@ -2,7 +2,7 @@ Issuing and managing client side certificates using Python
 
 
 <p align="center">
-  <img src="/assets/img/client-side-word-cloud.png"/>
+  <img src="/data/img/client-side-word-cloud.png"/>
 </p>
 
 
@@ -234,5 +234,5 @@ my next blogpost.
 ;layout: post
 ;comments: true\
 ;date: 2017-10-29 03:11:00 +0300
-;image: /assets/img/client-side-word-cloud.png
+;image: /data/img/client-side-word-cloud.png
 ;tags: ssl apache2 client-side python

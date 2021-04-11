@@ -254,11 +254,11 @@ section.  Read more about it [here](https://docs.djangoproject.com/en/2.0/ref/se
 
 ## delete lines in `settings_main.py`
 
-![DELET-LINES](/assets/img/delet-settings-main.jpg)
+![DELET-LINES](/data/img/delet-settings-main.jpg)
 
 ### paste new lines in the same area `settings_main.py`
 
-![ADD-LINES](/assets/img/add-settings-main.jpg)
+![ADD-LINES](/data/img/add-settings-main.jpg)
 
 ```
 import io
@@ -342,7 +342,7 @@ LOGGING = {
 This is where the override magic kicks in. Rather than writing our whole
 configuration from scratch we simply override values we want to change.
 
-![ADD-PROD-LINES](/assets/img/add-settings-prod.jpg)
+![ADD-PROD-LINES](/data/img/add-settings-prod.jpg)
 
 
 ```
@@ -385,7 +385,7 @@ is pointing in this instance `settings.py -> settings_prod.py`
 
 if all went well you should see:
 
-![all-went-well](/assets/img/all-went-well.jpg)
+![all-went-well](/data/img/all-went-well.jpg)
 
 but since we do not care about our prod settings when developing
 let us revert back to `settings_test.py`
@@ -412,7 +412,7 @@ Now we can make our second git commit
     git add .
     git commit -m "our second django project commit"
 
-![gz](/assets/img/gz.gif)
+![gz](/data/img/gz.gif)
 
 Now you have a better base for your future Django Projects.
 

@@ -1,7 +1,7 @@
 🏡 Adding more features to Hyperion in Homeassistant
 
 <p align="center">
-  <img src="/assets/img/hyperion-hass.gif"/>
+  <img src="/data/img/hyperion-hass.gif"/>
 </p>
 
 

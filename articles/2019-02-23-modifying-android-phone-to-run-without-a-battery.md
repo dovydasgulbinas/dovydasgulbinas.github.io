@@ -58,7 +58,7 @@ at a fixed point diodes also have
 
 here is the original schematics (not very clean I know!)
 
-![schematics](/assets/img/schematics.jpg)
+![schematics](/data/img/schematics.jpg)
 
 
 ```
@@ -74,7 +74,7 @@ D_1 = FUF5408, High Power Diode
 
 here is how the module looks like when soldered
 
-![sk-module](/assets/img/sk-module.jpg)
+![sk-module](/data/img/sk-module.jpg)
 
 As you can see module uses 4 pins well actually only 3 of them since the left
 most pin is used for NFC data.  Yes Samsung batteries have NFC antennas glued on
@@ -83,15 +83,15 @@ NFC I did not bother connecting it.  Also as mentioned before **thermal
 resistors** are also a part of the battery, that's why we used 12k Ω resistor,
 because we need to fool the phone into believing that battery temperature is OK.
 
-![sk-module2](/assets/img/sk-module2.jpg)
+![sk-module2](/data/img/sk-module2.jpg)
 
-![module back](/assets/img/sk-module-back.jpg)
+![module back](/data/img/sk-module-back.jpg)
 
 For the soldered module I used simple breakout board.
 Fun fact Samsung battery pins are spaced in the good old INLINE manner meaning
 that the distance between the centers of adjacent pins is equal to `1"/10 = 2.54 mm`
 
-![module-wire](/assets/img/sk-module-wire.jpg)
+![module-wire](/data/img/sk-module-wire.jpg)
 
 If you are attentive enough you probably noticed that the top part of breakout
 holes are cut in half having a `U` shape and not plain `O` hole shape.  This was
@@ -99,7 +99,7 @@ intentional, because I wrapped the contact pins w/ one striped wire from the
 CAT-5 cable. 
 
 
-![product](/assets/img/sk-product.jpg)
+![product](/data/img/sk-product.jpg)
 
 And here is how finished hack looks like.  I simply used hot-glue to keep the
 module in place also make sure you hot glue the wires as well so that under

@@ -251,7 +251,7 @@ switch:
 
 Now go to your Homeassistant dashboard and press your newly created button.
 
-![this is snek](/assets/img/magic-switch.png)
+![this is snek](/data/img/magic-switch.png)
 
 # Conclusions
 

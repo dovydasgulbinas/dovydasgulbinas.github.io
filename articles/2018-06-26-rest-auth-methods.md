@@ -2,7 +2,7 @@ Introduction on REST authentication
 
 
 
-![this is snek](/assets/img/closed-and-key.png)
+![this is snek](/data/img/closed-and-key.png)
 
 
 # Glossary
@@ -256,7 +256,7 @@ RO enters its credentials or authorizes the CL.
 
 5. CL uses AT he just got to fetch data from RS
 
-![ac-oauth](/assets/diagrams/ac-oauth.png)
+![ac-oauth](/data/diagrams/ac-oauth.png)
 
 
 It is important to note there may not be any redirect to `example.com/authorize`, because
@@ -286,7 +286,7 @@ probably using "lynx" or "w3m".
 The figure below assumes that the user has already logged in to example.com domain.
 This is why the figure in [RFC6749](https://tools.ietf.org/html/rfc6749) has more steps than I present.
 
-![im-oauth](/assets/diagrams/im-oauth.png)
+![im-oauth](/data/diagrams/im-oauth.png)
 
 This is big sequence diagram, the most important part in it are the two redirects
 happening: **1. CL->UA->AS** and **2. CL<-UA<-AS**.
@@ -334,7 +334,7 @@ Refresh Token will allow the CL to renew Authorization Token when the initial on
 So the best practice would be to embed a mechanism that would prevent CL from
 storing username/password on the device all together.
 
-![ropcg-oauth](/assets/diagrams/ropcg-oauth.png)
+![ropcg-oauth](/data/diagrams/ropcg-oauth.png)
 
 
 ## Client Credentials (CC)
@@ -344,7 +344,7 @@ The final and most basic way of authenticating. CC architecture has only two com
 client (CL) and authorization server (AS).  In this case RO is the CL.  For example if you
 want to get Authorization Token for yourself you could do that using [curl](https://en.wikipedia.org/wiki/CURL).
 
-![cc-oauth](/assets/diagrams/cc-oauth.png)
+![cc-oauth](/data/diagrams/cc-oauth.png)
 
 ### usage
 Use Client Credentials when you are developing or testing your OAuth apps. Or

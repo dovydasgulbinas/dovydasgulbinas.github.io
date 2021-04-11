@@ -86,7 +86,7 @@ I bet you are not used to watching videos at 1.75x of their original speed but
 trust me after some time you get used to it. It saves you time ;P
 
 
-![success](/assets/img/btpl-screen-success.png)
+![success](/data/img/btpl-screen-success.png)
 
 
 
@@ -150,7 +150,7 @@ newsboat
 - Find The RSS feed we just added
 - List all the items:
 
-![how-to-invoke](/assets/img/how-to-invoke.png)
+![how-to-invoke](/data/img/how-to-invoke.png)
 
 
 - hit: `",b"`
@@ -183,5 +183,5 @@ return 0
 ;date: 2018-08-25 16:26:39
 ;date_updated: 
 ;time_finished: 2018-08-25 19:19:39
-;image: https://dovydas.xyz/assets/img/closed-and-key.png
+;image: https://dovydas.xyz/data/img/closed-and-key.png
 ;tags: software tui video
