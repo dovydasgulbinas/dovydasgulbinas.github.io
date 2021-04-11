@@ -40,6 +40,10 @@ code {
 	color: lime ;
 }
 
+ul {
+	list-style-type: square;
+}
+
 img[alt="BTC logo"],
 img[alt="XMR Logo"] {
 	max-width: 1em ;
