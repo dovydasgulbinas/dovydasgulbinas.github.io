@@ -3,8 +3,6 @@ Functions are first-class citizens in JavaScript
 
 first class citizen entity/type
 :  An entity that supports all operations other entities have. This means first-class citizens can be passed, returned & assigned etc.
-## 
-
 
 **To simply put it this means that you can:**
 
