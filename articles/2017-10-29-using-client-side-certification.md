@@ -1,45 +1,31 @@
 Issuing and managing client side certificates using Python
 
-
-<p align="center">
-  <img src="/data/img/client-side-word-cloud.png"/>
-</p>
+![start](/data/img/client-side-word-cloud.png)
 
 
-*[CSR]: Certificate Signing Request
-
-*[CA]: Certificate Authority
-
-*[CSC]: Client Side Certificate
-
-*[HTTPS]: HyperText Transfer Protocol Secure
-
-**
-
-# Glossary
+## Abbreviations
 
 Key
 :  a piece of cryptographic information used for encrypting data by a chosen algorithm
 
+HyperText Transfer Protocol Secure (HTTPS)
 
-Certificate Signing Request CSR
+Certificate Signing Request (CSR)
 :  a process in which person or server asks for his
 key being signed. Thus allowing others you verify the the **key** belongs to them.
 
 
-Certificate Authority CA
+Certificate Authority (CA)
 :  a person or a server that is trusted and signs
 your certificates requests.
 
 
-Client Side Certificate CSC
+Client Side Certificate (CSC)
 :  a file given to a user to prove its identity
-it usually comes in .p12 format and is instlled into web browsers. CSC are obtained
+it usually comes in .p12 format and is installed into web browsers. CSC are obtained
 usually by sending a CSR to a CA.
-## 
 
-
-# Intro
+## Intro
 
 Our company has decided to make some of their webpages publicly accessible, but
 we did not want for *anyone* to see the actual content of our website. In other
@@ -52,9 +38,9 @@ who want to access your website.  It also can be used as good alternative for us
 name and password. Because CSC as mentioned previously helps to uniquely identify
 user who is connecting to your server.
 
-## How CSC are generated
+### How CSC are generated
 
-### But wait there's two 🔏 🔏
+#### But wait there's two 🔏 🔏
 
 As you know SSL in general is not as trivial. Maybe that is the reason why CSC are not used as often.  But I will try to explain using this table below. To make things less
 convoluted this example contains **one** certificate authority. In reality you will
@@ -68,11 +54,10 @@ for your **webpage**. Even-though you can always use self signed certificates bo
 to install your homebrew CA into their root certificate store this will only
 make things harder for you, because you will only confuse simple users even more.
 
-### Convoluted Table Time 🤷
+#### Convoluted Table Time 🤷
 
-<p class="important">
-follow the enumeration.
-</p>
+NOTE: follow the enumeration.
+
 This example assumes you will be your own CA (a.k.a Your connection is not secure )
 
 
@@ -134,7 +119,6 @@ openssl req -config openssl.cnf -new -sha256 \
 ```
 
 #8.
-
 ```
 openssl ca -config openssl.cnf \
       -days 375 -notext -md sha256 \
@@ -143,14 +127,12 @@ openssl ca -config openssl.cnf \
 ```
 
 #12.1
-
 ```
 openssl genrsa -out eager-client.key 2048
 ```
 
 
 #12.2
-
 ```
 openssl req -config openssl.cnf -new -sha256 \
 -key eager-client.key \
@@ -159,7 +141,6 @@ openssl req -config openssl.cnf -new -sha256 \
 ```
 
 #13. / The actual client side generation part
-
 ```
 openssl ca -config openssl.conf -notext -md sha256 \
 -in eager-client.csr \
@@ -174,7 +155,7 @@ openssl pkcs12 -export \
 -out eager-client.p12
 ```
 
-## Lets recap
+## Let's recap
 
 So if no noticed what we did here we just did same thing 3 times:
 
@@ -207,8 +188,7 @@ and revoke it:
 <script src="https://gist.github.com/dovydasgulbinas/13af9e0d0321fcfc0c787aaed4a86888.js"></script>
 
 
-# Conclusion
-
+## Conclusion
 I hope you got a better grasp on HTTPS in general. One thing you should remember
 is that In client-side setup everyone has to have their own private key and their
 certificate, because certificates are objects that prove your identity.  Not your
@@ -220,9 +200,7 @@ In general all HTTPS initiative can be summarized in 3 simple steps:
 2. Create a signing request for your key
 3. Get a certificate and prove you identity with it
 
-
-# Next Up
-
+## Next Up
 You probably noticed acronym  `crl` used a lot  in the Python snippet.
 If you did and are curious about it. You will be able to find more info about it in
 my next blogpost.

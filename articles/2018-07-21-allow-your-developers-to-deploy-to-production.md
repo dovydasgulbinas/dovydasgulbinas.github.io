@@ -111,7 +111,6 @@ process.
 
 # Conclusion
 
-
 More individual responsibility for the developer yields greater individual
 growth and more productive organization in general.  Allowing a developer to 
 deploy his own code reduces number of employees needed to release software.
@@ -123,7 +122,7 @@ begin by trying defuse the barrier between developers and operations, let them
 talk and decide how to give more freedom & responsibility to person actually
 writing the code.
 
-return 0
+**return 33**
 
 ;layout: post
 ;comments: true

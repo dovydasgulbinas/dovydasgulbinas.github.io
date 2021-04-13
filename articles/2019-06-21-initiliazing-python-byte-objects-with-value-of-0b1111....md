@@ -1,5 +1,4 @@
-Initiliazing python byte objects with value of 0b1111...
-
+Generating infinite sequence of bytes set to ones
 
 ## Context
 
@@ -8,34 +7,35 @@ I needed large byte object sequence to write proper unit tests for encryption/de
 
 For those who don't know python has a special `bytes` object which stores "raw"
 data so to speak.  example of `bytes` in action:
-
+```
     >>> bytes(2)
     b'\x00\x00'
+```
 
 `bytes` output explained:
-
+```
     b'...'   - indicates the the output is a byte string
     \x       - escapes 'x' character with '\'. 'x' indicates that output in hex
     \x00     - 0 in hex.  Also could be written as 00000000 in binary
     \x00\x00 - since we created 2 bytes we 2 bytes stored
+```
 
 
 ## Goal
 
 To write a small function for generating N bytes that are always 0b1111..
 e.g. 
-
+```
     `one_flood(1) -> b'\xff'`         # 0b11111111 255 in decimal
     `one_flood(2) -> b'\xff\xff'`     # 0b11111111 11111111, 65535 in decimal
     `one_flood(3) -> b'\xff\xff\xff'` # 0b11111111 11111111 11111111,  16777215 in decimal
     ...
+```
 
 
 ## Proposed Solution
 
 It should be noted that this code will only(reliably) work from python version >=3.7.
-
-
 ```
 def one_flood(self, n_bytes: int):
     M = 0b11111111  # 255
@@ -58,16 +58,14 @@ so theoretically `int` can now be of any size.
 
 why do we need `int` objects if we are creating `bytes`?:
 
-unfortunatelly python does not support bitwise and logical operations on `bytes`
+unfortunately python does not support bitwise and logical operations on `bytes`
 object this means that we must use `int` objects for that.
 
 
-## Further Reading
+## Sources
 
-by [1](https://stackoverflow.com/questions/2612720/how-to-do-bitwise-exclusive-or-of-two-strings-in-python)
+[1](https://stackoverflow.com/questions/2612720/how-to-do-bitwise-exclusive-or-of-two-strings-in-python)
 
-
-;[1]: https://stackoverflow.com/questions/2612720/how-to-do-bitwise-exclusive-or-of-two-strings-in-python
 ;layout: post
 ;comments: True
 ;date: 2019-06-21 14:49:17

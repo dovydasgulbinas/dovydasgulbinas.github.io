@@ -59,7 +59,6 @@ Authorization Server (AS)
 
 # Intro
 
-
 Recently I had to design REST API endpoints.  My company currently has and old
 and hairy monolithic backend.  Like most living things in order to survive they
 have to adapt, so did our enterprise backend, it had to talk REST.  

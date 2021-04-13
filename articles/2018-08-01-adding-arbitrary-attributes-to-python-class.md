@@ -3,7 +3,6 @@ Adding Arbitrary Attributes To Python Class
 
 # The Problem
 
-
 You want to create a dummy class that stores **arbitrary** attributes and you
 want to access these attributes via `. (dot)` operator e.g. `myClass.age`.  You
 can easily do that in Python.  Although using a _dictionary_ type would be more explicit and
@@ -30,7 +29,7 @@ database row.  In this case each row would be a single instance of a class.  And
 whole result set could be added to a list.
 
 
-return 0
+**return 33**
 ;layout: post
 ;comments: true
 ;date: 2018-08-01 20:35:10
