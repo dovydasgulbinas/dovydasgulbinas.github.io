@@ -37,14 +37,16 @@ Up to this date various people including me have created many interesting things
 
 ### CS:GO HUD in a browser window
 
-[<img src="https://i.ytimg.com/vi/FM1-iapbEtc/0.jpg">](https://www.youtube.com/embed/FM1-iapbEtc?feature=player_embedded)
+![video thumbnail](https://i.ytimg.com/vi/FM1-iapbEtc/0.jpg)
+[video link](https://www.youtube.com/embed/FM1-iapbEtc)
 
 Probably the most sophisticated of all demos given below.
 This is a rich extension to your CS:GO game. Technology used here is node.js and JavaScript.
 This video really showcased the functionality GSI has. I strongly encourage you to tryout this one on your own computer.
 More info on how to do it can be found on GitHub [Phillips hue lights controlled by a C4 timer](https://github.com/Double0negative/CSGO-HUD").
 
-[<img src="https://i.ytimg.com/vi/QBdI54MHB-k/0.jpg">](https://www.youtube.com/embed/QBdI54MHB-k?feature=player_embedded)
+![video thumbnail](https://i.ytimg.com/vi/QBdI54MHB-k/0.jpg)
+[video link](https://www.youtube.com/embed/QBdI54MHB-k)
 
 This project is by far the least sophisticated but really has the wow factor.
 For this video Phillips hue light were used in combination with Python and Hue Bridge IP more info on this project can be found also on [GitHub](https://github.com/doobix/csgo-c4-hue)
@@ -55,13 +57,15 @@ This is what I made. I choose Python for my project because I recently
 started learning it and thought it was a good practice. All of the
 functionality is demonstrated in the video.
 
+![video thumbnail](https://i.ytimg.com/vi/6le5cuakBh4/0.jpg)
+[video link](https://www.youtube.com/embed/6le5cuakBh4)
 
-[<img src="https://i.ytimg.com/vi/6le5cuakBh4/0.jpg">](https://www.youtube.com/embed/6le5cuakBh4?feature=player_embedded)
+## Closing remarks
 
-## Outro
+By now I hope you really got a grasp on what GSI has to offer. If you are exited about it and want to make something similar feel free to contact me. By the time I'm writing this post someone has already wrote a *C#* library specifically designed to handle GSI events.
+For my future blog posts I'll try to cover actually how GSI works. And I will also give you my experience and what I learned during this project until now you can [read more about GSI](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration)
+Until then make something epic and share it with the world.
 
-By now I hope you really got a grasp on what GSI has to offer. If you are exited about it and want to make something similar feel free to contact me. By the time I'm writing this post someone has already wrote a <i>C#</i> library specifically designed to handle GSI events. For my next blogpost I'll try to cover actually how GSI works. And I will also give you my experience and what I learned during this project until now you can read more about GSI <i><a href="https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration">here</a></i>
-Until then make something epic and share it with the world,
-Cya!
+Vi ses
 
 ;tags arduino csgo gsi
