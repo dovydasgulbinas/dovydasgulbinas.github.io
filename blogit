@@ -17,6 +17,7 @@ SED ?= sed
 DEV_URL ?= http://localhost
 DEV_PORT ?= 8888
 
+RENDERER = ./markdown2.py -x fenced-code-blocks,tables,tag-friendly,numbering,footnotes
 
 .PHONY: help init build deploy clean
 
@@ -145,30 +146,7 @@ blog/%.html: articles/%.md $(addprefix templates/,$(addsuffix .html,header artic
 	export TAGS; \
 	envsubst < templates/header.html > $@; \
 	envsubst < templates/article_header.html >> $@; \
-	$(SED) -e 1d \
-		-e '/^;/d' \
-		-e 's/&/\&amp;/g' \
-		-e 's/</\&lt;/g' \
-		-e 's/>/\&gt;/g' \
-		-e '/^```$$/{s,.*,,;x;p;/^<\/code>/d;s,.*,<pre><code>,;bT}' \
-		-e 'x;/<\/code>/{x;s,\$$,\&#36;,g;$$G;p;d};x' \
-		-e 's,\\\$$,\&#36;,g' \
-		-e '/^####/{s,^####,<h4>,;s,$$,</h4>,;H;s,.*,,;x;p;d}' \
-		-e '/^###/{s,^###,<h3>,;s,$$,</h3>,;H;s,.*,,;x;p;d}' \
-		-e '/^##/{s,^##,<h2>,;s,$$,</h2>,;H;s,.*,,;x;p;d}' \
-		-e '/^#/{s,^#,<h1>,;s,$$,</h1>,;H;s,.*,,;x;p;d}' \
-		-e 's,`\([^`]*\)`,<code>\1</code>,g' \
-		-e 's,\*\*\(\([^*<>][^*<>]*\*\?\)*\)\*\*,<b>\1</b>,g' \
-		-e 's,\*\([^*<>][^*<>]*\)\*,<i>\1</i>,g' \
-		-e 's,!\[\([^]]*\)\](\([^)]*\)),<img src="\2" alt="\1"/>,g' \
-		-e 's,\[\([^]]*\)\](\([^)]*\)),<a href="\2">\1</a>,g' \
-		-e '/^- /{s,^- ,<li>,;s,$$,</li>,;x;/^<\/ul>/{x;bL};p;s,.*,<ul>,;bT}' \
-		-e '/^[1-9][0-9]*\. /{s,^[0-9]*\. ,<li>,;s,$$,</li>,;x;/^<\/ol>/{x;bL};p;s,.*,<ol>,;bT}' \
-		-e '/^$$/{x;/^$$/d;p;d}' \
-		-e 'x;/^$$/{s,.*,<p>,;bT};x' \
-		-e ':L;$$G;p;d' \
-		-e ':T;p;:t;s,<\([^/>][^>]*\)>\(\(<[^/>][^>]*>\)*\),\2</\1>,;/<[^\/>]/bt;x;/^$$/{$${x;p};d};bL' \
-		"$<" | envsubst >> $@; \
+	$(SED) -e '/^;/d' < $< | $(RENDERER) >> $@; \
 	envsubst < templates/article_footer.html >> $@; \
 	envsubst < templates/footer.html >> $@; \
 
