@@ -48,14 +48,16 @@ init:
 	printf 'blog\n' > .git/info/exclude
 
 build: blog/index.html tagpages $(patsubst articles/%.md,blog/%.html,$(ARTICLES)) $(patsubst %,blog/%.xml,$(BLOG_FEEDS))
+rebuild: clean build
 
 deploy: build
 	rsync -rLtvz $(BLOG_RSYNC_OPTS) blog/ data/ $(BLOG_REMOTE)
 
+
 clean:
 	rm -rf blog tags
 	mkdir blog
-	cd blog && ln -s ../assets . && cd --
+	cd blog && ln -s ../data . && cd --
 
 config:
 	printf 'BLOG_REMOTE:=%s\n' \
