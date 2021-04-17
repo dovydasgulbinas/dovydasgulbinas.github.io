@@ -7,21 +7,19 @@ After playing around with Hyperion I really liked it. I liked it so much that I 
 
 
 First open up your terminal and ssh to a machine with has Hyperion service enabled.
-```
-ssh kodi@192.168.1.99
-```
+
+    ssh kodi@192.168.1.99
 
 Test if Hyperion commands are working:
-```
-hyperion-remote -e "Knight rider"
-```
+
+    hyperion-remote -e "Knight rider"
 
 If you gets your lights running are ok to go!
 
 NOTE: In my case Homeassistant and Hyperion are on a different machines therefore I needed to setup a password-less ssh connection from my Homeassistant RPi -> Kodi RPi*
 
 Now login to your second machine running `Homeassistant` service.
-```
+```sh
 ssh pi@192.168.1.100
 sudo su homeassistant
 ```
@@ -35,12 +33,10 @@ ssh kodi@192.168.1.99 'hyperion-remote -e "Knight rider"'
 
 As mentioned before this step just ran a SSH command in a different machine entirely via the power of SSH.  If you setup is all in one meaning `Hyperion` and `Homeassistant` are running on the same machine then the command would simply be:
 
-```
-hyperion-remote -e "Knight rider"
-```
+    hyperion-remote -e "Knight rider"
 
 Edit `Homeassistant` configuration files:
-```
+```yaml
 📔 configuration.yaml #
 
 script: !include scripts.yaml
@@ -58,7 +54,8 @@ shell_command:
   run_hyperion_effect:  "ssh kodi@192.168.1.99 \"hyperion-remote -e '{{states.input_select.hyperion_effects.state}}'\" "
 
 ```
-```
+
+```yaml
 📔 hyperion_effect_list.yaml (create this file in hass root directory)
 
 - Rainbow mood
@@ -89,7 +86,8 @@ shell_command:
 - UDP listener
 
 ```
-```
+
+```yaml
 📔 scripts.yaml
 
 hyperion_run:
@@ -98,7 +96,8 @@ hyperion_run:
     - alias: Run selected effect
       service: shell_command.run_hyperion_effect
 ```
-```
+
+```yaml
 📔 groups.yaml # (Optional example to group all items)
 
 hyperion_group:

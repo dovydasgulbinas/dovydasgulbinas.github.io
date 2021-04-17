@@ -29,12 +29,11 @@ Thus _Grice's Maxims Pythonic Edition_ was born.  Furthermore _Zen Of Python_ on
 its own can be used daily in some life situations.  
 
 
-
-# 1. Quantity
+**1. Quantity**
 
 > More informative is better than less informative, although conciseness beats verbosity.
 
-# 2. Quality
+**2. Quality**
 
 > In the face of uncertainty refuse the temptation to say things you may think are false
 
@@ -43,11 +42,11 @@ has supporting evidence maybe its a good Idea
 
 > Provable is better than unprovable
 
-# 3. Relation
+**3. Relation**
 
 > Relevant is better than irrelevant
 
-# 4. Manner
+**4. Manner**
 
 > Certainty is better that obscurity
 
@@ -57,27 +56,14 @@ has supporting evidence maybe its a good Idea
 
 > Order is better than chaos
 
-
-# Conclusion
-
+**Conclusion**
 
 I hope this short post was useful. These maxims should help you to be a better speaker and listener as long as you will not forget
 the reason why you get derailed.  Remember it is easier to change yourself and your
 outlook rather then the people around you.  So go try to be a better communicator
 by using at least few rules I presented.
 
-
-return 0 
-
-
-
-
-
-
-
-
-
-
+return 33
 
 ;[1]: https://en.wikipedia.org/wiki/Paul_Grice
 ;[2]: https://www.sas.upenn.edu/~haroldfs/dravling/grice.html

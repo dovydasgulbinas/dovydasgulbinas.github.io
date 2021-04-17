@@ -7,8 +7,7 @@ first class citizen entity/type
 **To simply put it this means that you can:**
 
 assign a function to a variable:
-
-```
+```javascript
 var coolVariable = function() {
     console.log("Cool Anon Function");
 };
@@ -18,8 +17,7 @@ coolVariable(); // Will actually call the function.  The magic trick is in the `
 ```
 
 pass a function to a function:
-
-```
+```javascript
 function randomDecoration()
 {
 var decors = Array("=", "-", "~", "X", "_");
@@ -39,8 +37,7 @@ printDecorated("Decorate Me", randomDecoration);
 ```
 
 partially apply or spawn a new function from a generic function:
-
-```
+```javascript
 function customRandomDecoration(decors)
 {
   return function(n)

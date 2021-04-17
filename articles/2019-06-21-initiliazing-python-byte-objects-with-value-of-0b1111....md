@@ -7,7 +7,7 @@ I needed large byte object sequence to write proper unit tests for encryption/de
 
 For those who don't know python has a special `bytes` object which stores "raw"
 data so to speak.  example of `bytes` in action:
-```
+```python
     >>> bytes(2)
     b'\x00\x00'
 ```
@@ -25,10 +25,10 @@ data so to speak.  example of `bytes` in action:
 
 To write a small function for generating N bytes that are always 0b1111..
 e.g. 
-```
-    `one_flood(1) -> b'\xff'`         # 0b11111111 255 in decimal
-    `one_flood(2) -> b'\xff\xff'`     # 0b11111111 11111111, 65535 in decimal
-    `one_flood(3) -> b'\xff\xff\xff'` # 0b11111111 11111111 11111111,  16777215 in decimal
+```python
+    one_flood(1) -> b'\xff'         # 0b11111111 255 in decimal
+    one_flood(2) -> b'\xff\xff'     # 0b11111111 11111111, 65535 in decimal
+    one_flood(3) -> b'\xff\xff\xff' # 0b11111111 11111111 11111111,  16777215 in decimal
     ...
 ```
 
@@ -36,7 +36,7 @@ e.g.
 ## Proposed Solution
 
 It should be noted that this code will only(reliably) work from python version >=3.7.
-```
+```python
 def one_flood(self, n_bytes: int):
     M = 0b11111111  # 255
     a = 0
