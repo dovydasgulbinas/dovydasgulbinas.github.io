@@ -7,7 +7,7 @@ Thou Shall Yield Pythonic Generator
 This is a  illustrative example code, which tries to demonstrate
 how generators and `yield` statements are related in python.
 
-```
+```python
 print("# `yield` a fancy way of pausing execution of a function.\n")
 
 
@@ -75,7 +75,6 @@ conclusions ="""
 """
 
 print(conclusions)
-
 ```
 
 ## Source Output
