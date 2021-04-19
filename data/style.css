@@ -1,7 +1,7 @@
 @import "/data/pygments.css";
 
 body {
-	background: #151515 ;
+	background: #090c10 ;
 	color: white ;
 	max-width: 800px ;
 	margin: auto ;
@@ -11,7 +11,7 @@ body {
 }
 
 a {
-	color: lightblue ;
+	color: #58a6ff ;
 }
 
 a:visited {
@@ -22,8 +22,8 @@ h1 {
 	text-align: center ;
 }
 
-h2 {
-	color: tomato ;
+h2, h3, h4, h5{
+	color: #cd0000 ;
 }
 
 footer {
@@ -38,21 +38,22 @@ img {
 }
 
 code {
-	overflow-wrap: break-word;
-	color: limegreen;
+/* 	overflow-wrap: break-word; */
+	color: #cd0000;
 }
 
 pre code{
-	padding-left: 1em;
-	padding-right: : 1em;
+/* 	padding-left: 1em; */
+	padding-right: 1em;
 	margin-top: 1em;
 	border-radius: 0.2em;
 	overflow: scroll;
+	color: #cd0000;
 }
 
 div.codehilite{
 	padding-left: 1em;
-	padding-right: : 1em;
+	padding-right: 1em;
 	margin-top: 1em;
 	border-radius: 0.2em;
 	overflow: scroll;
@@ -61,6 +62,7 @@ div.codehilite{
 ul {
 	list-style-type: square;
 }
+
 
 img[alt="BTC logo"],
 img[alt="XMR Logo"] {
@@ -96,11 +98,11 @@ img[alt="XMR Logo"] {
 }
 
 @media (min-width: 55em) {
-	#artlist { column-count: 2 ;}
+	#artlist { column-count: 1 ;}
 }
 
 @media (min-width: 100em) {
-	#artlist { column-count: 3 ;}
+	#artlist { column-count: 2 ;}
 }
 
 

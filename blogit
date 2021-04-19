@@ -43,7 +43,7 @@ init:
 	printf '' > templates/index_footer.html
 	printf '' > templates/tag_index_header.html
 	printf '' > templates/tag_index_footer.html
-	printf '<h1>$$TITLE</h1>' > templates/article_header.html
+	printf '' > templates/article_header.html
 	printf '' > templates/article_footer.html
 	printf 'blog\n' > .git/info/exclude
 
