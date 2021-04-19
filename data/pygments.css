@@ -15,7 +15,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .o { color: #3399cc } /* Operator */
 .codehilite .x { color: #cccccc } /* Other */
 .codehilite .p { color: #cccccc } /* Punctuation */
-.codehilite .ch { color: #000080 } /* Comment.Hashbang */
+.codehilite .ch { color: #0044DD } /* Comment.Hashbang */
 .codehilite .cm { color: #000080 } /* Comment.Multiline */
 .codehilite .cp { color: #000080 } /* Comment.Preproc */
 .codehilite .cpf { color: #000080 } /* Comment.PreprocFile */
