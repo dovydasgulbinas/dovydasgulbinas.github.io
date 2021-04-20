@@ -1,8 +1,25 @@
 @import "/data/pygments.css";
 
+/*
+https://lospec.com/palette-list/pico-8
+*/
+
+:root{
+
+--black: #000000;
+--purple: #1D2B53;
+--red_dark: #AB5236;
+--red_bright: #FF004D;
+--blue_light: #29ADFF;
+--green_light: #00E436;
+--white: #FFF1E8;
+--gray: #C2C3C7;
+
+}
+
 body {
-	background: #090c10 ;
-	color: white ;
+	background: var(--black);
+	color: var(--white);
 	max-width: 800px ;
 	margin: auto ;
 	padding: 0 16px ;
@@ -11,11 +28,15 @@ body {
 }
 
 a {
-	color: #58a6ff ;
+	color: var(--blue_light) ;
+}
+
+ul {
+	list-style-type: square;
 }
 
 a:visited {
-	color: gray ;
+	color: var(--gray) ;
 }
 
 h1 {
@@ -23,7 +44,7 @@ h1 {
 }
 
 h2, h3, h4, h5{
-	color: #cd0000 ;
+	color: var(--red_bright) ;
 }
 
 footer {
@@ -38,8 +59,7 @@ img {
 }
 
 code {
-/* 	overflow-wrap: break-word; */
-	color: #cd0000;
+	color: var(--red_dark);
 }
 
 pre code{
@@ -48,7 +68,7 @@ pre code{
 	margin-top: 1em;
 	border-radius: 0.2em;
 	overflow: scroll;
-	color: #cd0000;
+	color: var(--red_dark);
 }
 
 div.codehilite{
@@ -59,9 +79,6 @@ div.codehilite{
 	overflow: scroll;
 }
 
-ul {
-	list-style-type: square;
-}
 
 
 img[alt="BTC logo"],
