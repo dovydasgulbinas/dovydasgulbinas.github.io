@@ -148,7 +148,7 @@ blog/%.html: articles/%.md $(addprefix templates/,$(addsuffix .html,header artic
 	export TAGS; \
 	envsubst < templates/header.html > $@; \
 	envsubst < templates/article_header.html >> $@; \
-	$(SED) -e '/^;/d' < $< | $(RENDERER) >> $@; \
+	$(SED) -e '/^;/d' < $< |tail -n+2|$(RENDERER) >> $@; \
 	envsubst < templates/article_footer.html >> $@; \
 	envsubst < templates/footer.html >> $@; \
 

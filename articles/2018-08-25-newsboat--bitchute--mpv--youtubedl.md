@@ -1,8 +1,6 @@
 Newsboat + Bitchute + mpv + youtube-dl
 
-
-# $0: Why?
-
+## $0: Why?
 
 First of all RSS is still qualifies as a great technology.  Even though RSS
 faded to obscurity in the past 8 years or so it is still very useful.  RSS was
@@ -25,20 +23,15 @@ Here is how I have done it
 
 ## Prerequisites
 
-
 - mpv 
 - Newsboat
 - youtube-dl
 
 
-# Let's Begin!
+## Let's Begin!
 
-
-## $1: Add this function to end of your `.bashrc` or `.zshrc` file.
-
-
-
-```
+First Add this function to end of your `.bashrc` or `.zshrc` file:
+```bash
 btpl(){
 
 PAGE=$(curl -s $1)
@@ -89,9 +82,7 @@ trust me after some time you get used to it. It saves you time ;P
 ![success](/data/img/btpl-screen-success.png)
 
 
-
-## $2: Configure Newsboat
-
+### $2: Configure Newsboat
 
 - Open your Newsboat configuration file: `~/.newsboat/config` 
     - on some linux distros this file is found at: `~/.config/newsboat/config`
@@ -122,12 +113,9 @@ and Linux Mints should use `nemo` instead of `open`
 :  sets a macro on key press "b".  Now every time you press `",b"` characters
 while in Newsboat. Hotkey for starting macros is always `","` read more about
 macros [here](https://newsboat.org/releases/2.12/docs/newsboat.html)
-
-
 For more info about Newsboat config you can go [here](https://newsboat.org/releases/2.12/docs/newsboat.html)
 
-
-## $3: Add a Bitchute RSS test URL.
+**Add a Bitchute RSS test URL.**
 
 
 - Open your Newsboat URLs file: `~/.newsboat/urls` 
@@ -138,14 +126,10 @@ For more info about Newsboat config you can go [here](https://newsboat.org/relea
 https://www.bitchute.com/feeds/rss/channel/styxhexenhammer666/ "news"
 ```
 
-## $4: Fire it up!
 
+Start Newsboat:
 
-- Start Newsboat:
-
-```
-newsboat
-```
+    newsboat
 
 - Find The RSS feed we just added
 - List all the items:
@@ -157,7 +141,7 @@ newsboat
 - Enjoy the Show!
 
 
-# Last Words
+## Last Words
 
 
 That is it you should be able to watch any Bitchute video on your mpv player

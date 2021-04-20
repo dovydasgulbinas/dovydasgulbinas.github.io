@@ -1,7 +1,7 @@
 Creating Multiple Folders From a Bash Array
 
 
-# About this snippet
+## About this snippet
 
 This snippet allows you to create a series of directories, that are a part of a
 regular bash array. This is super useful if you have bunch of directories to
@@ -10,7 +10,7 @@ more customizeable, because you control what directories are created in a single
 array.
 
 
-```
+```bash
 #!/bin/bash
 
 
