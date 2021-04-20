@@ -4,122 +4,127 @@
 https://lospec.com/palette-list/pico-8
 */
 
-:root{
-
---black: #000000;
---purple: #1D2B53;
---red_dark: #AB5236;
---red_bright: #FF004D;
---blue_light: #29ADFF;
---green_light: #00E436;
---white: #FFF1E8;
---gray: #C2C3C7;
-
+:root {
+    --black: #000000;
+    --white: #FFF1E8;
+    --gray: #C2C3C7;
+    --purple: #1D2B53;
+    --red_dark: #AB5236;
+    --red_bright: #FF004D;
+    --yellow: #FFEC27;
+    --orange: #FFA300;
+    --pink: #FF77A8;
+    --blue_light: #29ADFF;
+    --green_light: #00E436;
 }
 
 body {
-	background: var(--black);
-	color: var(--white);
-	max-width: 800px ;
-	margin: auto ;
-	padding: 0 16px ;
-	margin-bottom: 500px ;
-	font-family: sans-serif ;
+    background: var(--black);
+    color: var(--white);
+    max-width: 800px;
+    margin: auto;
+    padding: 0 16px;
+    margin-bottom: 500px;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 a {
-	color: var(--blue_light) ;
+    color: var(--blue_light);
 }
 
 ul {
-	list-style-type: square;
+    list-style-type: square;
 }
 
 a:visited {
-	color: var(--gray) ;
+    color: var(--gray);
 }
 
 h1 {
-	text-align: center ;
+    text-align: center;
 }
 
-h2, h3, h4, h5{
-	color: var(--red_bright) ;
+h2,
+h3,
+h4,
+h5 {
+    color: var(--red_bright);
 }
 
 footer {
-	text-align: center ;
+    text-align: center;
 }
 
 img {
-	max-width: 600px ;
-	width: 100% ;
-	margin: auto ;
-	display: block;
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+    display: block;
 }
 
 code {
-	color: var(--red_dark);
+    color: var(--red_bright);
 }
 
-pre code{
-/* 	padding-left: 1em; */
-	padding-right: 1em;
-	margin-top: 1em;
-	border-radius: 0.2em;
-	overflow: scroll;
-	color: var(--red_dark);
+pre code {
+    /* 	padding-left: 1em; */
+    padding-right: 1em;
+    margin-top: 1em;
+    border-radius: 0.2em;
+    overflow: scroll;
+    /* color: var(--red_bright); */
 }
 
-div.codehilite{
-	padding-left: 1em;
-	padding-right: 1em;
-	margin-top: 1em;
-	border-radius: 0.2em;
-	overflow: scroll;
+.codehilite {
+    background: var(--purple);
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-top: 1em;
+    border-radius: 0.2em;
+    overflow: scroll;
+}
+
+.codehilite .c1 {
+    color: var(--pink);
 }
 
 
-
-img[alt="BTC logo"],
-img[alt="XMR Logo"] {
-	max-width: 1em ;
-	max-height: 1em ;
-	display: inline ;
-}
+/* Comment.Single */
 
 @media (prefers-color-scheme: light) {
-	body {
-		background: white ;
-		color: black ;
-	}
-	a {
-		color: blue ;
-	}
-	a:visited {
-		color: purple ;
-	}
-	h2 {
-		color: inherit ;
-	}
-	code {
-		color: forestgreen ;
-	}
+    body {
+        background: white;
+        color: black;
+    }
+    a {
+        color: blue;
+    }
+    a:visited {
+        color: purple;
+    }
+    h2 {
+        color: inherit;
+    }
+    code {
+        color: forestgreen;
+    }
 }
 
 @media print {
-	a[href] {
-		text-decoration: none ;
-		color: black ;
-	}
+    a[href] {
+        text-decoration: none;
+        color: black;
+    }
 }
 
 @media (min-width: 55em) {
-	#artlist { column-count: 1 ;}
+    #artlist {
+        column-count: 1;
+    }
 }
 
 @media (min-width: 100em) {
-	#artlist { column-count: 2 ;}
+    #artlist {
+        column-count: 2;
+    }
 }
-
-
