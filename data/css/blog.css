@@ -1,43 +1,13 @@
-:root {
-    --black: #000000;
-    --dark_blue: #1D2B53;
-    --dark_purple: #7E2553;
-    --dark_green: #008751;
-    --brown: #AB5236;
-    --dark_grey: #5F574F;
-    --light_grey: #C2C3C7;
-    --white: #FFF1E8;
-    --red: #FF004D;
-    --orange: #FFA300;
-    --yellow: #FFEC27;
-    --green: #00E436;
-    --blue: #29ADFF;
-    --lavender: #83769C;
-    --pink: #FF77A8;
-    --light_peach: #FFCCAA;
-}
-
-body {
-    background: var(--black);
-    color: var(--white);
-    max-width: 800px;
-    margin: auto;
-    padding: 0 16px;
-    margin-bottom: 500px;
-    /* font-family: Helvetica, Arial, sans-serif; */
-    font-family: 'Courier New', Courier, monospace;
-}
-
 a {
     color: var(--blue);
 }
 
-ul {
-    list-style-type: square;
-}
-
 a:visited {
     color: var(--gray);
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 h1 {
@@ -86,12 +56,15 @@ pre code {
     color: var(--pink);
 }
 
-.postlist a {
+#postlist li a {
+   color: var(--red);
     text-decoration: none;
 }
 
+#postlist *:hover {
+     text-decoration: underline;
+}
 
-/* Comment.Single */
 
 @media (prefers-color-scheme: light) {
     body {

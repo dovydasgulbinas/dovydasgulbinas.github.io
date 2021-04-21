@@ -1,0 +1,91 @@
+            :root {
+               --black: #000000;
+               --dark_blue: #1D2B53;
+               --dark_purple: #7E2553;
+               --dark_green: #008751;
+               --brown: #AB5236;
+               --dark_grey: #5F574F;
+               --light_grey: #C2C3C7;
+               --white: #FFF1E8;
+               --red: #FF004D;
+               --orange: #FFA300;
+               --yellow: #FFEC27;
+               --green: #00E436;
+               --blue: #29ADFF;
+               --lavender: #83769C;
+               --pink: #FF77A8;
+               --light_peach: #FFCCAA;
+           }
+           
+           * {
+               margin: 0;
+               padding: 0;
+               font-family: inherit;
+               font-style: inherit;
+               font-weight: inherit;
+               font-size: inherit;
+               line-height: inherit;
+               box-sizing: border-box;
+               -webkit-text-size-adjust: 100%;
+           }
+           
+           article,
+           aside,
+           details,
+           figcaption,
+           figure,
+           footer,
+           header,
+           hgroup,
+           menu,
+           nav,
+           section {
+               display: block;
+           }
+           
+           body {
+               background: var(--black);
+               color: var(--white);
+               max-width: 800px;
+               margin: auto;
+               padding: 0 1rem;
+               margin-bottom: 200px;
+               /* font-family: Helvetica, Arial, sans-serif; */
+               font-family: 'Courier New', Courier, monospace;
+           }
+           
+           html {
+               margin: 0 auto;
+           }
+           ul li {
+              position: relative;
+/*               list-style: none; */
+              margin-left: 2em;
+          }
+           
+           h1 {
+               font-size: 2em;
+               font-weight: 800;
+           }
+           
+           h2 {
+               font-size: 1.6em;
+               font-weight: 600;
+           }
+           
+           h3 {
+               font-size: 1.2em;
+               font-weight: 600;
+               margin-top: 1em;
+               margin-bottom: 0.5em;
+               line-height: 1.3;
+           }
+           
+           ul {
+               list-style-type: square;
+           }
+           /* FOR FOOTER */
+           
+           body {
+               margin-bottom: 2rem;
+           }
