@@ -1,6 +1,6 @@
 BLOG_REMOTE:=dovydas.xyz
 SED:=gsed
-BLOG_TITLE:=Blog of Dovydas
+BLOG_TITLE:=Dovydas.xyz/blog
 
 BLOG_DATE_FORMAT_INDEX:=%y-%m-%d
 #BLOG_DATE_FORMAT ?= %x %X
