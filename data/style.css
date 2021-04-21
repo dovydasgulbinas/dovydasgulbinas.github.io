@@ -25,7 +25,8 @@ body {
     margin: auto;
     padding: 0 16px;
     margin-bottom: 500px;
-    font-family: Helvetica, Arial, sans-serif;
+    /* font-family: Helvetica, Arial, sans-serif; */
+    font-family: 'Courier New', Courier, monospace;
 }
 
 a {
@@ -88,6 +89,10 @@ pre code {
     color: var(--pink);
 }
 
+.postlist a {
+    text-decoration: none;
+}
+
 
 /* Comment.Single */
 
@@ -118,13 +123,13 @@ pre code {
 }
 
 @media (min-width: 55em) {
-    #artlist {
+    #postlist {
         column-count: 1;
     }
 }
 
 @media (min-width: 100em) {
-    #artlist {
+    #postlist {
         column-count: 2;
     }
 }
