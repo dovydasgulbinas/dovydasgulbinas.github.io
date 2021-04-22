@@ -28,7 +28,7 @@ hr{
   margin-bottom: 1em;
 }
 
-#banner a, p, h1{
+#banner a p q{
     text-align: center;
 }
 
@@ -36,9 +36,27 @@ hr{
     margin-top: 1em;
 }
 
+.index-quote{
+    text-align: center;
+    margin-top: 0.5em;
+    color: var(--light_grey);
+}
+
 
 footer {
+    margin-top: 2em;
     text-align: center;
+	border-top: 1px solid var(--white);
+	padding-top: 2em;
+	width: auto;
+	max-width: none;
+	font-size: smaller;
+}
+
+.footer-links, .footer-engine{
+    color: var(--orange);
+    margin: 0 0 0.2em 0;
+    text-align: inherit;
 }
 
 img {
