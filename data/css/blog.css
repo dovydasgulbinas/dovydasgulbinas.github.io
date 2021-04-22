@@ -59,6 +59,16 @@ footer {
     text-align: inherit;
 }
 
+.artice-footer-meta{
+    margin-top: 2em;
+    color: var(--yellow);
+    font-style: italic;
+
+}
+.artice-footer-meta strong{
+    padding-right: 1em;
+}
+
 img {
     max-width: 600px;
     width: 100%;
