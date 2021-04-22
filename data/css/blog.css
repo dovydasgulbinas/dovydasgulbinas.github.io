@@ -37,14 +37,10 @@ code {
 }
 
 pre code {
-    padding-right: 1em;
-    margin-top: 1em;
-    border-radius: 0.2em;
-    overflow: scroll;
-}
-
-.codehilite {
-    background: var(--dark_blue);
+  background: var(--dark_blue);
+  display: block;
+    padding-top: 1em;
+    padding-bottom: 1em;
     padding-left: 1em;
     padding-right: 1em;
     margin-top: 1em;
@@ -52,19 +48,22 @@ pre code {
     overflow: scroll;
 }
 
+.codehilite {
+
+}
+
 .codehilite .c1 {
     color: var(--pink);
 }
 
 #postlist li a {
-   color: var(--red);
+    color: var(--red);
     text-decoration: none;
 }
 
 #postlist *:hover {
-     text-decoration: underline;
+    text-decoration: underline;
 }
-
 
 @media (prefers-color-scheme: light) {
     body {
