@@ -1,5 +1,3 @@
-/* section layout */
-
 section {
 	box-sizing: border-box;
 	padding: 0;
@@ -7,13 +5,6 @@ section {
 	margin: 1rem auto;
 }
 
-section+section {}
-
-#main {
-	width: auto;
-	text-align: center;
-	padding: 0;
-}
 
 @media (min-height: 5.863in) and (min-width: 7in) {
 	body {
@@ -28,32 +19,24 @@ section+section {}
 		vertical-align: top;
 		display: inline-block;
 	}
-	#features, #palettes {
-		margin-left: 5%;
-	}
 }
 
-header {
-	margin: autor width: 20rem;
-}
-
-h1 {
-	position: relative;
-	/* 	left: -0.02em; /* oddly big advance width on the D */
-	*/ font-size: 6rem;
-	line-height: 1;
-	font-weight: 200;
-	text-transform: capitalize;
+header div h1{
+	margin: auto;
+	font-size: 3.4em;
+	padding-top: 1em;
 	text-align: center;
+	text-transform: capitalize;
+	font-weight: 600;
+/* 	font-style: italic; */
 }
 
-h1 img {
-	position: absolute;
-	left: 100%;
-	bottom: 0.699em;
-	width: 29px;
-	height: auto;
+header div q{
+	text-align: center;
+	font-size: 1.12rem;
+	font-style: italic;
 }
+
 
 h2 {
 	padding: 0 0.3em;
@@ -62,9 +45,7 @@ h2 {
 	text-align: center;
 }
 
-/* DA FONE */
-
-#phone {
+#art {
 	position: relative;
 	width: 2.884in;
 	height: 5.863in;
@@ -75,21 +56,11 @@ h2 {
 	background-size: contain;
 }
 
-#phone::after {
-	/* 	content: attr(data-disclaimer); */
+#art::after {
 	position: absolute;
 	left: 0;
 	top: 100%;
 	width: 100%;
 	text-align: center;
 	font-size: x-small;
-}
-
-#phone #screen {
-	position: absolute;
-	top: 11.7%;
-	left: 6%;
-	width: 88%;
-	height: 76.6%;
-	overflow: hidden;
 }
