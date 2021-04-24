@@ -21,22 +21,6 @@ section {
 	}
 }
 
-header div h1{
-	margin: auto;
-	font-size: 3.4em;
-	padding-top: 1em;
-	text-align: center;
-	text-transform: capitalize;
-	font-weight: 600;
-/* 	font-style: italic; */
-}
-
-header div q{
-	text-align: center;
-	font-size: 1.12rem;
-	font-style: italic;
-}
-
 
 h2 {
 	padding: 0 0.3em;
@@ -70,4 +54,8 @@ h2 {
 	font-size: initial;
 	font-weight: initial;
 	
+}
+
+ul{
+	margin: 1em;
 }

@@ -41,34 +41,28 @@ em, i {
     font-style: italic;
 }
 
+
+li, p {
+  line-height: 1.3em;
+}
+
 p{
     margin-top: 1em;
     margin-bottom: 1em;
-    line-height: 1.3em;
     text-align: justify;
     text-justify: inter-word;
 }
 
-li, dd {
-    line-height: 1;
-    margin: 1em 0;
-}
 
-
-html {
-    margin: 0 auto;
-}
-
-ul li {
-    position: relative;
+ul, ol, dd{
     margin-left: 2em;
+    line-height: 1.2;
 }
 
+
 ul li {
-    position: relative;
+/*     position: relative; */
     list-style: square;
-    margin-left: 0.7em;
-    /*list-style: none; */
 }
 
 /* ul li::before {
@@ -76,6 +70,14 @@ ul li {
     content: "♦";
     left: -0.7em;
 } */
+
+
+
+
+html {
+    margin: 0 auto;
+}
+
 
 a {
     color: inherit;
@@ -105,6 +107,7 @@ html, body {
 h1 {
     font-size: 2.5em;
     font-weight: 800;
+    text-align: center;
 }
 
 h2 {
@@ -122,8 +125,33 @@ h3 {
 }
 
 
+/* global header styles */
+header h1{
+	margin: auto;
+	font-size: 3.4em;
+	padding-top: 1em;
+	text-align: center;
+	text-transform: capitalize;
+	font-weight: 600;
+/* 	font-style: italic; */
+}
+
+header q{
+	text-align: center;
+	font-size: 1.12rem;
+	font-style: italic;
+}
+
+
 /* FOR FOOTER */
 
 body {
     margin-bottom: 2rem;
+}
+
+.line{
+    margin-top: 1em;
+	border-top: 1px solid var(--white);
+	width: auto;
+	max-width: none;
 }

@@ -10,9 +10,6 @@ a:hover {
     text-decoration: underline;
 }
 
-h1 {
-    text-align: center;
-}
 
 h2,
 h3,
@@ -28,40 +25,29 @@ hr{
   margin-bottom: 1em;
 }
 
-#banner a p q{
-    text-align: center;
-}
 
 #banner h1{
     margin-top: 1em;
 }
 
-.index-quote{
-    text-align: center;
-    margin-top: 0.5em;
-    color: var(--light_grey);
-}
-
 
 footer {
-    margin-top: 2em;
+    margin-top: 1em;
     text-align: center;
 	border-top: 1px solid var(--white);
-	padding-top: 2em;
+	padding-top: 1em;
 	width: auto;
 	max-width: none;
-	font-size: smaller;
+/* 	font-size: smaller; */
 }
 
 .footer-links, .footer-engine{
-    color: var(--orange);
     margin: 0 0 0.2em 0;
     text-align: inherit;
 }
 
 .artice-footer-meta{
-    margin-top: 2em;
-    color: var(--yellow);
+    margin-top: 1.5em;
     font-style: italic;
 
 }
@@ -100,10 +86,18 @@ pre code {
     color: var(--pink);
 }
 
-#postlist li a {
-    color: var(--red);
-    text-decoration: none;
+#postlist {
+    margin: 1em;
+    
 }
+
+#postlist li a {
+    text-decoration: none;
+    font-weight: 800;
+    display: block;
+
+}
+
 
 #postlist *:hover {
     text-decoration: underline;
