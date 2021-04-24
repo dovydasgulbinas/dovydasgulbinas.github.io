@@ -3,7 +3,8 @@
 ![hass-gif](/data/img/hyperion-hass.gif)
 
 ## Intro
-After playing around with Hyperion I really liked it. I liked it so much that I decided to implement it in my smart-home setup.  I currently use Hyperion for Kodi, but I wanted a way to control it with my `Homeassistant`. Because I could automate a lot of workflows eg. automatically turn on the backlight in evenings. My Setup uses two Raspberry Pi devices: First for `Kodi + Hyperion` and second just for `Homeassistant`. Okay lets begin.
+
+After playing around with Hyperion I really liked it, I liked it so much that I decided to implement it in my smart-home setup.  I currently use Hyperion for Kodi, but I wanted a way to control it with my `Homeassistant`, because I could automate a lot of workflows e.g. automatically turn on the backlight in evenings. My Setup uses two Raspberry Pi devices: First for `Kodi + Hyperion` and second just for `Homeassistant`. Okay lets begin.
 
 
 First open up your terminal and ssh to a machine with has Hyperion service enabled.
@@ -14,9 +15,9 @@ Test if Hyperion commands are working:
 
     hyperion-remote -e "Knight rider"
 
-If you gets your lights running are ok to go!
+If you got your lights running are ok to go!
 
-NOTE: In my case Homeassistant and Hyperion are on a different machines therefore I needed to setup a password-less ssh connection from my Homeassistant RPi -> Kodi RPi*
+NOTE: In my case Homeassistant and Hyperion are on a different machine therefore I needed to set up a password-less ssh connection from my Homeassistant RPi → Kodi RPi*
 
 Now login to your second machine running `Homeassistant` service.
 ```sh
@@ -26,12 +27,12 @@ sudo su homeassistant
 
 Test the `Hyperion` again but now in a remote configuration.
 
-WARN: You are entering SSH inception. You are connecting via SSH to Linux machine while already connected to another machine via SSH!
+**WARNING:** You are entering SSH inception, because you are connecting via SSH to Linux machine while already connected to another machine via SSH!
 ```
 ssh kodi@192.168.1.99 'hyperion-remote -e "Knight rider"'
 ```
 
-As mentioned before this step just ran a SSH command in a different machine entirely via the power of SSH.  If you setup is all in one meaning `Hyperion` and `Homeassistant` are running on the same machine then the command would simply be:
+It was mentioned previously that this step just ran an SSH command in a different machine entirely via the power of SSH.  If your setup is all in one meaning `Hyperion` and `Homeassistant` are running on the same machine then the command would simply be:
 
     hyperion-remote -e "Knight rider"
 
@@ -110,8 +111,8 @@ hyperion_group:
 ```
 ## Conclusion
 
-This guide is a more or less a workaround for running Hyperion effects. I saw other people doing similar things to solve this problem but it involved shell script for every Hyperion effect. This was due to the fact that `shell_command` functionality was introduced relatively recently to `Homeassistant`. I could try extending the feature set and add brightness control but for now it suits my needs. Furthermore you could add automation to enable Hyperion only in evenings I actually have done that. If you want to see how I did it checkout my  `Homeassistant` config by visiting this [GitHub repo](https://github.com/dovydasgulbinas/Home-AssistantConfig)
+This guide is a more or less a workaround for running Hyperion effects. I saw other people doing similar things to solve this problem, but it involved shell script for every Hyperion effect. This was due to the fact that `shell_command` functionality was introduced relatively recently to `Homeassistant`. I could try extending the feature set and add brightness control but for now it suits my needs. Furthermore, I could add automation to enable Hyperion only in evenings and I actually have done that. For more inspiration you can check out my  `Homeassistant` config by visiting this [GitHub repository.](https://github.com/dovydasgulbinas/Home-AssistantConfig)
 
 
 ;date: 2017-07-23 18:33:00 +0300
-;tags: homeassistant hyperion
+;tags: Homeassistant Hyperion
