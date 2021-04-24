@@ -56,7 +56,6 @@ a {
 
 dt {
     margin-top: 1em;
-    margin-bottom: -0.25em;
     font-weight: bold;
 }
 
@@ -72,10 +71,8 @@ html, body {
     font-family: 'Courier New', Courier, monospace;
 }
 
-
 p{
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin-top: 1rem;
     text-align: justify;
     text-justify: inter-word;
 }
@@ -86,7 +83,6 @@ ul,ol,dl,p {
   font-size: 1rem;
 }
 
-
 dd, dt, li, p {
   line-height: 1.3;
 }
@@ -95,15 +91,18 @@ dt {
   font-weight: bold;
 }
 
-/* end basics */
+dd{
+    margin-left: 2rem;
+}
 
-ul, ol, dd{
-    margin-left: 2em;
-    line-height: 1.3;
+ul, ol{
+    margin-top: 1rem;
+    margin-left: 2rem;
+    padding-left: 0;
+
 }
 
 ul li {
-/*     position: relative; */
     list-style: square;
 }
 
@@ -113,6 +112,11 @@ ul li {
     left: -0.7em;
 } */
 
+ol{
+    list-style-position: inside;
+}
+
+/* list settings */
 
 h1 {
     font-size: 2.5rem;
@@ -121,15 +125,15 @@ h1 {
 }
 
 h2 {
+    margin-top: 1rem;
     font-size: 1.8rem;
     font-weight: bold;
-    margin-top: 1em;
 }
 
 h3 {
+    margin-top: 1rem;
     font-size: 1.3rem;
     font-weight: 600;
-    margin-top: 1em;
     margin-bottom: 0.5em;
     line-height: 1.3;
 }
@@ -137,9 +141,8 @@ h3 {
 
 /* global header styles */
 header h1{
-	margin: auto;
+    margin-top: 1rem;
 	font-size: 3.4rem;
-	padding-top: 1em;
 	text-align: center;
 	text-transform: capitalize;
 	font-weight: bold;
@@ -147,6 +150,7 @@ header h1{
 }
 
 header q{
+
 	text-align: center;
 	font-size: 1.12rem;
 	font-style: italic;
