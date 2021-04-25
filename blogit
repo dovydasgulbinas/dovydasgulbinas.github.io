@@ -16,7 +16,7 @@ BLOG_FEEDS ?= rss atom
 SED ?= sed
 DEV_URL ?= http://localhost
 DEV_PORT ?= 8888
-DEV_DIR ?= www
+DEV_DIR ?= docs
 
 RENDERER = ./markdown2.py -x fenced-code-blocks,tables,code-friendly,tag-friendly,numbering,footnotes,header-ids
 
