@@ -55,7 +55,7 @@ deploy: build
 	rsync -rLtvz $(BLOG_RSYNC_OPTS) pages/ blog data $(BLOG_REMOTE)
 
 pages-deploy: build
-	mkdir -p www
+	mkdir -p $(DEV_DIR)
 	rsync -rLtvz $(BLOG_RSYNC_OPTS) pages/ blog data $(DEV_DIR)
 
 clean:
