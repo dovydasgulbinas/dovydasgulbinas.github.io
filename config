@@ -1,4 +1,4 @@
-BLOG_REMOTE:=dovydas.xyz
+BLOG_REMOTE:=./www
 SED:=gsed
 BLOG_TITLE:=dovydas.xyz/blog
 
