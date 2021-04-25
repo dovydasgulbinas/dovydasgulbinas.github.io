@@ -155,18 +155,19 @@ def transform_links(file_):
     return buffer
 
 
-def transform(note_path):
+def transform(note_path, assets_dir, data_dir):
     file_ = _make_text_buffer(note_path)
 
     file_ = transform_jekyll_header(file_)
     file_ = transform_singleline(file_)
     file_ = transform_multiline(file_)
     file_ = transform_links(file_)
+    file_ = transform_assets_paths(file_, assets_dir, data_dir)
 
     return file_.getvalue()
 
 
-def transform_all_posts(articles_dir: Path, dry_run: bool, exts=MD_EXTENSIONS):
+def transform_all_posts(*, articles_dir: Path, assets_dir, data_dir, dry_run: bool, exts=MD_EXTENSIONS):
     import glob
 
     posts = []
@@ -178,12 +179,29 @@ def transform_all_posts(articles_dir: Path, dry_run: bool, exts=MD_EXTENSIONS):
 
     posts = map(lambda p: Path(p), posts)  # transform strings to Path obs
     for post in posts:
-        transformed_post = transform(post)
+        transformed_post = transform(post, assets_dir, data_dir)
         if dry_run:
             print(f"dry run (transform note): '{post}'")
             continue
 
         post.write_text(transformed_post)
+
+
+def transform_assets_paths(file_, src_assets_dir, dst_assets_dir):
+    if not src_assets_dir and not dst_assets_dir:
+        return file_
+
+    buffer = io.StringIO()
+
+    text = file_.getvalue()
+    text = re.sub(
+        f"{src_assets_dir}", lambda m: dst_assets_dir, text, flags=re.MULTILINE
+    )
+    buffer.write(text)
+
+    file_.close()
+    buffer.seek(0)
+    return buffer
 
 
 def _process_cmd_queue(cmd_queue, silent=True, dry_run=False):
@@ -229,6 +247,8 @@ def git_initial_setup(
     migration_branch: str,
     posts_dir: Path,
     articles_dir: Path,
+    assets_dir: Path,
+    data_dir: Path,
     dry_run: bool,
 ):
 
@@ -238,6 +258,7 @@ def git_initial_setup(
         ["git", "checkout", "-b", migration_branch],  # checkout to new branch
         ["git", "push", "origin", tag_name],  # push new tags
         ["git", "mv", f"{posts_dir}", f"{articles_dir}"],  # move posts
+        ["git", "mv", f"{assets_dir}", f"{data_dir}"],  # move assets to data
         ["git", "commit", "-m", f"Jegit: Moving {posts_dir} to {articles_dir}"],
     ]
     _process_cmd_queue(cmd_queue, dry_run=dry_run)
@@ -258,7 +279,10 @@ def main():
     )
 
     parser.add_argument("-i", "--posts_dir", default="./_posts", type=Path)
+    # TODO: Eval if needed path casting
     parser.add_argument("-o", "--articles_dir", default="./articles", type=Path)
+    parser.add_argument("-a", "--assets_dir", default="./assets", type=Path)
+    parser.add_argument("-d", "--data_dir", default="./data", type=Path)
     parser.add_argument("-d", "--default_branch", default="master")
     parser.add_argument("-t", "--tag_name", default="before-jegit-migration")
     parser.add_argument("-m", "--migration_branch", default="jegit-migration")
@@ -277,7 +301,12 @@ def main():
     if not args.posts_dir.exists() and not args.posts_dir.is_dir():
         parser.error(nodir_msg.format(str(args.posts_dir)))
 
+    if not args.assets_dir.exists() and not args.assets_dir.is_dir():
+        parser.error(nodir_msg.format(str(args.assets_dir)))
+
+
     # Actual function calls
+    # TODO: add args to git_initial & transform_all
     if not args.skip_git_setup:
         git_initial_setup(
             default_branch=args.default_branch,
@@ -288,7 +317,8 @@ def main():
             dry_run=args.dry_run,
         )
 
-    transform_all_posts(args.articles_dir, dry_run=args.dry_run)
+    # TODO: add args to git_initial & transform_all
+    transform_all_posts(args.articles_dir, dry_run=args.dry_run, args)
     git_commit_changes(articles_dir=args.articles_dir, dry_run=args.dry_run)
     print_complete()
 

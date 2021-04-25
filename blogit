@@ -13,9 +13,12 @@ BLOG_DESCRIPTION ?= blog
 BLOG_URL_ROOT ?= http://localhost/blog
 BLOG_FEED_MAX ?= 20
 BLOG_FEEDS ?= rss atom
+SED ?= sed
 DEV_URL ?= http://localhost
 DEV_PORT ?= 8888
+DEV_DIR ?= docs
 
+RENDERER = ./markdown2.py -x fenced-code-blocks,tables,code-friendly,tag-friendly,numbering,footnotes,header-ids
 
 .PHONY: help init build deploy clean
 
@@ -23,7 +26,7 @@ ARTICLES = $(shell git ls-tree HEAD --name-only -- articles/ 2>/dev/null)
 TAGFILES = $(patsubst articles/%.md,tags/%,$(ARTICLES))
 
 help:
-	$(info blogit init|build|deploy|clean|serve)
+	$(info blogit init|build|deploy|pages-deploy|clean|serve)
 
 init:
 	mkdir -p articles data templates
@@ -41,17 +44,24 @@ init:
 	printf '' > templates/index_footer.html
 	printf '' > templates/tag_index_header.html
 	printf '' > templates/tag_index_footer.html
-	printf '<h1>$$TITLE</h1>' > templates/article_header.html
+	printf '' > templates/article_header.html
 	printf '' > templates/article_footer.html
 	printf 'blog\n' > .git/info/exclude
 
 build: blog/index.html tagpages $(patsubst articles/%.md,blog/%.html,$(ARTICLES)) $(patsubst %,blog/%.xml,$(BLOG_FEEDS))
+rebuild: clean build
 
 deploy: build
-	rsync -rLtvz $(BLOG_RSYNC_OPTS) blog/ data/ $(BLOG_REMOTE)
+	rsync -rLtvz $(BLOG_RSYNC_OPTS) pages/ blog data $(BLOG_REMOTE)
+
+pages-deploy: build
+	mkdir -p $(DEV_DIR)
+	rsync -rLtvz $(BLOG_RSYNC_OPTS) pages/ blog data $(DEV_DIR)
 
 clean:
 	rm -rf blog tags
+	# mkdir blog
+	# cd blog && ln -s ../data . && cd --
 
 config:
 	printf 'BLOG_REMOTE:=%s\n' \
@@ -142,30 +152,7 @@ blog/%.html: articles/%.md $(addprefix templates/,$(addsuffix .html,header artic
 	export TAGS; \
 	envsubst < templates/header.html > $@; \
 	envsubst < templates/article_header.html >> $@; \
-	$(SED) -e 1d \
-		-e '/^;/d' \
-		-e 's/&/\&amp;/g' \
-		-e 's/</\&lt;/g' \
-		-e 's/>/\&gt;/g' \
-		-e '/^```$$/{s,.*,,;x;p;/^<\/code>/d;s,.*,<pre><code>,;bT}' \
-		-e 'x;/<\/code>/{x;s,\$$,\&#36;,g;$$G;p;d};x' \
-		-e 's,\\\$$,\&#36;,g' \
-		-e '/^####/{s,^####,<h4>,;s,$$,</h4>,;H;s,.*,,;x;p;d}' \
-		-e '/^###/{s,^###,<h3>,;s,$$,</h3>,;H;s,.*,,;x;p;d}' \
-		-e '/^##/{s,^##,<h2>,;s,$$,</h2>,;H;s,.*,,;x;p;d}' \
-		-e '/^#/{s,^#,<h1>,;s,$$,</h1>,;H;s,.*,,;x;p;d}' \
-		-e 's,`\([^`]*\)`,<code>\1</code>,g' \
-		-e 's,\*\*\(\([^*<>][^*<>]*\*\?\)*\)\*\*,<b>\1</b>,g' \
-		-e 's,\*\([^*<>][^*<>]*\)\*,<i>\1</i>,g' \
-		-e 's,!\[\([^]]*\)\](\([^)]*\)),<img src="\2" alt="\1"/>,g' \
-		-e 's,\[\([^]]*\)\](\([^)]*\)),<a href="\2">\1</a>,g' \
-		-e '/^- /{s,^- ,<li>,;s,$$,</li>,;x;/^<\/ul>/{x;bL};p;s,.*,<ul>,;bT}' \
-		-e '/^[1-9][0-9]*\. /{s,^[0-9]*\. ,<li>,;s,$$,</li>,;x;/^<\/ol>/{x;bL};p;s,.*,<ol>,;bT}' \
-		-e '/^$$/{x;/^$$/d;p;d}' \
-		-e 'x;/^$$/{s,.*,<p>,;bT};x' \
-		-e ':L;$$G;p;d' \
-		-e ':T;p;:t;s,<\([^/>][^>]*\)>\(\(<[^/>][^>]*>\)*\),\2</\1>,;/<[^\/>]/bt;x;/^$$/{$${x;p};d};bL' \
-		"$<" | envsubst >> $@; \
+	$(SED) -e '/^;/d' < $< |tail -n+2|$(RENDERER) >> $@; \
 	envsubst < templates/article_footer.html >> $@; \
 	envsubst < templates/footer.html >> $@; \
 
@@ -204,7 +191,7 @@ blog/atom.xml: $(ARTICLES)
 	printf '</feed>\n' >> $@
 
 serve: open-url-dev
-	python3 -m http.server --bind 0.0.0.0 --directory blog $(DEV_PORT)
+	python3 -m http.server --bind 0.0.0.0 --directory $(DEV_DIR) $(DEV_PORT)
 
 open-url-dev:
 	python3 -c "import webbrowser; webbrowser.open_new_tab('$(DEV_URL):$(DEV_PORT)')"

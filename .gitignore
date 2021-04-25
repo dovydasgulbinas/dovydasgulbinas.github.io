@@ -5,3 +5,7 @@ _drafts/untracked/
 *.icloud
 _drafts/
 *.pyc
+/tags/*
+.sandbox/*
+/www/*
+/docs/*

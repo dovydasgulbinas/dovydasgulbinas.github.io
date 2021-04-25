@@ -1,0 +1,14 @@
+BLOG_REMOTE:=./www
+SED:=gsed
+BLOG_TITLE:=dovydas.xyz/blog
+
+BLOG_DATE_FORMAT_INDEX:=%y-%m-%d
+#BLOG_DATE_FORMAT ?= %y-%m-%d
+#BLOG_TITLE ?= blog
+#BLOG_DESCRIPTION ?= blog
+BLOG_URL_ROOT ?= https://dovydas.xyz/blog
+#BLOG_FEED_MAX ?= 20
+#BLOG_FEEDS ?= rss atom
+#SED ?= sed
+#DEV_URL ?= http://localhost
+#DEV_PORT ?= 8888

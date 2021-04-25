@@ -1,0 +1,2 @@
+<div class="main_footer">
+</div>
