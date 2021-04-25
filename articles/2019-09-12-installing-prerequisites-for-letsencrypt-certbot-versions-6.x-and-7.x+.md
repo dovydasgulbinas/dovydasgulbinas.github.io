@@ -1,4 +1,4 @@
-Installing prerequisites for LetsEncrypt Certbot versions 6.X, 7.X and up
+Fixing Let's Encrypt Certbot prerequisite issues.
 
 
 I ran into an issue today when I could not install `certbot-auto` on a Linux
@@ -76,7 +76,8 @@ If grep matches something similar:
 then certbot prerequisites should be met.
 You can now continue with [Encrypt's certbot](https://certbot.eff.org/) installation.
 
-**vi ses**
+`return 33`
+
 ;layout: post
 ;comments: True
 ;date: 2019-09-12 15:46:41
