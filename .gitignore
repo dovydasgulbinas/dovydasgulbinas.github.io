@@ -7,5 +7,3 @@ _drafts/
 *.pyc
 /tags/*
 .sandbox/*
-/www/*
-/docs/*
