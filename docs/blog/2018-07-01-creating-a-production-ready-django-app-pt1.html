@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚚</text></svg>">
+    <link rel="stylesheet" href="/data/css/global.css">
+    <link rel="stylesheet" href="/data/css/pygments.css">
+    <title></title>
+    <meta name="description" content="Engineering brain dumps.">
+    <link rel="stylesheet" href="/data/css/blog.css">
+    <link rel="icon" href="/data/other/favicon.ico" type="image/gif" />
+</head>
+
+<body>
+<h1>Creating A Production Ready Django App, pt. 1</h1>
+<main>
+<h1 id="intro">Intro</h1>
+
+<p>This post will demonstrate a production tested and simplified
+configuration for Django framework. This is a two part blog post.
+In the first part we will mainly focus how to structure <code>settings.py</code>
+properly because with larger projects managing <code>settings.py</code> file
+will usually result in an unpleasant experience somewhere around your anal area.
+Furthermore this post will show you the best practices of keeping secrets such
+as passwords hidden from your CVS.</p>
+
+<p>This tutorial will use <strong>git</strong> and <strong>virtual</strong> environment so make sure
+you have these programs installed.</p>
+
+<p><strong>Disclaimer</strong></p>
+
+<p>Word <strong>test</strong> in this blog post is synonymous with word <strong>development</strong>.
+this means that files such as <code>settings_test.py</code> could also be called
+<code>settings_dev.py</code> keep that in mind!</p>
+
+<h1 id="stage-1-initialize-new-django-project">STAGE-1 | Initialize New Django Project</h1>
+
+<h2 id="go-to-dir-you-want-your-django-project-installed">go to dir you want your django project installed</h2>
+
+<pre><code>cd ~/&lt;your-projects-dir&gt;
+</code></pre>
+
+<h2 id="let-us-create-a-folder-for-our-django-repository">let us create a folder for our django repository</h2>
+
+<pre><code>mkdir &lt;my-django-repo&gt;
+cd &lt;my-django-repo&gt;
+</code></pre>
+
+<h2 id="create-documentation-entries">create documentation entries</h2>
+
+<pre><code>mkdir docs
+touch readme.md
+</code></pre>
+
+<h2 id="create-activate-a-virtual-environment-with-python3">create &amp; activate a virtual environment (with python3)</h2>
+
+<pre><code>virtualenv --python="$(which python3)" env
+source env/bin/activate
+</code></pre>
+
+<h2 id="create-a-basic-gitignore-file">create a basic <code>.gitignore</code> file</h2>
+
+<pre><code>echo "*.pyc" &gt;&gt; .gitignore
+echo "env/" &gt;&gt; .gitignore
+</code></pre>
+
+<h2 id="install-django">install Django</h2>
+
+<pre><code>pip install django
+pip install ConfigParser
+pip install sphinx  # (optional, used for documentation)
+</code></pre>
+
+<h2 id="start-a-new-project">start a new project</h2>
+
+<pre><code>django-admin.py startproject &lt;cool_project&gt;
+</code></pre>
+
+<h2 id="start-a-new-app-this-step-is-optional">start a new app (this step is optional)</h2>
+
+<pre><code>cd &lt;cool_project&gt;
+python manage.py startapp &lt;sexy_app&gt;
+cd ../
+</code></pre>
+
+<h2 id="create-folders-for-further-use">create folders for further use</h2>
+
+<pre><code>mkdir .secrets
+mkdir logs
+mkdir static  # optional but I recommend creating one
+mkdir sandbox # optional for experiments and other stuff
+</code></pre>
+
+<h2 id="let-us-add-non-tracked-directories-to-gitignore">let us add non-tracked directories to <code>.gitignore</code></h2>
+
+<pre><code>echo ".secrets/" &gt;&gt; .gitignore
+echo "logs/" &gt;&gt; .gitignore
+echo "static/" &gt;&gt; .gitignore
+echo "sandbox/" &gt;&gt; .gitignore
+echo '*.sqlite3' &gt;&gt; .gitignore
+</code></pre>
+
+<p>Some of you may scream that creating __logs or secrets__ dir in repo directory
+is madness.  But bear with me, in production environment this will not be
+a directory but rather a <strong>symlink</strong> to e.g.:</p>
+
+<p><code>./logs -&gt; /var/log/django/logs</code></p>
+
+<p>This symlink method will allow us to use less
+configuration, because both dev and prod environments will write
+logs to the same directory.  Additionally we will decouple
+our <code>settings.py</code> configuration from OS based paths such as:
+<code>/var/log/django/logs</code> since any absolute path is <strong>not system agnostic</strong>.</p>
+
+<h2 id="your-project-structure-should-look-like-this-tree-depth2">your project structure should look like this (tree depth=2):</h2>
+
+<pre><code>.
+├── .gitignore
+├── .secrets
+├── cool_project
+│   ├── cool_project
+│   └── manage.py
+├── docs
+├── env  # # this dir is irrelevant
+├── logs
+├── readme.md
+├── sandbox
+└── static
+</code></pre>
+
+<p>## </p>
+
+<h1 id="stage-2-create-prod-and-test-settings-files">STAGE-2 | Create Prod and Test Settings Files</h1>
+
+<pre><code>cd &lt;cool_project&gt;
+cd &lt;cool_project&gt;
+mkdir conf
+cd conf
+touch __init__.py
+printf "from .settings_main import *\n# Test Setting Overrides\n" &gt; settings_test.py
+printf "from .settings_main import *\n# Prod Setting Overrides\n" &gt; settings_prod.py
+</code></pre>
+
+<p>we just created a new python package for our settings in the snippet above.
+this package will contain two different config files.  The reason why
+we did this is because we want to have _settings inheritance_[^1].  This means
+that we will define our core configuration in <code>settings_main.py</code> while
+minor overrides based on the environment(test, prod) will be done in their
+appropriate files <code>settings_test.py</code> and  <code>settings_prod.py</code>. This makes
+our configuration structure more similar to one you would find in <strong>Nginx</strong>. <br />
+Nginx like configuration structure forces your <code>settings</code> to be <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a>.</p>
+
+<h2 id="enable-test-settings-for-our-project">enable <code>test</code> settings for our project</h2>
+
+<pre><code>ln -s settings_test.py settings.py
+</code></pre>
+
+<p>Symlinks again! This symlink is the magic symlink that will allow
+us to quick swap our production and test settings even when developing.
+This is very useful, because it is very likely that you will need to
+run your Django project with production settings on your development machine.
+So if you ever need to use <code>settings_prod.py</code> simply: <code>ln -s ./settings_prod.py settings.py</code>.</p>
+
+<h2 id="move-settings-file-from-its-original-position">move settings file from its original position</h2>
+
+<pre><code>mv ../settings.py ./settings_main.py
+</code></pre>
+
+<p>what we did here is we said _goodbye_ to original path of the
+<code>settings.py</code> file this file was created when running <code>django-admin.py startproject &lt;cool-project&gt;</code>.
+As I already mentioned we will use it for _settings inheritance_[^1]</p>
+
+<h2 id="edit-wsgipy-file-so-that-it-will-point-to-our-new-settingspy-symlink">edit <code>wsgi.py</code> file so that it will point to our new <code>settings.py</code> symlink</h2>
+
+<pre><code>vim ../wsgi.py
+
+# change this line from:
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "&lt;cool_project&gt;.settings")
+
+# to:
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "&lt;cool_project&gt;.conf.settings")
+</code></pre>
+
+<h2 id="edit-managepy-file-so-that-it-will-point-to-settingspy-symlink">edit <code>manage.py</code> file so that it will point to <code>settings.py</code> symlink</h2>
+
+<pre><code>vim ../../manage.py
+
+# change this line from:
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "&lt;cool_project&gt;.settings")
+
+# to:
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "&lt;cool_project&gt;.conf.settings")
+</code></pre>
+
+<h2 id="explanation-of-what-we-just-did">explanation of what we just did</h2>
+
+<p>Last two snippets needed changing because if you recall we created
+a new python module called <code>conf</code> this meant that module which holds Django project settings
+has changed so we needed to tell <code>manage.py</code> and <code>wsgi.py</code> to take our project
+settings from a new location</p>
+
+<h2 id="test-your-server">test your server</h2>
+
+<pre><code>cd ../..
+source ../env/bin/activate &amp;&amp; python manage.py runserver
+</code></pre>
+
+<p>If development server started without any issues GZ! You have a Django
+project skeleton.  Follow chapters below as we add a special file used to keep
+our passwords away from CVS.</p>
+
+<h2 id="do-your-initial-git-commit">do your initial git commit</h2>
+
+<pre><code>cd ..
+git init
+git status
+git add .gitignore
+git add .
+git commit -m "Initial Django Commit"
+</code></pre>
+
+<h2 id="repository-directory-structure-demo">repository directory structure demo</h2>
+
+<pre><code>.
+├── .git  # this dir is irrelevant
+├── .gitignore
+├── .secrets
+├── .swp
+├── cool_project
+│   ├── cool_project
+│   │   ├── __init__.py
+│   │   ├── conf
+│   │   │   ├── __init__.py
+│   │   │   ├── settings.py -&gt; settings_test.py
+│   │   │   ├── settings_main.py
+│   │   │   ├── settings_prod.py
+│   │   │   └── settings_test.py
+│   │   ├── db.sqlite3
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   └── manage.py
+├── docs
+├── env # this dir is irrelevant
+├── logs
+├── readme.md
+├── sandbox
+└── static
+</code></pre>
+
+<p>## </p>
+
+<h1 id="stage-3-add-more-goodies-to-our-settings-file">STAGE-3 | Add more goodies to our settings file</h1>
+
+<p>In this chapter we will add extra few essentials such as log file configuration,
+passwords, secrets and more.  I recommend you to copy code found below.
+Lines you copy and paste will include comments make sure you read them.</p>
+
+<h2 id="create-a-secretsini-file">create a <code>secrets.ini</code> file</h2>
+
+<pre><code>touch .secrets/secrets.ini
+</code></pre>
+
+<h3 id="paste-this-to-secretssecretsini">paste this to <code>.secrets/secrets.ini</code>:</h3>
+
+<pre><code>[prod]
+secret_key = '&lt;your_production_secret_key&gt;'
+
+[test]
+secret_key = '&lt;your_test_secret_key&gt;'
+</code></pre>
+
+<p>secret_key = '...'
+:  This is your production server secret key.  It must not match one under the [test]
+section.  Read more about it <a href="https://docs.djangoproject.com/en/2.0/ref/settings/">here</a></p>
+
+<h2 id="delete-lines-in-settings_mainpy">delete lines in <code>settings_main.py</code></h2>
+
+<p><img src="/data/img/delet-settings-main.jpg" alt="DELET-LINES" /></p>
+
+<h3 id="paste-new-lines-in-the-same-area-settings_mainpy">paste new lines in the same area <code>settings_main.py</code></h3>
+
+<p><img src="/data/img/add-settings-main.jpg" alt="ADD-LINES" /></p>
+
+<pre><code>import io
+import configparser
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+SECTION = 'test'  # when using production then SECTION = 'prod'
+
+# we create a base directory 2 parent directories UP.
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# we need to go one dir up because our settings file in one folder deeper than default
+BASE_DIR = os.path.dirname(os.path.dirname(BASE_DIR))
+SECRETS_DIR = os.path.join(BASE_DIR, '.secrets')
+SECRETS_FILE_PATH = os.path.join(SECRETS_DIR, 'secrets.ini')
+LOGS_DIR = os.path.join(BASE_DIR, 'logs')
+LOG_MAIN = os.path.join(LOGS_DIR, 'django_main.log')
+
+CONF = configparser.ConfigParser()
+CONF.read(SECRETS_FILE_PATH)
+# this is a magic line, because based on what value SECTION= holds we will
+# able to choose our settings in this case test OR prod
+SECRETS = CONF[SECTION]
+
+# we grab our `secret_key` from our `secrets.ini` file
+SECRET_KEY = SECRETS['secret_key']
+
+# Let's add basic logging to file.
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+    # you can have as many formatter you want.  assign different formatters to
+    # different handlers
+
+    'formatters': {
+        'simple': {
+            'format': '%(asctime)s - %(levelname)s - %(message)s'
+        },
+        'multi': {
+            'format': '(%(threadName)-10s) %(asctime)s %(levelname)s: %(message)s'
+        },
+    },
+
+    'handlers': {
+        'applogfile': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': LOG_MAIN,
+            'formatter': 'multi',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'multi',
+        },
+    },
+    # every django app you create will have to have their logger set. set them
+    # here in the 'loggers' object. loggers['django'] is the name of our project
+    # leave it as is.
+    'loggers': {
+        'django': {
+            'handlers': ['applogfile', 'console'],
+            'level': 'DEBUG',
+        },
+
+    },
+}
+</code></pre>
+
+<h3 id="test-run-your-project-again">test run your project again</h3>
+
+<pre><code>cd &lt;place where manage.py is found&gt;
+source ../env/bin/activate
+python manage.py runserver
+</code></pre>
+
+<h2 id="add-lines-to-settings_prodpy">add lines to <code>settings_prod.py</code></h2>
+
+<p>This is where the override magic kicks in. Rather than writing our whole
+configuration from scratch we simply override values we want to change.</p>
+
+<p><img src="/data/img/add-settings-prod.jpg" alt="ADD-PROD-LINES" /></p>
+
+<pre><code>print(" {} ".format("using PRODUCTION settings").center(80, '='))
+
+DEBUG = False
+SECTION = 'prod'
+SECRETS = CONF[SECTION]  # uses section [prod] in secrets.ini
+
+SESSION_COOKIE_SECURE = True
+ADMIN_ENABLED = False
+SECURE_CONTENT_TYPE_NOSNIFF = True
+ALLOWED_HOSTS = ['*']
+
+
+# JUST AS AN ILLUSTRATIVE EXAMPLE
+# overrides sqlite3 DB to a production ready postgress one
+# DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
+# DATABASES['default']['NAME'] = 'username'
+# DATABASES['default']['USER'] = 'password'
+# DATABASES['default']['PASSWORD'] = SECRETS['POSTGRESQL_PASSWORD']
+# DATABASES['default']['HOST'] = '127.0.0.1'
+# DATABASES['default']['PORT'] = '5432'
+</code></pre>
+
+<h3 id="test-run-you-project-using-prod-settings">test run you project using prod settings</h3>
+
+<p>For this we will need to use the symlink trickery again.  We are not changing
+files or changing imported files we will only change where symlink
+is pointing in this instance <code>settings.py -&gt; settings_prod.py</code></p>
+
+<pre><code>cd &lt;place where manage.py is found&gt;
+cd &lt;cool_project&gt;
+cd &lt;cool_project&gt;
+cd conf
+rm settings.py  # let's delete old symlink
+ln -s settings_prod.py ./settings.py
+cd ../../
+python manage.py runserver
+</code></pre>
+
+<p>if all went well you should see:</p>
+
+<p><img src="/data/img/all-went-well.jpg" alt="all-went-well" /></p>
+
+<p>but since we do not care about our prod settings when developing
+let us revert back to <code>settings_test.py</code></p>
+
+<pre><code>cd &lt;cool_project&gt;
+cd conf
+rm settings.py  # let us delete old symlink
+ln -s settings_test.py ./settings.py
+cd ../../
+python manage.py runserver
+</code></pre>
+
+<h1 id="stage-4-cleanup">STAGE-4 | Cleanup</h1>
+
+<p>When we ran <code>python manage.py runserver</code> for the first time a new db.sqlite3
+file was created, this file was created prior to our configuration changes
+and it will not be used anymore so let's remove it.</p>
+
+<pre><code>rm cool_project/db.sqlite3
+</code></pre>
+
+<p>Now we can make our second git commit</p>
+
+<pre><code>cd ..
+git status
+git add .
+git commit -m "our second django project commit"
+</code></pre>
+
+<p><video src="/data/ani/gz.webm"  autoplay loop muted></video></p>
+
+<p>Now you have a better base for your future Django Projects.</p>
+
+<h1 id="stage-5-what-do-i-now">STAGE-5 | What Do I Now?</h1>
+
+<ol>
+<li>Create a new Django app in your project: <code>python manage.py &lt;my-super-app&gt;</code></li>
+<li>Write awesome code</li>
+<li>If something did not work or you are lazy just copy skeleton we did: <code>git@github.com:dovydasgulbinas/blog-django-skeleton.git</code></li>
+<li>Tune for a second part, next week, where I will be showing you how
+to deploy your project using <strong>fabric2</strong> and <strong>invoke</strong> to a production environment.
+## </li>
+</ol>
+</main>
+
+<div class="artice-footer-meta">
+    <strong>Posted on:</strong>07/01/18 16:50:16,
+    <strong>last edited on:</strong>04/25/21 17:13:36,
+    <strong>written by:</strong>GitHub
+</div><footer>
+    <p class=footer-links> 
+    <a href="./">Home</a>
+    <a href="./rss.xml">RSS</a>
+    <a href="./atom.xml">Atom</a>
+    </p>
+    <p class="footer-engine">Made with <a href="https://pedantic.software/git/blogit">blogit</a></p>
+</footer>
+</body>
+</html>

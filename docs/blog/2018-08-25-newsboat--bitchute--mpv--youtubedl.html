@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚚</text></svg>">
+    <link rel="stylesheet" href="/data/css/global.css">
+    <link rel="stylesheet" href="/data/css/pygments.css">
+    <title></title>
+    <meta name="description" content="Engineering brain dumps.">
+    <link rel="stylesheet" href="/data/css/blog.css">
+    <link rel="icon" href="/data/other/favicon.ico" type="image/gif" />
+</head>
+
+<body>
+<h1>Newsboat + Bitchute + mpv + youtube-dl</h1>
+<main>
+<h2 id="0-why">$0: Why?</h2>
+
+<p>First of all RSS is still qualifies as a great technology.  Even though RSS
+faded to obscurity in the past 8 years or so it is still very useful.  RSS was
+and will be an integral part to the internet same as HTTP, e-mail and IRC is.</p>
+
+<p>In the age when information streams are controlled by few major corporations it
+important not to forget that we are responsible for what we are consuming.
+This is why RSS is great with it you can aggregate
+information form whole variety of sources: Youtube, Twitter, Blogs and even
+those old crusty image boards that "Taiwanese Fishermen" are using to cause
+political chaos in across the globe.</p>
+
+<p>I recently began using Newsboat RSS client and I fell in love with it.  I loved
+it so much that I even added my favorite Youtube channels as RSS feed.  There
+are tons of information on how you can watch any Youtube video using <code>youtube-dl</code>
+on a <code>mpv</code> media player, but I wanted to go one step further I wanted to be able
+to watch Bitchute videos (that I subscribed via RSS) straight from my Newsboat client.</p>
+
+<p>Here is how I have done it</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+<li>mpv </li>
+<li>Newsboat</li>
+<li>youtube-dl</li>
+</ul>
+
+<h2 id="lets-begin">Let's Begin!</h2>
+
+<p>First Add this function to end of your <code>.bashrc</code> or <code>.zshrc</code> file:</p>
+
+<div class="codehilite"><pre><span></span><code>btpl<span class="o">(){</span>
+
+<span class="nv">PAGE</span><span class="o">=</span><span class="k">$(</span>curl -s <span class="nv">$1</span><span class="k">)</span>
+<span class="nv">url</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">echo</span> <span class="se">\&quot;</span><span class="nv">$PAGE</span><span class="se">\&quot;</span> <span class="p">|</span> grep -Eoi <span class="s1">&#39;&lt;source [^&gt;]+&gt;&#39;</span> <span class="p">|</span> grep -Eo <span class="s1">&#39;src=&quot;[^\&quot;]+&quot;&#39;</span> <span class="p">|</span> grep -Eo <span class="s1">&#39;(http|https)://[^&quot;]+&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="c1"># url=&quot;$(curl -s $1 | grep -Eoi &#39;&lt;source [^&gt;]+&gt;&#39; | grep -Eo &#39;src=&quot;[^\&quot;]+&quot;&#39; | grep -Eo &#39;(http|https)://[^&quot;]+&#39;)&quot;</span>
+<span class="nv">TITLE</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="se">\&quot;</span><span class="nv">$PAGE</span><span class="se">\&quot;</span> <span class="p">|</span> grep -oEi <span class="s2">&quot;&lt;title&gt;(.*)&lt;/title&gt;&quot;</span> <span class="p">|</span> cut -d <span class="s1">&#39;&gt;&#39;</span> -f2 <span class="p">|</span> cut -d <span class="s1">&#39;&lt;&#39;</span> -f1<span class="k">)</span>
+
+mpv --ontop<span class="o">=</span>yes --title<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$TITLE</span><span class="s2">&quot;</span> --snap-window --autofit-larger<span class="o">=</span><span class="s1">&#39;25%&#39;</span> --geometry<span class="o">=</span><span class="s1">&#39;-10-10&#39;</span> --speed <span class="m">1</span>.75 <span class="nv">$url</span> <span class="p">&amp;</span>
+<span class="o">}</span>
+</code></pre></div>
+
+<p>Let's explain some parameters of the command above:</p>
+
+<p><code>--ontop=yes</code>
+:  this will always display the video window on top. I did this because I wanted
+something similar to "Picture In Picture" feature found on OSX computers.</p>
+
+<p><code>--title=$TITLE</code>
+:  it is the title of the mpv window duhhhh. </p>
+
+<p><code>--snap-window</code>
+:  this is optional, but it helps when you are moving the window around the
+screen, because it snaps it to the 4 corners of the screen.</p>
+
+<p><code>--autofit-larger='25%'</code>
+:  resizes the window to 25% (based on what is bigger width or height)</p>
+
+<p><code>--geometry='-10-10'</code>
+:  Displays the mpv player window to the BOTTOM RIGHT corner and makes sure that
+there is a 10px margin.</p>
+
+<p><code>--speed 1.75</code>
+:  Pushes your brain to the limit, because playback now is 1.75x faster! Feel</p>
+
+<p><strong>Open a new terminal window, and paste code below:</strong></p>
+
+<pre><code>btpl https://www.bitchute.com/video/UGlrF9o9b-Q/
+</code></pre>
+
+<p>If all went well video should of started playing.  </p>
+
+<p>I bet you are not used to watching videos at 1.75x of their original speed but
+trust me after some time you get used to it. It saves you time ;P</p>
+
+<p><img src="/data/img/btpl-screen-success.png" alt="success" /></p>
+
+<h3 id="2-configure-newsboat">$2: Configure Newsboat</h3>
+
+<ul>
+<li>Open your Newsboat configuration file: <code>~/.newsboat/config</code> 
+<ul>
+<li>on some linux distros this file is found at: <code>~/.config/newsboat/config</code></li>
+</ul></li>
+<li>Paste these lines below:</li>
+</ul>
+
+<pre><code># only for OSX
+browser open
+
+# only for Debian
+browser nautilus
+
+# only for bash users
+macro b set browser "source $HOME/.bashrc &amp;&amp; btpl "; open-in-browser ; set browser open
+
+# only for zsh users
+macro b set browser "source $HOME/.zshrc &amp;&amp; btpl "; open-in-browser ; set browser open
+</code></pre>
+
+<p><code>browser open</code>
+:  This line is not talking about your web browser, but rather the browser of
+your OS. On OSX system browser is <code>open</code> it handles many things: opens files,
+handles various URLs, decides which program should open which file.  Linux Arch
+users will probably use <code>linkhandler</code>, for Debian'istas it will be <code>nautilus</code>
+and Linux Mints should use <code>nemo</code> instead of <code>open</code></p>
+
+<p><code>macro b set browser [...]</code>
+:  sets a macro on key press "b".  Now every time you press <code>",b"</code> characters
+while in Newsboat. Hotkey for starting macros is always <code>","</code> read more about
+macros <a href="https://newsboat.org/releases/2.12/docs/newsboat.html">here</a>
+For more info about Newsboat config you can go <a href="https://newsboat.org/releases/2.12/docs/newsboat.html">here</a></p>
+
+<p><strong>Add a Bitchute RSS test URL.</strong></p>
+
+<ul>
+<li>Open your Newsboat URLs file: <code>~/.newsboat/urls</code> 
+<ul>
+<li>on some linux distros this file is found at: <code>~/.config/newsboat/urls</code></li>
+</ul></li>
+<li>Paste this line below:</li>
+</ul>
+
+<pre><code>https://www.bitchute.com/feeds/rss/channel/styxhexenhammer666/ "news"
+</code></pre>
+
+<p>Start Newsboat:</p>
+
+<pre><code>newsboat
+</code></pre>
+
+<ul>
+<li>Find The RSS feed we just added</li>
+<li>List all the items:</li>
+</ul>
+
+<p><img src="/data/img/how-to-invoke.png" alt="how-to-invoke" /></p>
+
+<ul>
+<li>hit: <code>",b"</code></li>
+<li>Enjoy the Show!</li>
+</ul>
+
+<h2 id="last-words">Last Words</h2>
+
+<p>That is it you should be able to watch any Bitchute video on your mpv player
+straight from Newsboat RSS feed.  That is pretty cool and proved to be quite
+useful.  I love the fact that mpv is highly customizeable and I can mimic the
+<code>picture-in-picture</code> I really wanted.</p>
+
+<ul>
+<li>If you want to learn more about Newsboat Luke Smith has a great <a href="https://www.youtube.com/watch?v=dUFCRqs822w">video</a> on it</li>
+<li>If you are interested were I came up with the bitchute-dl idea see this <a href="https://www.bitchute.com/video/W4g3Jktibucb/">video</a> and the original <a href="https://archive.fo/zd49L">script</a></li>
+<li>If you want to see my current Newsboat configuration visit <a href="https://github.com/dovydasgulbinas/env-configs/tree/master/newsboat">here</a></li>
+</ul>
+
+<p>return 0</p>
+</main>
+
+<div class="artice-footer-meta">
+    <strong>Posted on:</strong>08/25/18 19:19:55,
+    <strong>last edited on:</strong>04/25/21 17:13:36,
+    <strong>written by:</strong>GitHub
+</div><footer>
+    <p class=footer-links> 
+    <a href="./">Home</a>
+    <a href="./rss.xml">RSS</a>
+    <a href="./atom.xml">Atom</a>
+    </p>
+    <p class="footer-engine">Made with <a href="https://pedantic.software/git/blogit">blogit</a></p>
+</footer>
+</body>
+</html>

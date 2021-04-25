@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚚</text></svg>">
+    <link rel="stylesheet" href="/data/css/global.css">
+    <link rel="stylesheet" href="/data/css/pygments.css">
+    <title></title>
+    <meta name="description" content="Engineering brain dumps.">
+    <link rel="stylesheet" href="/data/css/blog.css">
+    <link rel="icon" href="/data/other/favicon.ico" type="image/gif" />
+</head>
+
+<body>
+<h1>Creating Multiple Folders From a Bash Array</h1>
+<main>
+<h2 id="about-this-snippet">About this snippet</h2>
+
+<p>This snippet allows you to create a series of directories, that are a part of a
+regular bash array. This is super useful if you have bunch of directories to
+create and don't really want to iterate using a loop. Also it makes your script
+more customizeable, because you control what directories are created in a single
+array.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+
+<span class="nv">var</span><span class="o">=</span><span class="s2">&quot;eins&quot;</span>
+<span class="nv">var2</span><span class="o">=</span><span class="s2">&quot;zwei&quot;</span>
+
+<span class="nv">play_array</span><span class="o">=(</span><span class="s2">&quot;</span><span class="nv">$var</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$var2</span><span class="s2">&quot;</span><span class="o">)</span>
+
+mkdir <span class="s2">&quot;</span><span class="si">${</span><span class="nv">play_array</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+</main>
+
+<div class="artice-footer-meta">
+    <strong>Posted on:</strong>11/05/18 13:10:08,
+    <strong>last edited on:</strong>04/25/21 17:13:36,
+    <strong>written by:</strong>GitHub
+</div><footer>
+    <p class=footer-links> 
+    <a href="./">Home</a>
+    <a href="./rss.xml">RSS</a>
+    <a href="./atom.xml">Atom</a>
+    </p>
+    <p class="footer-engine">Made with <a href="https://pedantic.software/git/blogit">blogit</a></p>
+</footer>
+</body>
+</html>

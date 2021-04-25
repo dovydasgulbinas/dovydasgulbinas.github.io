@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚚</text></svg>">
+    <link rel="stylesheet" href="/data/css/global.css">
+    <link rel="stylesheet" href="/data/css/pygments.css">
+    <title></title>
+    <meta name="description" content="Engineering brain dumps.">
+    <link rel="stylesheet" href="/data/css/blog.css">
+    <link rel="icon" href="/data/other/favicon.ico" type="image/gif" />
+</head>
+
+<body>
+<h1>Functions are first-class citizens in JavaScript</h1>
+<main>
+<p>first class citizen entity/type
+:  An entity that supports all operations other entities have. This means first-class citizens can be passed, returned &amp; assigned etc.</p>
+
+<p><strong>To simply put it this means that you can:</strong></p>
+
+<p>assign a function to a variable:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">coolVariable</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Cool Anon Function&quot;</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">coolVariable</span><span class="p">;</span> <span class="c1">// Will return a function object, but not print anything to the console.</span>
+<span class="nx">coolVariable</span><span class="p">();</span> <span class="c1">// Will actually call the function.  The magic trick is in the `()`</span>
+</code></pre></div>
+
+<p>pass a function to a function:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span> <span class="nx">randomDecoration</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="kd">var</span> <span class="nx">decors</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;~&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">);</span>
+<span class="c1">// Returns a random decoration from an Array</span>
+<span class="k">return</span> <span class="nx">decors</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="nx">decors</span><span class="p">.</span><span class="nx">length</span><span class="p">)];</span>
+<span class="p">};</span>
+
+
+<span class="kd">function</span> <span class="nx">printDecorated</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">decor</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">decor</span><span class="p">()</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">msg</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">decor</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="c1">// prints:  &quot;X Decorate Me =&quot;</span>
+
+<span class="nx">printDecorated</span><span class="p">(</span><span class="s2">&quot;Decorate Me&quot;</span><span class="p">,</span> <span class="nx">randomDecoration</span><span class="p">);</span>
+<span class="c1">// Notice that we do not add `()`; when passing it as an object</span>
+</code></pre></div>
+
+<p>partially apply or spawn a new function from a generic function:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span> <span class="nx">customRandomDecoration</span><span class="p">(</span><span class="nx">decors</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="nx">d</span> <span class="o">=</span> <span class="nx">decors</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="nx">decors</span><span class="p">.</span><span class="nx">length</span><span class="p">)]</span>
+    <span class="c1">// We will repeat the same decoration n times e.g. xxx, --</span>
+    <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+
+<span class="kd">function</span> <span class="nx">printDecorated</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">decor</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">decor</span><span class="p">(</span><span class="mf">3</span><span class="p">)</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">msg</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">decor</span><span class="p">(</span><span class="mf">4</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+<span class="c1">// We spawn a new function that has custom Decorations and it can be reused</span>
+<span class="kd">var</span> <span class="nx">randomDecoration</span> <span class="o">=</span> <span class="nx">customRandomDecoration</span><span class="p">(</span><span class="nb">Array</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;~&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">));</span>
+<span class="c1">// prints: &quot;&quot;--- Decorate Me ++++&quot;</span>
+
+<span class="nx">printDecorated</span><span class="p">(</span><span class="s2">&quot;Decorate Me&quot;</span><span class="p">,</span> <span class="nx">randomDecoration</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Sources:</strong></p>
+
+<ol>
+<li><a href="http://ryanchristiani.com/functions-as-first-class-citizens-in-javascript/">Functions as First Class Citizens in JavaScript</a></li>
+</ol>
+</main>
+
+<div class="artice-footer-meta">
+    <strong>Posted on:</strong>09/12/19 19:58:45,
+    <strong>last edited on:</strong>04/25/21 17:13:36,
+    <strong>written by:</strong>GitHub
+</div><footer>
+    <p class=footer-links> 
+    <a href="./">Home</a>
+    <a href="./rss.xml">RSS</a>
+    <a href="./atom.xml">Atom</a>
+    </p>
+    <p class="footer-engine">Made with <a href="https://pedantic.software/git/blogit">blogit</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚚</text></svg>">
+    <link rel="stylesheet" href="/data/css/global.css">
+    <link rel="stylesheet" href="/data/css/pygments.css">
+    <title></title>
+    <meta name="description" content="Engineering brain dumps.">
+    <link rel="stylesheet" href="/data/css/blog.css">
+    <link rel="icon" href="/data/other/favicon.ico" type="image/gif" />
+</head>
+
+<body>
+<h1>Few lessons I learned after using python fabric 1.x</h1>
+<main>
+<p><a href="https://docs.fabfile.org/en/1.14/">Fabric</a> is a great framework for executing code on remote &amp; local machines. The 1.X had a
+pretty good documentation, but workflows and tools were not so clearly
+established after writing several scrips myself I managed to abstract few rules
+that I believe others will find to be useful.</p>
+
+<h1 id="fabric-lessons">Fabric Lessons</h1>
+
+<h2 id="1-default-function-arguments-are-a-honking-great-idea">$1. Default function arguments are a honking great idea</h2>
+
+<p>let's do more of those!</p>
+
+<h2 id="2-although-using-env-as-default-function-parameter-may-be-problematic">$2. , although using <code>env.*</code> as default function parameter may be <code>problematic</code></h2>
+
+<h3 id="21-using-env-in-method-bodies-is-a-bad-idea-but-it-can-be-made-better">$2.1. using <code>env.*</code> in method bodies is a bad idea, but it can be made better</h3>
+
+<pre><code>def list_root(default_path=None):
+
+    if not default_path:
+        default_path = env.sys_default_path
+        # this will make function more reusable in other scripts, because
+        # you can simply delete this if part and all env.* specific vars are
+        # no longer a problem
+
+    run('ls -alt {}'.format(default_path))
+
+</code></pre>
+
+<ul>
+<li>setting <code>default_path</code> inside an if statement makes function more reusable.</li>
+<li>if you use <code>def list_root(default_path=env.sys_default_path):</code>  it will be
+incompatible with paragraph [$5].</li>
+</ul>
+
+<h2 id="3-split-your-code-to-python-modules">$3. Split your code to python modules</h2>
+
+<pre><code>|- nodes.py (servers)
+|- installers.py
+|- services.py
+`- fabfile.py (imports files above)
+</code></pre>
+
+<p>Your code will outgrow a single file trust me.  Think about module structure
+first!  More info about splitting to modules is <a href="https://docs.fabfile.org/en/1.14/usage/tasks.html?highlight=modules">here</a></p>
+
+<h2 id="4-begin-by-using-global-module-constants-first-and-only-if-needed-use-env">$4. Begin by using global module constants first and only if needed use <code>env.*</code></h2>
+
+<p>Somethings never change, let's check if your CAPS LOCK key is still working</p>
+
+<pre><code>from fabric.api import run
+
+# we know that this will never change, so let's store it in a constant
+ALL_CAPS_CAPS_LOCK_TEST = 'armstrong'
+
+# == OR ==
+
+# if you want to import some constants from other python modules
+from nasa.hax import hacked_user as ALL_CAPS_CAPS_LOCK_TEST
+
+
+env.host=['nasa.org:22']
+env.user = ALL_CAPS_CAPS_LOCK_TEST
+
+def prod_env():
+    env.hosts=['prod-server.com']
+
+</code></pre>
+
+<h2 id="5-differentiate-environments-by-using-simple-pythonic-methods">$5. Differentiate environments by using simple Pythonic methods:</h2>
+
+<pre><code>from fabric.api import run
+
+env.host=['test-server.com']
+
+def prod_env():
+    env.hosts=['prod-server.com']
+
+def test_server():
+    # we don't call env hosts inside this func body, because we want test-server
+    # to be the default server because, writing: `$ fab test_server [...]` is annoying
+    pass
+
+def list_home():
+    run('ls -alt $HOME')
+</code></pre>
+
+<p>call these methods in your terminal</p>
+
+<pre><code>$ fab prod_env list_home  # this will execute code on prod server
+$ fab test_env list_home # this will execute code on test server 
+$ fab list_home  # this will execute code on test server because `env.hosts` are global in fabfile.py module
+</code></pre>
+
+<h2 id="6-one-type-of-function-root-run-or-local-inside-a-method-body">$6. One type of function <code>root()</code>,  <code>run()</code> or <code>local()</code> inside a method body</h2>
+
+<p>Excessive usage of mixed execution methods will make your function very hairy and messy,
+because in order to write a generic method that you can run both locally and remotely you will need to write many <code>if</code>
+statements also giving your function tons of default parameters when doing a
+subsystem call.  The optimal way is to avoid mixing subsystem
+functions: <code>root()</code>, <code>run()</code>, <code>local()</code> in fabric method you are writing!
+The benefits of not mixing these functions in a method is that you can replace
+them, since function without <code>()</code> in Python is an object.  See example below:</p>
+
+<pre><code>from fabric.api import local, run, sudo
+from fabric.state import env
+
+
+env.user='troubled.man'
+env.host=['nasa.org:22']
+
+def which_user(caller=local):
+    caller('whoami')
+
+which_user(caller=local)  # this will print user of your local machine
+which_user(caller=run)  # this will print `troubled.man`
+which_user(caller=root)  # this will print `root` (because in linux sudo command
+# temporaraly changes your user to root)
+
+# you made function that does 3 different things by passing a single parameter.
+# that is why you want constency in your code execution functions
+
+</code></pre>
+
+<h2 id="7-python-python">$7. python =/= python</h2>
+
+<p>Fabric is written in Python 2.7 but most of the newer projects are written in Python
+3.X.  This means that you can't simply pip install fabric to a python 3.X
+environment this results in you having to change virtual or Anaconda environments
+when doing fabric calls, see example below:</p>
+
+<pre><code>$ source activate py27  # activating anaconda python=2.7 env
+$ python manage.py runserver  # for example let's call django app writen in 3.X
+
+  File "manage.py", line 15
+    ) from exc
+         ^
+SyntaxError: invalid syntax
+</code></pre>
+
+<p>What just happened that once I activate my virtual environment python executable
+path changes:</p>
+
+<pre><code>$ which python
+/usr/bin/python
+$ source activate py27
+$ which python
+~/anaconda/envs/py27/bin/python
+</code></pre>
+
+<p>So that is the reason why django app in example below did not start.  One
+possible fix is to use <code>py27</code> environment always.  And modify <code>fabfile.py</code> to
+activate python3 environment locally when needed. </p>
+
+<pre><code>from fabric.api import local, run, sudo
+from fabric.state import env
+
+
+env.user='armstrong'
+env.host=['nasa.org:22']  
+env.hosts = env.host
+
+env.runtime = 'source activate py36 &amp;&amp;'  # let's assume our django app is running, on 3.6
+
+def prod_env():
+    env.runtime = ''  # we assume default python path is 3.X on prod_env
+    env.caller = run
+
+
+def local_env():
+    pass
+
+
+def python_version(caller=local, runtime=None):
+
+    # let's use runtime of our environment
+    if not runtime:
+        runtime = env.runtime
+
+    caller('{} python -V'.format(runtime))
+
+
+def agnostic_python_version(env_func=prod_env):
+    """this will print whichever version is on the remote server"""
+
+    env_func()  # calls any environment function you set
+    python_version(caller=env.caller)
+    """
+    in this case we can use caller=env.* as
+    default parameter, because we explicitly set by calling env_func
+    """
+</code></pre>
+
+<pre><code>$ fab local_env python_version
+[localhost] local: source activate py36&amp;&amp; python -V
+Python 3.6.3 :: Anaconda, Inc.
+
+# now let's hack into nasa
+
+$ fab agnostic_python_version
+[herver.local] Executing task 'agnostic_python_version'
+[herver.local] run:  python -V
+[herver.local] out: Python 2.7.13
+[herver.local] out:
+
+
+Done.
+Disconnecting from nasa.org... done.
+</code></pre>
+
+<p><strong>return 33</strong></p>
+</main>
+
+<div class="artice-footer-meta">
+    <strong>Posted on:</strong>08/19/18 18:30:52,
+    <strong>last edited on:</strong>04/25/21 17:13:36,
+    <strong>written by:</strong>GitHub
+</div><footer>
+    <p class=footer-links> 
+    <a href="./">Home</a>
+    <a href="./rss.xml">RSS</a>
+    <a href="./atom.xml">Atom</a>
+    </p>
+    <p class="footer-engine">Made with <a href="https://pedantic.software/git/blogit">blogit</a></p>
+</footer>
+</body>
+</html>

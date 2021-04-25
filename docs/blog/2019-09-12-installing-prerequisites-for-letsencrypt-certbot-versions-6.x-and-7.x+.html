@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚚</text></svg>">
+    <link rel="stylesheet" href="/data/css/global.css">
+    <link rel="stylesheet" href="/data/css/pygments.css">
+    <title></title>
+    <meta name="description" content="Engineering brain dumps.">
+    <link rel="stylesheet" href="/data/css/blog.css">
+    <link rel="icon" href="/data/other/favicon.ico" type="image/gif" />
+</head>
+
+<body>
+<h1>Fixing Let's Encrypt Certbot prerequisite issues.</h1>
+<main>
+<p>I ran into an issue today when I could not install <code>certbot-auto</code> on a Linux
+machine running CentOS 6.10.</p>
+
+<p>As it turns out that you need to <strong>enable</strong>  <strong>EPEL</strong> package repository with yum package manager.
+The error I got during certbot installation(prior to enabling the <strong>EPEL</strong>) was:</p>
+
+<pre><code>Package ca-certificates-2018.2.22-65.1.el6.noarch already installed and latest version
+Package python-devel-2.6.6-68.el6_10.x86_64 already installed and latest version
+No package python-virtualenv available.
+Package python-tools-2.6.6-68.el6_10.x86_64 already installed and latest version
+No package python-pip available.
+Package 1:mod_ssl-2.2.15-69.el6.centos.x86_64 already installed and latest version
+Nothing to do
+Creating virtual environment...
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 27, in &lt;module&gt;
+  File "&lt;stdin&gt;", line 19, in create_venv
+  File "/usr/lib64/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/usr/lib64/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/usr/lib64/python2.7/subprocess.py", line 394, in _init_
+    errread, errwrite)
+  File "/usr/lib64/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+</code></pre>
+
+<p>let's focus on the line with <code>No package python-pip available.</code>.
+It turns out that  python-pip &amp; python-virtualenv are EPEL packages.
+These are the packages that caused the issue, because certbot could not install them without EPEL enabled.</p>
+
+<h2 id="solutionfix">Solution/Fix</h2>
+
+<p>Install and enable EPEL:</p>
+
+<pre><code>yum update
+</code></pre>
+
+<p>Install EPEL</p>
+
+<pre><code>yum install epel-release -y 
+</code></pre>
+
+<p>Open epel config </p>
+
+<pre><code>vim /etc/yum.repos.d/epel.repo 
+</code></pre>
+
+<p>set <code>enable=1</code></p>
+
+<pre><code>[EPEL]
+...
+#enabled=0
+enable=1
+</code></pre>
+
+<p>Save &amp; Exit the text editor.
+Update packages:</p>
+
+<pre><code>yum update
+</code></pre>
+
+<p>Verify that EPEL was enabled:</p>
+
+<pre><code>yum repolist | grep epel
+</code></pre>
+
+<p>If grep matches something similar:</p>
+
+<pre><code># epel        Extra Packages for Enterprise Linux 6 - x86_64       12,568
+</code></pre>
+
+<p>then certbot prerequisites should be met.
+You can now continue with <a href="https://certbot.eff.org/">Encrypt's certbot</a> installation.</p>
+
+<p><code>return 33</code></p>
+</main>
+
+<div class="artice-footer-meta">
+    <strong>Posted on:</strong>04/25/21 17:13:36,
+    <strong>last edited on:</strong>04/25/21 17:13:36,
+    <strong>written by:</strong>GitHub
+</div><footer>
+    <p class=footer-links> 
+    <a href="./">Home</a>
+    <a href="./rss.xml">RSS</a>
+    <a href="./atom.xml">Atom</a>
+    </p>
+    <p class="footer-engine">Made with <a href="https://pedantic.software/git/blogit">blogit</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚚</text></svg>">
+    <link rel="stylesheet" href="/data/css/global.css">
+    <link rel="stylesheet" href="/data/css/pygments.css">
+    <title></title>
+    <meta name="description" content="Engineering brain dumps.">
+    <link rel="stylesheet" href="/data/css/blog.css">
+    <link rel="icon" href="/data/other/favicon.ico" type="image/gif" />
+</head>
+
+<body>
+<h1>Control anything SSH with Homeassistant's Hass.io</h1>
+<main>
+<h2 id="what-is-ssh-and-how-to-use-it-for-controlling-other-machines">What is SSH and how to use it for controlling other machines?</h2>
+
+<p>SSH is a powerful command line-tool allowing for you to connect to a remote machine and issue any shell command remotely.
+Basically SSH is a way of <strong>sending</strong> a command to a remote machine without doing the typing in by sitting front of the computer yourself.
+This means you can do things like shutdowns, maintenance, updates or anything else you want with SSH (as long as you
+have the username and the password of that particular server).
+A good example would be shutting down remote server using this SSH command:</p>
+
+<pre><code>ssh donald@192.168.1.2 'sudo reboot'
+</code></pre>
+
+<p>This command will effectively restart a machine with IP <code>192.168.1.2</code> machine.
+Cool but how do you do that using Homeassistant? By using the <a href="https://home-assistant.io/components/switch.command_line/" title="Homeassistant command line component"><code>command_line</code></a> component.
+This is all fine and dandy but if you tried to connect to <code>donald</code> using this command you probably noticed that you needed a password for that.
+And now you have probably realized that you will not be able to put your password to the <code>command_line</code> component, since password request interactive.
+Luckily for you can do SSH commands without entering any passwords and yet still be safe at the same time.
+For this feat you will need a <strong>public/private</strong> key pair that will be used to connect to your remote machine without any passwords.</p>
+
+<h2 id="can-you-even-use-ssh-with-hassio">Can you even use SSH with Hass.io?</h2>
+
+<p>After my migration from Hassbian to Hass.io, I ran into an issue.
+The issue was that I could not send proper SSH commands to a computer running <a href="https://hyperion-project.org/" title="Hyperion Project site">Hyperion</a>.
+These issues with SSH were in fact caused by the concept of Docker isolation.
+This means that my Homeassistant's instance was completely separated from my host machine, thus not allowing me to run executables such as SSH and others.
+Luckily official Homeassistant Docker image has SSH client installed to the container so this mean that you can call SSH commands, but yet again there is a catch.
+Can you guess what is that catch?
+As mentioned before we NEED to authenticate ourselves using a password OR public/private key pair.
+So let us begin by making a public/private key pair.</p>
+
+<h2 id="generating-the-ssh-keys">Generating the SSH Keys</h2>
+
+<p>In reality, we need to generate ssh keys both on the <strong>FROM</strong> machine and the
+<strong>TO</strong> machine. Because this is the only way (in SSH) for BOTH machines can prove their
+identity to each other. In this tutorial a machine that we issue commands FROM will be
+called the MASTER &amp; the machine and the machine executing commands SLAVE in our
+case MASTER is the machine running HASS.io instance.</p>
+
+<h2 id="tutorial">Tutorial</h2>
+
+<p>In this tutorial we will make button in Homeassistant that when pressed will shut down our SLAVE server via SSH.
+Basically it will append a text file every time we press a button.
+This example will be a good starting point for controlling remote devices.</p>
+
+<p><strong>Prerequisites:</strong></p>
+
+<ul>
+<li>An SSH connection to your <a href="https://home-assistant.io/developers/hassio/debugging/" title="Connect Hassio host">Hass.io ResinOS host</a></li>
+</ul>
+
+<p>In my case IP addresses were: </p>
+
+<ul>
+<li>MASTER IP <strong>192.168.0.105</strong> and SSH port <strong>22222</strong></li>
+<li>SLAVE IP: <strong>192.168.0.111</strong></li>
+</ul>
+
+<h3 id="make-ssh-keys-both-on-master-and-the-slave">Make SSH keys both on MASTER and the SLAVE</h3>
+
+<p>Generate SSH keys on HASS.io Homeassistant docker container</p>
+
+<h3 id="set-up-master">Set up MASTER:</h3>
+
+<p>Connect to the MASTER. This will not work "out of the box" so first follow
+<a href="https://home-assistant.io/developers/hassio/debugging/" title="Connect Hassio host">official tutorial</a> on how to connect to the HASS.io host running ResinOS.</p>
+
+<pre><code>ssh root@192.168.0.105 -p 22222
+</code></pre>
+
+<p>Now attach to the Homeassistant docker container.
+List available docker containers.</p>
+
+<pre><code>docker ps -a
+</code></pre>
+
+<p>Find one looking something like <code>homeassistant/homeassistant3</code>.
+Copy its CONTAINER ID looking something like <code>b7dfc2f4d0c4</code>.
+Then attach to your container,</p>
+
+<pre><code>docker exec -it b7dfc2f4d0c4 /bin/bash
+</code></pre>
+
+<p>now finally generate your SSH key, but this time in a different directory  </p>
+
+<pre><code>mkdir /config/ssh
+ssh-keygen -t rsa -f /config/ssh/id_rsa
+</code></pre>
+
+<p>lets checkout our two brand-new PUBLIC &amp; PRIVATE keys</p>
+
+<pre><code>cd /config/ssh
+ls -al
+cat id_rsa.pub
+</code></pre>
+
+<p>if all went well you <strong>public key</strong> output should look something like this:</p>
+
+<pre><code>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDyiprxeHAAieq2YtiXhFgSQIhZwvY6zsPAhsNU/N6yJ+JptVJGWBNY0tAD4eQiSsl88Qe4ryWVmtnw83jUjDMZp24uRtEAPnPW3f9N8mbDnyCEtbYhIDn1KseL3SuRWyFzk0fcMExZfsXrxgZ5nD/yQKvjcHm52LrhDfauxYADItonBZA+6mXh0E1LBrk6gP884IpLLbT9xetW2ZLP6htJDTPc2k9qN1cRVj3DD5Ppfyct1FmfZcAyi3Ua2dPxzngI5RUsjLBaqP+3lluc7fJVYK7fhnGZ36E/JNEamlzktBuLG1+1G3wxCshMFFBBuLTHb7qhtueIBY/4+wduJlFD root@hassio
+</code></pre>
+
+<p><em>IMPORTANT:</em> copy this value it is your PUBLIC key we will use later!</p>
+
+<h3 id="set-up-slave">Set up SLAVE:</h3>
+
+<p>For testing purposes lets create a user called <code>mister.slave</code>
+connect to your SLAVE machine</p>
+
+<pre><code>ssh myUser@192.168.0.111
+</code></pre>
+
+<p>add a user called <code>mister.slave</code></p>
+
+<pre><code>sudo useradd mister.slave sudo
+sudo passwd mister.slave
+</code></pre>
+
+<p>This step may differ because Unix based distros use different commands for enabling sudo on your user in my case (Debian 9)
+I just had to write <strong>sudo</strong> when creating a new <code>mister.slave</code> user.</p>
+
+<p>This will require a password write something memorable.
+We will delete this user later anyway.
+After creating a <code>mister.slave</code> switch to it:</p>
+
+<pre><code>sudo su mister.slave
+</code></pre>
+
+<p>Now that you became <code>mister.slave</code> user lets <strong>finally</strong> make our SSH key pair</p>
+
+<pre><code>ssh-keygen -t rsa
+</code></pre>
+
+<p>Okay we have our keys setup but what about passwordless connection from MASTER?
+Its easy we have to add the <strong>public key</strong> we copied before to our SLAVE machines'
+<code>authorized_keys</code> file.</p>
+
+<pre><code>echo "PASTE YOUR MASTER KEY INSTEAD OF THIS TEXT" &gt;&gt; ~/.ssh/authorized_keys
+</code></pre>
+
+<p>On some systems <code>authorized_keys</code> file must have specific Unix permissions set
+, and it will fail silently if you do not add these permissions so let's do that.
+Line below will only make the file readable and writable to our user.</p>
+
+<pre><code>chmod 600 ~/.ssh/authorized_keys
+</code></pre>
+
+<p>Okay our connection should be good to go. So what we just did is we created an SSH key pair on
+both MASTER and the SLAVE machines &amp; we installed MASTERS <strong>public key</strong> onto SLAVE. Now the
+SLAVE trusts the MASTER machine and allows it to connect without a password.</p>
+
+<p>You will probably be interested in running some commands with <strong>sudo</strong> without a password. For this
+we will need to add these lines to <code>/etc/sudoers</code> file.</p>
+
+<p><strong>WARNING:</strong> You should be very careful when editing <code>/etc/sudoers</code> file one bad character could lock you out
+from the system forever!</p>
+
+<pre><code>sudo visudo
+</code></pre>
+
+<p>Since <code>visudo</code> uses vim text editor it will require you to know some commands. Do not worry I will denote editor command like this: <code>[[ ]]</code>. Everything in the <code>[[ ]]</code> are editor
+commands that you will have to type <strong>manually</strong> on your keyboard.</p>
+
+<p><em>Go to the bottom of the file</em></p>
+
+<pre><code>[[ shift + g ]] or simply [[ G ]]
+</code></pre>
+
+<p><em>enter insert mode</em></p>
+
+<pre><code>[[ i ]]
+</code></pre>
+
+<p>Paste this to the end of the file.</p>
+
+<pre><code>mister.slave    ALL=(ALL) NOPASSWD:    ALL
+</code></pre>
+
+<p><em>Exit text editor and save contents</em></p>
+
+<pre><code>[[ :wq ]]
+</code></pre>
+
+<p>If all went well you should be able to run sudo commands without password, lets test it out!</p>
+
+<pre><code>sudo whoami
+</code></pre>
+
+<p>Expected output should be <code>root</code>. So if console printed <code>root</code> and did not ask you for password congrats!
+You can now run all sudo commands without a having to enter your users password.</p>
+
+<h3 id="test-ssh-connection-from-master-to-slave">Test SSH connection from MASTER to SLAVE</h3>
+
+<p>let's connect to our MASTER machine again</p>
+
+<pre><code>ssh root@192.168.0.105 -p 22222
+</code></pre>
+
+<p>then lets issue a REBOOT command to our SLAVE</p>
+
+<pre><code>docker exec -it b7dfc2f4d0c4 /bin/bash
+ssh -i /config/ssh/id_rsa -o StrictHostKeyChecking=no mister.slave@192.168.0.111 'sudo reboot'
+</code></pre>
+
+<p>If all went well you congrats again you rebooted your <code>mister.slave</code> from Homeassistant manually!</p>
+
+<p><code>-i /config/ssh/id_rsa</code>: Defines in which directory our private SSH key can be found.
+<code>-o StrictHostKeyChecking=no</code>: Says to your SSH client to not prompt you with warning messages or yes/no questions when host <a href="https://superuser.com/questions/125324/how-can-i-avoid-sshs-host-verification-for-known-hosts" title="No SSH prompts">has changed</a>.</p>
+
+<p>Keep in mind that <code>b7dfc2f4d0c4</code> is a unique ID of my docker container yours will definitely vary!
+if you are confused refer to steps we did in the beginning <a href="#set-up-master">Set Up MASTER</a> chapter.
+When your SLAVE has rebooted you can continue to <a href="#add-homeassistant-components">Add Homeassistant Components.</a></p>
+
+<h3 id="add-homeassistant-components">Add Homeassistant Components</h3>
+
+<p>Add these lines to your <code>configuration.yaml</code> file and then restart Hass.io</p>
+
+<div class="codehilite"><pre><span></span><code><span class="nt">switch</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">platform</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">command_line</span>
+    <span class="nt">switches</span><span class="p">:</span>
+      <span class="nt">test_ssh</span><span class="p">:</span>
+        <span class="nt">command_on</span><span class="p">:</span> <span class="s">&quot;ssh</span><span class="nv"> </span><span class="s">-i</span><span class="nv"> </span><span class="s">/config/ssh/id_rsa</span><span class="nv"> </span><span class="s">-o</span><span class="nv"> </span><span class="s">StrictHostKeyChecking=no</span><span class="nv"> </span><span class="s">mister.slave@192.168.0.111</span><span class="nv"> </span><span class="s">&#39;sudo</span><span class="nv"> </span><span class="s">reboot&#39;&quot;</span>
+  <span class="nt">friendly_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Magic Test Switch</span>
+</code></pre></div>
+
+<p>Now go to your Homeassistant dashboard and press your newly created button.</p>
+
+<p><video src="/data/ani/button-in-action.webm"  autoplay loop muted></video></p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>If you followed this tutorial thoroughly you should be good to seed to start for remote control via SSH. If you are
+a beginner this guide is a hard and if you managed to reboot something from Homeassistant you should pat your self
+on the back.
+Personally I used this method for turning on effects on my Hyperion daemon. Also, I am planning to make shutdown and reboot buttons
+on other server I have at home. One thing to mention though is that you will not have any console output when you call
+a remote command using <code>command_line</code> component, so monitoring things on a remote machine is not possible. You can check out my
+Hass.io config file for further <a href="https://github.com/dovydasgulbinas/hass-conf" title="My Homeassistant configuration">inspiration here</a></p>
+
+<p>return 33</p>
+</main>
+
+<div class="artice-footer-meta">
+    <strong>Posted on:</strong>04/25/21 17:13:36,
+    <strong>last edited on:</strong>04/25/21 17:13:36,
+    <strong>written by:</strong>GitHub
+</div><footer>
+    <p class=footer-links> 
+    <a href="./">Home</a>
+    <a href="./rss.xml">RSS</a>
+    <a href="./atom.xml">Atom</a>
+    </p>
+    <p class="footer-engine">Made with <a href="https://pedantic.software/git/blogit">blogit</a></p>
+</footer>
+</body>
+</html>

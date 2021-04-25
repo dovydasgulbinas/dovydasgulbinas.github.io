@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title type="text">dovydas.xyz/blog</title>
+<subtitle type="text">blog</subtitle>
+<updated>2021-04-25T17:36:05Z</updated>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog"/>
+<id>https://dovydas.xyz/blog/atom.xml</id>
+<link rel="self" type="application/atom+xml" href="https://dovydas.xyz/blog/atom.xml"/>
+<entry>
+<title type="text">What is Game State Integration on CS:GO?</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2016-11-29-what-is-game-state-integration.md.html"/>
+<id>https://dovydas.xyz/blog/2016-11-29-what-is-game-state-integration.md.html</id>
+<published>2021-04-25T17:13:36Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>dovydasgulbinas</name></author>
+<summary type="text">## Intro</summary>
+</entry>
+<entry>
+<title type="text">🏡 Adding more features to Hyperion in Homeassistant</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2017-07-23-adding-more-features-to-hyperion-in-homeassistant.md.html"/>
+<id>https://dovydas.xyz/blog/2017-07-23-adding-more-features-to-hyperion-in-homeassistant.md.html</id>
+<published>2021-04-25T17:13:36Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>dovydasgulbinas</name></author>
+<summary type="text"><video src="/data/ani/hyperion-hass.webm"  autoplay loop muted></video></summary>
+</entry>
+<entry>
+<title type="text">Issuing and managing client-side SSL certificates with Python</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2017-10-29-using-client-side-certification.md.html"/>
+<id>https://dovydas.xyz/blog/2017-10-29-using-client-side-certification.md.html</id>
+<published>2021-04-25T17:13:36Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>dovydasgulbinas</name></author>
+<summary type="text">![start](/data/img/using-client-side-certification.png)</summary>
+</entry>
+<entry>
+<title type="text">Control anything SSH with Homeassistant's Hass.io</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2018-01-21-controlling-anything-via-ssh.md.html"/>
+<id>https://dovydas.xyz/blog/2018-01-21-controlling-anything-via-ssh.md.html</id>
+<published>2021-04-25T17:13:36Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>dovydasgulbinas</name></author>
+<summary type="text">## What is SSH and how to use it for controlling other machines?</summary>
+</entry>
+<entry>
+<title type="text">Modifying Android Phone To Run Without a Battery</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2019-02-23-modifying-android-phone-to-run-without-a-battery.md.html"/>
+<id>https://dovydas.xyz/blog/2019-02-23-modifying-android-phone-to-run-without-a-battery.md.html</id>
+<published>2021-04-25T17:13:36Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>dovydasgulbinas</name></author>
+<summary type="text"></summary>
+</entry>
+<entry>
+<title type="text">Fixing Let's Encrypt Certbot prerequisite issues.</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2019-09-12-installing-prerequisites-for-letsencrypt-certbot-versions-6.x-and-7.x+.md.html"/>
+<id>https://dovydas.xyz/blog/2019-09-12-installing-prerequisites-for-letsencrypt-certbot-versions-6.x-and-7.x+.md.html</id>
+<published>2021-04-25T17:13:36Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>dovydasgulbinas</name></author>
+<summary type="text"></summary>
+</entry>
+<entry>
+<title type="text">Functions are first-class citizens in JavaScript</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2019-09-12-functions-are-firstclass-citizens-in-javascript.md.html"/>
+<id>https://dovydas.xyz/blog/2019-09-12-functions-are-firstclass-citizens-in-javascript.md.html</id>
+<published>2019-09-12T19:58:45Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>Dovydas Gulbinas</name></author>
+<summary type="text"></summary>
+</entry>
+<entry>
+<title type="text">Generating infinite sequence of bytes set to ones</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2019-06-21-initiliazing-python-byte-objects-with-value-of-0b1111....md.html"/>
+<id>https://dovydas.xyz/blog/2019-06-21-initiliazing-python-byte-objects-with-value-of-0b1111....md.html</id>
+<published>2019-06-21T15:24:13Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>Dovydas Gulbinas</name></author>
+<summary type="text">## Context</summary>
+</entry>
+<entry>
+<title type="text">Thou Shall Yield Pythonic Generator</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2019-06-07-thou-shall-yield-pythonic-generator.md.html"/>
+<id>https://dovydas.xyz/blog/2019-06-07-thou-shall-yield-pythonic-generator.md.html</id>
+<published>2019-06-07T15:33:00Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>Dovydas Gulbinas</name></author>
+<summary type="text"></summary>
+</entry>
+<entry>
+<title type="text">Creating Multiple Folders From a Bash Array</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2018-11-05-creating-multiple-folders-from-a-bash-array.md.html"/>
+<id>https://dovydas.xyz/blog/2018-11-05-creating-multiple-folders-from-a-bash-array.md.html</id>
+<published>2018-11-05T13:10:08Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>Dovydas Gulbinas</name></author>
+<summary type="text"></summary>
+</entry>
+<entry>
+<title type="text">Newsboat + Bitchute + mpv + youtube-dl</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2018-08-25-newsboat--bitchute--mpv--youtubedl.md.html"/>
+<id>https://dovydas.xyz/blog/2018-08-25-newsboat--bitchute--mpv--youtubedl.md.html</id>
+<published>2018-08-25T19:19:55Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>Dovydas Gulbinas</name></author>
+<summary type="text">## $0: Why?</summary>
+</entry>
+<entry>
+<title type="text">Few lessons I learned after using python fabric 1.x</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2018-08-19-few-lessons-i-learned-after-using-python-fabric-1x.md.html"/>
+<id>https://dovydas.xyz/blog/2018-08-19-few-lessons-i-learned-after-using-python-fabric-1x.md.html</id>
+<published>2018-08-19T18:30:52Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>Dovydas Gulbinas</name></author>
+<summary type="text"></summary>
+</entry>
+<entry>
+<title type="text">Adding Arbitrary Attributes To Python Class</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2018-08-01-adding-arbitrary-attributes-to-python-class.md.html"/>
+<id>https://dovydas.xyz/blog/2018-08-01-adding-arbitrary-attributes-to-python-class.md.html</id>
+<published>2018-08-01T20:45:42Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>Dovydas Gulbinas</name></author>
+<summary type="text"></summary>
+</entry>
+<entry>
+<title type="text">Allow Developers To Deploy Straight To Production</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2018-07-21-allow-your-developers-to-deploy-to-production.md.html"/>
+<id>https://dovydas.xyz/blog/2018-07-21-allow-your-developers-to-deploy-to-production.md.html</id>
+<published>2018-07-21T16:12:08Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>Dovydas Gulbinas</name></author>
+<summary type="text">In times when _continuous integration_ is a new fad there still exists legacy
+systems which are not suitable for this flexible way of applying changes.  This
+means that your company will be stuck in the eternal purgatory of developers and DevOps working
+together on task that developer alone could have done.  Not allowing for your
+developer to apply changes for himself is a **stupid methodology**.  </summary>
+</entry>
+<entry>
+<title type="text">Grice's Maxims Pythonic Edition</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2018-07-14-grices-maxims-pythonic-edition.md.html"/>
+<id>https://dovydas.xyz/blog/2018-07-14-grices-maxims-pythonic-edition.md.html</id>
+<published>2018-07-14T14:42:38Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>Dovydas Gulbinas</name></author>
+<summary type="text"></summary>
+</entry>
+<entry>
+<title type="text">Creating A Production Ready Django App, pt. 2</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2018-07-07-creating-a-production-ready-django-app-pt2.md.html"/>
+<id>https://dovydas.xyz/blog/2018-07-07-creating-a-production-ready-django-app-pt2.md.html</id>
+<published>2018-07-07T20:50:52Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>Dovydas Gulbinas</name></author>
+<summary type="text"></summary>
+</entry>
+<entry>
+<title type="text">Creating A Production Ready Django App, pt. 1</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2018-07-01-creating-a-production-ready-django-app-pt1.md.html"/>
+<id>https://dovydas.xyz/blog/2018-07-01-creating-a-production-ready-django-app-pt1.md.html</id>
+<published>2018-07-01T16:50:16Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>Dovydas Gulbinas</name></author>
+<summary type="text"></summary>
+</entry>
+<entry>
+<title type="text">Introduction on REST authentication</title>
+<link rel="alternate" type="text/html" href="https://dovydas.xyz/blog/2018-06-26-rest-auth-methods.md.html"/>
+<id>https://dovydas.xyz/blog/2018-06-26-rest-auth-methods.md.html</id>
+<published>2018-06-26T16:17:39Z</published>
+<updated>2021-04-25T17:13:36Z</updated>
+<author><name>Dovydas Gulbinas</name></author>
+<summary type="text"></summary>
+</entry>
+</feed>

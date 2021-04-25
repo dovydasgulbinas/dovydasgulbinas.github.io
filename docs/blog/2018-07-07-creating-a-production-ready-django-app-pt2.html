@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚚</text></svg>">
+    <link rel="stylesheet" href="/data/css/global.css">
+    <link rel="stylesheet" href="/data/css/pygments.css">
+    <title></title>
+    <meta name="description" content="Engineering brain dumps.">
+    <link rel="stylesheet" href="/data/css/blog.css">
+    <link rel="icon" href="/data/other/favicon.ico" type="image/gif" />
+</head>
+
+<body>
+<h1>Creating A Production Ready Django App, pt. 2</h1>
+<main>
+<h1 id="intro">Intro</h1>
+
+<p>Before reading this, please make sure you are familiar with concepts and ideas
+covered in the pt.1 of this <a href="https://dovydas.xyz/django/python/devops/skeleton/2018/06/27/creating-a-production-ready-django-app-pt1.html">post</a>.  This post will be short and will simply
+create an additional file that will help us out with deployment task automation.
+The code for this project will be available at this <a href="https://github.com/dovydasgulbinas/blog-django-skeleton">git repository</a> make sure you
+checkout to git branch pt2! Also if you are not lazy 😉 I highly encourage you to
+do all the steps in this tutorial manually.</p>
+
+<h1 id="stage-6-create-fabric-file">STAGE-6 | Create Fabric File</h1>
+
+<p>In this stage we will create a new <strong>fabfile.py</strong>. This file will contain all
+the useful devops functions we will write and define.  Keep in mind that
+<strong>fabric2</strong> as oppose to <strong>fabric</strong> is relatively very new and still under
+active development.  The biggest benefit of the fabric2 is that it runs on
+python2.7 and python3.4+.  This means you will not need to hack your system path
+variables (on your terminal) every time your project is written on python 3.4+,
+because fabric package installed using pip3 will simply crash.</p>
+
+<pre><code>cd &lt;my-django-repo&gt;
+cd &lt;cool_project&gt;
+source ../env/bin/activate
+pip install fabric2
+</code></pre>
+
+<p>Now close and reopen new terminal window, because sometimes <strong>stubs</strong> installed via
+pip do not work.  <strong>Stub</strong> for those who do not know is a python script that is
+not a library, stubs are used as <strong>standalone</strong> scripts, that help us out with
+various tasks.  Stubs can be called from terminal directly as long as the stub
+directory is in your <code>$PATH</code> variable.  Every python virtual environment will
+have its own stub directory in our case they are stored at <code>../env/bin/</code>.</p>
+
+<p>Since we closed the terminal we need to activate virtual env again!</p>
+
+<pre><code>cd &lt;my-django-repo&gt;
+cd &lt;cool_project&gt;
+source ../env/bin/activate
+</code></pre>
+
+<p>By now you should notice that the last line you have called calls a python stub
+called <strong>activate</strong></p>
+
+<h2 id="copy-pasta-time">Copy Pasta Time</h2>
+
+<p>We need to create a new fabric.py file:</p>
+
+<pre><code>cd &lt;my-django-repo&gt;
+cd &lt;cool_project&gt;
+touch fabfile.py
+</code></pre>
+
+<p>now copy contents below to <code>fabfile.py</code></p>
+
+<script src="https://gist-it.appspot.com/http://github.com/dovydasgulbinas/blog-django-skeleton/blob/pt2/cool_project/fabfile.py"></script>
+
+<h1 id="stage-7-lets-test-the-fabric2">STAGE-7 | Let's Test The Fabric2</h1>
+
+<p>Using fabric2 CLI is relatively painless.  You Can list all the available tasks
+by calling <code>fab2 -l</code></p>
+
+<p>let's list fab2 tasks:</p>
+
+<pre><code>fab2 -l
+</code></pre>
+
+<p>let's start our Django project using fab2:</p>
+
+<pre><code>fab2 run
+</code></pre>
+
+<p><asciinema-player src="/data/cinemas/fab2.cast" cols="90" rows="25"></asciinema-player></p>
+
+<h1 id="outro">Outro</h1>
+
+<p>This was a brief tutorial it did not even scratch the surface of fabric2 I highly recommend you to check. The <code>fabfile.py</code>
+for yourself and try to understand what is written in that script.  I want to warn you that I may update the <code>fabfile.py</code> snippet showed in this blogpost, but this will be only for the greater good, because I currently have not fiugred out a way of importing bash environment variables to Nagios (Nagios is the core lib of fabric2).  Happy hacking and please do leave questions and suggestions in the comments.</p>
+
+<p>return 0</p>
+</main>
+
+<div class="artice-footer-meta">
+    <strong>Posted on:</strong>07/07/18 20:50:52,
+    <strong>last edited on:</strong>04/25/21 17:13:36,
+    <strong>written by:</strong>GitHub
+</div><footer>
+    <p class=footer-links> 
+    <a href="./">Home</a>
+    <a href="./rss.xml">RSS</a>
+    <a href="./atom.xml">Atom</a>
+    </p>
+    <p class="footer-engine">Made with <a href="https://pedantic.software/git/blogit">blogit</a></p>
+</footer>
+</body>
+</html>

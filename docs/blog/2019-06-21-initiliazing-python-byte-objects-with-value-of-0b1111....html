@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚚</text></svg>">
+    <link rel="stylesheet" href="/data/css/global.css">
+    <link rel="stylesheet" href="/data/css/pygments.css">
+    <title></title>
+    <meta name="description" content="Engineering brain dumps.">
+    <link rel="stylesheet" href="/data/css/blog.css">
+    <link rel="icon" href="/data/other/favicon.ico" type="image/gif" />
+</head>
+
+<body>
+<h1>Generating infinite sequence of bytes set to ones</h1>
+<main>
+<h2 id="context">Context</h2>
+
+<p>After trying to implement my own "one time pad (OTP)" file encryption.  I ran into an issue that
+I needed large byte object sequence to write proper unit tests for encryption/decryption.</p>
+
+<p>For those who don't know python has a special <code>bytes</code> object which stores "raw"
+data so to speak.  example of <code>bytes</code> in action:</p>
+
+<div class="codehilite"><pre><span></span><code>    <span class="o">&gt;&gt;&gt;</span> <span class="nb">bytes</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00\x00</span><span class="s1">&#39;</span>
+</code></pre></div>
+
+<p><code>bytes</code> output explained:</p>
+
+<pre><code>    b'...'   - indicates the the output is a byte string
+    \x       - escapes 'x' character with '\'. 'x' indicates that output in hex
+    \x00     - 0 in hex.  Also could be written as 00000000 in binary
+    \x00\x00 - since we created 2 bytes we 2 bytes stored
+</code></pre>
+
+<h2 id="goal">Goal</h2>
+
+<p>To write a small function for generating N bytes that are always 0b1111..
+e.g. </p>
+
+<div class="codehilite"><pre><span></span><code>    <span class="n">one_flood</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xff</span><span class="s1">&#39;</span>         <span class="c1"># 0b11111111 255 in decimal</span>
+    <span class="n">one_flood</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xff\xff</span><span class="s1">&#39;</span>     <span class="c1"># 0b11111111 11111111, 65535 in decimal</span>
+    <span class="n">one_flood</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xff\xff\xff</span><span class="s1">&#39;</span> <span class="c1"># 0b11111111 11111111 11111111,  16777215 in decimal</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<h2 id="proposed-solution">Proposed Solution</h2>
+
+<p>It should be noted that this code will only(reliably) work from python version &gt;=3.7.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">one_flood</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_bytes</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="mb">0b11111111</span>  <span class="c1"># 255</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bytes</span><span class="p">):</span>
+        <span class="c1"># on first iteration (a = 0) right shift (&lt;&lt;) does nothing.</span>
+        <span class="c1"># only the OR operator (|) transforms a=0 -&gt; a=255</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="n">M</span>
+
+    <span class="k">return</span> <span class="n">a</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="n">n_bytes</span><span class="p">,</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Why python &gt;= 3.7?:</p>
+
+<p>From this version and up <code>int</code> object has the ability to
+increase its size in bytes it variable if can't store any more data.  On older
+versions of python <code>int</code> object would simply overflow. Now this does not happen
+so theoretically <code>int</code> can now be of any size.</p>
+
+<p>why do we need <code>int</code> objects if we are creating <code>bytes</code>?:</p>
+
+<p>unfortunately python does not support bitwise and logical operations on <code>bytes</code>
+object this means that we must use <code>int</code> objects for that.</p>
+
+<h2 id="sources">Sources</h2>
+
+<p><a href="https://stackoverflow.com/questions/2612720/how-to-do-bitwise-exclusive-or-of-two-strings-in-python">1</a></p>
+</main>
+
+<div class="artice-footer-meta">
+    <strong>Posted on:</strong>06/21/19 15:24:13,
+    <strong>last edited on:</strong>04/25/21 17:13:36,
+    <strong>written by:</strong>GitHub
+</div><footer>
+    <p class=footer-links> 
+    <a href="./">Home</a>
+    <a href="./rss.xml">RSS</a>
+    <a href="./atom.xml">Atom</a>
+    </p>
+    <p class="footer-engine">Made with <a href="https://pedantic.software/git/blogit">blogit</a></p>
+</footer>
+</body>
+</html>
