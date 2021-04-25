@@ -16,8 +16,9 @@ BLOG_FEEDS ?= rss atom
 SED ?= sed
 DEV_URL ?= http://localhost
 DEV_PORT ?= 8888
+DEV_DIR ?= www
 
-RENDERER = ./markdown2.py -x fenced-code-blocks,tables,tag-friendly,numbering,footnotes
+RENDERER = ./markdown2.py -x fenced-code-blocks,tables,code-friendly,tag-friendly,numbering,footnotes,header-ids
 
 .PHONY: help init build deploy clean
 
@@ -25,7 +26,7 @@ ARTICLES = $(shell git ls-tree HEAD --name-only -- articles/ 2>/dev/null)
 TAGFILES = $(patsubst articles/%.md,tags/%,$(ARTICLES))
 
 help:
-	$(info blogit init|build|deploy|clean|serve)
+	$(info blogit init|build|deploy|pages-deploy|clean|serve)
 
 init:
 	mkdir -p articles data templates
@@ -51,13 +52,16 @@ build: blog/index.html tagpages $(patsubst articles/%.md,blog/%.html,$(ARTICLES)
 rebuild: clean build
 
 deploy: build
-	rsync -rLtvz $(BLOG_RSYNC_OPTS) blog/ data/ $(BLOG_REMOTE)
+	rsync -rLtvz $(BLOG_RSYNC_OPTS) pages/ blog data $(BLOG_REMOTE)
 
+pages-deploy: build
+	mkdir -p www
+	rsync -rLtvz $(BLOG_RSYNC_OPTS) pages/ blog data $(DEV_DIR)
 
 clean:
 	rm -rf blog tags
-	mkdir blog
-	cd blog && ln -s ../data . && cd --
+	# mkdir blog
+	# cd blog && ln -s ../data . && cd --
 
 config:
 	printf 'BLOG_REMOTE:=%s\n' \
@@ -187,7 +191,7 @@ blog/atom.xml: $(ARTICLES)
 	printf '</feed>\n' >> $@
 
 serve: open-url-dev
-	python3 -m http.server --bind 0.0.0.0 --directory blog $(DEV_PORT)
+	python3 -m http.server --bind 0.0.0.0 --directory $(DEV_DIR) $(DEV_PORT)
 
 open-url-dev:
 	python3 -c "import webbrowser; webbrowser.open_new_tab('$(DEV_URL):$(DEV_PORT)')"
