@@ -1,6 +1,7 @@
 🏡 Adding more features to Hyperion in Homeassistant
 
-![hass-gif](/data/img/hyperion-hass.gif)
+<video src="/data/ani/hyperion-hass.webm"  autoplay loop muted></video>
+
 
 ## Intro
 

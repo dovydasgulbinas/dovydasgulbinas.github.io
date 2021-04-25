@@ -412,7 +412,7 @@ Now we can make our second git commit
     git add .
     git commit -m "our second django project commit"
 
-![gz](/data/img/gz.gif)
+<video src="/data/ani/gz.webm"  autoplay loop muted></video>
 
 Now you have a better base for your future Django Projects.
 

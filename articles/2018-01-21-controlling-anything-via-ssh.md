@@ -185,7 +185,7 @@ then lets issue a REBOOT command to our SLAVE
 If all went well you congrats again you rebooted your `mister.slave` from Homeassistant manually!
 
 `-i /config/ssh/id_rsa`: Defines in which directory our private SSH key can be found.
-`-o StrictHostKeyChecking=no`: Says to your SSH client to not prompt you with warning messages or yes/no questions when host has changed [^5].
+`-o StrictHostKeyChecking=no`: Says to your SSH client to not prompt you with warning messages or yes/no questions when host [has changed][5].
 
 Keep in mind that `b7dfc2f4d0c4` is a unique ID of my docker container yours will definitely vary!
 if you are confused refer to steps we did in the beginning [Set Up MASTER](#set-up-master) chapter.
@@ -207,7 +207,7 @@ switch:
 
 Now go to your Homeassistant dashboard and press your newly created button.
 
-![switch](/data/img/magic-switch.png)
+<video src="/data/ani/button-in-action.webm"  autoplay loop muted></video>
 
 ## Conclusions
 
@@ -217,9 +217,9 @@ on the back.
 Personally I used this method for turning on effects on my Hyperion daemon. Also, I am planning to make shutdown and reboot buttons
 on other server I have at home. One thing to mention though is that you will not have any console output when you call
 a remote command using `command_line` component, so monitoring things on a remote machine is not possible. You can check out my
-Hass.io config file for further inspiration here [^4]
+Hass.io config file for further [inspiration here][4]
 
-return 0
+return 33
 
 
 [1]: https://home-assistant.io/components/switch.command_line/ "Homeassistant command line component"

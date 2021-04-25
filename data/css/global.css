@@ -59,17 +59,28 @@ dt {
     font-weight: bold;
 }
 
+
+
 html, body {
-    background: var(--black);
-    color: var(--white);
     max-width: 800px;
-    font-size: 16px;
-    line-height: 1;
     margin: 0 auto;
     padding: 0 1rem;
+    background: var(--black);
+    color: var(--white);
+
+    font-size: 16px;
+    line-height: 1;
     margin-bottom: 200px;
     font-family: 'Courier New', Courier, monospace;
 }
+
+video{
+    max-width: 700px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
 
 p{
     margin-top: 1rem;
