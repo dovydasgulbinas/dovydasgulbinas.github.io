@@ -8,4 +8,4 @@ _drafts/
 /tags/*
 .sandbox/*
 /www/*
-/docs/*
+#/docs/*
