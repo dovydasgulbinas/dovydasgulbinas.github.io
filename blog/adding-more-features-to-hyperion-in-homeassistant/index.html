@@ -1,0 +1,188 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="../../static/water.css?h=77b70841">
+  <link rel="stylesheet" href="../../static/style.css?h=530e7dd4">
+  
+  
+<link rel="stylesheet" href="../../static/pygments.css?h=81aa2f02">
+<link rel="stylesheet" href="../../static/blog-post.css?h=da39a3ee">
+
+  <link rel="icon" href="../../favicon.ico" type="image/gif"/>
+  <title>Adding more features to Hyperion in Homeassistant — dovydas.xyz</title>
+</head>
+<body>
+  
+  
+<nav class="navbar">
+    <ul class="navbar-nav">
+        <li class="logo">
+            <a href="/" class="nav-link">
+                <svg class="home-logo">
+                    <use href="../../static/logo.svg#home"></use>
+                </svg>
+                <svg class="logo-snail">
+                    <use href="../../static/logo.svg#snail"></use>
+                </svg>
+                <svg id="page-logo">
+                    <use href="../../static/logo.svg#dovydasxyz"></use>
+                </svg>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#blog"></use>
+                </svg>
+                <span class="link-text">Blog</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../../projects/" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#projects"></use>
+                </svg>
+                <span class="link-text">Projects</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../../contact-me/" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#contact-me"></use>
+                </svg>
+                <span class="link-text">Contact Me</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+  
+  
+  <main>
+      
+  
+<article>
+  <a href="./">
+    <h1 class="flex-container">
+    
+      <img class="h-icon-em" src="../../static/fallback.png?h=2a440d07"></img>
+    
+        Adding more features to Hyperion in Homeassistant
+      </h1>
+  </a>
+
+    <div class="flex-container post-meta">
+        <svg class="h-icon-16px"><use href="../../static/logo.svg#created"></use></svg>
+        <div>Jul 23, 2017</div>
+        
+        <svg class="h-icon-16px"> <use href="../../static/logo.svg#updated"></use></svg>
+        <div>Jun 3, 2022</div>
+        
+    </div>
+    <hr>
+  <div class="blog-post">
+  <video src="hyperion-hass.webm"  autoplay loop muted></video><h2 id="intro">Intro</h2><p>After playing around with Hyperion I really liked it, I liked it so much that I decided to implement it in my smart-home setup.  I currently use Hyperion for Kodi, but I wanted a way to control it with my <code>Homeassistant</code>, because I could automate a lot of workflows e.g. automatically turn on the backlight in evenings. My Setup uses two Raspberry Pi devices: First for <code>Kodi + Hyperion</code> and second just for <code>Homeassistant</code>. Okay lets begin.</p>
+<p>First open up your terminal and ssh to a machine with has Hyperion service enabled.</p>
+<pre><code>ssh kodi@192.168.1.99
+</code></pre>
+<p>Test if Hyperion commands are working:</p>
+<pre><code>hyperion-remote -e "Knight rider"
+</code></pre>
+<p>If you got your lights running are ok to go!</p>
+<p>NOTE: In my case Homeassistant and Hyperion are on a different machine therefore I needed to set up a password-less ssh connection from my Homeassistant RPi → Kodi RPi*</p>
+<p>Now login to your second machine running <code>Homeassistant</code> service.</p>
+<div class="hll"><pre><span></span>ssh<span class="w"> </span>pi@192.168.1.100
+sudo<span class="w"> </span>su<span class="w"> </span>homeassistant
+</pre></div>
+<p>Test the <code>Hyperion</code> again but now in a remote configuration.</p>
+<p><strong>WARNING:</strong> You are entering SSH inception, because you are connecting via SSH to Linux machine while already connected to another machine via SSH!</p>
+<pre><code>ssh kodi@192.168.1.99 'hyperion-remote -e "Knight rider"'
+</code></pre>
+<p>It was mentioned previously that this step just ran an SSH command in a different machine entirely via the power of SSH.  If your setup is all in one meaning <code>Hyperion</code> and <code>Homeassistant</code> are running on the same machine then the command would simply be:</p>
+<pre><code>hyperion-remote -e "Knight rider"
+</code></pre>
+<p>Edit <code>Homeassistant</code> configuration files:</p>
+<div class="hll"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">📔 configuration.yaml</span><span class="w"> </span><span class="c1">#</span>
+
+<span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="kt">!include</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scripts.yaml</span>
+
+<span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="kt">!include</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">groups.yaml</span>
+
+<span class="nt">input_select</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">hyperion_effects</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hyperion Effects</span>
+<span class="w">    </span><span class="nt">options</span><span class="p">:</span><span class="w"> </span><span class="kt">!include</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hyperion_effect_list.yaml</span>
+<span class="w">    </span><span class="nt">initial</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rainbow swirl</span>
+<span class="w">    </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mdi:white-balance-iridescent</span>
+
+<span class="nt">shell_command</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">run_hyperion_effect</span><span class="p">:</span><span class="w">  </span><span class="s">&quot;ssh</span><span class="nv"> </span><span class="s">kodi@192.168.1.99</span><span class="nv"> </span><span class="s">\&quot;hyperion-remote</span><span class="nv"> </span><span class="s">-e</span><span class="nv"> </span><span class="s">&#39;{{states.input_select.hyperion_effects.state}}&#39;\&quot;</span><span class="nv"> </span><span class="s">&quot;</span>
+</pre></div>
+<div class="hll"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">📔 hyperion_effect_list.yaml (create this file in hass root directory)</span>
+
+<span class="l l-Scalar l-Scalar-Plain">- Rainbow mood</span>
+<span class="l l-Scalar l-Scalar-Plain">- Rainbow swirl fast</span>
+<span class="l l-Scalar l-Scalar-Plain">- Rainbow swirl</span>
+<span class="l l-Scalar l-Scalar-Plain">- Red mood blobs</span>
+<span class="l l-Scalar l-Scalar-Plain">- Warm mood blobs</span>
+<span class="l l-Scalar l-Scalar-Plain">- Blue mood blobs</span>
+<span class="l l-Scalar l-Scalar-Plain">- Full color mood blobs</span>
+<span class="l l-Scalar l-Scalar-Plain">- Cold mood blobs</span>
+<span class="l l-Scalar l-Scalar-Plain">- Green mood blobs</span>
+<span class="l l-Scalar l-Scalar-Plain">- Knight rider</span>
+<span class="l l-Scalar l-Scalar-Plain">- Police Lights Single</span>
+<span class="l l-Scalar l-Scalar-Plain">- Police Lights Solid</span>
+<span class="l l-Scalar l-Scalar-Plain">- Rainbow mood</span>
+<span class="l l-Scalar l-Scalar-Plain">- Rainbow swirl fast</span>
+<span class="l l-Scalar l-Scalar-Plain">- Rainbow swirl</span>
+<span class="l l-Scalar l-Scalar-Plain">- Sparks Color</span>
+<span class="l l-Scalar l-Scalar-Plain">- Sparks</span>
+<span class="l l-Scalar l-Scalar-Plain">- Strobe blue</span>
+<span class="l l-Scalar l-Scalar-Plain">- Strobe Raspbmc</span>
+<span class="l l-Scalar l-Scalar-Plain">- Strobe white</span>
+<span class="l l-Scalar l-Scalar-Plain">- Color traces</span>
+<span class="l l-Scalar l-Scalar-Plain">- X-Mas</span>
+<span class="l l-Scalar l-Scalar-Plain">- Cinema brighten lights</span>
+<span class="l l-Scalar l-Scalar-Plain">- Cinema dim lights</span>
+<span class="l l-Scalar l-Scalar-Plain">- UDP multicast listener</span>
+<span class="l l-Scalar l-Scalar-Plain">- UDP listener</span>
+</pre></div>
+<div class="hll"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">📔 scripts.yaml</span>
+
+<span class="l l-Scalar l-Scalar-Plain">hyperion_run</span><span class="p p-Indicator">:</span>
+<span class="w">  </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Hyperion Effect</span>
+<span class="w">  </span><span class="nt">sequence</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run selected effect</span>
+<span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shell_command.run_hyperion_effect</span>
+</pre></div>
+<div class="hll"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">📔 groups.yaml</span><span class="w"> </span><span class="c1"># (Optional example to group all items)</span>
+
+<span class="nt">hyperion_group</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hyperion Control</span>
+<span class="w">  </span><span class="nt">entities</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_select.hyperion_effects</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">script.hyperion_run</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch.hyperion_service</span>
+</pre></div>
+<h2 id="conclusion">Conclusion</h2><p>This guide is a more or less a workaround for running Hyperion effects. I saw other people doing similar things to solve this problem, but it involved shell script for every Hyperion effect. This was due to the fact that <code>shell_command</code> functionality was introduced relatively recently to <code>Homeassistant</code>. I could try extending the feature set and add brightness control but for now it suits my needs. Furthermore, I could add automation to enable Hyperion only in evenings and I actually have done that. For more inspiration you can check out my  <code>Homeassistant</code> config by visiting this <a href="https://github.com/dovydasgulbinas/Home-AssistantConfig">GitHub repository.</a></p>
+
+  </div>
+
+</article>
+
+
+  </main>
+  
+  
+  <footer style="text-align: center; margin-top: 2rem; font-style: italic;">
+    <small>&copy; Copyright 2022 by D.G.</small>
+  </footer>
+  
+  
+</body>

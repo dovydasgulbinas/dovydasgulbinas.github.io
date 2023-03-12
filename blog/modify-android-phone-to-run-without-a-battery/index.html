@@ -1,0 +1,187 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="../../static/water.css?h=77b70841">
+  <link rel="stylesheet" href="../../static/style.css?h=530e7dd4">
+  
+  
+<link rel="stylesheet" href="../../static/pygments.css?h=81aa2f02">
+<link rel="stylesheet" href="../../static/blog-post.css?h=da39a3ee">
+
+  <link rel="icon" href="../../favicon.ico" type="image/gif"/>
+  <title>Modify Android Phone To Run Without a Battery — dovydas.xyz</title>
+</head>
+<body>
+  
+  
+<nav class="navbar">
+    <ul class="navbar-nav">
+        <li class="logo">
+            <a href="/" class="nav-link">
+                <svg class="home-logo">
+                    <use href="../../static/logo.svg#home"></use>
+                </svg>
+                <svg class="logo-snail">
+                    <use href="../../static/logo.svg#snail"></use>
+                </svg>
+                <svg id="page-logo">
+                    <use href="../../static/logo.svg#dovydasxyz"></use>
+                </svg>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#blog"></use>
+                </svg>
+                <span class="link-text">Blog</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../../projects/" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#projects"></use>
+                </svg>
+                <span class="link-text">Projects</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../../contact-me/" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#contact-me"></use>
+                </svg>
+                <span class="link-text">Contact Me</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+  
+  
+  <main>
+      
+  
+<article>
+  <a href="./">
+    <h1 class="flex-container">
+    
+      <img class="h-icon-em" src="../../static/fallback.png?h=2a440d07"></img>
+    
+        Modify Android Phone To Run Without a Battery
+      </h1>
+  </a>
+
+    <div class="flex-container post-meta">
+        <svg class="h-icon-16px"><use href="../../static/logo.svg#created"></use></svg>
+        <div>Jun 3, 2018</div>
+        
+        <svg class="h-icon-16px"> <use href="../../static/logo.svg#updated"></use></svg>
+        <div>Jun 3, 2020</div>
+        
+    </div>
+    <hr>
+  <div class="blog-post">
+  <p>I had few use cases where I needed a constantly on Android phone.
+The issue with keeping any device constantly charging is that their battery will suffer.
+In case of lithium-ion batteries, they have a proclivity to inflate and even catch fire or even explode.
+So keeping your mobile phone charging all the time is a NO.</p>
+<p>Luckily, there is a way to solve that issue by ripping out the battery and adding
+an external power source instead of the battery, but even this may not be so
+easy since more and more entry level phones have a built-in a hard to replace
+battery, so you really have to find a right phone.
+I tried this mod on several phones <a href="https://www.gsmarena.com/lg_g4c-7250.php">LG</a> (with removable battery), Samsung (With removable battery), <a href="https://www.gsmarena.com/motorola_nexus_6-6604.php">Nexus 6</a>
+(with embedded battery).</p>
+<p>The results were:</p>
+<ul>
+<li>LG (with removable battery): boots up and works for few minutes after that magic battery <a href="https://android.stackexchange.com/questions/27277/why-my-phone-battery-has-four-terminal-what-is-the-use-of-the-fourth">DRM</a> kicks in
+and shuts down the phone.  So don't bother with LG phones</li>
+<li>Nexus 6 (with embedded battery): Fried that sucker.  The power pins were tiny, so don't bother also.</li>
+<li>Samsung (with removable battery): Worked like a charm I actually managed to
+hack 2 different models of Samsung phones, both with a removable battery:<ul>
+<li><a href="https://www.gsmarena.com/samsung_galaxy_xcover_4-8577.php">XCover 4</a></li>
+<li><a href="https://www.gsmarena.com/samsung_galaxy_s5_neo-6506.php">Galaxy S5 Neo</a></li>
+</ul>
+</li>
+</ul>
+<p>So this post will cover my journey of hacking a <a href="https://www.gsmarena.com/samsung_galaxy_xcover_4-8577.php">Samsung XCover 4</a> to
+run w/out a battery.</p>
+<h2 id="the-guide">The Guide</h2><p>The schematics are relatively simple.  I used a 5V, 2A AC/DC power adapter.
+You may say, ask why I did not reuse the original charger?</p>
+<p>Well, the original charger had 2 issues:</p>
+<ul>
+<li>The output voltage was rated <code>5.2 V</code></li>
+<li>Also, the output current was only <code>1 A</code>.</li>
+</ul>
+<p>If the phone gets some heavy load e.g. a video game, it may start shutting down or
+the battery level may drop below a 100%, and we don't want that let's  just tell
+the phone the battery is at 100% all the time.
+The battery % may fall because the charger's voltage begins to fall sharply if high current is required by the device that's why I chose to buy a <code>5 V, 2 A</code> adapter and not use the original
+charger.</p>
+<p>Now you may ask but won't <code>5V</code> directly to the battery pins damage the phone?
+Since li-ion batteries are usually rated <code>@3.7 V</code>, yes 5V directly may damage the
+phone's electronics inside, so I dropped the voltage using a single component
+since I wanted for the circuit to be as simple as possible.  I just used a high
+current <code>FUF5408</code> diode.  You should keep in mind that diodes don't drop voltage
+at a fixed point, they also have some Volt-ampere characteristics (i.e. voltage drop across the diode based on passing current).</p>
+<p>Here is the original schematics:</p>
+<p><img src="schematics.jpg" alt="schematics"></p>
+<pre><code>R_1 = 12k Ω, 0.25 W Resistor
+D_1 = FUF5408, High Power Diode
+
+[NFC] -- Not used
+[-] -- Negative (-) power rail duh
+[S] -- Thermal resistor pin, originaly thermal resistor is built into the battery.
+[+] -- (+)
+</code></pre>
+<p>here is how the module looks like when soldered</p>
+<p><img src="sk-module.jpg" alt="sk-module"></p>
+<p>As you can see, module uses 4 pins, well actually only 3 of them since the left
+most pin is used for NFC data.  Yes, Samsung batteries have NFC antennas glued on
+the batteries and not build it into the phone, since I did not really need the
+NFC I did not bother connecting it.  Also, as mentioned before <strong>thermal
+resistors</strong> are also a part of the battery, that's why we used 12k Ω resistor,
+because we need to fool the phone into believing that battery temperature is OK.</p>
+<p><img src="sk-module2.jpg" alt="sk-module2"></p>
+<p><img src="sk-module-back.jpg" alt="module back"></p>
+<p>For the soldered module, I used a simple breakout board.
+Fun fact Samsung battery pins are spaced in the good old INLINE manner meaning
+that the distance between the centers of adjacent pins is equal to <code>1"/10 = 2.54 mm</code>.</p>
+<p><img src="sk-module-wire.jpg" alt="module-wire"></p>
+<p>If you are attentive enough, you probably noticed that the top part of breakout
+holes are cut in half having a <code>U</code> shape and not plain <code>O</code> hole shape.  This was
+intentional, because I wrapped the contact pins w/ one striped wire from the
+CAT-5 cable.</p>
+<p><img src="sk-product.jpg" alt="product"></p>
+<p>And here is how the finished hack looks like.  I simply used hot-glue to keep the
+module in place also make sure you hot glue the wires as well so that under
+tension, they don't transfer any "wobbliness" to the module itself.</p>
+<h2 id="final-thoughts">Final Thoughts</h2><ul>
+<li>This "no battery" method worked quite well for me and proved not to cause any issues</li>
+<li>The work and components involved are readily available and easy to put together</li>
+<li>NFC can be added if needed, you simply would need to peel off the NFC tag from
+the original battery.</li>
+<li>Phone, in this configuration, can be used as a cheap IP camera using <a href="https://play.google.com/store/apps/details?id=com.pas.webcam">IP Webcam app</a></li>
+<li>If you are paranoid about the voltage levels of your "no battery" mod you can use the <a href="https://f-droid.org/en/packages/com.darshancomputing.BatteryIndicator/">BatteryBot</a> to check some battery stats.</li>
+<li>I would only bother w/ Samsung phones &amp; only phone w/ removable batteries because from my experience it is guaranteed to work and easiest to mod way.</li>
+</ul>
+
+  </div>
+
+</article>
+
+
+  </main>
+  
+  
+  <footer style="text-align: center; margin-top: 2rem; font-style: italic;">
+    <small>&copy; Copyright 2022 by D.G.</small>
+  </footer>
+  
+  
+</body>

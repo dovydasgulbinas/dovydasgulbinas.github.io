@@ -1,0 +1,492 @@
+:root {
+    --font-sans-serif: Helvetica, Arial, sans-serif;
+    --font-monospace: 'Courier New', Courier, monospace;
+    --serif: "Book Antiqua", "Palatino Linotype", Palatino, "EB Garamond", serif;
+    --sans-serif: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+    --monospace: operator mono, sfmono-regular, Consolas, liberation mono, Menlo, Courier, monospace;
+    font-size: 18px;
+    line-height: 1.5rem;
+    font-family: var(--sans-serif);
+    --light_black: #23232e;
+    --black: #000000;
+    --dark_blue: #1D2B53;
+    --dark_purple: #7E2553;
+    --dark_green: #008751;
+    --brown: #AB5236;
+    --dark_grey: #5F574F;
+    --light_grey: #C2C3C7;
+    --white: #FFF1E8;
+    --red: #FF004D;
+    --orange: #FFA300;
+    --yellow: #FFEC27;
+    --green: #00E436;
+    --blue: #29ADFF;
+    --lavender: #83769C;
+    --pink: #FF77A8;
+    --light_peach: #FFCCAA;
+    scrollbar-width: thin;
+    scrollbar-color: var(--light_grey) var(--black);
+    /* used with navbar */
+    --bg-primary: var(--light_black);
+    --bg-secondary: var(--dark_blue);
+    --transition-speed: 600ms;
+    --transition-fast: 300ms;
+
+    --text-primary: var(--white);
+    --text-secondary: var(--light_peach);
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
+}
+
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+strong, b {
+    font-weight: 700;
+}
+
+em, i {
+    font-style: italic;
+}
+
+
+
+html {
+    margin: 0 auto;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+a:hover {
+    background-color: var(--dark_blue);
+    padding: 0.3125rem;
+    transition: var(--transition-fast);
+
+}
+
+dt {
+    margin-top: 1em;
+    font-weight: bold;
+}
+
+
+html, body {
+    color: var(--white);
+    background: var(--black);
+}
+
+video{
+    max-width: 700px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+footer {
+    margin-top: 1rem;
+    text-align: center;
+	padding-top: 1rem;
+	width: auto;
+	max-width: none;
+	font-size: smaller;
+}
+
+p{
+    /* margin: 1.5rem, 1.5rem; */
+    text-align: left;
+}
+
+
+/* List items */
+
+/* ul,ol,dl,p {
+  font-size: 1rem;
+} */
+
+/* dd, dt, p {
+  line-height: 1.3;
+} */
+
+
+dt {
+  font-weight: bold;
+}
+
+dd{
+    margin-left: 2rem;
+}
+
+ul, ol{
+    margin-top: 1rem;
+    margin-left: 2rem;
+    padding-left: 0;
+    list-style-position: inside;
+
+}
+
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 3rem;
+}
+
+h2 {
+    margin-top: 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+h3 {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    line-height: 1.3;
+}
+
+.medium-text {
+    font-size: 3rem;
+}
+
+.page-title {
+    display: inline-block;
+    font-size: 3rem; 
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+}
+
+.page-title svg,
+.page-title img {
+    margin: 0;
+    max-width: 3rem;
+    max-height: 3rem;
+    float: left;
+    margin-right: 3rem;
+}
+
+.page-title div {
+    margin: 0;
+    float: right;
+    font-weight: 700;
+}
+
+.hidden {
+    display: none;
+}
+
+.enabled{
+    color: var(--white);
+}
+
+.disabled{
+    color: var(--light_black);
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+/* https://github.com/fireship-io/222-responsive-icon-nav-css/blob/master/public/style.css */
+main {
+    /* same as navbar */
+   /* margin-left: 5rem;   */
+    max-width: 80ch;
+    margin: 0 auto;
+    padding: 0 1rem;
+    font-family: var(--serif);
+}
+
+
+/* global header styles */
+header h1{
+    margin-top: 1rem;
+	font-size: 3.4rem;
+	text-align: center;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+
+body {
+    margin-bottom: 2rem;
+}
+
+footer {
+    margin-top: 3rem;
+}
+
+.line{
+    margin-top: 1rem;
+	border-top: 1px solid var(--white);
+	width: auto;
+	max-width: none;
+}
+
+/* NAVBAR STYLING STARTS */
+.navbar {
+    /* forces the navbar to be in fixed position */
+    position: fixed;
+    background-color: var(--bg-primary);
+    transition: width 200ms ease;
+    overflow: hidden;
+    z-index: 255;
+}
+
+
+.navbar-nav{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-item {
+    width: 100%;
+    list-style: none;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    filter: grayscale(100%) opacity(0.7);
+    transition: var(--transition-speed);
+}
+
+.nav-link:hover {
+    filter: grayscale(0%) opacity(1);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.logo {
+    width: 100%;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    font-size: 24px;
+    letter-spacing: 0.3ch;
+    list-style: none;
+};
+
+.logo svg {
+    transform: rotate(0deg);
+    transition: transform var(--transition-speed);
+}
+
+.navbar:hover .logo svg {
+    transform: scaleX(-1);
+    transition: transform var(--transition-speed);
+}
+
+.link-text {
+    display: none;
+    margin-left: 1rem;
+    font-weight: bold;
+}
+
+.link-text:hover{
+    text-decoration: none;
+}
+
+.nav-link svg{
+    min-width: 32px;
+    max-width: 32px;
+    margin: 0 24px;
+}
+
+
+/* scrollbars */
+
+body::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--black);
+}
+
+body::-webkit-scrollbar-thumb{
+    background: var(--white);
+}
+
+pre::-webkit-scrollbar{
+    height: 0.5rem;
+    width: 0.5rem;
+    background: var(--black);
+}
+
+pre::-webkit-scrollbar-thumb:horizontal{
+    background: var(--light_grey);
+    border-radius: 10px;
+}
+
+/* firefox scrolbar control */
+pre {
+    scrollbar-width: thin;
+}
+
+/* landing page */
+
+.landing {
+    font-family: var(--font-monospace);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+}
+
+#whoami p {
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.landing-quote {
+	text-align: center;
+	font-size: 1.15rem;
+	font-style: italic;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+#resume h3 a{
+	font-size: initial;
+	font-weight: initial;
+}
+
+.landing h2 {
+	padding: 0 0.3em;
+	font-size: 1.17rem;
+	font-weight: 500;
+	text-align: center;
+}
+
+/* flexbox controls */
+
+.landing-flex {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 8vh;
+}
+
+#art {
+    flex: 1;
+    padding-top: 3rem;
+    padding-right: 2rem;
+    /* some values are controlled via media-queries*/
+}
+
+#gallery {
+    width: 100%;
+    flex: 2;
+}
+
+/* Image Utils */
+
+img {
+    max-width: 100%;
+    width: 100%;
+    /* margin: auto; */
+    margin: 1em;
+    display: block;
+}
+
+.img-medium {
+    max-width: 25rem;
+}
+
+
+/* large screen */
+@media only screen and (min-width: 600px) {
+    .navbar {
+        top: 0;
+        width: 5rem;
+        height: 100vh;
+    }
+
+    .navbar:hover {
+        width: 18rem;
+    }
+
+    .navbar:hover .link-text {
+        display: inline;
+    }
+
+    .navbar:hover .logo svg {
+        margin-left: 10rem;
+    }
+
+    .navbar:hover .logo-text {
+        left: 0px;
+    }
+
+    #art{
+        width: 100%;
+    }
+}
+
+/* small screen */
+@media only screen and (max-width: 600px) {
+    .navbar {
+        bottom: 0;
+        width: 100vw;
+        height: 3.5rem;
+      }
+    
+      .logo {
+        display: none;
+      }
+    
+      .navbar-nav {
+        flex-direction: row;
+      }
+    
+      .nav-link {
+        justify-content: center;
+      }
+    
+      main {
+        margin: 0;
+      }
+
+      #art {
+          min-width: 80%;
+      }
+
+      .link-text{
+        display: block;
+      }
+}

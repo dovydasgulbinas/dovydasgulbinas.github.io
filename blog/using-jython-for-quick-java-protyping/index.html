@@ -1,0 +1,212 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="../../static/water.css?h=77b70841">
+  <link rel="stylesheet" href="../../static/style.css?h=530e7dd4">
+  
+  
+<link rel="stylesheet" href="../../static/pygments.css?h=81aa2f02">
+<link rel="stylesheet" href="../../static/blog-post.css?h=da39a3ee">
+
+  <link rel="icon" href="../../favicon.ico" type="image/gif"/>
+  <title>Using Jython for Quick Java Protyping — dovydas.xyz</title>
+</head>
+<body>
+  
+  
+<nav class="navbar">
+    <ul class="navbar-nav">
+        <li class="logo">
+            <a href="/" class="nav-link">
+                <svg class="home-logo">
+                    <use href="../../static/logo.svg#home"></use>
+                </svg>
+                <svg class="logo-snail">
+                    <use href="../../static/logo.svg#snail"></use>
+                </svg>
+                <svg id="page-logo">
+                    <use href="../../static/logo.svg#dovydasxyz"></use>
+                </svg>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#blog"></use>
+                </svg>
+                <span class="link-text">Blog</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../../projects/" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#projects"></use>
+                </svg>
+                <span class="link-text">Projects</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../../contact-me/" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#contact-me"></use>
+                </svg>
+                <span class="link-text">Contact Me</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+  
+  
+  <main>
+      
+  
+<article>
+  <a href="./">
+    <h1 class="flex-container">
+    
+      <img class="h-icon-em" src="cover.png"></img>
+    
+        Using Jython for Quick Java Protyping
+      </h1>
+  </a>
+
+    <div class="flex-container post-meta">
+        <svg class="h-icon-16px"><use href="../../static/logo.svg#created"></use></svg>
+        <div>Apr 5, 2022</div>
+        
+    </div>
+    <hr>
+  <div class="blog-post">
+  <p>If you are tired of compiling Java classes when prototyping, or you are using poorly documented java libraries, this tutorial is for you.</p>
+<p>Java runtime can be complimented with Python/Jython scripting.
+Jython allows you to call java classes and run Java code inside a Python <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a>, or from a regular <code>.py</code> file.</p>
+<p>Python(the programming language) is written in C, not Java.
+There a multiple interpreters and implementations of Python, one of them is Jython.
+Jython is a complete Python implementation and  written in Java.</p>
+<p>Jython is a two-way street, meaning you can <em>call Java classes inside Python</em>, or <em>call Python code inside Java</em>.
+We will only focus <em>call Java classes inside Jython</em>, since doing it the other way around is much more involved, and not as useful for quick prototyping.</p>
+<h2 id="running-jython-for-the-first-time">Running Jython for The First Time</h2><p><strong>prerequisites:</strong></p>
+<ol>
+<li><a href="../run-jython-standalone-jar-on-windows/">JRE Installed</a></li>
+<li><a href="jython-101.zip">Download</a> <code>jython-101.zip</code>; and extract it anywhere you like</li>
+<li><a href="https://search.maven.org/artifact/org.python/jython-standalone/2.7.2/jar">Download</a> <code>jython-standalone.2.7.2.jar</code>, place it in <code>jython_101/lib</code> folder</li>
+</ol>
+<p>Terminal commands from this point are relative to the working directory: <code>jython_101/</code></p>
+<p>Begin by testing if Jython runs inside JRE:</p>
+<pre><code>java -jar ./lib/jython-standalone-2.7.2.jar --help
+</code></pre>
+<p>We called <code>--help</code> on our Jython CLI.
+Call the <code>hello_world.py</code> script found in the stub:</p>
+<pre><code>java -classpath ./lib/* org.python.util.jython ./hello_world.py
+</code></pre>
+<p>Open the <code>hello_world.py</code> in your text editor and see that  we can have mixed runtime inside a Jython script.
+For something more practical, we can print the current time using <code>java.util.Date</code>.</p>
+<p>Firstly start REPL:</p>
+<pre><code>java -jar ./lib/jython-standalone-2.7.2.jar
+</code></pre>
+<p>Then In the REPL shell enter this code (line by line):</p>
+<div class="hll"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">java.util</span> <span class="kn">import</span> <span class="n">Date</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">Date</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">toString</span><span class="p">())</span> <span class="c1"># Prints result in REPL</span>
+<span class="n">Tue</span> <span class="n">Jan</span> <span class="mi">18</span> <span class="mi">10</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">33</span> <span class="n">EET</span> <span class="mi">2022</span>
+</pre></div>
+<p>We called a Java stdlib class and printed its value using Jython <code>print()</code> method.
+Exit the REPL shell by typing <code>exit()</code></p>
+<p>We can now compare similar identical functionality, from pure Java perspective</p>
+<div class="hll"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Date</span><span class="p">;</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">JavaDateDemo</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">args</span><span class="o">[]</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// init a Date object</span>
+<span class="w">      </span><span class="n">Date</span><span class="w"> </span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Date</span><span class="p">();</span>
+
+<span class="w">      </span><span class="c1">// print time and date using toString()</span>
+<span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">date</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>As we compare Java vs Jython usage of the same <code>java.util.Date</code> class, it is evident, that Jython code is much more concise.
+Let us generalize some key differences between Java and (P-)Jython</p>
+<table>
+<thead><tr>
+<th>Java</th>
+<th>Jython</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code must be contained in a class</td>
+<td>code can be called in any module</td>
+</tr>
+<tr>
+<td>required <code>main()</code> method definition</td>
+<td>not required</td>
+</tr>
+<tr>
+<td>Functions and variables require type declarations</td>
+<td>uses duck typing</td>
+</tr>
+<tr>
+<td>Object initialization requires a <code>new</code> keyword</td>
+<td>assignment using '=' is sufficient</td>
+</tr>
+<tr>
+<td>Compilation required for execution</td>
+<td>execution is done without compiling</td>
+</tr>
+<tr>
+<td>verbose syntax</td>
+<td>clean syntax</td>
+</tr>
+<tr>
+<td>No REPL</td>
+<td>has REPL</td>
+</tr>
+</tbody>
+</table>
+<h2 id="using-jython-with-your-project">Using Jython With Your Project</h2><p>Up until this point I have only showed you some trivial code example for using Jython.
+In this section we will use a 3-rd party Java library and do <a href="https://en.wikipedia.org/wiki/Turtle_graphics">Turtle Graphics</a>.
+The code that generates the drawings was written in Jython and calls some Java drawing primitives, from StdDraw.java library (found at <code>jython_101/lib/stdlib.jar</code>).</p>
+<p>In the extracted <code>jython_101.zip</code> stub, there is a Jython file called <code>turtlej.py</code>.
+We will run it and see how the minimalist Jython program draws a space filling Hilbert curve, and a polygon.</p>
+<p>Run <code>turtlej.py</code>:</p>
+<pre><code>java -classpath ./lib/* org.python.util.jython ./turtlej.py
+</code></pre>
+<p>Command explanation:</p>
+<ul>
+<li><code>java</code>: Java executable</li>
+<li><code>-classpath ./lib/*</code>:  parameter it simply tells your java runtime to scan all <code>.jar</code> files inside the <code>lib/</code> folder i.e. makes them available for import inside Jython.</li>
+<li><code>org.python.util.jython</code>: is the reverse url notation to jython class containing a <code>main()</code>  method(notice the class name is jython, not Jython)</li>
+<li><code>./turtlej.py</code>: Name of the Jython script executed.</li>
+</ul>
+<p>If everything went well, a new window should open, and you should see a result like shown below.</p>
+<p><img src="da8a859466ff60fb09a45739dd334d22.png" alt="order5_pshc.png"></p>
+<p>So as we see the <code>turtlej.py</code> drew 2 different images on screen.
+The first one was the 5-th order <a href="https://en.wikipedia.org/wiki/Hilbert_curve">Pseudo Hilbert Curve</a>, and the second was a recursively generated polygon.</p>
+<p>I suggest you to open <code>turtlej.py</code> in the text editor and try to understand what is being done for yourself.</p>
+<h2 id="conclusion">Conclusion</h2><p>Although we have not done much, apart to running some Jython scripts.
+I propose you to read thoroughly through the <code>turtlej.py</code>  program.</p>
+<p>If you are feeling adventurous,  use only Java and implement <code>class Turtle</code> and Hilbert curve drawing algorithm.
+Then you will understand how slow Java development is as compared to Python.</p>
+
+  </div>
+
+</article>
+
+
+  </main>
+  
+  
+  <footer style="text-align: center; margin-top: 2rem; font-style: italic;">
+    <small>&copy; Copyright 2022 by D.G.</small>
+  </footer>
+  
+  
+</body>

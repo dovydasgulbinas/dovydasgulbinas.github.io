@@ -1,0 +1,49 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="../../static/water.css?h=77b70841">
+  <link rel="stylesheet" href="../../static/style.css?h=530e7dd4">
+  
+  
+
+<link rel="stylesheet" href="style.css">
+
+
+  <link rel="icon" href="../../favicon.ico" type="image/gif"/>
+  <title>Hilbert Curve Generator — dovydas.xyz</title>
+</head>
+<body>
+  
+  
+  
+  
+<h1>Hilbert Curve Generator</h1>
+<div class="text-block text-block-default"><blockquote><p>Draw n-th order pseudo <a href="https://en.wikipedia.org/wiki/Hilbert_curve">Hilbert Curve</a> on HTML5 canvas.</p>
+</blockquote>
+</div>
+
+  <main>
+      <canvas width="500" height="500" id="canvas">The browser doesn't support the canvas element</canvas>
+
+<br>
+<label for="phc-order">PHC Order:</label>
+<input type="number" id="phc-order" name="phc-order" min="1" max="10" value="5" placeholder="order(n)">
+
+<label for="stroke-color">Stroke Color:</label>
+<input type="color" id="stroke-color" name="stroke-color" value="#ff0000">
+
+<label for="stroke-width">Stroke Width:</label>
+<input type="number" id="stroke-width" name="stroke-width" min="1" max="10" placeholder="1px" value="1">
+
+<button id="btn-draw">Draw</button>
+  </main>
+  <div class="text-block text-block-default"><div class="admonition admonition-note"><p>You can save the result, by right click and saving as image</p></div></div>
+  
+  <footer style="text-align: center; margin-top: 2rem; font-style: italic;">
+    <small>&copy; Copyright 2022 by D.G.</small>
+  </footer>
+  
+  <script type="text/javascript" src="script.js"></script>
+</body>
