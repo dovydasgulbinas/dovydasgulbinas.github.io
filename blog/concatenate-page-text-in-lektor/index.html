@@ -1,0 +1,114 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="../../static/water.css?h=77b70841">
+  <link rel="stylesheet" href="../../static/style.css?h=530e7dd4">
+  
+  
+<link rel="stylesheet" href="../../static/pygments.css?h=81aa2f02">
+<link rel="stylesheet" href="../../static/blog-post.css?h=da39a3ee">
+
+  <link rel="icon" href="../../favicon.ico" type="image/gif"/>
+  <title>Truncate Text In Lektor — dovydas.xyz</title>
+</head>
+<body>
+  
+  
+<nav class="navbar">
+    <ul class="navbar-nav">
+        <li class="logo">
+            <a href="/" class="nav-link">
+                <svg class="home-logo">
+                    <use href="../../static/logo.svg#home"></use>
+                </svg>
+                <svg class="logo-snail">
+                    <use href="../../static/logo.svg#snail"></use>
+                </svg>
+                <svg id="page-logo">
+                    <use href="../../static/logo.svg#dovydasxyz"></use>
+                </svg>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#blog"></use>
+                </svg>
+                <span class="link-text">Blog</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../../projects/" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#projects"></use>
+                </svg>
+                <span class="link-text">Projects</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../../contact-me/" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#contact-me"></use>
+                </svg>
+                <span class="link-text">Contact Me</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+  
+  
+  <main>
+      
+  
+<article>
+  <a href="./">
+    <h1 class="flex-container">
+    
+      <img class="h-icon-em" src="cover.png"></img>
+    
+        Truncate Text In Lektor
+      </h1>
+  </a>
+
+    <div class="flex-container post-meta">
+        <svg class="h-icon-16px"><use href="../../static/logo.svg#created"></use></svg>
+        <div>May 8, 2022</div>
+        
+        <svg class="h-icon-16px"> <use href="../../static/logo.svg#updated"></use></svg>
+        <div>May 23, 2022</div>
+        
+    </div>
+    <hr>
+  <div class="blog-post">
+  <p>In this example, variable <code>post</code> is an instance of <code>Markdown</code>.
+Snippet was tested with Jinja3 template engine.
+I use it for generating my blog entry previews.</p>
+<pre><code>{{ post.body.html | striptags | truncate(length=200, killwords=False, end='...') }}
+</code></pre>
+<ul>
+<li><code>post.body.html</code>: is the Lektor object containing regular string or HTML text.</li>
+<li><code>striptags</code>:  Removes all HTML markup and returns pure text. <a href="https://jinja.palletsprojects.com/en/3.1.x/templates/#jinja-filters.striptags">docs</a></li>
+<li><code>truncate(length=200, killwords=False, end='...')</code>: truncate text  to 200 symbols, stop at the nearest word that fits this length, and add "..." in the end of the truncated string. <a href="https://jinja.palletsprojects.com/en/3.1.x/templates/#jinja-filters.truncate">docs</a></li>
+</ul>
+
+  </div>
+
+</article>
+
+
+  </main>
+  
+  
+  <footer style="text-align: center; margin-top: 2rem; font-style: italic;">
+    <small>&copy; Copyright 2022 by D.G.</small>
+  </footer>
+  
+  
+</body>

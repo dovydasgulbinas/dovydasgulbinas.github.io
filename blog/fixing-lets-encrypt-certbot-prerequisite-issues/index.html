@@ -1,0 +1,156 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="../../static/water.css?h=77b70841">
+  <link rel="stylesheet" href="../../static/style.css?h=530e7dd4">
+  
+  
+<link rel="stylesheet" href="../../static/pygments.css?h=81aa2f02">
+<link rel="stylesheet" href="../../static/blog-post.css?h=da39a3ee">
+
+  <link rel="icon" href="../../favicon.ico" type="image/gif"/>
+  <title>Fixing Let&#39;s Encrypt Certbot prerequisite issues — dovydas.xyz</title>
+</head>
+<body>
+  
+  
+<nav class="navbar">
+    <ul class="navbar-nav">
+        <li class="logo">
+            <a href="/" class="nav-link">
+                <svg class="home-logo">
+                    <use href="../../static/logo.svg#home"></use>
+                </svg>
+                <svg class="logo-snail">
+                    <use href="../../static/logo.svg#snail"></use>
+                </svg>
+                <svg id="page-logo">
+                    <use href="../../static/logo.svg#dovydasxyz"></use>
+                </svg>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#blog"></use>
+                </svg>
+                <span class="link-text">Blog</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../../projects/" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#projects"></use>
+                </svg>
+                <span class="link-text">Projects</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../../contact-me/" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#contact-me"></use>
+                </svg>
+                <span class="link-text">Contact Me</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+  
+  
+  <main>
+      
+  
+<article>
+  <a href="./">
+    <h1 class="flex-container">
+    
+      <img class="h-icon-em" src="cover.png"></img>
+    
+        Fixing Let&#39;s Encrypt Certbot prerequisite issues
+      </h1>
+  </a>
+
+    <div class="flex-container post-meta">
+        <svg class="h-icon-16px"><use href="../../static/logo.svg#created"></use></svg>
+        <div>Nov 30, 2021</div>
+        
+    </div>
+    <hr>
+  <div class="blog-post">
+  <p>I ran into an issue today when I could not install <code>certbot-auto</code> on a Linux
+machine running CentOS 6.10.</p>
+<p>As it turns out that you need to <strong>enable</strong>  <strong>EPEL</strong> package repository with yum package manager.
+The error I got during cert bot installation(prior to enabling the <strong>EPEL</strong>) was:</p>
+<pre><code>Package ca-certificates-2018.2.22-65.1.el6.noarch already installed and latest version
+Package python-devel-2.6.6-68.el6_10.x86_64 already installed and latest version
+No package python-virtualenv available.
+Package python-tools-2.6.6-68.el6_10.x86_64 already installed and latest version
+No package python-pip available.
+Package 1:mod_ssl-2.2.15-69.el6.centos.x86_64 already installed and latest version
+Nothing to do
+Creating virtual environment...
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 27, in &lt;module&gt;
+  File "&lt;stdin&gt;", line 19, in create_venv
+  File "/usr/lib64/python2.7/subprocess.py", line 185, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/usr/lib64/python2.7/subprocess.py", line 172, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/usr/lib64/python2.7/subprocess.py", line 394, in _init_
+    errread, errwrite)
+  File "/usr/lib64/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+</code></pre>
+<p>Let's focus on the line with <code>No package python-pip available.</code>.
+It turns out that  python-pip &amp; python-virtualenv are EPEL packages.
+These are the packages that caused the issue, because cert bot could not install them without EPEL enabled.</p>
+<h2 id="solution/fix">Solution/Fix</h2><p>Install and enable EPEL:</p>
+<pre><code>yum update
+</code></pre>
+<p>Install EPEL</p>
+<pre><code>yum install epel-release -y
+</code></pre>
+<p>Open epel config</p>
+<pre><code>vim /etc/yum.repos.d/epel.repo
+</code></pre>
+<p>set <code>enable=1</code></p>
+<pre><code>[EPEL]
+...
+#enabled=0
+enable=1
+</code></pre>
+<p>Save &amp; Exit the text editor.
+Update packages:</p>
+<pre><code>yum update
+</code></pre>
+<p>Verify that EPEL was enabled:</p>
+<pre><code>yum repolist | grep epel
+</code></pre>
+<p>If grep matches something similar:</p>
+<pre><code># epel        Extra Packages for Enterprise Linux 6 - x86_64       12,568
+</code></pre>
+<p>then certbot prerequisites should be met.
+You can now continue with <a href="https://certbot.eff.org/">Encrypt's certbot</a> installation.</p>
+
+  </div>
+
+</article>
+
+
+  </main>
+  
+  
+  <footer style="text-align: center; margin-top: 2rem; font-style: italic;">
+    <small>&copy; Copyright 2022 by D.G.</small>
+  </footer>
+  
+  
+</body>
