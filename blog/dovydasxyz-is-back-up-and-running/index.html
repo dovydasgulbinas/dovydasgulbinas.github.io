@@ -1,0 +1,114 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="../../static/water.css?h=77b70841">
+  <link rel="stylesheet" href="../../static/style.css?h=530e7dd4">
+  
+  
+<link rel="stylesheet" href="../../static/pygments.css?h=81aa2f02">
+<link rel="stylesheet" href="../../static/blog-post.css?h=da39a3ee">
+
+  <link rel="icon" href="../../favicon.ico" type="image/gif"/>
+  <title>Dovydas.xyz is back up and running! — dovydas.xyz</title>
+</head>
+<body>
+  
+  
+<nav class="navbar">
+    <ul class="navbar-nav">
+        <li class="logo">
+            <a href="/" class="nav-link">
+                <svg class="home-logo">
+                    <use href="../../static/logo.svg#home"></use>
+                </svg>
+                <svg class="logo-snail">
+                    <use href="../../static/logo.svg#snail"></use>
+                </svg>
+                <svg id="page-logo">
+                    <use href="../../static/logo.svg#dovydasxyz"></use>
+                </svg>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#blog"></use>
+                </svg>
+                <span class="link-text">Blog</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../../projects/" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#projects"></use>
+                </svg>
+                <span class="link-text">Projects</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../../contact-me/" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#contact-me"></use>
+                </svg>
+                <span class="link-text">Contact Me</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+  
+  
+  <main>
+      
+  
+<article>
+  <a href="./">
+    <h1 class="flex-container">
+    
+      <img class="h-icon-em" src="../../static/fallback.png?h=2a440d07"></img>
+    
+        Dovydas.xyz is back up and running!
+      </h1>
+  </a>
+
+    <div class="flex-container post-meta">
+        <svg class="h-icon-16px"><use href="../../static/logo.svg#created"></use></svg>
+        <div>Mar 12, 2023</div>
+        
+        <svg class="h-icon-16px"> <use href="../../static/logo.svg#updated"></use></svg>
+        <div>Mar 12, 2023</div>
+        
+    </div>
+    <hr>
+  <div class="blog-post">
+  <p>After four whole months I managed to find the time to get my page back-up.
+I moved to a different city and the internet provider here does not allow self hosting, because all clients are behind a NAT on a service provider level.</p>
+<p>So I decided to fallback to the old way of hosting my static website - GitHub pages.</p>
+<p>This time I tried out few new things GitHub actions.
+Which is actually was a very pleasant experience from development perspective.
+The CI builds are fast and the GitHub actions configuration is quite similar to Ansible's.</p>
+<p>Additionally I changed where I keep my blog's source code, I moved into a private repository,  and with the help of GitHub actions I deploy the compiled static webpage using <code>ghpages</code> protocol (via SSH). So <a href="https://github.com/dovydasgulbinas/dovydasgulbinas.github.io">dovydasgulbinas.github.io</a> only contains build files, that are then served to you, the reader.
+Now every time I do a commit to my new private blog repository and push-it to GitHub it will automatically build this website, run some tests currently (htmltest) and deploy it.</p>
+<p>The takeaway is that GitHub actions rock for deployments.
+I plan on adding <a href="https://playwright.dev/">Playwright</a> based e2e tests for my static pages (mostly for learning purposes).</p>
+
+  </div>
+
+</article>
+
+
+  </main>
+  
+  
+  <footer style="text-align: center; margin-top: 2rem; font-style: italic;">
+    <small>&copy; Copyright 2022 by D.G.</small>
+  </footer>
+  
+  
+</body>
