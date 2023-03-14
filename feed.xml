@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>dovydas.xyz Blog</title><link href="https://dovydas.xyz/blog/" rel="alternate"></link><link href="https://dovydas.xyz/feed.xml" rel="self"></link><id>urn:uuid:fb36a271-9254-3dd0-a052-7056cfc2ef89</id><updated>2023-03-12T00:00:00Z</updated><author><name></name></author><entry><title>Dovydas.xyz is back up and running!</title><link href="https://dovydas.xyz/blog/dovydasxyz-is-back-up-and-running/" rel="alternate"></link><updated>2023-03-12T00:00:00Z</updated><author><name>DG.</name></author><id>urn:uuid:fb7248dc-989e-3939-962e-787a5c9e3f61</id><content type="html">&lt;p&gt;After four whole months I managed to find the time to get my page back-up.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>dovydas.xyz Blog</title><link href="https://dovydas.xyz/blog/" rel="alternate"></link><link href="https://dovydas.xyz/feed.xml" rel="self"></link><id>urn:uuid:f67be767-38b6-347d-988b-f706675c1a45</id><updated>2023-03-12T00:00:00Z</updated><author><name></name></author><entry><title>Dovydas.xyz is back up and running!</title><link href="https://dovydas.xyz/blog/dovydasxyz-is-back-up-and-running/" rel="alternate"></link><updated>2023-03-12T00:00:00Z</updated><author><name>DG.</name></author><id>urn:uuid:ff052dab-d7b7-3620-8782-9351f9c9fc12</id><content type="html">&lt;p&gt;After four whole months I managed to find the time to get my page back-up.
 I moved to a different city and the internet provider here does not allow self hosting, because all clients are behind a NAT on a service provider level.&lt;/p&gt;
 &lt;p&gt;So I decided to fallback to the old way of hosting my static website - GitHub pages.&lt;/p&gt;
 &lt;p&gt;This time I tried out few new things GitHub actions.
@@ -9,7 +9,7 @@ The CI builds are fast and the GitHub actions configuration is quite similar to 
 Now every time I do a commit to my new private blog repository and push-it to GitHub it will automatically build this website, run some tests currently (htmltest) and deploy it.&lt;/p&gt;
 &lt;p&gt;The takeaway is that GitHub actions rock for deployments.
 I plan on adding &lt;a href="https://playwright.dev/"&gt;Playwright&lt;/a&gt; based e2e tests for my static pages (mostly for learning purposes).&lt;/p&gt;
-</content></entry><entry><title>Truncate Text In Lektor</title><link href="https://dovydas.xyz/blog/concatenate-page-text-in-lektor/" rel="alternate"></link><updated>2022-05-08T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:9619e4f6-4eed-3cc9-a005-6462ec8c865a</id><content type="html">&lt;p&gt;In this example, variable &lt;code&gt;post&lt;/code&gt; is an instance of &lt;code&gt;Markdown&lt;/code&gt;.
+</content></entry><entry><title>Truncate Text In Lektor</title><link href="https://dovydas.xyz/blog/concatenate-page-text-in-lektor/" rel="alternate"></link><updated>2022-05-08T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:9d9f18d1-e436-3ccf-9dd5-5e199813e202</id><content type="html">&lt;p&gt;In this example, variable &lt;code&gt;post&lt;/code&gt; is an instance of &lt;code&gt;Markdown&lt;/code&gt;.
 Snippet was tested with Jinja3 template engine.
 I use it for generating my blog entry previews.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;{{ post.body.html | striptags | truncate(length=200, killwords=False, end='...') }}
@@ -19,7 +19,7 @@ I use it for generating my blog entry previews.&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;striptags&lt;/code&gt;:  Removes all HTML markup and returns pure text. &lt;a href="https://jinja.palletsprojects.com/en/3.1.x/templates/#jinja-filters.striptags"&gt;docs&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;truncate(length=200, killwords=False, end='...')&lt;/code&gt;: truncate text  to 200 symbols, stop at the nearest word that fits this length, and add "..." in the end of the truncated string. &lt;a href="https://jinja.palletsprojects.com/en/3.1.x/templates/#jinja-filters.truncate"&gt;docs&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content></entry><entry><title>Installing Selenium  For Google Chrome (Windows 10)</title><link href="https://dovydas.xyz/blog/installing-selenium-for-google-chrome-windows-10/" rel="alternate"></link><updated>2022-05-06T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:176d89b2-f0ef-3bc6-bd1f-8a8647d46221</id><content type="html">&lt;p&gt;This tutorial will show you how to install Selenium for Google Chrome (Windows 10), and optionally Python related dependencies.&lt;/p&gt;
+</content></entry><entry><title>Installing Selenium  For Google Chrome (Windows 10)</title><link href="https://dovydas.xyz/blog/installing-selenium-for-google-chrome-windows-10/" rel="alternate"></link><updated>2022-05-06T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:5fae06a3-401a-35ba-96ad-1ebb5112516a</id><content type="html">&lt;p&gt;This tutorial will show you how to install Selenium for Google Chrome (Windows 10), and optionally Python related dependencies.&lt;/p&gt;
 &lt;p&gt;Prerequisites:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Google Chrome Installed on your Windows machine&lt;/li&gt;
@@ -77,7 +77,7 @@ Your WebDriver installation is complete.&lt;/li&gt;
 &lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;selenium&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If no errors occurred during &lt;code&gt;pip install selenium&lt;/code&gt;, and &lt;code&gt;import selenium&lt;/code&gt; you are done with your Python set-up.&lt;/p&gt;
-&lt;div class="admonition admonition-note"&gt;&lt;p&gt;Remember absolute path to the &lt;code&gt;chromedriver.exe&lt;/code&gt; in your Python scripts.&lt;/p&gt;&lt;/div&gt;</content></entry><entry><title>Upgrade LinuxServer/Nextcloud Container Manually</title><link href="https://dovydas.xyz/blog/upgrade-linuxservernextcloud-container-manually/" rel="alternate"></link><updated>2022-04-26T00:00:00Z</updated><author><name></name></author><id>urn:uuid:e79c015c-d851-3479-a3d7-083794dfe09e</id><content type="html">&lt;p&gt;This guide will show you how to manually upgrade &lt;code&gt;linuxserver/nextcloud&lt;/code&gt; Docker container.&lt;/p&gt;
+&lt;div class="admonition admonition-note"&gt;&lt;p&gt;Remember absolute path to the &lt;code&gt;chromedriver.exe&lt;/code&gt; in your Python scripts.&lt;/p&gt;&lt;/div&gt;</content></entry><entry><title>Upgrade LinuxServer/Nextcloud Container Manually</title><link href="https://dovydas.xyz/blog/upgrade-linuxservernextcloud-container-manually/" rel="alternate"></link><updated>2022-04-26T00:00:00Z</updated><author><name></name></author><id>urn:uuid:b3e2ab1e-ce39-3c9e-9813-0a1f29099777</id><content type="html">&lt;p&gt;This guide will show you how to manually upgrade &lt;code&gt;linuxserver/nextcloud&lt;/code&gt; Docker container.&lt;/p&gt;
 &lt;p&gt;Normally, Nextcloud upgrades are done by pressing and &lt;em&gt;Update&lt;/em&gt; button in the settings page, but for me, it did not work.
 Because, I was running my Nextcloud 16 with a path prefix e.g. &lt;code&gt;example.com/nextcloud&lt;/code&gt;.
 Automatic updates do not work with path prefixes (they only work with domains or subdomains).&lt;/p&gt;
@@ -363,7 +363,7 @@ sudo -u abc php occ upgrade
 &lt;p&gt;You may also want to consider upgrading your Nextcloud docker container to match the version your new Nextcloud installation, so that environment has all the dependencies needed. 
 Nextcloud is quite forgiving if you do not upgrade them, but you will definitely need to do this when you reach version 23.&lt;/p&gt;
 &lt;p&gt;In my case I only upgraded my Docker image when I reached version 23 and verified, that Nextcloud was running beforehand.&lt;/p&gt;
-</content></entry><entry><title>Using Jython for Quick Java Protyping</title><link href="https://dovydas.xyz/blog/using-jython-for-quick-java-protyping/" rel="alternate"></link><updated>2022-04-05T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:5fe3fc1c-ce0a-3ccd-8c6e-684e9f0344b0</id><content type="html">&lt;p&gt;If you are tired of compiling Java classes when prototyping, or you are using poorly documented java libraries, this tutorial is for you.&lt;/p&gt;
+</content></entry><entry><title>Using Jython for Quick Java Protyping</title><link href="https://dovydas.xyz/blog/using-jython-for-quick-java-protyping/" rel="alternate"></link><updated>2022-04-05T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:9b6f339d-bc83-3787-a3e2-bc80277cc32b</id><content type="html">&lt;p&gt;If you are tired of compiling Java classes when prototyping, or you are using poorly documented java libraries, this tutorial is for you.&lt;/p&gt;
 &lt;p&gt;Java runtime can be complimented with Python/Jython scripting.
 Jython allows you to call java classes and run Java code inside a Python &lt;a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop"&gt;REPL&lt;/a&gt;, or from a regular &lt;code&gt;.py&lt;/code&gt; file.&lt;/p&gt;
 &lt;p&gt;Python(the programming language) is written in C, not Java.
@@ -474,7 +474,7 @@ The first one was the 5-th order &lt;a href="https://en.wikipedia.org/wiki/Hilbe
 I propose you to read thoroughly through the &lt;code&gt;turtlej.py&lt;/code&gt;  program.&lt;/p&gt;
 &lt;p&gt;If you are feeling adventurous,  use only Java and implement &lt;code&gt;class Turtle&lt;/code&gt; and Hilbert curve drawing algorithm.
 Then you will understand how slow Java development is as compared to Python.&lt;/p&gt;
-</content></entry><entry><title>Run Jython Standalone Jar On Windows</title><link href="https://dovydas.xyz/blog/run-jython-standalone-jar-on-windows/" rel="alternate"></link><updated>2022-04-04T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:60b4dcb5-afe0-3bd8-8424-411ab80f9bb4</id><content type="html">&lt;p&gt;This tutorial will show you how you can run &lt;code&gt;jython-standalone.2.7.2.jar&lt;/code&gt; on a Windows machine.
+</content></entry><entry><title>Run Jython Standalone Jar On Windows</title><link href="https://dovydas.xyz/blog/run-jython-standalone-jar-on-windows/" rel="alternate"></link><updated>2022-04-04T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:a3fa8d8a-d9e0-323b-9f63-a96eb3131737</id><content type="html">&lt;p&gt;This tutorial will show you how you can run &lt;code&gt;jython-standalone.2.7.2.jar&lt;/code&gt; on a Windows machine.
 Using Jython standalone, you will be able to execute Python scripts, or use Python &lt;a href="https://codewith.mu/en/tutorials/1.1/repl"&gt;REPL&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="admonition admonition-note"&gt;&lt;p&gt;Pip install for Jython is not covered.&lt;/p&gt;&lt;/div&gt;&lt;p&gt;Prerequisites:&lt;/p&gt;
 &lt;ul&gt;
@@ -560,7 +560,7 @@ JAVA: Hello World!
 &lt;h2 id="summary"&gt;Summary&lt;/h2&gt;&lt;p&gt;If you managed to run a Jython script using this guide, good news.
 Now you have a clean environment to work on your Jython projects.
 Do not forget to place additional jar files to the &lt;code&gt;lib/&lt;/code&gt; folder!&lt;/p&gt;
-</content></entry><entry><title>Python Generator Basics</title><link href="https://dovydas.xyz/blog/intro-to-python-generators/" rel="alternate"></link><updated>2021-12-02T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:172adaf8-617b-388e-a223-aafc7bbf404f</id><content type="html">&lt;p&gt;This is a  illustrative example code, which tries to demonstrate
+</content></entry><entry><title>Python Generator Basics</title><link href="https://dovydas.xyz/blog/intro-to-python-generators/" rel="alternate"></link><updated>2021-12-02T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:c5800b08-16f7-312e-8bc1-fbb1ffb2ea99</id><content type="html">&lt;p&gt;This is a  illustrative example code, which tries to demonstrate
 how generators and &lt;code&gt;yield&lt;/code&gt; statements are related in python.&lt;/p&gt;
 &lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;# `yield` a fancy way of pausing execution of a function.&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
@@ -670,7 +670,7 @@ hybrid_yield item: 3
       a function.
     - You should imagine yield keyword a way of slicing function to small pausable functions
 &lt;/code&gt;&lt;/pre&gt;
-</content></entry><entry><title>Vilnius Living Districts (for expats)</title><link href="https://dovydas.xyz/blog/vilnius-living-districts-for-expats/" rel="alternate"></link><updated>2021-12-01T00:00:00Z</updated><author><name>D.G</name></author><id>urn:uuid:50998b77-b772-35d3-9d9d-2f422975a4e3</id><content type="html">&lt;p&gt;Even if I am Lithuanian, I was an expat to the city of Vilnius myself.
+</content></entry><entry><title>Vilnius Living Districts (for expats)</title><link href="https://dovydas.xyz/blog/vilnius-living-districts-for-expats/" rel="alternate"></link><updated>2021-12-01T00:00:00Z</updated><author><name>D.G</name></author><id>urn:uuid:888cd068-1139-377c-ac68-d9ece87fc95e</id><content type="html">&lt;p&gt;Even if I am Lithuanian, I was an expat to the city of Vilnius myself.
 Compared to where I was living, this city felt enormous and much different.
 Additionally, I had experience living in Copenhagen, so I know how hard it can be sometimes so choose a place to live.&lt;/p&gt;
 &lt;p&gt;Although Vilnius is a beautiful and historically old city, it is plagued with the problems of the modern era.
@@ -1129,7 +1129,7 @@ Also if you end-up living near (1 - 2 km) the central train station may not feel
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-</content></entry><entry><title>Fixing Let's Encrypt Certbot prerequisite issues</title><link href="https://dovydas.xyz/blog/fixing-lets-encrypt-certbot-prerequisite-issues/" rel="alternate"></link><updated>2021-11-30T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:8169008e-4485-307f-826b-a051cae17b35</id><content type="html">&lt;p&gt;I ran into an issue today when I could not install &lt;code&gt;certbot-auto&lt;/code&gt; on a Linux
+</content></entry><entry><title>Fixing Let's Encrypt Certbot prerequisite issues</title><link href="https://dovydas.xyz/blog/fixing-lets-encrypt-certbot-prerequisite-issues/" rel="alternate"></link><updated>2021-11-30T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:b0a5d6ef-e316-3802-94e5-dfbf7ffbd90c</id><content type="html">&lt;p&gt;I ran into an issue today when I could not install &lt;code&gt;certbot-auto&lt;/code&gt; on a Linux
 machine running CentOS 6.10.&lt;/p&gt;
 &lt;p&gt;As it turns out that you need to &lt;strong&gt;enable&lt;/strong&gt;  &lt;strong&gt;EPEL&lt;/strong&gt; package repository with yum package manager.
 The error I got during cert bot installation(prior to enabling the &lt;strong&gt;EPEL&lt;/strong&gt;) was:&lt;/p&gt;
@@ -1184,7 +1184,7 @@ Update packages:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;then certbot prerequisites should be met.
 You can now continue with &lt;a href="https://certbot.eff.org/"&gt;Encrypt's certbot&lt;/a&gt; installation.&lt;/p&gt;
-</content></entry><entry><title>Functions are first-class citizens in JavaScript</title><link href="https://dovydas.xyz/blog/functions-are-first-class-citizens-in-javascript/" rel="alternate"></link><updated>2021-11-26T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:cc848aa0-8585-3d76-b07e-32ab8510deee</id><content type="html">&lt;p&gt;Functions are first-class citizens in JavaScript&lt;/p&gt;
+</content></entry><entry><title>Functions are first-class citizens in JavaScript</title><link href="https://dovydas.xyz/blog/functions-are-first-class-citizens-in-javascript/" rel="alternate"></link><updated>2021-11-26T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:a5191339-08af-33c8-8a71-4c6496950931</id><content type="html">&lt;p&gt;Functions are first-class citizens in JavaScript&lt;/p&gt;
 &lt;p&gt;first class citizen entity/type
 :  An entity that supports all operations other entities have. This means first-class citizens can be passed, returned &amp;amp; assigned etc.&lt;/p&gt;
 &lt;p&gt;To simply put it this means that you can&lt;/p&gt;
@@ -1239,7 +1239,7 @@ You can now continue with &lt;a href="https://certbot.eff.org/"&gt;Encrypt's cer
 &lt;ol&gt;
 &lt;li&gt;&lt;a href="http://ryanchristiani.com/functions-as-first-class-citizens-in-javascript/"&gt;Functions as First Class Citizens in JavaScript&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-</content></entry><entry><title>Creating Multiple Folders From a Bash Array</title><link href="https://dovydas.xyz/blog/creating-multiple-folders-from-a-bash-array/" rel="alternate"></link><updated>2021-09-11T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:91d4e2b5-c886-3e77-86b3-91978d08e1a2</id><content type="html">&lt;p&gt;This snippet allows you to create a series of directories, that are a part of a
+</content></entry><entry><title>Creating Multiple Folders From a Bash Array</title><link href="https://dovydas.xyz/blog/creating-multiple-folders-from-a-bash-array/" rel="alternate"></link><updated>2021-09-11T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:0ce10e0a-be80-3017-8f25-aacbd72f591f</id><content type="html">&lt;p&gt;This snippet allows you to create a series of directories, that are a part of a
 regular bash array.
 It is useful if you have a number of directories to create and without using a loop.&lt;/p&gt;
 &lt;div class="hll"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
@@ -1257,7 +1257,7 @@ mkdir&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/s
 ├── eins/
 └── zwei/
 &lt;/code&gt;&lt;/pre&gt;
-</content></entry><entry><title>Adding Arbitrary Attributes To Python Class</title><link href="https://dovydas.xyz/blog/adding-arbitrary-attributes-to-python-class/" rel="alternate"></link><updated>2021-06-23T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:b1d99365-84db-311e-9dc5-01f5ba19a6bc</id><content type="html">&lt;p&gt;You want to create a dummy class that stores &lt;strong&gt;arbitrary&lt;/strong&gt; attributes and you
+</content></entry><entry><title>Adding Arbitrary Attributes To Python Class</title><link href="https://dovydas.xyz/blog/adding-arbitrary-attributes-to-python-class/" rel="alternate"></link><updated>2021-06-23T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:c5fc139b-f83d-360b-911d-cd0755628104</id><content type="html">&lt;p&gt;You want to create a dummy class that stores &lt;strong&gt;arbitrary&lt;/strong&gt; attributes and you
 want to access these attributes via &lt;code&gt;. (dot)&lt;/code&gt; operator e.g. &lt;code&gt;myClass.age&lt;/code&gt;.  You
 can easily do that in Python.  Although using a &lt;em&gt;dictionary&lt;/em&gt; type would be more explicit and
 Pythonic 😉.&lt;/p&gt;
@@ -1276,7 +1276,7 @@ Pythonic 😉.&lt;/p&gt;
 database row.
 In this case, each row would be a single instance of a class.
 And the whole result set could be added to a list.&lt;/p&gt;
-</content></entry><entry><title>Generating infinite sequence of bytes set to ones</title><link href="https://dovydas.xyz/blog/generating-infinite-sequence-of-bytes-set-to-ones/" rel="alternate"></link><updated>2021-06-21T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:ba9a16b2-e29a-3648-b266-d18c12e59e5a</id><content type="html">&lt;p&gt;After trying to implement my own "one time pad (OTP)" file encryption.  I ran into an issue that
+</content></entry><entry><title>Generating infinite sequence of bytes set to ones</title><link href="https://dovydas.xyz/blog/generating-infinite-sequence-of-bytes-set-to-ones/" rel="alternate"></link><updated>2021-06-21T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:0091b12c-52b6-38fe-8e8f-f0aad48cfce5</id><content type="html">&lt;p&gt;After trying to implement my own "one time pad (OTP)" file encryption.  I ran into an issue that
 I needed large byte object sequence to write proper unit tests for encryption/decryption.&lt;/p&gt;
 &lt;p&gt;For those who don't know, python has a special &lt;code&gt;bytes&lt;/code&gt; object which stores "raw"
 data so to speak.  Example of &lt;code&gt;bytes&lt;/code&gt; in action:&lt;/p&gt;
@@ -1315,7 +1315,7 @@ so theoretically &lt;code&gt;int&lt;/code&gt; can now be of any size.&lt;/p&gt;
 &lt;p&gt;why do we need &lt;code&gt;int&lt;/code&gt; objects if we are creating &lt;code&gt;bytes&lt;/code&gt;?:&lt;/p&gt;
 &lt;p&gt;unfortunately python does not support bitwise and logical operations on &lt;code&gt;bytes&lt;/code&gt;
 object this means that we must use &lt;code&gt;int&lt;/code&gt; objects for that.&lt;/p&gt;
-</content></entry><entry><title>Allow Developers To Deploy Straight To Production</title><link href="https://dovydas.xyz/blog/allow-developers-to-deploy-straight-to-production/" rel="alternate"></link><updated>2021-06-01T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:f07b15e7-3c67-336e-b563-fea48aa7bb4b</id><content type="html">&lt;p&gt;In times when &lt;em&gt;continuous integration&lt;/em&gt; is a new fad there still exists legacy
+</content></entry><entry><title>Allow Developers To Deploy Straight To Production</title><link href="https://dovydas.xyz/blog/allow-developers-to-deploy-straight-to-production/" rel="alternate"></link><updated>2021-06-01T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:e97729c2-7735-3b69-bf9b-f68f37b2d389</id><content type="html">&lt;p&gt;In times when &lt;em&gt;continuous integration&lt;/em&gt; is a new fad there still exists legacy
 systems which are not suitable for this flexible way of applying changes.  This
 means that your company will be stuck in the eternal purgatory of developers and DevOps working
 together on task that developer alone could have done.  Not allowing for your
@@ -1408,7 +1408,7 @@ is given an ability to deploy to production since bugs are inevitable.&lt;/p&gt;
 begin by trying to defuse the barrier between developers and operations, let them
 talk and decide how to give more freedom &amp;amp; responsibility to person actually
 writing the code.&lt;/p&gt;
-</content></entry><entry><title>Using Newsboat to Watch Bitchute</title><link href="https://dovydas.xyz/blog/using-newsboat-to-watch-bitchute/" rel="alternate"></link><updated>2018-08-25T00:00:00Z</updated><author><name></name></author><id>urn:uuid:f11e0f24-c946-3227-af66-a486ce95af82</id><content type="html">&lt;p&gt;First, RSS still qualifies as a great technology.  Even though RSS
+</content></entry><entry><title>Using Newsboat to Watch Bitchute</title><link href="https://dovydas.xyz/blog/using-newsboat-to-watch-bitchute/" rel="alternate"></link><updated>2018-08-25T00:00:00Z</updated><author><name></name></author><id>urn:uuid:f4a30b37-4d26-36fa-8da8-f93b5263e711</id><content type="html">&lt;p&gt;First, RSS still qualifies as a great technology.  Even though RSS
 faded to obscurity in the past 8 years or so, it is still very useful.  RSS was
 and will be an integral part of the internet same as HTTP, e-mail and IRC is.&lt;/p&gt;
 &lt;p&gt;In the age when information streams are controlled by few major players, it
@@ -1519,7 +1519,7 @@ useful.  I love the fact that mpv is highly customizable, and I can mimic the
 &lt;li&gt;If you are interested where I came up with the bitchute-dl idea see this &lt;a href="https://www.bitchute.com/video/W4g3Jktibucb/"&gt;video&lt;/a&gt; and the original &lt;a href="https://archive.fo/zd49L"&gt;script&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;If you want to see my current Newsboat configuration visit &lt;a href="https://github.com/dovydasgulbinas/env-configs/tree/master/newsboat"&gt;here&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content></entry><entry><title>Few lessons I learned after using python fabric 1.x</title><link href="https://dovydas.xyz/blog/few-lessons-i-learned-after-using-python-fabric-1x/" rel="alternate"></link><updated>2018-08-19T00:00:00Z</updated><author><name></name></author><id>urn:uuid:40d3f1bb-04ad-3316-b9ae-afe78b557d9c</id><content type="html">&lt;p&gt;&lt;a href="https://docs.fabfile.org/en/1.14/"&gt;Fabric&lt;/a&gt; is a great framework for executing code on remote &amp;amp; local machines. The 1.X had a
+</content></entry><entry><title>Few lessons I learned after using python fabric 1.x</title><link href="https://dovydas.xyz/blog/few-lessons-i-learned-after-using-python-fabric-1x/" rel="alternate"></link><updated>2018-08-19T00:00:00Z</updated><author><name></name></author><id>urn:uuid:db5c70e0-1f0c-3b4f-9ea8-7a5f70debb03</id><content type="html">&lt;p&gt;&lt;a href="https://docs.fabfile.org/en/1.14/"&gt;Fabric&lt;/a&gt; is a great framework for executing code on remote &amp;amp; local machines. The 1.X had a
 pretty good documentation, but workflows and tools were not so clearly
 explained, after writing several scrips myself, I managed to come up with a few rules that I believe others will find to be useful.&lt;/p&gt;
 &lt;h2 id="default-function-arguments"&gt;Default function arguments&lt;/h2&gt;&lt;p&gt;using &lt;code&gt;env.*&lt;/code&gt; in method bodies is a bad idea, but it can be made better:&lt;/p&gt;
@@ -1702,7 +1702,7 @@ Disconnecting from nasa.org... done.
 ;date: 2018-08-19 18:20:13
 ;date_updated: 
 ;tags: devops fabric python
---&gt;</content></entry><entry><title>Grice's Maxims Pythonic Edition</title><link href="https://dovydas.xyz/blog/grices-maxims-pythonic-edition/" rel="alternate"></link><updated>2018-07-13T00:00:00Z</updated><author><name></name></author><id>urn:uuid:440e3d01-3e1e-37da-a90a-d1373c8c3133</id><content type="html">&lt;p&gt;Which is better verbose paragraphs or lean and on point sentences?
+--&gt;</content></entry><entry><title>Grice's Maxims Pythonic Edition</title><link href="https://dovydas.xyz/blog/grices-maxims-pythonic-edition/" rel="alternate"></link><updated>2018-07-13T00:00:00Z</updated><author><name></name></author><id>urn:uuid:b3bab3cb-48a6-305d-972b-6bb3860c54ca</id><content type="html">&lt;p&gt;Which is better verbose paragraphs or lean and on point sentences?
 Why communication with other people can sometimes be so hard sometimes, even though we you
 are discussing basic things? 
 Why sometimes we get frustrated with other people speaking?  Why sometimes you lose your marbles when someone else skips steps in
@@ -1742,7 +1742,7 @@ If your claim has no supporting evidence it's a bad idea, if your claim has supp
 the reason why you get derailed.  Remember it is easier to change yourself and your
 outlook rather than the people around you.
 So go try to be a better communicator by using at least few rules I presented.&lt;/p&gt;
-</content></entry><entry><title>Creating A Production Ready Django App (cont.)</title><link href="https://dovydas.xyz/blog/creating-a-production-ready-django-app-cont/" rel="alternate"></link><updated>2018-07-07T00:00:00Z</updated><author><name></name></author><id>urn:uuid:4f7b3dde-bcc9-3d44-9117-2f480f337d11</id><content type="html">&lt;p&gt;Before reading this, please make sure you are familiar with concepts and ideas
+</content></entry><entry><title>Creating A Production Ready Django App (cont.)</title><link href="https://dovydas.xyz/blog/creating-a-production-ready-django-app-cont/" rel="alternate"></link><updated>2018-07-07T00:00:00Z</updated><author><name></name></author><id>urn:uuid:7e010786-c14c-35c1-93ab-d69f1c7b4c42</id><content type="html">&lt;p&gt;Before reading this, please make sure you are familiar with concepts and ideas
 covered in the pt.1 of this &lt;a href="https://dovydas.xyz/django/python/devops/skeleton/2018/06/27/creating-a-production-ready-django-app-pt1.html"&gt;post&lt;/a&gt;.  This post will be short and will simply
 create an additional file that will help us out with deployment task automation.
 The code for this project will be available at this &lt;a href="https://github.com/dovydasgulbinas/blog-django-skeleton"&gt;git repository&lt;/a&gt; make sure you
@@ -1834,7 +1834,7 @@ by calling &lt;code&gt;fab2 -l&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;asciinema-player src="/data/cinemas/fab2.cast" cols="90" rows="25"&gt;&amp;lt;/asciinema-player&amp;gt;&lt;/p&gt;
 &lt;h1 id="outro"&gt;Outro&lt;/h1&gt;&lt;p&gt;This was a brief tutorial it did not even scratch the surface of fabric2 I highly recommend you to check. The &lt;code&gt;fabfile.py&lt;/code&gt;
 for yourself and try to understand what is written in that script.  I want to warn you that I may update the &lt;code&gt;fabfile.py&lt;/code&gt; snippet showed in this blogpost, but this will be only for the greater good, because I currently have not fiugred out a way of importing bash environment variables to Nagios (Nagios is the core lib of fabric2).  Happy hacking and please do leave questions and suggestions in the comments.&lt;/p&gt;
-</content></entry><entry><title>Creating A Production Ready Django App</title><link href="https://dovydas.xyz/blog/creating-a-production-ready-django-app-pt-1/" rel="alternate"></link><updated>2018-07-01T00:00:00Z</updated><author><name></name></author><id>urn:uuid:c4c1eb22-7b78-36ba-9aff-e99622d9d011</id><content type="html">&lt;p&gt;This post will demonstrate a production tested and simplified
+</content></entry><entry><title>Creating A Production Ready Django App</title><link href="https://dovydas.xyz/blog/creating-a-production-ready-django-app-pt-1/" rel="alternate"></link><updated>2018-07-01T00:00:00Z</updated><author><name></name></author><id>urn:uuid:87706d0d-a509-34a8-a39a-dfde03431098</id><content type="html">&lt;p&gt;This post will demonstrate a production tested and simplified
 configuration for Django framework. This is a two part blog post.
 In the first part we will mainly focus how to structure &lt;code&gt;settings.py&lt;/code&gt;
 properly because with larger projects managing &lt;code&gt;settings.py&lt;/code&gt; file
@@ -2170,7 +2170,7 @@ git commit -m "our second django project commit"
 &lt;li&gt;Tune for a second part, next week, where I will be showing you how
 to deploy your project using &lt;strong&gt;fabric2&lt;/strong&gt; and &lt;strong&gt;invoke&lt;/strong&gt; to a production environment.&lt;/li&gt;
 &lt;/ol&gt;
-</content></entry><entry><title>Introduction to REST authentication</title><link href="https://dovydas.xyz/blog/introduction-on-rest-authentication/" rel="alternate"></link><updated>2018-06-26T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:511de604-9d9b-3361-bd0f-18d4c1344344</id><content type="html">&lt;p&gt;Recently I had to design REST API endpoints.  My company currently has and old
+</content></entry><entry><title>Introduction to REST authentication</title><link href="https://dovydas.xyz/blog/introduction-on-rest-authentication/" rel="alternate"></link><updated>2018-06-26T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:4992032d-f916-3e36-925d-dfefe1d7e792</id><content type="html">&lt;p&gt;Recently I had to design REST API endpoints.  My company currently has and old
 and hairy monolithic backend.  Like most living things in order to survive they
 have to adapt, so did our enterprise backend, it had to talk REST.&lt;/p&gt;
 &lt;p&gt;REST in particular is a great approach in design, because it forces you to think
@@ -2427,7 +2427,7 @@ to do requests on behalf of a user.&lt;/p&gt;
 :  a piece of software that communicates with a Resource Server on behalf of the Resource Owner.&lt;/p&gt;
 &lt;p&gt;Authorization Server (AS)
 :  server that manages OAuth 2.0 tokens and verifies that &lt;em&gt;Resource Owner's&lt;/em&gt; credentials are correct.&lt;/p&gt;
-</content></entry><entry><title>Modify Android Phone To Run Without a Battery</title><link href="https://dovydas.xyz/blog/modify-android-phone-to-run-without-a-battery/" rel="alternate"></link><updated>2018-06-03T00:00:00Z</updated><author><name></name></author><id>urn:uuid:1ecca4ce-2687-3084-a6de-e0b739a6eb9a</id><content type="html">&lt;p&gt;I had few use cases where I needed a constantly on Android phone.
+</content></entry><entry><title>Modify Android Phone To Run Without a Battery</title><link href="https://dovydas.xyz/blog/modify-android-phone-to-run-without-a-battery/" rel="alternate"></link><updated>2018-06-03T00:00:00Z</updated><author><name></name></author><id>urn:uuid:dbb39112-b385-3e82-bbe8-8a94dcee4100</id><content type="html">&lt;p&gt;I had few use cases where I needed a constantly on Android phone.
 The issue with keeping any device constantly charging is that their battery will suffer.
 In case of lithium-ion batteries, they have a proclivity to inflate and even catch fire or even explode.
 So keeping your mobile phone charging all the time is a NO.&lt;/p&gt;
@@ -2510,7 +2510,7 @@ the original battery.&lt;/li&gt;
 &lt;li&gt;If you are paranoid about the voltage levels of your "no battery" mod you can use the &lt;a href="https://f-droid.org/en/packages/com.darshancomputing.BatteryIndicator/"&gt;BatteryBot&lt;/a&gt; to check some battery stats.&lt;/li&gt;
 &lt;li&gt;I would only bother w/ Samsung phones &amp;amp; only phone w/ removable batteries because from my experience it is guaranteed to work and easiest to mod way.&lt;/li&gt;
 &lt;/ul&gt;
-</content></entry><entry><title>Issuing and managing client-side SSL certificates with Python</title><link href="https://dovydas.xyz/blog/issuing-and-managing-client-side-ssl-certificates-with-python/" rel="alternate"></link><updated>2018-02-02T00:00:00Z</updated><author><name></name></author><id>urn:uuid:a2f6a696-fbc9-3b96-a9da-5b9d58846a70</id><content type="html">&lt;p&gt;&lt;img src="using-client-side-certification.png" alt="start"&gt;&lt;/p&gt;
+</content></entry><entry><title>Issuing and managing client-side SSL certificates with Python</title><link href="https://dovydas.xyz/blog/issuing-and-managing-client-side-ssl-certificates-with-python/" rel="alternate"></link><updated>2018-02-02T00:00:00Z</updated><author><name></name></author><id>urn:uuid:c2ffd69e-0fad-3337-8a5d-b1b4305d535e</id><content type="html">&lt;p&gt;&lt;img src="using-client-side-certification.png" alt="start"&gt;&lt;/p&gt;
 &lt;h2 id="abbreviations"&gt;Abbreviations&lt;/h2&gt;&lt;p&gt;Key
 :  A piece of cryptographic information used for encrypting data by a chosen algorithm.&lt;/p&gt;
 &lt;p&gt;Hypertext Transfer Protocol Secure (HTTPS)&lt;/p&gt;
@@ -2710,7 +2710,7 @@ you like with the same private key.  The only thing that ages is your certificat
 &lt;li&gt;Create a signing request for your key&lt;/li&gt;
 &lt;li&gt;Get a certificate and prove you identity with it&lt;/li&gt;
 &lt;/ol&gt;
-</content></entry><entry><title>Control anything SSH with Homeassistant's Hass.io</title><link href="https://dovydas.xyz/blog/control-anything-ssh-with-homeassistants-hassio/" rel="alternate"></link><updated>2018-01-22T00:00:00Z</updated><author><name></name></author><id>urn:uuid:ab25a30a-15db-348f-9068-98495a1d666b</id><content type="html">&lt;h2 id="what-is-ssh"&gt;What is SSH?&lt;/h2&gt;&lt;p&gt;SSH is a powerful command line-tool, allowing for you to connect to a remote machine and issue any shell command remotely.
+</content></entry><entry><title>Control anything SSH with Homeassistant's Hass.io</title><link href="https://dovydas.xyz/blog/control-anything-ssh-with-homeassistants-hassio/" rel="alternate"></link><updated>2018-01-22T00:00:00Z</updated><author><name></name></author><id>urn:uuid:02f7fb01-cc5e-3b76-906b-821278f87046</id><content type="html">&lt;h2 id="what-is-ssh"&gt;What is SSH?&lt;/h2&gt;&lt;p&gt;SSH is a powerful command line-tool, allowing for you to connect to a remote machine and issue any shell command remotely.
 Basically, SSH is a way of &lt;strong&gt;sending&lt;/strong&gt; a command to a remote machine without doing the typing in by sitting front of the computer yourself.
 This means you can do things like shutdowns, maintenance, updates or anything else you want with SSH (as long as you
 have the username and the password of that particular server).
@@ -2859,7 +2859,7 @@ on the back.&lt;/p&gt;
 on other server I have at home. One thing to mention though is that you will not have any console output when you call
 a remote command using &lt;code&gt;command_line&lt;/code&gt; component, so monitoring things on a remote machine is not possible. You can check out my
 Hass.io config file for further &lt;a href="https://github.com/dovydasgulbinas/hass-conf" title="My Homeassistant configuration"&gt;inspiration here&lt;/a&gt;&lt;/p&gt;
-</content></entry><entry><title>Adding more features to Hyperion in Homeassistant</title><link href="https://dovydas.xyz/blog/adding-more-features-to-hyperion-in-homeassistant/" rel="alternate"></link><updated>2017-07-23T00:00:00Z</updated><author><name></name></author><id>urn:uuid:b98dea39-ba89-356d-ae52-f54996e912dc</id><content type="html">&lt;video src="hyperion-hass.webm"  autoplay loop muted&gt;&lt;/video&gt;&lt;h2 id="intro"&gt;Intro&lt;/h2&gt;&lt;p&gt;After playing around with Hyperion I really liked it, I liked it so much that I decided to implement it in my smart-home setup.  I currently use Hyperion for Kodi, but I wanted a way to control it with my &lt;code&gt;Homeassistant&lt;/code&gt;, because I could automate a lot of workflows e.g. automatically turn on the backlight in evenings. My Setup uses two Raspberry Pi devices: First for &lt;code&gt;Kodi + Hyperion&lt;/code&gt; and second just for &lt;code&gt;Homeassistant&lt;/code&gt;. Okay lets begin.&lt;/p&gt;
+</content></entry><entry><title>Adding more features to Hyperion in Homeassistant</title><link href="https://dovydas.xyz/blog/adding-more-features-to-hyperion-in-homeassistant/" rel="alternate"></link><updated>2017-07-23T00:00:00Z</updated><author><name></name></author><id>urn:uuid:73e0e4f0-528d-3c7e-9791-2fb1876e8702</id><content type="html">&lt;video src="hyperion-hass.webm"  autoplay loop muted&gt;&lt;/video&gt;&lt;h2 id="intro"&gt;Intro&lt;/h2&gt;&lt;p&gt;After playing around with Hyperion I really liked it, I liked it so much that I decided to implement it in my smart-home setup.  I currently use Hyperion for Kodi, but I wanted a way to control it with my &lt;code&gt;Homeassistant&lt;/code&gt;, because I could automate a lot of workflows e.g. automatically turn on the backlight in evenings. My Setup uses two Raspberry Pi devices: First for &lt;code&gt;Kodi + Hyperion&lt;/code&gt; and second just for &lt;code&gt;Homeassistant&lt;/code&gt;. Okay lets begin.&lt;/p&gt;
 &lt;p&gt;First open up your terminal and ssh to a machine with has Hyperion service enabled.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;ssh kodi@192.168.1.99
 &lt;/code&gt;&lt;/pre&gt;
@@ -2943,7 +2943,7 @@ sudo&lt;span class="w"&gt; &lt;/span&gt;su&lt;span class="w"&gt; &lt;/span&gt;ho
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;switch.hyperion_service&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;&lt;p&gt;This guide is a more or less a workaround for running Hyperion effects. I saw other people doing similar things to solve this problem, but it involved shell script for every Hyperion effect. This was due to the fact that &lt;code&gt;shell_command&lt;/code&gt; functionality was introduced relatively recently to &lt;code&gt;Homeassistant&lt;/code&gt;. I could try extending the feature set and add brightness control but for now it suits my needs. Furthermore, I could add automation to enable Hyperion only in evenings and I actually have done that. For more inspiration you can check out my  &lt;code&gt;Homeassistant&lt;/code&gt; config by visiting this &lt;a href="https://github.com/dovydasgulbinas/Home-AssistantConfig"&gt;GitHub repository.&lt;/a&gt;&lt;/p&gt;
-</content></entry><entry><title>What is Game State Integration on CS:GO?</title><link href="https://dovydas.xyz/blog/what-is-game-state-integration-on-csgo/" rel="alternate"></link><updated>2016-11-29T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:d6f73c02-3c3d-3e37-90e1-1f41c99a2551</id><content type="html">&lt;p&gt;A controversial CS:GO &lt;a href="https://blog.counter-strike.net/index.php/2015/12/13325/"&gt;winter update&lt;/a&gt; (12/17/2015) had the community raging about ridiculous changes to weapon mechanics, as well as the notorious OP R8 revolver.
+</content></entry><entry><title>What is Game State Integration on CS:GO?</title><link href="https://dovydas.xyz/blog/what-is-game-state-integration-on-csgo/" rel="alternate"></link><updated>2016-11-29T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:54dd5b28-a79a-3a2e-baa9-6fb8741df5e2</id><content type="html">&lt;p&gt;A controversial CS:GO &lt;a href="https://blog.counter-strike.net/index.php/2015/12/13325/"&gt;winter update&lt;/a&gt; (12/17/2015) had the community raging about ridiculous changes to weapon mechanics, as well as the notorious OP R8 revolver.
 Due to high dissatisfaction and many other changes, community really ignored the good and interesting things devs at 'Valve' had given us
 One of those 'good' things like &lt;a href="https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration"&gt;Game State Integration.&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="what-is-game-state-integration-gsi"&gt;What is Game State Integration (GSI) ?&lt;/h2&gt;&lt;p&gt;Game state integration is a sexy new way to link up &lt;em&gt;events&lt;/em&gt; that are happening in the gave with any computer or any device that handles basic RESTful messages.
