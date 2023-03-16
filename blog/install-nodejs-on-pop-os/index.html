@@ -1,0 +1,119 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="../../static/water.css?h=77b70841">
+  <link rel="stylesheet" href="../../static/style.css?h=530e7dd4">
+  
+  
+<link rel="stylesheet" href="../../static/pygments.css?h=81aa2f02">
+<link rel="stylesheet" href="../../static/blog-post.css?h=da39a3ee">
+
+  <link rel="icon" href="../../favicon.ico" type="image/gif"/>
+  <title>Install Node on Pop!_OS — dovydas.xyz</title>
+</head>
+<body>
+  
+  
+<nav class="navbar">
+    <ul class="navbar-nav">
+        <li class="logo">
+            <a href="/" class="nav-link">
+                <svg class="home-logo">
+                    <use href="../../static/logo.svg#home"></use>
+                </svg>
+                <svg class="logo-snail">
+                    <use href="../../static/logo.svg#snail"></use>
+                </svg>
+                <svg id="page-logo">
+                    <use href="../../static/logo.svg#dovydasxyz"></use>
+                </svg>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#blog"></use>
+                </svg>
+                <span class="link-text">Blog</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../../projects/" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#projects"></use>
+                </svg>
+                <span class="link-text">Projects</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="../../contact-me/" class="nav-link">
+                <svg>
+                    <use href="../../static/logo.svg#contact-me"></use>
+                </svg>
+                <span class="link-text">Contact Me</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+  
+  
+  <main>
+      
+  
+<article>
+  <a href="./">
+    <h1 class="flex-container">
+    
+      <img class="h-icon-em" src="cover.png"></img>
+    
+        Install Node on Pop!_OS
+      </h1>
+  </a>
+
+    <div class="flex-container post-meta">
+        <svg class="h-icon-16px"><use href="../../static/logo.svg#created"></use></svg>
+        <div>Mar 16, 2023</div>
+        
+    </div>
+    <hr>
+  <div class="blog-post">
+  <p>I am a the stage with this blog where I want to write some <a href="https://playwright.dev/">Playwright</a> tests to verify that after publishing it is in a good shape. 
+Since my development machine runs <em>Pop!_OS</em>  I could not use <code>apt</code> to easily install latest NodeJS LTS version.
+The Node version distributed with my distro was v12.18 (very old).</p>
+<p>I have tried using <a href="https://github.com/nodesource/distributions">nodesource</a>, but it failed due to dependency clash with some other package.</p>
+<h2 id="the-solution-was-fast-node-manager-fnm">The Solution was Fast Node Manager (FNM)</h2><p>Install <code>fnm</code> CLI tool:</p>
+<pre><code>curl -fsSL https://fnm.vercel.app/install | bash
+source ~/.bashrc  # or re-open a new terminal tab if using other shells
+</code></pre>
+<p>List available node versions:</p>
+<pre><code>fnm list-remote
+</code></pre>
+<div class="admonition admonition-info"><p>Versions in parentheses indicate that it is <em>Long-Term Support (LTS)</em> e.g. <code>v18.15.0</code> is LTS because it contains: <code>(Hydrogen)</code></p></div><p>Install Node package (I chose v18.15):</p>
+<pre><code>fnm install v18.15.0
+fnm use v18.15.0
+
+node --version
+npm --version
+</code></pre>
+
+  </div>
+
+</article>
+
+
+  </main>
+  
+  
+  <footer style="text-align: center; margin-top: 2rem; font-style: italic;">
+    <small>&copy; Copyright 2022 by D.G.</small>
+  </footer>
+  
+  
+</body>

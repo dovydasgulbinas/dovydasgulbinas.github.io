@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>dovydas.xyz Blog</title><link href="https://dovydas.xyz/blog/" rel="alternate"></link><link href="https://dovydas.xyz/feed.xml" rel="self"></link><id>urn:uuid:fb36a271-9254-3dd0-a052-7056cfc2ef89</id><updated>2023-03-12T00:00:00Z</updated><author><name></name></author><entry><title>Dovydas.xyz is back up and running!</title><link href="https://dovydas.xyz/blog/dovydasxyz-is-back-up-and-running/" rel="alternate"></link><updated>2023-03-12T00:00:00Z</updated><author><name>DG.</name></author><id>urn:uuid:fb7248dc-989e-3939-962e-787a5c9e3f61</id><content type="html">&lt;p&gt;After four whole months I managed to find the time to get my page back-up.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>dovydas.xyz Blog</title><link href="https://dovydas.xyz/blog/" rel="alternate"></link><link href="https://dovydas.xyz/feed.xml" rel="self"></link><id>urn:uuid:fb36a271-9254-3dd0-a052-7056cfc2ef89</id><updated>2023-03-16T00:00:00Z</updated><author><name></name></author><entry><title>Install Node on Pop!_OS</title><link href="https://dovydas.xyz/blog/install-nodejs-on-pop-os/" rel="alternate"></link><updated>2023-03-16T00:00:00Z</updated><author><name>D.G.</name></author><id>urn:uuid:1ca7da93-6bad-3411-8ec7-be3427e15a0b</id><content type="html">&lt;p&gt;I am a the stage with this blog where I want to write some &lt;a href="https://playwright.dev/"&gt;Playwright&lt;/a&gt; tests to verify that after publishing it is in a good shape. 
+Since my development machine runs &lt;em&gt;Pop!_OS&lt;/em&gt;  I could not use &lt;code&gt;apt&lt;/code&gt; to easily install latest NodeJS LTS version.
+The Node version distributed with my distro was v12.18 (very old).&lt;/p&gt;
+&lt;p&gt;I have tried using &lt;a href="https://github.com/nodesource/distributions"&gt;nodesource&lt;/a&gt;, but it failed due to dependency clash with some other package.&lt;/p&gt;
+&lt;h2 id="the-solution-was-fast-node-manager-fnm"&gt;The Solution was Fast Node Manager (FNM)&lt;/h2&gt;&lt;p&gt;Install &lt;code&gt;fnm&lt;/code&gt; CLI tool:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl -fsSL https://fnm.vercel.app/install | bash
+source ~/.bashrc  # or re-open a new terminal tab if using other shells
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;List available node versions:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fnm list-remote
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="admonition admonition-info"&gt;&lt;p&gt;Versions in parentheses indicate that it is &lt;em&gt;Long-Term Support (LTS)&lt;/em&gt; e.g. &lt;code&gt;v18.15.0&lt;/code&gt; is LTS because it contains: &lt;code&gt;(Hydrogen)&lt;/code&gt;&lt;/p&gt;&lt;/div&gt;&lt;p&gt;Install Node package (I chose v18.15):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fnm install v18.15.0
+fnm use v18.15.0
+
+node --version
+npm --version
+&lt;/code&gt;&lt;/pre&gt;
+</content></entry><entry><title>Dovydas.xyz is back up and running!</title><link href="https://dovydas.xyz/blog/dovydasxyz-is-back-up-and-running/" rel="alternate"></link><updated>2023-03-12T00:00:00Z</updated><author><name>DG.</name></author><id>urn:uuid:fb7248dc-989e-3939-962e-787a5c9e3f61</id><content type="html">&lt;p&gt;After four whole months I managed to find the time to get my page back-up.
 I moved to a different city and the internet provider here does not allow self hosting, because all clients are behind a NAT on a service provider level.&lt;/p&gt;
 &lt;p&gt;So I decided to fallback to the old way of hosting my static website - GitHub pages.&lt;/p&gt;
 &lt;p&gt;This time I tried out few new things GitHub actions.
