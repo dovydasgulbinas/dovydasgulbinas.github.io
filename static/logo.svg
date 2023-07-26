@@ -79,4 +79,12 @@
 		<path stroke="#70c6a9" d="M7 1h2M3 2h1M7 2h2M12 2h1M2 3h3M6 3h4M11 3h3M3 4h10M4 5h3M9 5h3M3 6h3M10 6h3M1 7h4M11 7h4M1 8h4M11 8h4M3 9h3M10 9h3M4 10h3M9 10h3M3 11h10M2 12h3M6 12h4M11 12h3M3 13h1M7 13h2M12 13h1M7 14h2" />
 	</symbol>
 
+	<symbol id="music" shape-rendering="crispEdges" viewBox="0 0 16 16">
+	<path d="m2 0v1h-1v1h-1v12h1v1h1v1h12v-1h1v-1h1v-12h-1v-1h-1v-1h-12zm1 1h10v1h1v1h1v10h-1v1h-1v1h-10v-1h-1v-1h-1v-10h1v-1h1v-1z"/>
+	<path d="m3 1v1h-1v1h-1v2h14v-2h-1v-1h-1v-1h-10zm-2 5v1h3v-1h-3zm6 0v1h2v-1h-2zm3 0v1h2v-1h-2zm3 0v1h2v-1h-2zm-12 2v1h3v-1h-3zm4 0v1h4v-1h-4zm5 0v1h1v-1h-1zm3 0v1h2v-1h-2zm-12 2v1h2v-1h-2zm4 0v1h3v-1h-3zm5 0v1h2v-1h-2zm3 0v1h2v-1h-2zm-12 2v1h1v1h1v1h10v-1h1v-1h1v-1h-2v1h-2v-1h-10z" style="fill:#e9c35b"/>
+	<path d="m4 5v5h-1v2h2v-5h1v1h1v-2h-1v-1h-2zm5 0v5h-1v2h2v-4h1v-1h-1v-1h2v-1h-3zm3 1v2h-1v1h1v2h-1v2h2v-7h-1z"/>
+	<path d="m1 5v1h3v-1h-3zm5 0v1h3v-1h-3zm6 0v1h3v-1h-3zm-11 2v1h3v-1h-3zm4 0v1h1v-1h-1zm2 0v1h2v-1h-2zm4 0v1h1v-1h-1zm2 0v1h2v-1h-2zm-12 2v1h3v-1h-3zm4 0v1h4v-1h-4zm5 0v1h2v-1h-2zm3 0v1h2v-1h-2zm-12 2v1h2v-1h-2zm4 0v1h3v-1h-3zm5 0v1h1v-1h-1zm3 0v1h2v-1h-2z" style="fill:#eeeeee"/>
+	</symbol>
+
+
 </svg>
