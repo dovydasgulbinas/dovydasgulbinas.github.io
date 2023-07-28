@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="../static/water.css?h=77b70841">
   <link rel="stylesheet" href="../static/style.css?h=91d2d922">
   
-  
+  <link rel="stylesheet" href="../static/music.css?h=a067f13a">
   <link rel="icon" href="../favicon.ico" type="image/gif"/>
   <title>Music — dovydas.xyz</title>
 </head>
@@ -79,35 +79,45 @@
   
   <main>
       
+  <div class="flex-rows">
   
     
-<article class="round-box">
-  <a href="demo-song/">
-    <h2 style="margin-top: auto;" class="flex-container">
+<article class="song-card">
+  <div class="flex-container post-meta">
+    <svg class="h-icon-16px">
+      <use href="../static/logo.svg#created"></use>
+    </svg>
     
-      <img class="h-icon-em" src="demo-song/cover.png"></img>
+    <div id="date-published">Mar 3, 2022</div>
     
-        DEMO SONG
-      </h2>
-  </a>
+  </div>
 
-    <div class="flex-container post-meta">
-        <svg class="h-icon-16px"><use href="../static/logo.svg#created"></use></svg>
-        <div id="date-published">Jul 26, 2023</div>
-        
-        <svg class="h-icon-16px"> <use href="../static/logo.svg#updated"></use></svg>
-        <div id="date-edited">Jul 27, 2023</div>
-        
+  <div class="player">
+    <div class="cover">
+      
+      <img src="post-war-bliss/cover-512px.png" />
+      
     </div>
 
-<audio controls>
-<source src="demo-song/test.mp3" type="audio/mpeg">
-  Your browser does not support the audio tag.
-</audio> 
-
+    <div
+      style="margin-top: auto"
+      id="song-title"
+      class="flex-container song-title"
+    >
+      Post-War Bliss
+    </div>
+    <audio controls>
+      <source
+        src="post-war-bliss/hermes33-post-war-bliss.ogg"
+        type=""
+      />
+      Your browser does not support the audio tag.
+    </audio>
+  </div>
 </article>
 
   
+  </div>
   
 <div style="margin: 2em;">
   <div style="display: flex;">
