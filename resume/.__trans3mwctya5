@@ -1,0 +1,109 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="../static/resume.css?h=1fae422e">
+  <link rel="icon" href="../favicon.ico" type="image/gif"/>
+  <title>Dovydas Gulbinas — dovydas.xyz</title>
+</head>
+<body>
+  
+  
+  <h1>Dovydas Gulbinas</h1>
+  
+  <main>
+      <article><p><img src="personal-photo.png" alt="me" width="125"></p>
+<blockquote><p>▪ Lithuania(Šiauliai)/Remote ▪ <a href="mailto:dovydas.gulbinas@protonmail.com">dovydas.gulbinas@protonmail.com</a> ▪ <a href="tel:0037060243562">+37060243562</a> ▪ <a href="https://github.com/dovydasgulbinas/">GitHub</a> ▪ <a href="https://www.linkedin.com/in/dovydas-gulbinas-b09126104/">LinkedIn</a> ▪ <a href="https://dovydas.xyz">Blog</a></p>
+</blockquote>
+<h2 id="experience">Experience</h2><p>➤ <strong>Back-end Engineer II</strong> - <em><a href="https://505hq.com/">505  HQ</a> (July 2024 -  present)</em></p>
+<p>Working as a sub-contractor for:</p>
+<ul>
+<li><a href="https://sanitex.eu/"><em>Sanitex</em></a> Logistics company with specialization of forming UBL documents</li>
+</ul>
+<p>➤ <strong>Back-end Engineer II</strong> - <em><a href="https://tromzo.com/">Tromzo</a> (Oct 2023 - July 2024)</em></p>
+<p>Worked at a cyber security start-up, specializing in vulnerability aggregation,of large datasets (Django, GraphQL, MySQL).</p>
+<ul>
+<li>Identified and fixed infrastructure issues related with webhook handling and load management </li>
+<li>Initiated and built integration error reporting dashboards</li>
+<li>Maintained 3-way Jira integration </li>
+</ul>
+<p>➤ <strong>Back-end Engineer</strong> — <em><a href="https://auriga.com/">Auriga Baltics</a> (July 2020 — August 2023):</em></p>
+<p>Worked on two different projects as a sub-contractor in fintech and medical equipment fields:</p>
+<ul>
+<li><p><a href="https://nymbus.com/"><em>Nymbus</em></a> Digital banking as a service project (Jython, Java)</p>
+<ul>
+<li>Initiated and developed testing environment for running Python unittest module inside Java runtime.</li>
+<li>Lead and built two-ended integration between CSI and Lightico for digital PDF document signatures.</li>
+<li>Lead and implemented document verification using Socure's DocV.</li>
+<li>Directed continuous integration using GitLab's CI and OpenShift clusters.</li>
+<li>Initiated and directed multiple code quality improvements in the project.</li>
+<li>Was promoted to team-lead and was financially incentivized three times.</li>
+</ul>
+</li>
+<li><p><a href="https://www.freseniuskidneycare.com/"><em>Fresenius</em></a> Hardware state simulation for kidney dialysis machines (CANape, CPython, ASAP2, Jenkins, C++)</p>
+<ul>
+<li>Improved our C++ code parser written in Python, for generating a2l tags in the source code.</li>
+<li>Designed and built a monitoring tool for relevant linked variable metrics and monitoring.</li>
+</ul>
+</li>
+</ul>
+<p>➤ <strong>Back-end Developer</strong> — <em><a href="https://risika.dk">Risika A/S</a> (Sep 2019 – July 2020, Copenhagen):</em></p>
+<p>Worked in a fintech startup specializing in large quantities of business data.
+Helped out with streamlining some essential parts of data pipeline and deployment:</p>
+<ul>
+<li>Redesigned and implemented company’s search engine functionality and end-points (PyPy, Falcon, PostgreSQL).</li>
+<li>Automated parts of deployment &amp; testing process (Docker, Drone CI).</li>
+<li>Refactored company's API code base to use JSON schema for payload validation.</li>
+</ul>
+<p>➤ <strong>Back-end Developer</strong> — <em><a href="https://www.momentcredit.lt/">Moment Credit</a> (Apr 2017 – Sep 2019):</em></p>
+<p>Made and deployed multiple applications using (Django/Django Rest frameworks, Unit Test, Oracle SQL).
+My notable contributions were:</p>
+<ul>
+<li>Designed and built and automated passport/ID scanner &amp; text recognizer (Django, OpenCV). It saved hours of manual work in our company, since prior to this project all passport/ID entries were done manually.  The challenging part was to learn Computer Vision and OpenCV4 fundamentals in less than 1 week.</li>
+<li>Built and designed a system for controlling/limiting access to sensitive web portals (Django, Open LDAP, x509, Fabric v1).</li>
+</ul>
+<p>➤ <strong>Odoo Framework ERP Developer</strong> — <em><a href="https://digitouch.lt/">Digitouch</a> (Oct 2016 – Apr 2017, Vilnius):</em></p>
+<p>Wrote custom Enterprise Resource Planning <strong>ERP</strong> modules used for accounting. Most impactful project:</p>
+<ul>
+<li>Odoo framework module which processed large number of invoices and computed a summary that was later submitted to our local tax authority.  This project proved to be lucrative because it saved more than 4 hours of accountant's labor.</li>
+</ul>
+<p>➤ <strong>Back-end Developer</strong> — <em>IT Girnos (Apr 2016 – Oct 2016, Vilnius):</em></p>
+<p>Wrote and designed multiple API endpoints (Flask).  Had a few front-end related tasks (Angular JS). Utmost project:</p>
+<ul>
+<li>Web to Short Message Service <strong>SMS</strong> application (Flask).  The most challenging part was to self-teach and implement SMS (SMPP 1.4) protocol, since SMS was sent directly through the mobile operator's infrastructure.</li>
+</ul>
+<p>➤ <strong>Hardware Tooling Suite Engineer</strong> — <em>WiliBox(temp position) (Sep 2015 – Feb 2016, Vilnius):</em></p>
+<ul>
+<li>Wrote tooling in Python for Wi-Fi router board calibration (CPython, Tkinter).</li>
+</ul>
+<h2 id="technical-experience">Technical Experience</h2><p><strong>Programming Languages</strong></p>
+<ul>
+<li><strong>Python:</strong> The language of expertise. I have worked with CPython, PyPy and Jython.  </li>
+<li><strong>Bash:</strong> Second most used language in my daily work.</li>
+<li><strong>Java:</strong> Developed financial products using this language.</li>
+<li><strong>JavaScript:</strong> Worked with Angular, Vue, Node.js and Playwright(TypeScript)</li>
+<li><strong>Other:</strong> Git, Java, PHP, SQL, C++, CSS.</li>
+</ul>
+<h2 id="other-technical-experience">Other Technical Experience</h2><ul>
+<li><strong>Docker:</strong> Proficient.  Wrote multiple “production-ready” containers for: Open LDAP, Kerberos, LAMP stack and others</li>
+<li><strong>Ansible:</strong> Proficient. Created multiple scripts for server deployments</li>
+<li><strong>Apache &amp; NGINX:</strong> Proficient.  Configured multiple web servers and reverse proxies for various projects, additionally used NGINX as a load balancer in round-robin fashion.</li>
+<li><strong>Linux:</strong> Proficient. I know how to manage services using <strong>systemd</strong> wrote multiple services and timers for it.  Basic knowledge of Linux networking &amp; <strong>iptables</strong> utility.</li>
+<li><strong>Technical Documentation Creation:</strong> Wrote API documentation for Risika.com. I have my own blog</li>
+<li><strong>Parametric 3D modeling OpenScad, FreeCAD</strong></li>
+<li><strong>E2E Testing:</strong> Proficient with Playwright both in Python and TypeScript runtimes.</li>
+</ul>
+<h2 id="education">Education</h2><p>2013-2017
+:   <strong>Bachelor's, In Modern Technology Physics</strong> | Vilnius University, Vilnius.</p>
+<h2 id="other-skills-hobbies">Other Skills &amp; Hobbies</h2><ul>
+<li>Servers and home automation</li>
+<li>Electronics &amp; Hardware</li>
+<li>Languages: English (CEFR C1), Lithuanian</li>
+</ul>
+</article>
+  </main>
+  
+  
+  
+</body>
