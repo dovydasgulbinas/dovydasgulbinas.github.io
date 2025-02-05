@@ -121,7 +121,7 @@ For something more practical, we can print the current time using <code>java.uti
 <pre><code>java -jar ./lib/jython-standalone-2.7.2.jar
 </code></pre>
 <p>Then In the REPL shell enter this code (line by line):</p>
-<div class="hll"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">java.util</span> <span class="kn">import</span> <span class="n">Date</span>
+<div class="hll"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">java.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">Date</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">Date</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">toString</span><span class="p">())</span> <span class="c1"># Prints result in REPL</span>
 <span class="n">Tue</span> <span class="n">Jan</span> <span class="mi">18</span> <span class="mi">10</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">33</span> <span class="n">EET</span> <span class="mi">2022</span>

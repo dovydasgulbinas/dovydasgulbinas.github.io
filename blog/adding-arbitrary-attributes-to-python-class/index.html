@@ -97,8 +97,8 @@
 want to access these attributes via <code>. (dot)</code> operator e.g. <code>myClass.age</code>.  You
 can easily do that in Python.  Although using a <em>dictionary</em> type would be more explicit and
 Pythonic 😉.</p>
-<h2 id="the-solution">The Solution</h2><div class="hll"><pre><span></span><span class="k">class</span> <span class="nc">PlaceholderClass</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<h2 id="the-solution">The Solution</h2><div class="hll"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">PlaceholderClass</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
 

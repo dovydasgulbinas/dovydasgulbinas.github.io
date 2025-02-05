@@ -100,7 +100,7 @@
 pretty good documentation, but workflows and tools were not so clearly
 explained, after writing several scrips myself, I managed to come up with a few rules that I believe others will find to be useful.</p>
 <h2 id="default-function-arguments">Default function arguments</h2><p>using <code>env.*</code> in method bodies is a bad idea, but it can be made better:</p>
-<div class="hll"><pre><span></span><span class="k">def</span> <span class="nf">list_root</span><span class="p">(</span><span class="n">default_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="hll"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">list_root</span><span class="p">(</span><span class="n">default_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">default_path</span><span class="p">:</span>
         <span class="n">default_path</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">sys_default_path</span>
@@ -123,34 +123,34 @@ incompatible with paragraph [$5].</li>
 <p>Your code will outgrow a single file, trust me.  Think about module structure
 first!  More info about splitting to modules is <a href="https://docs.fabfile.org/en/1.14/usage/tasks.html?highlight=modules">here</a></p>
 <h2 id="use-more-global-module-constants">Use more global module constants</h2><p>If modules global are not enough only then use <code>env.*</code></p>
-<div class="hll"><pre><span></span><span class="kn">from</span> <span class="nn">fabric.api</span> <span class="kn">import</span> <span class="n">run</span>
+<div class="hll"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fabric.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">run</span>
 
 <span class="c1"># we know that this will never change, so let&#39;s store it in a constant</span>
 <span class="n">ALL_CAPS_CAPS_LOCK_TEST</span> <span class="o">=</span> <span class="s1">&#39;armstrong&#39;</span>
 </pre></div>
 <p>Import constant from module below:</p>
-<div class="hll"><pre><span></span><span class="kn">from</span> <span class="nn">nasa.hax</span> <span class="kn">import</span> <span class="n">hacked_user</span> <span class="k">as</span> <span class="n">ALL_CAPS_CAPS_LOCK_TEST</span>
+<div class="hll"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nasa.hax</span><span class="w"> </span><span class="kn">import</span> <span class="n">hacked_user</span> <span class="k">as</span> <span class="n">ALL_CAPS_CAPS_LOCK_TEST</span>
 
 <span class="n">env</span><span class="o">.</span><span class="n">host</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;nasa.org:22&#39;</span><span class="p">]</span>
 <span class="n">env</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">ALL_CAPS_CAPS_LOCK_TEST</span>
 
-<span class="k">def</span> <span class="nf">prod_env</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prod_env</span><span class="p">():</span>
     <span class="n">env</span><span class="o">.</span><span class="n">hosts</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;prod-server.com&#39;</span><span class="p">]</span>
 </pre></div>
 <h2 id="differentiate-environments">Differentiate environments</h2><p>Use Python methods to define different environments:</p>
-<div class="hll"><pre><span></span><span class="kn">from</span> <span class="nn">fabric.api</span> <span class="kn">import</span> <span class="n">run</span>
+<div class="hll"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fabric.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">run</span>
 
 <span class="n">env</span><span class="o">.</span><span class="n">host</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;test-server.com&#39;</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">prod_env</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prod_env</span><span class="p">():</span>
     <span class="n">env</span><span class="o">.</span><span class="n">hosts</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;prod-server.com&#39;</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">test_server</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_server</span><span class="p">():</span>
     <span class="c1"># we don&#39;t call env hosts inside this func body, because we want test-server</span>
     <span class="c1"># to be the default server because, writing: `$ fab test_server [...]` is annoying</span>
     <span class="k">pass</span>
 
-<span class="k">def</span> <span class="nf">list_home</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">list_home</span><span class="p">():</span>
     <span class="n">run</span><span class="p">(</span><span class="s1">&#39;ls -alt $HOME&#39;</span><span class="p">)</span>
 </pre></div>
 <p>call these methods in your terminal</p>
@@ -165,15 +165,15 @@ statements also giving your function tons of default parameters when doing a
 subsystem call.</p>
 <p>The optimal way is to avoid mixing subsystem functions: <code>root()</code>, <code>run()</code>, <code>local()</code> in Fabric method you are writing.
 The benefits of not mixing these functions in a method is that you can pass them as needed as a function variable:</p>
-<div class="hll"><pre><span></span><span class="kn">from</span> <span class="nn">fabric.api</span> <span class="kn">import</span> <span class="n">local</span><span class="p">,</span> <span class="n">run</span><span class="p">,</span> <span class="n">sudo</span>
-<span class="kn">from</span> <span class="nn">fabric.state</span> <span class="kn">import</span> <span class="n">env</span>
+<div class="hll"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fabric.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">local</span><span class="p">,</span> <span class="n">run</span><span class="p">,</span> <span class="n">sudo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fabric.state</span><span class="w"> </span><span class="kn">import</span> <span class="n">env</span>
 
 
 <span class="n">env</span><span class="o">.</span><span class="n">user</span><span class="o">=</span><span class="s1">&#39;troubled.man&#39;</span>
 <span class="n">env</span><span class="o">.</span><span class="n">host</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;nasa.org:22&#39;</span><span class="p">]</span>
 
 <span class="c1"># bad</span>
-<span class="k">def</span> <span class="nf">which_user</span><span class="p">(</span><span class="n">run_local</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">run_remote</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">run_root</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">which_user</span><span class="p">(</span><span class="n">run_local</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">run_remote</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">run_root</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">run_local</span><span class="p">:</span>
         <span class="n">local</span><span class="p">(</span><span class="s1">&#39;whoami&#39;</span><span class="p">)</span>
    <span class="k">elif</span> <span class="n">run_remote</span><span class="p">:</span>
@@ -183,7 +183,7 @@ The benefits of not mixing these functions in a method is that you can pass them
 
 
 <span class="c1"># good</span>
-<span class="k">def</span> <span class="nf">which_user</span><span class="p">(</span><span class="n">caller</span><span class="o">=</span><span class="n">local</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">which_user</span><span class="p">(</span><span class="n">caller</span><span class="o">=</span><span class="n">local</span><span class="p">):</span>
     <span class="n">caller</span><span class="p">(</span><span class="s1">&#39;whoami&#39;</span><span class="p">)</span>
 
 <span class="n">which_user</span><span class="p">(</span><span class="n">caller</span><span class="o">=</span><span class="n">local</span><span class="p">)</span>  <span class="c1"># this will print user of your local machine</span>
@@ -215,8 +215,8 @@ $ which python
 <p>So that is the reason why Django app in example below did not start.  One
 possible fix is to use <code>py27</code> environment always.  And modify <code>fabfile.py</code> to
 activate python3 environment locally when needed.</p>
-<div class="hll"><pre><span></span><span class="kn">from</span> <span class="nn">fabric.api</span> <span class="kn">import</span> <span class="n">local</span><span class="p">,</span> <span class="n">run</span><span class="p">,</span> <span class="n">sudo</span>
-<span class="kn">from</span> <span class="nn">fabric.state</span> <span class="kn">import</span> <span class="n">env</span>
+<div class="hll"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fabric.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">local</span><span class="p">,</span> <span class="n">run</span><span class="p">,</span> <span class="n">sudo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fabric.state</span><span class="w"> </span><span class="kn">import</span> <span class="n">env</span>
 
 
 <span class="n">env</span><span class="o">.</span><span class="n">user</span><span class="o">=</span><span class="s1">&#39;armstrong&#39;</span>
@@ -225,16 +225,16 @@ activate python3 environment locally when needed.</p>
 
 <span class="n">env</span><span class="o">.</span><span class="n">runtime</span> <span class="o">=</span> <span class="s1">&#39;source activate py36 &amp;&amp;&#39;</span>  <span class="c1"># let&#39;s assume our django app is running, on 3.6</span>
 
-<span class="k">def</span> <span class="nf">prod_env</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prod_env</span><span class="p">():</span>
     <span class="n">env</span><span class="o">.</span><span class="n">runtime</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1"># we assume default python path is 3.X on prod_env</span>
     <span class="n">env</span><span class="o">.</span><span class="n">caller</span> <span class="o">=</span> <span class="n">run</span>
 
 
-<span class="k">def</span> <span class="nf">local_env</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">local_env</span><span class="p">():</span>
     <span class="k">pass</span>
 
 
-<span class="k">def</span> <span class="nf">python_version</span><span class="p">(</span><span class="n">caller</span><span class="o">=</span><span class="n">local</span><span class="p">,</span> <span class="n">runtime</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">python_version</span><span class="p">(</span><span class="n">caller</span><span class="o">=</span><span class="n">local</span><span class="p">,</span> <span class="n">runtime</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
     <span class="c1"># let&#39;s use runtime of our environment</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">runtime</span><span class="p">:</span>
@@ -243,7 +243,7 @@ activate python3 environment locally when needed.</p>
     <span class="n">caller</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> python -V&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">runtime</span><span class="p">))</span>
 
 
-<span class="k">def</span> <span class="nf">agnostic_python_version</span><span class="p">(</span><span class="n">env_func</span><span class="o">=</span><span class="n">prod_env</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">agnostic_python_version</span><span class="p">(</span><span class="n">env_func</span><span class="o">=</span><span class="n">prod_env</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;this will print whichever version is on the remote server&quot;&quot;&quot;</span>
 
     <span class="n">env_func</span><span class="p">()</span>  <span class="c1"># calls any environment function you set</span>

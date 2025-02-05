@@ -133,8 +133,8 @@ cd &lt;cool_project&gt;
 touch fabfile.py
 </code></pre>
 <p>now copy contents below to <code>fabfile.py</code></p>
-<div class="hll"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">task</span>
+<div class="hll"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">invoke</span><span class="w"> </span><span class="kn">import</span> <span class="n">task</span>
 
 <span class="c1"># These constants are Hacky, but for now I do not know how to fix it using</span>
 <span class="c1"># invoke, because invoke does not load exported variables of my terminal session</span>
@@ -144,37 +144,37 @@ touch fabfile.py
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">penv</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">penv</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
     <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ACA</span> <span class="o">+</span> <span class="s2">&quot;/usr/bin/env&quot;</span><span class="p">,</span> <span class="n">pty</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">freeze</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">freeze</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ACA</span> <span class="o">+</span> <span class="s2">&quot;pip freeze &gt; requirements.txt&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">shellbp</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">shellbp</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
     <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ACA</span> <span class="o">+</span> <span class="s1">&#39;bpython -i manage.py shell&#39;</span><span class="p">,</span> <span class="n">pty</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">shell</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">shell</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
     <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ACA</span> <span class="o">+</span> <span class="s1">&#39;manage.py shell&#39;</span><span class="p">,</span> <span class="n">pty</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
     <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ACA</span> <span class="o">+</span> <span class="s1">&#39;manage.py runserver&#39;</span><span class="p">,</span> <span class="n">pty</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">purge_cache</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">purge_cache</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
     <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ACA</span> <span class="o">+</span> <span class="s1">&#39;find . -d -name __pycache__ -exec rm -rf </span><span class="si">{}</span><span class="s1"> \;&#39;</span><span class="p">,</span> <span class="n">pty</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
     <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ACA</span> <span class="o">+</span> <span class="s1">&#39;manage.py test&#39;</span><span class="p">,</span> <span class="n">pty</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 <h2 id="test-the-fabric2">Test The Fabric2</h2><p>Using fabric2 CLI is relatively painless.  You Can list all the available tasks

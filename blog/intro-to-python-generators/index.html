@@ -100,7 +100,7 @@ how generators and <code>yield</code> statements are related in python.</p>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# Let&#39;s begin with a complex example</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">smart_yield</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">smart_yield</span><span class="p">():</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
         <span class="k">yield</span> <span class="n">item</span>
 
@@ -113,7 +113,7 @@ how generators and <code>yield</code> statements are related in python.</p>
 <span class="nb">print</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">stupid_yield</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">stupid_yield</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# Each iteration progresses the code by consuming one `yield` at a time&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">()</span>
 
@@ -131,7 +131,7 @@ how generators and <code>yield</code> statements are related in python.</p>
 <span class="nb">print</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">hybrid_yield</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">hybrid_yield</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# Generators remember last `yield` they returned&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">()</span>
 
